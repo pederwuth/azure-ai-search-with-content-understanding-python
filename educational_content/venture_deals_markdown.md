@@ -4,8 +4,8 @@
 <!-- FigureContent="**Title**: Logo of the Central Bank of Iran
 **ChartType**: rings
 **TopicKeywords**: Business and finance, Government and politics
-**DetailedDescription**: The image is the logo of the Central Bank of Iran. It features a geometric design with a central motif resembling a cog or gear, surrounded by stylized hands. The hands are enclosed within a hexagonal shape formed by interlocking arrows or chevrons, creating a sense of unity and protection. The color used is a deep teal, which is often associated with stability and trust.
-**Summary**: This is the logo of the Central Bank of Iran, characterized by a central gear-like symbol surrounded by hands, all enclosed within a hexagonal shape formed by interlocking arrows. The design symbolizes protection and unity, using a teal color to convey stability.
+**DetailedDescription**: The image is the logo of the Central Bank of Iran. It features a geometric design with a central motif resembling a cog or gear, surrounded by stylized hands. The hands are enclosed within a hexagonal shape formed by interlocking arrows, symbolizing protection and unity. The color scheme is teal, which is often associated with trust and stability.
+**Summary**: This is the logo of the Central Bank of Iran, featuring a cog surrounded by hands within a hexagonal shape formed by arrows, symbolizing protection and unity.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -2023,8 +2023,8 @@ ongoing adviser.
 <!-- FigureContent="**Title**: Chapter 2: How to Raise Money
 **ChartType**: bar
 **TopicKeywords**: Business and finance, Education and academics
-**DetailedDescription**: The image is a title page for Chapter 2, titled 'How to Raise Money'. It suggests that the content following this page will provide information or guidance on methods or strategies for raising money, likely in a business or financial context.
-**Summary**: This is the title page for Chapter 2, which focuses on strategies and methods for raising money.
+**DetailedDescription**: The image is a title page for Chapter 2, titled 'How to Raise Money'. It suggests that the content following this page will focus on strategies, methods, or insights into raising money, likely in a business or financial context.
+**Summary**: This is the title page for Chapter 2, which is focused on the topic of raising money. It sets the stage for a discussion or exploration of financial strategies.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -2921,8 +2921,8 @@ phone call or send an email to the VC and see what the real story is.
 <!-- FigureContent="**Title**: Chapter 3
 **ChartType**: rings
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image displays the text 'CHAPTER 3' with the number '3' in a large, light gray font and the word 'CHAPTER' in a smaller, black font. The number '3' is positioned centrally, with the word 'CHAPTER' overlaying it horizontally.
-**Summary**: This image is a stylized representation of a chapter heading, specifically Chapter 3, with a large numeral and overlaying text.
+**DetailedDescription**: The image displays the text 'CHAPTER 3' with the number '3' in a large, light gray font and the word 'CHAPTER' in a smaller, black font. The number '3' is positioned centrally and serves as a background to the word 'CHAPTER', which is spread across the width of the number.
+**Summary**: The image is a stylized representation of a chapter heading, specifically for Chapter 3, using contrasting font sizes and colors to emphasize the chapter number.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -3026,8 +3026,8 @@ economic terms.
 <!-- FigureContent="**Title**: Chapter 4
 **ChartType**: rings
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image prominently displays the text 'CHAPTER 4' with the number '4' in a large, light gray font, and the word 'CHAPTER' in a smaller, black font. The number '4' serves as a background to the word 'CHAPTER', creating a layered visual effect.
-**Summary**: The image is a stylized representation of the text 'CHAPTER 4', with a large number '4' in the background and the word 'CHAPTER' overlaid on top.
+**DetailedDescription**: The image displays the text 'CHAPTER 4' with the number '4' prominently featured in a large, light gray font. The word 'CHAPTER' is written in black, capital letters and is spaced out horizontally across the top of the number '4'. The design is simple and focuses on the chapter number, likely indicating a section or division within a book or document.
+**Summary**: The image is a stylized representation of 'Chapter 4', with the number '4' in large gray font and the word 'CHAPTER' in black capital letters across it. It signifies a section within a larger text.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -4435,9 +4435,9 @@ your company after the financing so they don't ever come into play.
 
 <!-- FigureContent="**Title**: Chapter 5
 **ChartType**: rings
-**TopicKeywords**: Arts and culture, Design
-**DetailedDescription**: The image displays the text 'CHAPTER 5' with the number '5' in a large, light gray font and the word 'CHAPTER' in black, capital letters. The design is simple and focuses on the contrast between the large numeral and the smaller text.
-**Summary**: The image is a stylized representation of 'Chapter 5', with a focus on design and typography.
+**TopicKeywords**: Arts and culture, Education and academics
+**DetailedDescription**: The image displays the word 'CHAPTER' in bold, black letters, arranged vertically with each letter spaced apart. Behind the word 'CHAPTER' is a large, light gray number '5', indicating the chapter number. The design is simple and focuses on the contrast between the black text and the gray number.
+**Summary**: This image represents the title page for Chapter 5, with a bold design featuring the chapter number prominently in the background.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -5105,7 +5105,7 @@ waive this provision.
 **ChartType**: rings
 **TopicKeywords**: Arts and culture, Education and academics
 **DetailedDescription**: The image prominently displays the number '6' in a large, light gray font, with the word 'CHAPTER' written in black, capital letters across the middle of the number. The design is simple and focuses on the chapter number, likely indicating the beginning of a new section in a book or document.
-**Summary**: This image signifies the start of Chapter 6, using a large numeral '6' with the word 'CHAPTER' overlaid, suggesting a transition to a new section.
+**Summary**: This image signifies the start of Chapter 6, using a large numeral and the word 'CHAPTER' to clearly mark the transition to a new section.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -6288,11 +6288,11 @@ VC financings.
 <!-- PageHeader="Venture Deals: Be Smarter than Your Lawyer and Venture Capitalist, Third Edition By Brad Feld and Jason Mendelson Copyright @ 2016 by Brad Feld and Jason Mendelson" -->
 
 
-<!-- FigureContent="**Title**: 
+<!-- FigureContent="**Title**: Chapter 8
 **ChartType**: rings
-**TopicKeywords**: Arts and culture, Design
-**DetailedDescription**: The image features a large number '8' in a light gray color, with the word 'CHAPTER' written in black, bold, uppercase letters across the middle of the number. The design is simple and modern, with a focus on typography and layout.
-**Summary**: This image is a stylized representation of the number '8' with the word 'CHAPTER' overlaid, likely indicating the beginning of Chapter 8 in a book or document.
+**TopicKeywords**: Arts and culture, Education and academics
+**DetailedDescription**: The image displays the text 'CHAPTER 8' with the number '8' in a large, light gray font and the word 'CHAPTER' in a smaller, black font. The number '8' is positioned centrally, with the word 'CHAPTER' overlaying it horizontally.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 8', with a focus on the number '8' as a central design element.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -7076,11 +7076,11 @@ or be lazy about, issues until the next financing round.
 <!-- PageHeader="Venture Deals: Be Smarter than Your Lawyer and Venture Capitalist, Third Edition By Brad Feld and Jason Mendelson Copyright @ 2016 by Brad Feld and Jason Mendelson" -->
 
 
-<!-- FigureContent="**Title**: Chapter 9
-**ChartType**: rings
+<!-- FigureContent="**Title**: 
+**ChartType**: bar
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image displays the text 'CHAPTER 9' with the number '9' prominently featured in a large, light gray font. The word 'CHAPTER' is written in black, capital letters, and is spaced out with each letter positioned around the number '9'. The design suggests a stylistic approach to chapter headings, often used in books or documents to denote the beginning of a new section.
-**Summary**: The image is a stylized representation of a chapter heading, specifically 'Chapter 9', with a large number '9' and the word 'CHAPTER' spaced around it.
+**DetailedDescription**: The image displays the text 'CHAPTER 9' in a stylized format. The word 'CHAPTER' is written in a vertical orientation, with each letter spaced out horizontally. The number '9' is prominently displayed in a larger font size and in a light gray color, contrasting with the black text of 'CHAPTER'.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 9', with a focus on design and typography.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -7414,11 +7414,11 @@ the squeaky wheel who can be a real pain in the neck.
 <!-- PageHeader="Venture Deals: Be Smarter than Your Lawyer and Venture Capitalist, Third Edition By Brad Feld and Jason Mendelson Copyright @ 2016 by Brad Feld and Jason Mendelson" -->
 
 
-<!-- FigureContent="**Title**: Chapter 10
-**ChartType**: rings
+<!-- FigureContent="**Title**: 
+**ChartType**: bar
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image displays the text 'CHAPTER 10' in a stylized format. The number '10' is large and gray, with the word 'CHAPTER' vertically aligned and spaced out within the number '1'.
-**Summary**: This is a stylized representation of 'Chapter 10', likely used as a chapter heading in a book or document.
+**DetailedDescription**: The image displays the text 'CHAPTER 10' in a stylized format. The number '10' is large and gray, while the word 'CHAPTER' is vertically aligned and black, positioned to the left of the number.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 10', with a focus on design and typography.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -7496,13 +7496,13 @@ own on a fund-by-fund basis.
 <!-- FigureContent="**Title**: Management Company Structure
 **ChartType**: treemap
 **TopicKeywords**: Business and finance
-**DetailedDescription**: The diagram illustrates the structure of a management company overseeing two separate funds, Fund I and Fund II. At the top of the hierarchy is the Management Company, which is connected to two General Partners, labeled as General Partner I LLC and General Partner II LLC. Each General Partner is associated with a specific fund: General Partner I LLC is linked to Fund I LP, and General Partner II LLC is linked to Fund II LP. Both funds have multiple investors, denoted as LP1, LP2, LP3, ..., LPn, indicating a series of limited partners involved in each fund.
-**Summary**: This diagram represents the organizational structure of a management company that operates two funds through separate general partners. Each fund has a series of limited partners as investors.
+**DetailedDescription**: The diagram illustrates the structure of a management company overseeing two separate funds, Fund I and Fund II. At the top of the hierarchy is the Management Company, which is connected to two General Partners, labeled as General Partner I LLC and General Partner II LLC. Each General Partner is associated with a specific fund: General Partner I LLC is linked to Fund I LP, and General Partner II LLC is linked to Fund II LP. Both funds have multiple investors, denoted as LP1, LP2, LP3, ..., LPn, indicating limited partners. The diagram shows the flow of management and investment from the top-level management company down to the individual investors in each fund.
+**Summary**: This diagram represents the hierarchical structure of a management company that manages two separate funds through two general partners. Each fund has multiple investors, highlighting the organizational setup of fund management.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
 **AxisTitles.yAxisTitle**: 
-**FootnotesAndAnnotations**: The diagram includes annotations 'Fund I' and 'Fund II' to indicate the association of each General Partner with their respective fund.
+**FootnotesAndAnnotations**: The diagram includes annotations 'Fund I' and 'Fund II' to indicate the respective funds managed by General Partner I LLC and General Partner II LLC.
 " --><figure>
 <figcaption>Management Company Structure: General Partnership and Limited Partnership</figcaption>
 
@@ -8321,8 +8321,8 @@ of a surprise and company-impacting interaction later.
 <!-- FigureContent="**Title**: Chapter 11
 **ChartType**: bar
 **TopicKeywords**: Business and finance
-**DetailedDescription**: The image displays the text 'Chapter 11' in a stylized format, with the word 'CHAPTER' vertically aligned between the two digits '1'. This is a common reference to Chapter 11 bankruptcy, which is a form of bankruptcy involving the reorganization of a debtor's business affairs, debts, and assets.
-**Summary**: The image represents 'Chapter 11', commonly associated with Chapter 11 bankruptcy, a legal process for business reorganization.
+**DetailedDescription**: The image displays the text 'Chapter 11' in a stylized format, with the word 'CHAPTER' vertically aligned between the large numbers '11'. This is a reference to Chapter 11 bankruptcy, which is a form of bankruptcy involving reorganization of a debtor's business affairs, debts, and assets.
+**Summary**: The image is a stylized representation of 'Chapter 11', commonly associated with Chapter 11 bankruptcy, a legal process for business reorganization.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -9251,8 +9251,8 @@ party is uncomfortable with where they previously ended up.
 <!-- FigureContent="**Title**: Chapter 12
 **ChartType**: rings
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image displays the text 'Chapter 12' in a stylized format. The word 'CHAPTER' is written vertically in bold, black letters, while the number '12' is displayed in a large, light gray font behind it. The design suggests a title page or section header in a book or document, indicating the beginning of Chapter 12.
-**Summary**: The image is a stylized representation of the title 'Chapter 12', likely used as a section header in a book or document.
+**DetailedDescription**: The image displays the text 'Chapter 12' in a stylized format. The word 'CHAPTER' is written vertically in bold, black letters, while the number '12' is displayed in a large, light gray font behind it. The design is simple and focuses on the contrast between the boldness of the chapter title and the subtlety of the chapter number.
+**Summary**: The image is a stylized representation of the text 'Chapter 12', with the chapter number prominently displayed in a large, light gray font behind the vertically arranged word 'CHAPTER'.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -9479,9 +9479,9 @@ and amazing software engineers going after a big idea.
 
 <!-- FigureContent="**Title**: Chapter 13
 **ChartType**: rings
-**TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image prominently displays the text 'CHAPTER 13' with the number '13' in a large, stylized font. The word 'CHAPTER' is vertically aligned to the left of the number '13'. The number '13' is in a light gray color, while 'CHAPTER' is in black, creating a contrast that highlights the chapter number.
-**Summary**: The image is a stylized representation of the text 'CHAPTER 13', with a focus on the number '13' in a large, light gray font and the word 'CHAPTER' in black, vertically aligned to the left.
+**TopicKeywords**: Arts and culture, Design
+**DetailedDescription**: The image displays the text 'CHAPTER 13' with the number '13' in a large, light gray font and the word 'CHAPTER' in a smaller, black font. The number '13' is prominently featured in the background, while the word 'CHAPTER' is overlaid on top of it, centered vertically.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 13', with a focus on design and typography. The number '13' is large and light gray, serving as a backdrop to the smaller, black text 'CHAPTER'.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -9683,9 +9683,9 @@ their later stages.
 
 <!-- FigureContent="**Title**: Chapter 14
 **ChartType**: bar
-**TopicKeywords**: Education and academics
-**DetailedDescription**: The image displays the text 'CHAPTER 14' in a bold, sans-serif font. The word 'CHAPTER' is vertically aligned to the left of the number '14', which is prominently displayed in a larger font size. The design is simple and clear, indicating a section or division within a larger text, such as a book or document.
-**Summary**: The image indicates the beginning of Chapter 14, likely in a book or document, using a bold and clear font style.
+**TopicKeywords**: Arts and culture, Education and academics
+**DetailedDescription**: The image displays the text 'CHAPTER 14' in a large, bold font. The word 'CHAPTER' is vertically aligned to the left of the number '14', which is prominently displayed in a larger size. The text is in a sans-serif font, with 'CHAPTER' in black and '14' in a light gray color.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 14', likely indicating a section or part of a book or document.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -10782,8 +10782,8 @@ extensive experience with both buyers and their lawyers.
 <!-- FigureContent="**Title**: Chapter 15
 **ChartType**: rings
 **TopicKeywords**: Arts and culture, Education and academics
-**DetailedDescription**: The image prominently displays the text 'CHAPTER 15'. The word 'CHAPTER' is written in a bold, sans-serif font and is vertically aligned to the left of the number '15'. The number '15' is significantly larger and is presented in a light gray color, creating a contrast with the black text of 'CHAPTER'. The design suggests a title or heading for a section in a book or document, indicating that it is the fifteenth chapter.
-**Summary**: The image is a stylized representation of a chapter heading, specifically Chapter 15, with the word 'CHAPTER' aligned vertically next to a large number '15'.
+**DetailedDescription**: The image displays the text 'CHAPTER 15' in a stylized format. The word 'CHAPTER' is written vertically, with each letter spaced out horizontally. The number '15' is prominently displayed in a large, bold font behind the word 'CHAPTER'. The number is in a light gray color, while the word 'CHAPTER' is in black, creating a contrast that highlights the chapter number.
+**Summary**: The image is a stylized representation of 'CHAPTER 15', with the chapter number '15' in large, light gray font and the word 'CHAPTER' in black, spaced out horizontally across the number.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
@@ -11033,11 +11033,11 @@ regards, this is the most important term of them all.
 <!-- PageHeader="Venture Deals: Be Smarter than Your Lawyer and Venture Capitalist, Third Edition By Brad Feld and Jason Mendelson Copyright @ 2016 by Brad Feld and Jason Mendelson" -->
 
 
-<!-- FigureContent="**Title**: Chapter 16
+<!-- FigureContent="**Title**: Chapter 6
 **ChartType**: bar
 **TopicKeywords**: Arts and culture
-**DetailedDescription**: The image displays the text 'Chapter 16' with the number '16' in a large, light gray font and the word 'CHAPTER' in a smaller, black font. The design is simple and focuses on the typography, with the number '16' being the most prominent element.
-**Summary**: The image is a typographic representation of 'Chapter 16', with emphasis on the number '16'.
+**DetailedDescription**: The image displays the text 'CHAPTER 6' with the number '6' in a large, light gray font and the word 'CHAPTER' in smaller, black font. The design is simple and focuses on the typography, with the number '6' being the most prominent element.
+**Summary**: The image is a stylized representation of the text 'CHAPTER 6', with emphasis on the number '6'.
 **MarkdownDataTable**: 
 **AxisTitles**
 **AxisTitles.xAxisTitle**: 
