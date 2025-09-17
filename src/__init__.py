@@ -23,7 +23,7 @@ __author__ = "Educational Content Processing Team"
 # Core exports
 from .core import (
     BookChapter,
-    ChapterSummary, 
+    ChapterSummary,
     BookSummary,
     Settings,
     ProcessingError,
@@ -34,7 +34,7 @@ from .core import (
 __all__ = [
     "BookChapter",
     "ChapterSummary",
-    "BookSummary", 
+    "BookSummary",
     "Settings",
     "ProcessingError",
     "ContentUnderstandingError",

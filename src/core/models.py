@@ -14,7 +14,7 @@ import json
 @dataclass
 class BookChapter:
     """Represents a chapter from a document.
-    
+
     Attributes:
         chapter_number: Sequential number of the chapter
         title: Chapter title or heading
@@ -27,7 +27,7 @@ class BookChapter:
     content: str
     token_count: int
     page_range: str
-    
+
     def __post_init__(self):
         """Validate chapter data after initialization."""
         if not self.title.strip():
@@ -39,7 +39,7 @@ class BookChapter:
 @dataclass
 class ChapterSummary:
     """Represents a generated chapter summary.
-    
+
     Attributes:
         chapter_number: Sequential number of the chapter
         chapter_title: Title of the chapter
@@ -56,7 +56,7 @@ class ChapterSummary:
     main_topics: List[str]
     token_count: int
     created_at: datetime
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         return {
@@ -68,7 +68,7 @@ class ChapterSummary:
             "token_count": self.token_count,
             "created_at": self.created_at.isoformat()
         }
-    
+
     @classmethod
     def from_dict(cls, data: dict) -> 'ChapterSummary':
         """Create from dictionary (e.g., from JSON)."""
@@ -83,10 +83,10 @@ class ChapterSummary:
         )
 
 
-@dataclass 
+@dataclass
 class BookSummary:
     """Represents the final comprehensive book summary.
-    
+
     Attributes:
         book_title: Title of the book
         overall_summary: Comprehensive book summary
@@ -103,7 +103,7 @@ class BookSummary:
     learning_objectives: List[str]
     total_chapters: int
     created_at: datetime
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         return {
@@ -115,7 +115,7 @@ class BookSummary:
             "created_at": self.created_at.isoformat(),
             "chapter_summaries": [cs.to_dict() for cs in self.chapter_summaries]
         }
-    
+
     @classmethod
     def from_dict(cls, data: dict) -> 'BookSummary':
         """Create from dictionary (e.g., from JSON)."""
@@ -130,24 +130,26 @@ class BookSummary:
                 ChapterSummary.from_dict(cs) for cs in data["chapter_summaries"]
             ]
         )
-    
+
     def save_to_json(self, filepath: str) -> None:
         """Save book summary to JSON file."""
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(self.to_dict(), f, indent=2, ensure_ascii=False)
-    
+
     @classmethod
     def load_from_json(cls, filepath: str) -> 'BookSummary':
         """Load book summary from JSON file."""
         with open(filepath, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return cls.from_dict(data)
-    
+
     def get_summary_stats(self) -> dict:
         """Get summary statistics about the book."""
-        total_summary_tokens = sum(cs.token_count for cs in self.chapter_summaries)
-        avg_chapter_tokens = total_summary_tokens / len(self.chapter_summaries) if self.chapter_summaries else 0
-        
+        total_summary_tokens = sum(
+            cs.token_count for cs in self.chapter_summaries)
+        avg_chapter_tokens = total_summary_tokens / \
+            len(self.chapter_summaries) if self.chapter_summaries else 0
+
         return {
             "total_chapters": self.total_chapters,
             "total_summary_tokens": total_summary_tokens,
