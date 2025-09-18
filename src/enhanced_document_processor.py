@@ -222,30 +222,80 @@ class EnhancedDocumentProcessor:
         pdf_path: str | Path,
         output_dir: str | Path,
         analyzer_template_path: str = "analyzer_templates/image_chart_diagram_understanding.json",
-        custom_filename: Optional[str] = None
+        custom_filename: Optional[str] = None,
+        use_content_books_structure: bool = False,
+        content_type: str = "book",
+        original_filename: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Process a PDF with enhanced content understanding following the notebook approach.
 
         Args:
-            pdf_path: Path to the PDF file
+            pdf_path: Path to the PDF file (may be temporary)
             output_dir: Directory for output files
             analyzer_template_path: Path to the analyzer template
             custom_filename: Custom filename for output (without extension)
+            use_content_books_structure: Whether to use the /content/books structure
+            content_type: Type of content being processed (e.g., "book")
+            original_filename: Original filename of the uploaded PDF (for saving purposes)
 
         Returns:
             Dictionary containing processing results with same structure as notebook
         """
+        import datetime
+        
         pdf_file = Path(pdf_path)
-        output_path = Path(output_dir)
-
+        
         if not pdf_file.exists():
             raise FileNotFoundError(f"PDF file not found: {pdf_path}")
 
-        # Create output directory
-        output_path.mkdir(parents=True, exist_ok=True)
-        figures_dir = output_path / "figures"
-        figures_dir.mkdir(exist_ok=True)
+        # Determine book title from custom_filename or PDF name
+        if custom_filename:
+            book_title = custom_filename.lower().replace(' ', '_').replace('-', '_')
+        else:
+            book_title = pdf_file.stem.lower().replace(' ', '_').replace('-', '_')
+        
+        # Generate timestamp and job ID
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        job_id = str(uuid.uuid4()).split('-')[0]
+        
+        if use_content_books_structure:
+            # Create structure: {book_title}-{content_type}-{timestamp}-{job_id}
+            main_folder_name = f"{book_title}-{content_type}-{timestamp}-{job_id}"
+            main_output_path = Path(output_dir) / main_folder_name
+            
+            # Create folder structure
+            input_dir = main_output_path / "input"
+            processed_dir = main_output_path / "processed"
+            markdown_dir = processed_dir / f"{book_title}-{content_type}-markdown-{timestamp}-{job_id}"
+            figures_dir = markdown_dir / f"{book_title}-{content_type}-figures-{timestamp}-{job_id}"
+            
+            # Create all directories
+            main_output_path.mkdir(parents=True, exist_ok=True)
+            input_dir.mkdir(exist_ok=True)
+            processed_dir.mkdir(exist_ok=True)
+            markdown_dir.mkdir(exist_ok=True)
+            figures_dir.mkdir(exist_ok=True)
+            
+            # Copy input PDF to input directory with original filename
+            import shutil
+            if original_filename:
+                input_pdf_path = input_dir / original_filename
+            else:
+                input_pdf_path = input_dir / pdf_file.name
+            shutil.copy2(pdf_file, input_pdf_path)
+            
+            output_path = markdown_dir
+        else:
+            # Use original simple structure
+            output_path = Path(output_dir)
+            output_path.mkdir(parents=True, exist_ok=True)
+            figures_dir = output_path / "figures"
+            figures_dir.mkdir(exist_ok=True)
+            main_output_path = output_path
+            processed_dir = output_path
+            timestamp = None
+            job_id = None
 
         logger.info(f"Processing PDF: {pdf_file.name}")
         logger.info(f"Output directory: {output_path}")
@@ -333,7 +383,9 @@ class EnhancedDocumentProcessor:
                 )
 
             # Step 5: Save enhanced markdown
-            if custom_filename:
+            if use_content_books_structure:
+                enhanced_filename = f"{book_title}-{content_type}-markdown-{timestamp}-{job_id}.md"
+            elif custom_filename:
                 enhanced_filename = f"{custom_filename}.md"
             else:
                 base_name = pdf_file.stem
@@ -350,9 +402,45 @@ class EnhancedDocumentProcessor:
                 'analyzeResult': result.as_dict()
             }
 
-            cache_path = output_path / f"{pdf_file.stem}_cache.json"
+            if use_content_books_structure:
+                cache_filename = f"{book_title}-{content_type}-cache-{timestamp}-{job_id}.json"
+                cache_path = processed_dir / cache_filename
+            else:
+                cache_path = output_path / f"{pdf_file.stem}_cache.json"
+                
             with open(cache_path, 'w', encoding='utf-8') as f:
                 json.dump(cache_data, f, indent=2)
+
+            # Create metadata file for content/books structure
+            if use_content_books_structure:
+                metadata = {
+                    "job_id": job_id,
+                    "book_title": book_title,
+                    "content_type": content_type,
+                    "created_at": datetime.datetime.now().isoformat() + "Z",
+                    "status": "completed",
+                    "input_file": pdf_file.name,
+                    "processing_pipeline": "enhanced_document_processor",
+                    "folder_structure": "v1",
+                    "naming_convention": "{book_title}-{content_type}-{subtype}-{timestamp}-{job_id}",
+                    "output_files": {
+                        "enhanced_markdown": f"processed/{markdown_dir.name}/{enhanced_filename}",
+                        "cache_file": f"processed/{cache_filename}",
+                        "figures_directory": f"processed/{markdown_dir.name}/{figures_dir.name}/",
+                        "input_pdf": f"input/{pdf_file.name}"
+                    },
+                    "statistics": {
+                        "total_pages": len(result.pages) if result.pages else 0,
+                        "figures_extracted": len(result.figures) if result.figures else 0,
+                        "processing_time_seconds": 0,  # Could be calculated if needed
+                        "markdown_characters": len(md_content),
+                        "estimated_tokens": int(len(md_content.split()) * 1.3)
+                    }
+                }
+                
+                metadata_path = main_output_path / "metadata.json"
+                with open(metadata_path, 'w', encoding='utf-8') as f:
+                    json.dump(metadata, f, indent=2)
 
             # Prepare results
             processing_results = {
@@ -370,6 +458,21 @@ class EnhancedDocumentProcessor:
                     "estimated_tokens": int(len(md_content.split()) * 1.3)
                 }
             }
+            
+            # Add structure-specific information
+            if use_content_books_structure:
+                processing_results.update({
+                    "main_folder": str(main_output_path),
+                    "job_id": job_id,
+                    "timestamp": timestamp,
+                    "content_type": content_type,
+                    "book_title": book_title,
+                    "metadata_file": str(main_output_path / "metadata.json"),
+                    "input_directory": str(main_output_path / "input"),
+                    "processed_directory": str(processed_dir),
+                    "markdown_directory": str(markdown_dir),
+                    "folder_structure": "content_books_v1"
+                })
 
             logger.info("✅ Enhanced document processing complete!")
             logger.info(f"📄 Document: {pdf_file.name}")
@@ -402,16 +505,22 @@ def process_pdf_with_notebook_quality(
     pdf_path: str | Path,
     output_dir: str | Path = "output",
     analyzer_template_path: str = "analyzer_templates/image_chart_diagram_understanding.json",
-    custom_filename: Optional[str] = None
+    custom_filename: Optional[str] = None,
+    use_content_books_structure: bool = False,
+    content_type: str = "book",
+    original_filename: Optional[str] = None
 ) -> Dict[str, Any]:
     """
     Convenience function to process a PDF with the same quality as the notebook.
 
     Args:
-        pdf_path: Path to the PDF file
+        pdf_path: Path to the PDF file (may be temporary)
         output_dir: Directory for output files
         analyzer_template_path: Path to the analyzer template
         custom_filename: Custom filename for output (without extension)
+        use_content_books_structure: Whether to use the /content/books structure
+        content_type: Type of content being processed (e.g., "book")
+        original_filename: Original filename of the uploaded PDF (for saving purposes)
 
     Returns:
         Dictionary containing processing results
@@ -421,5 +530,8 @@ def process_pdf_with_notebook_quality(
         pdf_path=pdf_path,
         output_dir=output_dir,
         analyzer_template_path=analyzer_template_path,
-        custom_filename=custom_filename
+        custom_filename=custom_filename,
+        use_content_books_structure=use_content_books_structure,
+        content_type=content_type,
+        original_filename=original_filename
     )

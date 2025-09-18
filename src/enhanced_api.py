@@ -13,7 +13,7 @@ from typing import Dict, Any, Optional
 
 from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks, Form
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 from .enhanced_document_processor import process_pdf_with_notebook_quality
 
@@ -25,8 +25,32 @@ router = APIRouter(prefix="/enhanced", tags=["Enhanced Processing"])
 
 class EnhancedProcessingRequest(BaseModel):
     """Request model for enhanced document processing."""
-    custom_filename: Optional[str] = None
-    analyzer_template: str = "analyzer_templates/image_chart_diagram_understanding.json"
+    custom_filename: Optional[str] = Field(
+        default=None, 
+        description="Optional custom name for the book (leave empty to use PDF filename)",
+        examples=["machine_learning_basics", ""],
+        title="Custom Filename (Optional)"
+    )
+    analyzer_template: str = Field(
+        default="analyzer_templates/image_chart_diagram_understanding.json",
+        description="Path to the analyzer template for content understanding"
+    )
+    use_content_books_structure: bool = Field(
+        default=True,
+        description="Use organized content/books folder structure"
+    )
+    content_type: str = Field(
+        default="book",
+        description="Type of content being processed"
+    )
+    
+    @field_validator('custom_filename')
+    @classmethod
+    def validate_custom_filename(cls, v):
+        """Validate custom_filename and convert empty/placeholder strings to None."""
+        if v in ("", "string", None):
+            return None
+        return v
 
 
 class EnhancedProcessingResponse(BaseModel):
@@ -41,6 +65,12 @@ class EnhancedProcessingResponse(BaseModel):
     figures_processed: Optional[int] = None
     document_length: Optional[int] = None
     processing_stats: Optional[Dict[str, Any]] = None
+    # New fields for content/books structure
+    main_folder: Optional[str] = None
+    book_title: Optional[str] = None
+    timestamp: Optional[str] = None
+    metadata_file: Optional[str] = None
+    folder_structure: Optional[str] = None
 
 
 # In-memory job storage for enhanced processing
@@ -50,30 +80,65 @@ enhanced_jobs = {}
 @router.post("/process", response_model=EnhancedProcessingResponse)
 async def process_pdf_enhanced(
     background_tasks: BackgroundTasks,
-    file: UploadFile = File(...),
-    custom_filename: Optional[str] = Form(None),
+    file: UploadFile = File(..., description="PDF file to process"),
+    custom_filename: Optional[str] = Form(
+        None, 
+        description="Optional custom name for the book (leave empty to use PDF filename)",
+        title="Custom Filename (Optional)"
+    ),
     analyzer_template: str = Form(
-        "analyzer_templates/image_chart_diagram_understanding.json")
+        "analyzer_templates/image_chart_diagram_understanding.json",
+        description="Path to the analyzer template for content understanding",
+        example="analyzer_templates/image_chart_diagram_understanding.json"
+    ),
+    use_content_books_structure: bool = Form(
+        True,
+        description="Use organized content/books folder structure"
+    ),
+    content_type: str = Form(
+        "book",
+        description="Type of content being processed",
+        example="book"
+    )
 ):
     """
     Process a PDF file with enhanced content understanding (notebook quality).
 
     This endpoint provides the same high-quality processing as the notebook
     'search_with_visual_document.ipynb' with rich content understanding analysis.
+    
+    Parameters:
+    - file: PDF file to process
+    - custom_filename: Optional custom name for the book. Leave empty to automatically 
+      extract and use the PDF filename as the book title.
+    - analyzer_template: Template for content understanding analysis
+    - use_content_books_structure: Whether to use organized folder structure
+    - content_type: Type of content (e.g., "book", "document")
     """
     # Validate file type
-    if not file.filename.lower().endswith('.pdf'):
+    if not file.filename or not file.filename.lower().endswith('.pdf'):
         raise HTTPException(
             status_code=400, detail="Only PDF files are supported")
 
     # Generate job ID
     job_id = str(uuid.uuid4())
 
+    # Read file content immediately
+    file_content = await file.read()
+
+    # Handle empty string or placeholder values as None for custom_filename
+    if custom_filename in ("", "string", None):
+        custom_filename = None
+    
+    logger.info(f"Processing request - filename: {file.filename}, custom_filename: {custom_filename}")
+
     # Initialize job
     enhanced_jobs[job_id] = {
         "status": "processing",
         "message": "Enhanced document processing started",
         "filename": file.filename,
+        "use_content_books_structure": use_content_books_structure,
+        "content_type": content_type,
         "created_at": "2025-01-16T23:52:00Z"  # Current timestamp
     }
 
@@ -84,9 +149,12 @@ async def process_pdf_enhanced(
     background_tasks.add_task(
         _process_pdf_enhanced_background,
         job_id,
-        file,
+        file_content,
+        file.filename,
         custom_filename,
-        analyzer_template
+        analyzer_template,
+        use_content_books_structure,
+        content_type
     )
 
     return EnhancedProcessingResponse(
@@ -98,39 +166,55 @@ async def process_pdf_enhanced(
 
 async def _process_pdf_enhanced_background(
     job_id: str,
-    file: UploadFile,
+    file_content: bytes,
+    filename: str,
     custom_filename: Optional[str],
-    analyzer_template: str
+    analyzer_template: str,
+    use_content_books_structure: bool = True,
+    content_type: str = "book"
 ):
     """Background task for enhanced PDF processing."""
     try:
         # Update job status
         enhanced_jobs[job_id]["status"] = "processing"
         enhanced_jobs[job_id]["message"] = "Analyzing document with enhanced content understanding..."
-
+        
         # Create temporary file for processing
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
-            content = await file.read()
-            temp_file.write(content)
+            temp_file.write(file_content)
             temp_pdf_path = temp_file.name
 
         try:
-            # Create output directory
-            output_dir = Path("content/enhanced") / f"enhanced_{job_id}"
+            # Create output directory based on structure choice
+            if use_content_books_structure:
+                output_dir = Path("content/books")
+            else:
+                output_dir = Path("content/enhanced") / f"enhanced_{job_id}"
 
             # Process with enhanced understanding
             logger.info(
-                f"Processing {file.filename} with enhanced content understanding...")
+                f"Processing {filename} with enhanced content understanding...")
+
+            # If no custom filename provided, use the original uploaded filename
+            if custom_filename is None:
+                # Extract the filename without extension from the original uploaded file
+                original_name = Path(filename).stem
+                effective_custom_filename = original_name
+            else:
+                effective_custom_filename = custom_filename
 
             results = process_pdf_with_notebook_quality(
                 pdf_path=temp_pdf_path,
                 output_dir=output_dir,
                 analyzer_template_path=analyzer_template,
-                custom_filename=custom_filename
+                custom_filename=effective_custom_filename,
+                use_content_books_structure=use_content_books_structure,
+                content_type=content_type,
+                original_filename=filename
             )
 
             # Update job with results
-            enhanced_jobs[job_id].update({
+            job_update = {
                 "status": "completed",
                 "message": "Enhanced document processing completed successfully",
                 "results": results,
@@ -141,7 +225,19 @@ async def _process_pdf_enhanced_background(
                 "figures_processed": results["figures_processed"],
                 "document_length": results["document_length"],
                 "processing_stats": results["processing_stats"]
-            })
+            }
+            
+            # Add content/books structure specific fields
+            if use_content_books_structure and "main_folder" in results:
+                job_update.update({
+                    "main_folder": results["main_folder"],
+                    "book_title": results["book_title"],
+                    "timestamp": results["timestamp"],
+                    "metadata_file": results["metadata_file"],
+                    "folder_structure": results["folder_structure"]
+                })
+            
+            enhanced_jobs[job_id].update(job_update)
 
             logger.info(f"Enhanced processing completed for job {job_id}")
             logger.info(f"Figures processed: {results['figures_processed']}")
@@ -179,7 +275,12 @@ async def get_enhanced_job_status(job_id: str):
         figures_directory=job.get("figures_directory"),
         figures_processed=job.get("figures_processed"),
         document_length=job.get("document_length"),
-        processing_stats=job.get("processing_stats")
+        processing_stats=job.get("processing_stats"),
+        main_folder=job.get("main_folder"),
+        book_title=job.get("book_title"),
+        timestamp=job.get("timestamp"),
+        metadata_file=job.get("metadata_file"),
+        folder_structure=job.get("folder_structure")
     )
 
 
