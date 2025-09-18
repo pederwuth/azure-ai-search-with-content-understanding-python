@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 class EnhancedDocumentProcessor:
     """Document processor that follows the notebook approach for maximum quality."""
-    
+
     # Timeout configuration (in minutes)
     MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES = 15
     MAX_FIGURE_PROCESSING_TIMEOUT_MINUTES = 30
@@ -356,13 +356,16 @@ class EnhancedDocumentProcessor:
 
             # Add timeout protection for document analysis
             start_time = time.time()
-            
-            logger.info(f"Waiting for document analysis to complete (max {self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES} minutes)...")
-            
+
+            logger.info(
+                f"Waiting for document analysis to complete (max {self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES} minutes)...")
+
             try:
-                result: AnalyzeResult = poller.result(timeout=self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES * 60)
+                result: AnalyzeResult = poller.result(
+                    timeout=self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES * 60)
                 elapsed_time = time.time() - start_time
-                logger.info(f"Document analysis completed successfully in {elapsed_time:.1f} seconds")
+                logger.info(
+                    f"Document analysis completed successfully in {elapsed_time:.1f} seconds")
             except Exception as e:
                 elapsed_time = time.time() - start_time
                 if elapsed_time >= self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES * 60:
@@ -370,7 +373,8 @@ class EnhancedDocumentProcessor:
                     logger.error(error_msg)
                     raise TimeoutError(error_msg) from e
                 else:
-                    logger.error(f"Document analysis failed after {elapsed_time:.1f} seconds: {e}")
+                    logger.error(
+                        f"Document analysis failed after {elapsed_time:.1f} seconds: {e}")
                     raise
             md_content = result.content
 
@@ -382,7 +386,7 @@ class EnhancedDocumentProcessor:
 
                 # Add timeout protection for figure processing
                 figure_start_time = time.time()
-                
+
                 for figure_idx, figure in enumerate(result.figures):
                     # Check if we've exceeded the overall timeout
                     elapsed_time = time.time() - figure_start_time
@@ -390,7 +394,7 @@ class EnhancedDocumentProcessor:
                         error_msg = f"Figure processing timed out after {self.MAX_FIGURE_PROCESSING_TIMEOUT_MINUTES} minutes at figure {figure_idx + 1}/{len(result.figures)}"
                         logger.error(error_msg)
                         raise TimeoutError(error_msg)
-                    
+
                     # Get bounding box from first region
                     region = figure.bounding_regions[0]
                     bounding_box = (
@@ -434,11 +438,12 @@ class EnhancedDocumentProcessor:
                             f"Figure {figure_idx + 1} content extracted successfully")
                         logger.debug(
                             f"Figure {figure_idx + 1} content:\n{figure_content}")
-                            
+
                     except Exception as e:
                         logger.warning(
                             f"Failed to process figure {figure_idx + 1}: {e}. Continuing with empty content.")
-                        figure_contents.append("") # Add empty content to maintain figure order
+                        # Add empty content to maintain figure order
+                        figure_contents.append("")
 
                 # Step 4: Insert figure content into markdown
                 logger.info("Inserting figure content into document...")

@@ -1,0 +1,24 @@
+{
+  "job_id": "f4efc79b",
+  "book_title": "venture_deals",
+  "content_type": "book",
+  "created_at": "2025-09-18T13:49:26.280190Z",
+  "status": "completed",
+  "input_file": "tmpaw4ygmbl.pdf",
+  "processing_pipeline": "enhanced_document_processor",
+  "folder_structure": "v1",
+  "naming_convention": "{book_title}-{content_type}-{subtype}-{timestamp}-{job_id}",
+  "output_files": {
+    "enhanced_markdown": "processed/venture_deals-book-markdown-20250918_134614-f4efc79b/venture_deals-book-markdown-20250918_134614-f4efc79b.md",
+    "cache_file": "processed/venture_deals-book-cache-20250918_134614-f4efc79b.json",
+    "figures_directory": "processed/venture_deals-book-markdown-20250918_134614-f4efc79b/venture_deals-book-figures-20250918_134614-f4efc79b/",
+    "input_pdf": "input/tmpaw4ygmbl.pdf"
+  },
+  "statistics": {
+    "total_pages": 281,
+    "figures_extracted": 16,
+    "processing_time_seconds": 0,
+    "markdown_characters": 640551,
+    "estimated_tokens": 135099
+  }
+}

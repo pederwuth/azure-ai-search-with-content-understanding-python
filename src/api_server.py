@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 # Enhanced processing components (preferred)
 try:
-    from src.enhanced_api import router as enhanced_router
+    from .enhanced_api import router as enhanced_router
     ENHANCED_PROCESSING_AVAILABLE = True
     logger.info("Enhanced processing components imported successfully")
 except ImportError as e:
@@ -115,7 +115,8 @@ async def health_check():
 async def get_config():
     """Get configuration status."""
     if not ENHANCED_PROCESSING_AVAILABLE:
-        raise HTTPException(status_code=503, detail="Enhanced processing not available")
+        raise HTTPException(
+            status_code=503, detail="Enhanced processing not available")
 
     return {
         "azure_ai_service_endpoint": os.getenv("AZURE_AI_SERVICE_ENDPOINT") is not None,
@@ -235,7 +236,8 @@ async def list_books():
 async def test_pipeline():
     """Test the enhanced processing pipeline with a sample document."""
     if not ENHANCED_PROCESSING_AVAILABLE:
-        raise HTTPException(status_code=503, detail="Enhanced processing not available")
+        raise HTTPException(
+            status_code=503, detail="Enhanced processing not available")
 
     # Check if sample PDF exists
     sample_pdf = Path("data/sample_layout.pdf")
@@ -251,7 +253,7 @@ async def test_pipeline():
     try:
         # Import the enhanced processing function
         from .enhanced_document_processor import process_pdf_with_notebook_quality
-        
+
         # Test with enhanced processing
         result = process_pdf_with_notebook_quality(
             pdf_path=str(sample_pdf),
