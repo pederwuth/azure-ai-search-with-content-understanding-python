@@ -12,6 +12,7 @@ import io
 import json
 import logging
 import os
+import time
 import uuid
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
@@ -21,6 +22,7 @@ from PIL import Image
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult, AnalyzeDocumentRequest
+from azure.core.exceptions import ServiceRequestTimeoutError
 
 from python.content_understanding_client import AzureContentUnderstandingClient
 
@@ -29,6 +31,11 @@ logger = logging.getLogger(__name__)
 
 class EnhancedDocumentProcessor:
     """Document processor that follows the notebook approach for maximum quality."""
+    
+    # Timeout configuration (in minutes)
+    MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES = 15
+    MAX_FIGURE_PROCESSING_TIMEOUT_MINUTES = 30
+    MAX_PER_FIGURE_TIMEOUT_SECONDS = 300  # 5 minutes per figure
 
     def __init__(self):
         """Initialize the enhanced document processor."""
@@ -107,7 +114,7 @@ class EnhancedDocumentProcessor:
         for i, offset in enumerate(span_offsets):
             if i == 0 and offset > 0:
                 preamble = md_content[0:offset]
-            
+
             if i == len(span_offsets) - 1:
                 # Last figure - take content from this offset to end
                 parts.append(md_content[offset:])
@@ -161,21 +168,45 @@ class EnhancedDocumentProcessor:
             A Markdown string of the result content
         """
         def _format_result(key: str, result: Dict[str, Any]) -> str:
-            result_type = result["type"]
+            result_type = result.get("type", "string")
+
             if result_type in ["string", "integer", "number", "boolean"]:
-                return f"**{key}**: " + str(result[f'value{result_type.capitalize()}']) + "\n"
+                value_key = f'value{result_type.capitalize()}'
+                if value_key in result:
+                    return f"**{key}**: " + str(result[value_key]) + "\n"
+                else:
+                    # Fallback to any available value
+                    for fallback_key in ['valueString', 'value', 'content']:
+                        if fallback_key in result:
+                            return f"**{key}**: " + str(result[fallback_key]) + "\n"
+                    return f"**{key}**: [No value found]\n"
+
             elif result_type == "array":
-                return f"**{key}**: " + ', '.join([
-                    str(result["valueArray"][i]
-                        [f"value{r['type'].capitalize()}"])
-                    for i, r in enumerate(result["valueArray"])
-                ]) + "\n"
+                if "valueArray" in result and result["valueArray"]:
+                    try:
+                        return f"**{key}**: " + ', '.join([
+                            str(result["valueArray"][i].get(f"value{r.get('type', 'String').capitalize()}",
+                                                            result["valueArray"][i].get('valueString',
+                                                                                        result["valueArray"][i].get('value', str(result["valueArray"][i])))))
+                            for i, r in enumerate(result["valueArray"])
+                        ]) + "\n"
+                    except (KeyError, IndexError, TypeError) as e:
+                        logger.warning(
+                            f"Error processing array field {key}: {e}. Raw result: {result}")
+                        return f"**{key}**: [Array processing error: {str(e)}]\n"
+                else:
+                    return f"**{key}**: [Empty array or no valueArray key]\n"
+
             elif result_type == "object":
-                return f"**{key}**\n" + ''.join([
-                    _format_result(f"{key}.{k}", result["valueObject"][k])
-                    for k in result["valueObject"]
-                ])
-            return ""
+                if "valueObject" in result:
+                    return f"**{key}**\n" + ''.join([
+                        _format_result(f"{key}.{k}", result["valueObject"][k])
+                        for k in result["valueObject"]
+                    ])
+                else:
+                    return f"**{key}**: [No valueObject key found]\n"
+
+            return f"**{key}**: [Unknown type: {result_type}]\n"
 
         fields = content_understanding_result['result']['contents'][0]['fields']
         markdown_result = ""
@@ -243,9 +274,9 @@ class EnhancedDocumentProcessor:
             Dictionary containing processing results with same structure as notebook
         """
         import datetime
-        
+
         pdf_file = Path(pdf_path)
-        
+
         if not pdf_file.exists():
             raise FileNotFoundError(f"PDF file not found: {pdf_path}")
 
@@ -254,29 +285,31 @@ class EnhancedDocumentProcessor:
             book_title = custom_filename.lower().replace(' ', '_').replace('-', '_')
         else:
             book_title = pdf_file.stem.lower().replace(' ', '_').replace('-', '_')
-        
+
         # Generate timestamp and job ID
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         job_id = str(uuid.uuid4()).split('-')[0]
-        
+
         if use_content_books_structure:
             # Create structure: {book_title}-{content_type}-{timestamp}-{job_id}
             main_folder_name = f"{book_title}-{content_type}-{timestamp}-{job_id}"
             main_output_path = Path(output_dir) / main_folder_name
-            
+
             # Create folder structure
             input_dir = main_output_path / "input"
             processed_dir = main_output_path / "processed"
-            markdown_dir = processed_dir / f"{book_title}-{content_type}-markdown-{timestamp}-{job_id}"
-            figures_dir = markdown_dir / f"{book_title}-{content_type}-figures-{timestamp}-{job_id}"
-            
+            markdown_dir = processed_dir / \
+                f"{book_title}-{content_type}-markdown-{timestamp}-{job_id}"
+            figures_dir = markdown_dir / \
+                f"{book_title}-{content_type}-figures-{timestamp}-{job_id}"
+
             # Create all directories
             main_output_path.mkdir(parents=True, exist_ok=True)
             input_dir.mkdir(exist_ok=True)
             processed_dir.mkdir(exist_ok=True)
             markdown_dir.mkdir(exist_ok=True)
             figures_dir.mkdir(exist_ok=True)
-            
+
             # Copy input PDF to input directory with original filename
             import shutil
             if original_filename:
@@ -284,7 +317,7 @@ class EnhancedDocumentProcessor:
             else:
                 input_pdf_path = input_dir / pdf_file.name
             shutil.copy2(pdf_file, input_pdf_path)
-            
+
             output_path = markdown_dir
         else:
             # Use original simple structure
@@ -321,7 +354,24 @@ class EnhancedDocumentProcessor:
                 output_content_format="markdown"
             )
 
-            result: AnalyzeResult = poller.result()
+            # Add timeout protection for document analysis
+            start_time = time.time()
+            
+            logger.info(f"Waiting for document analysis to complete (max {self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES} minutes)...")
+            
+            try:
+                result: AnalyzeResult = poller.result(timeout=self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES * 60)
+                elapsed_time = time.time() - start_time
+                logger.info(f"Document analysis completed successfully in {elapsed_time:.1f} seconds")
+            except Exception as e:
+                elapsed_time = time.time() - start_time
+                if elapsed_time >= self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES * 60:
+                    error_msg = f"Document analysis timed out after {self.MAX_DOCUMENT_ANALYSIS_TIMEOUT_MINUTES} minutes. This may indicate an Azure service issue."
+                    logger.error(error_msg)
+                    raise TimeoutError(error_msg) from e
+                else:
+                    logger.error(f"Document analysis failed after {elapsed_time:.1f} seconds: {e}")
+                    raise
             md_content = result.content
 
             # Step 3: Process figures with Content Understanding
@@ -330,7 +380,17 @@ class EnhancedDocumentProcessor:
                 logger.info(
                     f"Extracting content for {len(result.figures)} figures with Content Understanding...")
 
+                # Add timeout protection for figure processing
+                figure_start_time = time.time()
+                
                 for figure_idx, figure in enumerate(result.figures):
+                    # Check if we've exceeded the overall timeout
+                    elapsed_time = time.time() - figure_start_time
+                    if elapsed_time >= self.MAX_FIGURE_PROCESSING_TIMEOUT_MINUTES * 60:
+                        error_msg = f"Figure processing timed out after {self.MAX_FIGURE_PROCESSING_TIMEOUT_MINUTES} minutes at figure {figure_idx + 1}/{len(result.figures)}"
+                        logger.error(error_msg)
+                        raise TimeoutError(error_msg)
+                    
                     # Get bounding box from first region
                     region = figure.bounding_regions[0]
                     bounding_box = (
@@ -355,24 +415,30 @@ class EnhancedDocumentProcessor:
                     logger.info(
                         f"Analyzing figure {figure_idx + 1}/{len(result.figures)}")
 
-                    content_understanding_response = content_understanding_client.begin_analyze(
-                        analyzer_id,
-                        str(figure_filepath)
-                    )
-                    content_understanding_result = content_understanding_client.poll_result(
-                        content_understanding_response,
-                        timeout_seconds=1000
-                    )
+                    try:
+                        content_understanding_response = content_understanding_client.begin_analyze(
+                            analyzer_id,
+                            str(figure_filepath)
+                        )
+                        content_understanding_result = content_understanding_client.poll_result(
+                            content_understanding_response,
+                            timeout_seconds=300  # 5 minutes per figure max
+                        )
 
-                    # Format the result
-                    figure_content = self.format_content_understanding_result(
-                        content_understanding_result)
-                    figure_contents.append(figure_content)
+                        # Format the result
+                        figure_content = self.format_content_understanding_result(
+                            content_understanding_result)
+                        figure_contents.append(figure_content)
 
-                    logger.info(
-                        f"Figure {figure_idx + 1} content extracted successfully")
-                    logger.debug(
-                        f"Figure {figure_idx + 1} content:\n{figure_content}")
+                        logger.info(
+                            f"Figure {figure_idx + 1} content extracted successfully")
+                        logger.debug(
+                            f"Figure {figure_idx + 1} content:\n{figure_content}")
+                            
+                    except Exception as e:
+                        logger.warning(
+                            f"Failed to process figure {figure_idx + 1}: {e}. Continuing with empty content.")
+                        figure_contents.append("") # Add empty content to maintain figure order
 
                 # Step 4: Insert figure content into markdown
                 logger.info("Inserting figure content into document...")
@@ -407,7 +473,7 @@ class EnhancedDocumentProcessor:
                 cache_path = processed_dir / cache_filename
             else:
                 cache_path = output_path / f"{pdf_file.stem}_cache.json"
-                
+
             with open(cache_path, 'w', encoding='utf-8') as f:
                 json.dump(cache_data, f, indent=2)
 
@@ -437,7 +503,7 @@ class EnhancedDocumentProcessor:
                         "estimated_tokens": int(len(md_content.split()) * 1.3)
                     }
                 }
-                
+
                 metadata_path = main_output_path / "metadata.json"
                 with open(metadata_path, 'w', encoding='utf-8') as f:
                     json.dump(metadata, f, indent=2)
@@ -458,7 +524,7 @@ class EnhancedDocumentProcessor:
                     "estimated_tokens": int(len(md_content.split()) * 1.3)
                 }
             }
-            
+
             # Add structure-specific information
             if use_content_books_structure:
                 processing_results.update({
@@ -488,6 +554,10 @@ class EnhancedDocumentProcessor:
 
         except Exception as e:
             logger.error(f"Error during enhanced document processing: {e}")
+            logger.error(f"Error type: {type(e).__name__}")
+            if hasattr(e, '__traceback__'):
+                import traceback
+                logger.error(f"Traceback: {traceback.format_exc()}")
             raise
 
         finally:
