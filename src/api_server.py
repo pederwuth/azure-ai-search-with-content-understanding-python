@@ -38,18 +38,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Import our pipeline components
-try:
-    from src.pipeline import ContentUnderstandingPipeline, process_pdf_with_content_understanding
-    from src.core.config import Settings
-    from src.core.exceptions import PipelineError, ContentUnderstandingError
-    PIPELINE_AVAILABLE = True
-    logger.info("Content Understanding pipeline imported successfully")
-except ImportError as e:
-    logger.error(f"Failed to import pipeline components: {e}")
-    PIPELINE_AVAILABLE = False
-
-# Import enhanced processing components
+# Enhanced processing components (preferred)
 try:
     from src.enhanced_api import router as enhanced_router
     ENHANCED_PROCESSING_AVAILABLE = True
@@ -80,7 +69,7 @@ if ENHANCED_PROCESSING_AVAILABLE:
     logger.info("Enhanced processing endpoints added")
 
 # Global variables for job tracking
-processing_jobs: Dict[str, Dict[str, Any]] = {}
+# Legacy job tracking removed - use enhanced processing endpoints instead
 
 # Pydantic models
 
@@ -115,7 +104,7 @@ async def health_check():
     """Health check endpoint."""
     return {
         "status": "healthy",
-        "pipeline_available": PIPELINE_AVAILABLE,
+        "enhanced_processing_available": ENHANCED_PROCESSING_AVAILABLE,
         "timestamp": datetime.now().isoformat()
     }
 
@@ -124,26 +113,17 @@ async def health_check():
 
 @app.get("/config")
 async def get_config():
-    """Get current configuration status."""
-    if not PIPELINE_AVAILABLE:
-        raise HTTPException(status_code=503, detail="Pipeline not available")
+    """Get configuration status."""
+    if not ENHANCED_PROCESSING_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Enhanced processing not available")
 
-    try:
-        settings = Settings()
-        config_status = {
-            "azure_ai_service_configured": bool(settings.azure_ai_service_endpoint),
-            "openai_configured": bool(settings.azure_openai_endpoint),
-            "document_intelligence_configured": bool(settings.azure_document_intelligence_api_version),
-            "content_understanding_configured": bool(settings.azure_ai_service_api_version),
-        }
-        return {
-            "configuration": config_status,
-            "all_configured": all(config_status.values())
-        }
-    except Exception as e:
-        logger.error(f"Configuration check failed: {e}")
-        raise HTTPException(
-            status_code=500, detail=f"Configuration error: {e}")
+    return {
+        "azure_ai_service_endpoint": os.getenv("AZURE_AI_SERVICE_ENDPOINT") is not None,
+        "azure_openai_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT") is not None,
+        "content_output_directory": CONTENT_OUTPUT_DIRECTORY,
+        "enhanced_processing_available": ENHANCED_PROCESSING_AVAILABLE,
+        "api_version": "1.0.0"
+    }
 
 # List analyzer templates
 
@@ -168,377 +148,18 @@ async def list_analyzer_templates():
 # Process PDF endpoint
 
 
-@app.post("/process-pdf", response_model=ProcessingResponse)
-async def process_pdf(
-    background_tasks: BackgroundTasks,
-    file: UploadFile = File(...),
-    analyzer_template: str = Form("content_document"),
-    generate_summary: bool = Form(True)
-):
-    """
-    Process a PDF file with Content Understanding.
-
-    Returns a job ID for tracking processing status.
-    """
-    if not PIPELINE_AVAILABLE:
-        raise HTTPException(status_code=503, detail="Pipeline not available")
-
-    # Validate file type
-    if not file.filename or not file.filename.lower().endswith('.pdf'):
-        raise HTTPException(
-            status_code=400, detail="Only PDF files are supported")
-
-    # Generate job ID
-    job_id = str(uuid.uuid4())
-
-    # Extract book title from filename for readable directory name
-    book_title = Path(file.filename).stem
-    # Clean title for filesystem (remove/replace problematic characters)
-    book_title = "".join(c for c in book_title if c.isalnum()
-                         or c in (' ', '-', '_')).strip()
-    book_title = book_title.replace(' ', '_')
-    if not book_title:
-        book_title = "Document"
-
-    # Generate timestamp for directory naming
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # Create readable directory name: {book_title}_{timestamp}_{job_id}
-    readable_dir_name = f"{book_title}_{timestamp}_{job_id}"
-
-    # Create job tracking entry
-    # Use environment variable for output directory with readable subdirectory
-    job_output_dir = f"{CONTENT_OUTPUT_DIRECTORY}/{readable_dir_name}"
-
-    processing_jobs[job_id] = {
-        "job_id": job_id,
-        "status": "pending",
-        "progress": 0,
-        "message": "Job created, waiting to start processing",
-        "created_at": datetime.now(),
-        "updated_at": datetime.now(),
-        "filename": file.filename,
-        "book_title": book_title,
-        "readable_directory": readable_dir_name,
-        "analyzer_template": analyzer_template,
-        "generate_summary": generate_summary,
-        "output_dir": job_output_dir
-    }
-
-    # Read file content before starting background task
-    file_content = await file.read()
-
-    # Start background processing
-    background_tasks.add_task(
-        process_pdf_background,
-        job_id,
-        file_content,
-        file.filename or "document.pdf",
-        analyzer_template,
-        generate_summary,
-        job_output_dir
-    )
-
-    logger.info(f"Created processing job {job_id} for file {file.filename}")
-
-    return ProcessingResponse(
-        job_id=job_id,
-        status="pending",
-        message="Processing job created successfully"
-    )
+# Legacy PDF processing endpoint removed - use /enhanced/process for better quality and reliability
 
 
-async def process_pdf_background(
-    job_id: str,
-    file_content: bytes,
-    filename: str,
-    analyzer_template: str,
-    generate_summary: bool,
-    output_dir: str
-):
-    """Background task for processing PDF files."""
-    try:
-        # Update job status
-        update_job_status(job_id, "processing", 10, "Starting PDF processing")
-
-        # Create job directory structure
-        job_dir = Path(output_dir)
-        input_dir = job_dir / "input"
-        processed_dir = job_dir / "processed"
-        figures_dir = job_dir / "figures"
-
-        # Create directories
-        for dir_path in [input_dir, processed_dir, figures_dir]:
-            dir_path.mkdir(parents=True, exist_ok=True)
-
-        # Generate timestamp for unique naming
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-        # Extract book title from filename (remove extension and clean up)
-        book_title = Path(filename).stem
-        # Clean title for filesystem (remove/replace problematic characters)
-        book_title = "".join(
-            c for c in book_title if c.isalnum() or c in (' ', '-', '_')).strip()
-        book_title = book_title.replace(' ', '_')
-
-        # Create unique base filename
-        unique_filename = f"{book_title}_{timestamp}"
-
-        # Save original PDF to input directory
-        original_pdf_path = input_dir / f"{unique_filename}.pdf"
-        with open(original_pdf_path, 'wb') as f:
-            f.write(file_content)
-
-        # Save uploaded file content to temporary file for processing
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as temp_file:
-            temp_file.write(file_content)
-            temp_pdf_path = temp_file.name
-
-        update_job_status(job_id, "processing", 20,
-                          "File saved, initializing pipeline")
-
-        try:
-            # Process with our pipeline
-            logger.info(
-                f"Processing {filename} with analyzer template {analyzer_template}")
-
-            update_job_status(job_id, "processing", 30,
-                              "Processing with Content Understanding")
-
-            # Use the job directory for Content Understanding processing with custom filename
-            result = process_pdf_with_content_understanding(
-                pdf_path=temp_pdf_path,
-                output_dir=str(job_dir),  # Use the main job directory
-                analyzer_template=analyzer_template,
-                generate_summary=generate_summary,
-                # Pass the custom filename to save directly to processed/
-                custom_filename=unique_filename
-            )
-
-            update_job_status(job_id, "processing", 70,
-                              "Processing completed, organizing files")
-
-            # The markdown file is now saved directly by the pipeline to the processed directory
-            # No need to create it again - just get the path from results
-            markdown_file_path = result.get("enhanced_markdown_path")
-            markdown_content = result.get("enhanced_markdown_content", "")
-
-            if markdown_file_path:
-                logger.info(f"Markdown saved to: {markdown_file_path}")
-
-            # Create summary file with unique naming
-            if generate_summary:
-                summary_file = processed_dir / \
-                    f"{unique_filename}_summary.json"
-
-                if "book_summary" in result:
-                    # Summary was generated successfully
-                    logger.info(f"Summary file available at: {summary_file}")
-                else:
-                    # Create a basic summary with document info
-                    basic_summary = {
-                        "document_name": filename,
-                        "book_title": book_title,
-                        "processing_date": datetime.now().isoformat(),
-                        "job_id": job_id,
-                        "unique_filename": unique_filename,
-                        "status": "summary_generation_skipped",
-                        "reason": "OpenAI client not available",
-                        "file_paths": {
-                            "original_pdf": str(original_pdf_path),
-                            "enhanced_markdown": markdown_file_path if markdown_content else None,
-                            "figures_directory": str(figures_dir)
-                        },
-                        "document_stats": {
-                            "markdown_length": len(markdown_content),
-                            "estimated_tokens": len(markdown_content.split()) * 1.3 if markdown_content else 0
-                        },
-                        "content_preview": markdown_content[:500] + "..." if len(markdown_content) > 500 else markdown_content
-                    }
-
-                    with open(summary_file, 'w', encoding='utf-8') as f:
-                        import json
-                        json.dump(basic_summary, f, indent=2)
-
-                    result["summary_file_path"] = str(summary_file)
-                    result["summary_status"] = "basic_info_created"
-                    logger.info(f"Basic summary info saved to: {summary_file}")
-
-            # Create metadata file
-            metadata = {
-                "job_id": job_id,
-                "original_filename": filename,
-                "book_title": book_title,
-                "readable_directory": processing_jobs[job_id].get("readable_directory", job_id),
-                "unique_filename": unique_filename,
-                "processing_date": datetime.now().isoformat(),
-                "analyzer_template": analyzer_template,
-                "file_structure": {
-                    "input_dir": str(input_dir),
-                    "processed_dir": str(processed_dir),
-                    "figures_dir": str(figures_dir)
-                },
-                "files": {
-                    "original_pdf": str(original_pdf_path),
-                    "enhanced_markdown": markdown_file_path if markdown_content else None,
-                    "summary": str(summary_file) if generate_summary else None
-                }
-            }
-
-            metadata_file = job_dir / "metadata.json"
-            with open(metadata_file, 'w', encoding='utf-8') as f:
-                import json
-                json.dump(metadata, f, indent=2)
-
-            logger.info(f"Job metadata saved to: {metadata_file}")
-
-            update_job_status(job_id, "processing", 90,
-                              "Processing completed, saving results")
-
-            # Clean up temporary file
-            os.unlink(temp_pdf_path)
-
-            # Update job with results
-            processing_jobs[job_id].update({
-                "status": "completed",
-                "progress": 100,
-                "message": "Processing completed successfully",
-                "updated_at": datetime.now(),
-                "result": result
-            })
-
-            logger.info(f"Successfully processed job {job_id}")
-
-        finally:
-            # Ensure temp file is cleaned up
-            if os.path.exists(temp_pdf_path):
-                os.unlink(temp_pdf_path)
-
-    except Exception as e:
-        logger.error(f"Processing failed for job {job_id}: {e}")
-        processing_jobs[job_id].update({
-            "status": "failed",
-            "progress": 0,
-            "message": f"Processing failed: {str(e)}",
-            "updated_at": datetime.now(),
-            "error": str(e)
-        })
+# Legacy background processing function removed - use enhanced processing instead
 
 
-def update_job_status(job_id: str, status: str, progress: int, message: str):
-    """Update job status."""
-    if job_id in processing_jobs:
-        processing_jobs[job_id].update({
-            "status": status,
-            "progress": progress,
-            "message": message,
-            "updated_at": datetime.now()
-        })
-        logger.info(f"Job {job_id}: {status} - {progress}% - {message}")
+# Legacy job status tracking removed - use enhanced processing endpoints instead
 
 # Job status endpoint
 
 
-@app.get("/jobs/{job_id}", response_model=ProcessingStatus)
-async def get_job_status(job_id: str):
-    """Get the status of a processing job."""
-    if job_id not in processing_jobs:
-        raise HTTPException(status_code=404, detail="Job not found")
-
-    job_data = processing_jobs[job_id]
-    return ProcessingStatus(**job_data)
-
-# List all jobs
-
-
-@app.get("/jobs")
-async def list_jobs():
-    """List all processing jobs."""
-    jobs = []
-    for job_data in processing_jobs.values():
-        jobs.append({
-            "job_id": job_data["job_id"],
-            "status": job_data["status"],
-            "progress": job_data["progress"],
-            "message": job_data["message"],
-            "created_at": job_data["created_at"],
-            "filename": job_data.get("filename", ""),
-            "analyzer_template": job_data.get("analyzer_template", "")
-        })
-
-    # Sort by creation time, newest first
-    jobs.sort(key=lambda x: x["created_at"], reverse=True)
-    return {"jobs": jobs}
-
-# Download results endpoint
-
-
-@app.get("/jobs/{job_id}/download/{file_type}")
-async def download_result(job_id: str, file_type: str):
-    """Download processing results."""
-    if job_id not in processing_jobs:
-        raise HTTPException(status_code=404, detail="Job not found")
-
-    job_data = processing_jobs[job_id]
-    if job_data["status"] != "completed":
-        raise HTTPException(status_code=400, detail="Job not completed")
-
-    # Get readable directory name (fallback to job_id for backward compatibility)
-    readable_dir_name = job_data.get("readable_directory", job_id)
-    book_title = job_data.get("book_title", "document")
-
-    result = job_data.get("result")
-    if not result:
-        raise HTTPException(status_code=404, detail="No results available")
-
-    # Handle different file types
-    if file_type == "pdf":
-        # Download original PDF
-        job_dir = Path(f"{CONTENT_OUTPUT_DIRECTORY}/{readable_dir_name}")
-        metadata_file = job_dir / "metadata.json"
-        if metadata_file.exists():
-            with open(metadata_file, 'r') as f:
-                import json
-                metadata = json.load(f)
-            original_pdf = metadata.get("files", {}).get("original_pdf")
-            if original_pdf and os.path.exists(original_pdf):
-                return FileResponse(
-                    original_pdf,
-                    media_type="application/pdf",
-                    filename=f"{book_title}.pdf"
-                )
-
-    elif file_type == "markdown" and "enhanced_markdown_path" in result:
-        file_path = result["enhanced_markdown_path"]
-        if os.path.exists(file_path):
-            return FileResponse(
-                file_path,
-                media_type="text/markdown",
-                filename=f"{book_title}_enhanced.md"
-            )
-
-    elif file_type == "summary" and "summary_file_path" in result:
-        file_path = result["summary_file_path"]
-        if os.path.exists(file_path):
-            return FileResponse(
-                file_path,
-                media_type="application/json",
-                filename=f"summary_{job_data['filename']}.json"
-            )
-
-    elif file_type == "metadata":
-        # Download job metadata
-        job_dir = Path(f"content/books/{job_id}")
-        metadata_file = job_dir / "metadata.json"
-        if metadata_file.exists():
-            return FileResponse(
-                str(metadata_file),
-                media_type="application/json",
-                filename=f"metadata_{job_id}.json"
-            )
-
-    raise HTTPException(
-        status_code=404, detail=f"File type '{file_type}' not available")
+# Legacy job status endpoints removed - use /enhanced/status/{job_id} and /enhanced/jobs for better functionality
 
 # List all processed books
 
@@ -612,9 +233,9 @@ async def list_books():
 
 @app.post("/test-pipeline")
 async def test_pipeline():
-    """Test the pipeline with a sample document."""
-    if not PIPELINE_AVAILABLE:
-        raise HTTPException(status_code=503, detail="Pipeline not available")
+    """Test the enhanced processing pipeline with a sample document."""
+    if not ENHANCED_PROCESSING_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Enhanced processing not available")
 
     # Check if sample PDF exists
     sample_pdf = Path("data/sample_layout.pdf")
@@ -628,33 +249,37 @@ async def test_pipeline():
                 status_code=404, detail="No sample PDF found in data/ directory")
 
     try:
-        # Test with minimal processing (use the same template as the working notebook)
-        result = process_pdf_with_content_understanding(
+        # Import the enhanced processing function
+        from .enhanced_document_processor import process_pdf_with_notebook_quality
+        
+        # Test with enhanced processing
+        result = process_pdf_with_notebook_quality(
             pdf_path=str(sample_pdf),
             output_dir="test_output",
-            # Use same template as notebook
-            analyzer_template="image_chart_diagram_understanding",
-            generate_summary=False  # Skip summary for faster testing
+            analyzer_template_path="analyzer_templates/image_chart_diagram_understanding.json",
+            custom_filename="test_document",
+            use_content_books_structure=True,
+            content_type="book"
         )
 
         return {
             "status": "success",
-            "message": "Pipeline test completed successfully",
+            "message": "Enhanced pipeline test completed successfully",
             "sample_file": str(sample_pdf),
             "result": {
-                "processing_status": result.get("processing_status"),
-                "enhanced_markdown_length": len(result.get("enhanced_markdown_content", "")),
-                "figures_directory": result.get("figures_directory"),
-                "output_files": {
-                    "enhanced_markdown": result.get("enhanced_markdown_path"),
-                }
+                "processing_status": "completed",
+                "enhanced_markdown_length": len(result.get("enhanced_markdown", "")),
+                "figures_processed": result.get("figures_processed", 0),
+                "main_folder": result.get("main_folder"),
+                "book_title": result.get("book_title"),
+                "metadata_file": result.get("metadata_file")
             }
         }
 
     except Exception as e:
-        logger.error(f"Pipeline test failed: {e}")
+        logger.error(f"Enhanced pipeline test failed: {e}")
         raise HTTPException(
-            status_code=500, detail=f"Pipeline test failed: {e}")
+            status_code=500, detail=f"Enhanced pipeline test failed: {e}")
 
 # Root endpoint
 
@@ -670,13 +295,12 @@ async def root():
             "health": "/health",
             "config": "/config",
             "analyzer_templates": "/analyzer-templates",
-            "process_pdf": "/process-pdf",
-            "test_pipeline": "/test-pipeline",
-            "jobs": "/jobs",
-            "job_status": "/jobs/{job_id}",
-            "download": "/jobs/{job_id}/download/{file_type}"
+            "enhanced_processing": "/enhanced/process",
+            "enhanced_status": "/enhanced/status/{job_id}",
+            "enhanced_download": "/enhanced/download/{job_id}/{file_type}",
+            "test_pipeline": "/test-pipeline"
         },
-        "pipeline_available": PIPELINE_AVAILABLE
+        "enhanced_processing_available": ENHANCED_PROCESSING_AVAILABLE
     }
 
 if __name__ == "__main__":
@@ -696,7 +320,7 @@ if __name__ == "__main__":
     print(f"🚀 Starting Educational Content Understanding API Server")
     print(f"📡 Server will be available at: http://{args.host}:{args.port}")
     print(f"📚 API Documentation: http://{args.host}:{args.port}/docs")
-    print(f"🔧 Pipeline Available: {PIPELINE_AVAILABLE}")
+    print(f"🔧 Enhanced Processing Available: {ENHANCED_PROCESSING_AVAILABLE}")
 
     uvicorn.run(
         "api_server:app",
