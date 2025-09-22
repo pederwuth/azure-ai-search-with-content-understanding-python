@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "environmentName": {
+            "value": "wordonawing"
+        },
+        "location": {
+            "value": "westus"
+        },
+        "gptModelName": {
+            "value": "gpt-5-mini"
+        },
+        "gptDeploymentName": {
+            "value": "gpt-5-mini"
+        },
+        "embeddingModelName": {
+            "value": "text-embedding-3-small"
+        },
+        "embeddingDeploymentName": {
+            "value": "text-embedding-3-small"
+        },
+        "principalId": {
+            "value": "${AZURE_PRINCIPAL_ID}"
+        },
+        "runningOnGitHub": {
+            "value": "${GITHUB_ACTIONS}"
+        }
+    }
+}

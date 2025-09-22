@@ -1,10 +1,15 @@
 """
-Summarization module for educational content processing.
+Book summarization module.
 
-This module handles progressive book summarization including
-chapter splitting, progressive context building, and summary generation.
+Provides progressive book summarization capabilities using Azure OpenAI.
 """
 
-# TODO: Extract summarization logic from book_summary_generator.ipynb
+from .models import BookChapter, ChapterSummary, BookSummary
+from .book_summarizer import ProgressiveBookSummarizer
 
-__all__ = []
+__all__ = [
+    'BookChapter',
+    'ChapterSummary', 
+    'BookSummary',
+    'ProgressiveBookSummarizer'
+]

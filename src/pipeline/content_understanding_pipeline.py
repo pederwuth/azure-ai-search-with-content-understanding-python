@@ -18,13 +18,8 @@ from ..core.exceptions import PipelineError
 from ..storage.file_manager import FileManager
 from ..content_understanding.document_processor import DocumentProcessor
 
-# Optional import - may not be available in all contexts
-try:
-    from ..summarization.openai_client import OpenAIClient
-    OPENAI_AVAILABLE = True
-except ImportError:
-    OpenAIClient = None
-    OPENAI_AVAILABLE = False
+# Import summarization factory for flexible summarization
+from ..summarization.factory import get_summarization_factory
 
 logger = logging.getLogger(__name__)
 
@@ -43,14 +38,9 @@ class ContentUnderstandingPipeline:
 
         # Initialize components
         self.file_manager = FileManager()
-
-        # Initialize OpenAI client if available
-        if OPENAI_AVAILABLE:
-            self.openai_client = OpenAIClient(self.settings)
-        else:
-            self.openai_client = None
-            logger.warning(
-                "OpenAI client not available - summarization features disabled")
+        
+        # Initialize summarization factory (handles service/direct mode automatically)
+        self.summarization_factory = get_summarization_factory()
 
         self.document_processor = DocumentProcessor(
             self.settings, self.credential)
@@ -152,39 +142,26 @@ class ContentUnderstandingPipeline:
 
             # Generate summary if requested
             if generate_summary:
-                if not self.openai_client:
-                    logger.warning(
-                        "OpenAI client not available - skipping summary generation")
-                    results.update({
-                        "summary_status": "skipped",
-                        "summary_error": "OpenAI client not available"
-                    })
-                else:
-                    logger.info("Generating book summary")
-                    try:
-                        book_summary = self._generate_book_summary(
-                            enhanced_markdown, pdf_file.stem)
+                logger.info("Generating book summary using summarization factory")
+                try:
+                    book_summary = self._generate_book_summary(
+                        enhanced_markdown, pdf_file.stem)
 
-                        # Save summary
-                        summary_file = output_path / \
-                            f"{pdf_file.stem}_summary.json"
-                        self.file_manager.save_book_summary(
-                            book_summary, str(summary_file))
+                    # Save summary
+                    summary_file = output_path / \
+                        f"{pdf_file.stem}_summary.json"
+                    self.file_manager.save_book_summary(
+                        book_summary, str(summary_file))
 
-                        results.update({
-                            "book_summary": book_summary,
-                            "summary_file_path": str(summary_file),
-                            "summary_status": "success"
-                        })
+                    results["summary_status"] = "success"
+                    results["summary_file_path"] = str(summary_file)
 
-                        logger.info(f"Book summary saved to: {summary_file}")
+                    logger.info(f"Book summary saved to: {summary_file}")
 
-                    except Exception as e:
-                        logger.warning(f"Summary generation failed: {e}")
-                        results.update({
-                            "summary_status": "failed",
-                            "summary_error": str(e)
-                        })
+                except Exception as e:
+                    logger.warning(f"Summary generation failed: {e}")
+                    results["summary_status"] = "failed"
+                    results["summary_error"] = str(e)
 
             logger.info("PDF processing pipeline completed successfully")
             return results
@@ -276,7 +253,7 @@ class ContentUnderstandingPipeline:
         raise PipelineError(f"Analyzer template not found: {template_name}")
 
     def _generate_book_summary(self, markdown_content: str, book_title: str) -> BookSummary:
-        """Generate a book summary from enhanced markdown content.
+        """Generate a book summary from markdown content.
 
         Args:
             markdown_content: Enhanced markdown content
@@ -286,20 +263,21 @@ class ContentUnderstandingPipeline:
             BookSummary object
 
         Raises:
-            PipelineError: If OpenAI client not available
+            PipelineError: If summarization fails
         """
-        if not self.openai_client:
-            raise PipelineError(
-                "OpenAI client not available for summary generation")
-
-        # Split content into chapters (simple approach - could be enhanced)
-        chapters = self._split_content_into_chapters(
-            markdown_content, book_title)
-
-        # Generate summary using OpenAI client
-        book_summary = self.openai_client.generate_book_summary(chapters)
-
-        return book_summary
+        try:
+            logger.info(f"Generating book summary for: {book_title}")
+            
+            # Use the summarization factory to generate summary
+            book_summary = self.summarization_factory.summarize_markdown(
+                markdown_content, book_title
+            )
+            
+            logger.info(f"✅ Successfully generated summary with {len(book_summary.chapter_summaries)} chapters")
+            return book_summary
+            
+        except Exception as e:
+            raise PipelineError(f"Summary generation failed: {e}") from e
 
     def _split_content_into_chapters(self, content: str, book_title: str) -> List[BookChapter]:
         """Split markdown content into chapters.
