@@ -1,0 +1,200 @@
+{
+  "pipeline_id": "cd1c0439-fd1d-4cbf-99d0-d95acad77c90",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T20:42:07.780734",
+  "end_time": "2025-09-24T20:43:09.324152",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T20:42:07.781166",
+      "end_time": "2025-09-24T20:42:41.374450",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T20:42:41.374468",
+      "end_time": "2025-09-24T20:43:09.324136",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Debug Test Book",
+      "figures_directory": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071/tmprsvqszr5-book-figures-20250924_204207-b8f9b071",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "The Figure Page Object: Structuring Visual Data in Documents",
+      "main_folder": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071",
+      "book_summary": {
+        "book_title": "The Figure Page Object: Structuring Visual Data in Documents",
+        "overall_summary": "By the end readers will not only understand the components of a robust Figure object but will also be able to craft figures that are semantically rich, machine-readable, and human-friendly. The book positions the Figure object as a pattern for improving clarity, reproducibility, and utility of visual content in technical documentation and data-driven reports.",
+        "key_themes": [
+          "Structured representation of visual content",
+          "Interoperability between human-readable captions and machine-readable data",
+          "Clear metadata schemas for figures and charts",
+          "Data-to-visual mapping and visual encoding choices",
+          "Annotations, footnotes, and provenance for context and reproducibility"
+        ],
+        "learning_objectives": [
+          "Understand the concept of a page object and why formalizing figures matters",
+          "Identify and populate essential figure metadata fields (title, type, keywords, description, summary, data table, axis titles, footnotes)",
+          "Translate a visual (e.g., bar chart) into a machine-friendly data table and back into a human caption",
+          "Apply color encoding and categorical grouping intentionally to convey meaning",
+          "Add annotations and footnotes that improve interpretability and maintain provenance"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter drills into the 'Figure' page object introduced earlier in the book, moving from the conceptual idea of page objects and document structure to a concrete example: a bar chart representing monthly business values from January to June. It enumerates the figure's metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations) and shows how those fields map to both a human-readable caption and a machine-friendly data table. The example bar chart has values [200, 300, 400, 450, 350, 250], peaks in April (450) and bottoms in January (200), and uses color coding to group months (orange: Jan/Apr, green: Feb/May, blue: Mar/Jun).",
+            "key_concepts": [
+              "Page Object (Figure)",
+              "Structured figure metadata",
+              "Bar chart interpretation",
+              "Axis titles and labels",
+              "Markdown data tables",
+              "Color encoding and categorical grouping",
+              "Annotations and footnotes",
+              "Data-to-visual mapping"
+            ],
+            "main_topics": [
+              "Figures as page objects",
+              "Embedding structured data with visuals",
+              "Interpreting monthly trend data",
+              "Metadata for accessibility and automation"
+            ],
+            "token_count": 464,
+            "created_at": "2025-09-24T20:42:56.005527"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T20:43:09.322011"
+      },
+      "overall_summary": "By the end readers will not only understand the components of a robust Figure object but will also be able to craft figures that are semantically rich, machine-readable, and human-friendly. The book positions the Figure object as a pattern for improving clarity, reproducibility, and utility of visual content in technical documentation and data-driven reports.",
+      "key_themes": [
+        "Structured representation of visual content",
+        "Interoperability between human-readable captions and machine-readable data",
+        "Clear metadata schemas for figures and charts",
+        "Data-to-visual mapping and visual encoding choices",
+        "Annotations, footnotes, and provenance for context and reproducibility"
+      ],
+      "learning_objectives": [
+        "Understand the concept of a page object and why formalizing figures matters",
+        "Identify and populate essential figure metadata fields (title, type, keywords, description, summary, data table, axis titles, footnotes)",
+        "Translate a visual (e.g., bar chart) into a machine-friendly data table and back into a human caption",
+        "Apply color encoding and categorical grouping intentionally to convey meaning",
+        "Add annotations and footnotes that improve interpretability and maintain provenance"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter drills into the 'Figure' page object introduced earlier in the book, moving from the conceptual idea of page objects and document structure to a concrete example: a bar chart representing monthly business values from January to June. It enumerates the figure's metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations) and shows how those fields map to both a human-readable caption and a machine-friendly data table. The example bar chart has values [200, 300, 400, 450, 350, 250], peaks in April (450) and bottoms in January (200), and uses color coding to group months (orange: Jan/Apr, green: Feb/May, blue: Mar/Jun).",
+          "key_concepts": [
+            "Page Object (Figure)",
+            "Structured figure metadata",
+            "Bar chart interpretation",
+            "Axis titles and labels",
+            "Markdown data tables",
+            "Color encoding and categorical grouping",
+            "Annotations and footnotes",
+            "Data-to-visual mapping"
+          ],
+          "main_topics": [
+            "Figures as page objects",
+            "Embedding structured data with visuals",
+            "Interpreting monthly trend data",
+            "Metadata for accessibility and automation"
+          ],
+          "token_count": 464,
+          "created_at": "2025-09-24T20:42:56.005527"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmprsvqszr5.pdf",
+      "pdf_file": "/tmp/tmprsvqszr5.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_cd1c0439-fd1d-4cbf-99d0-d95acad77c90/task_document_processing/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071.md",
+      "cache_file": "content/pipelines/pipeline_cd1c0439-fd1d-4cbf-99d0-d95acad77c90/task_document_processing/tmprsvqszr5-book-cache-20250924_204207-b8f9b071.json",
+      "metadata": "content/pipelines/pipeline_cd1c0439-fd1d-4cbf-99d0-d95acad77c90/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_cd1c0439-fd1d-4cbf-99d0-d95acad77c90/task_summarization/tmprsvqszr5-summary-20250924_204207-b8f9b071.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmprsvqszr5.pdf",
+      "enhanced_markdown": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071.md",
+      "cache_file": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed/tmprsvqszr5-book-cache-20250924_204207-b8f9b071.json",
+      "figures_directory": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071/tmprsvqszr5-book-figures-20250924_204207-b8f9b071",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-360e995e-72e6-4b9e-b9ae-5e25b1afded3",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071",
+      "job_id": "b8f9b071",
+      "timestamp": "20250924_204207",
+      "content_type": "book",
+      "book_title": "tmprsvqszr5",
+      "metadata_file": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/metadata.json",
+      "input_directory": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/input",
+      "processed_directory": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed",
+      "markdown_directory": "content/books/tmprsvqszr5-book-20250924_204207-b8f9b071/processed/tmprsvqszr5-book-markdown-20250924_204207-b8f9b071",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T20:43:09.322011"
+    }
+  }
+}

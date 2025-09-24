@@ -1,0 +1,47 @@
+{
+  "pipeline_id": "78074a1d-677e-43d4-b770-e92f509ef591",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ]
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:52:19.536488",
+  "end_time": "2025-09-24T18:52:56.498705",
+  "duration_seconds": 36.962217,
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "status": "completed",
+      "start_time": "2025-09-24T18:52:19.536808",
+      "end_time": "2025-09-24T18:52:33.118205",
+      "duration_seconds": 13.581397,
+      "error_message": null
+    },
+    "summarization": {
+      "status": "completed",
+      "start_time": "2025-09-24T18:52:33.118218",
+      "end_time": "2025-09-24T18:52:56.498696",
+      "duration_seconds": 23.380478,
+      "error_message": null
+    }
+  }
+}

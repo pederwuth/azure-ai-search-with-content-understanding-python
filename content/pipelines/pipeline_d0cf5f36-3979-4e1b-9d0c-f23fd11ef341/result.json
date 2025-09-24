@@ -1,0 +1,51 @@
+{
+  "pipeline_id": "d0cf5f36-3979-4e1b-9d0c-f23fd11ef341",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "failed",
+  "start_time": "2025-09-23T20:23:31.850733",
+  "end_time": "2025-09-23T20:23:31.851375",
+  "error_message": "Task 'summarization' failed: Invalid inputs for task summarization",
+  "task_executions": {
+    "summarization": {
+      "task_id": "summarization",
+      "status": "failed",
+      "start_time": "2025-09-23T20:23:31.851092",
+      "end_time": "2025-09-23T20:23:31.851370",
+      "error_message": "Invalid inputs for task summarization",
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": null
+}

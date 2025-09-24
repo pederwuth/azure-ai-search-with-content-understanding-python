@@ -1,0 +1,192 @@
+{
+  "pipeline_id": "54ad6c3c-175f-4c7f-986d-95dd2d629fb3",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T22:02:42.679668",
+  "end_time": "2025-09-24T22:03:13.889321",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T22:02:42.680155",
+      "end_time": "2025-09-24T22:02:55.210751",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T22:02:55.210765",
+      "end_time": "2025-09-24T22:03:13.889308",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Book",
+      "figures_directory": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7/tmp6p19hpo2-book-figures-20250924_220242-6c6c1cb7",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2641,
+        "estimated_tokens": 533
+      },
+      "figures_processed": 1,
+      "document_length": 2641,
+      "book_title": "Page Objects and Structured Content: Modeling Figures, Data, and Accessibility on the Web",
+      "main_folder": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7",
+      "book_summary": {
+        "book_title": "Page Objects and Structured Content: Modeling Figures, Data, and Accessibility on the Web",
+        "overall_summary": "This book tells the story of treating web pages not as opaque blobs of HTML but as composed, testable, and machine-friendly page objects. It begins by establishing the Page Object pattern as a way to model the logical structure of a page — its components, responsibilities and interfaces — and then progressively applies that pattern to increasingly rich and semantically important components such as forms, tables, and, centrally, figures. The concrete bar-chart example (monthly values January–June with a peak in April at 450 and a trough in January at 200) recurs as an illustrative case: the figure is shown to carry both visual cues and an embedded metadata block that makes its data and intent explicit and extractable.",
+        "key_themes": [
+          "Page Object modeling for web content",
+          "Figures as first-class structured components",
+          "Embedding machine-readable metadata alongside human-visible captions",
+          "Bridging visual presentation and programmatic data extraction",
+          "Accessibility and semantic enrichment as engineering concerns"
+        ],
+        "learning_objectives": [
+          "Understand the Page Object pattern and apply it to web page components",
+          "Model figures and other visual components as structured objects with clear APIs",
+          "Design and author embedded metadata blocks (ChartType, AxisTitles, MarkdownDataTable, etc.)",
+          "Extract and verify data from visualizations reliably for testing and downstream use",
+          "Improve accessibility and discoverability by combining captions, summaries, and machine-friendly metadata"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Chapter 1 (Section 2.2) narrows the book's focus to the Page Object model's treatment of Figures, using a concrete bar-chart example that displays monthly values from January to June. Building on earlier chapters that introduced page objects and the anatomy of page components, this chapter shows how a figure is not just an image but a structured object: it includes a caption, axis titles, a human-readable summary and a machine-oriented metadata block (ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). The data in the example chart peaks in April (450) and is lowest in January (200), with values for each month represented by different colored bars—details that are both visually evident and explicitly encoded in the metadata and table.",
+            "key_concepts": [
+              "Page Object — Figure as a first-class page component",
+              "Structured metadata embedding (ChartType, AxisTitles, MarkdownDataTable)",
+              "Bar chart interpretation (monthly values, peak/trough)",
+              "Captioning and accessibility (figcaption and summaries)",
+              "Data extraction from visuals (tabular representation of chart data)"
+            ],
+            "main_topics": [
+              "Visualization as a page object",
+              "Metadata-driven content encoding",
+              "Trend analysis from chart data"
+            ],
+            "token_count": 470,
+            "created_at": "2025-09-24T22:03:04.117602"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T22:03:13.887588"
+      },
+      "overall_summary": "This book tells the story of treating web pages not as opaque blobs of HTML but as composed, testable, and machine-friendly page objects. It begins by establishing the Page Object pattern as a way to model the logical structure of a page — its components, responsibilities and interfaces — and then progressively applies that pattern to increasingly rich and semantically important components such as forms, tables, and, centrally, figures. The concrete bar-chart example (monthly values January–June with a peak in April at 450 and a trough in January at 200) recurs as an illustrative case: the figure is shown to carry both visual cues and an embedded metadata block that makes its data and intent explicit and extractable.",
+      "key_themes": [
+        "Page Object modeling for web content",
+        "Figures as first-class structured components",
+        "Embedding machine-readable metadata alongside human-visible captions",
+        "Bridging visual presentation and programmatic data extraction",
+        "Accessibility and semantic enrichment as engineering concerns"
+      ],
+      "learning_objectives": [
+        "Understand the Page Object pattern and apply it to web page components",
+        "Model figures and other visual components as structured objects with clear APIs",
+        "Design and author embedded metadata blocks (ChartType, AxisTitles, MarkdownDataTable, etc.)",
+        "Extract and verify data from visualizations reliably for testing and downstream use",
+        "Improve accessibility and discoverability by combining captions, summaries, and machine-friendly metadata"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Chapter 1 (Section 2.2) narrows the book's focus to the Page Object model's treatment of Figures, using a concrete bar-chart example that displays monthly values from January to June. Building on earlier chapters that introduced page objects and the anatomy of page components, this chapter shows how a figure is not just an image but a structured object: it includes a caption, axis titles, a human-readable summary and a machine-oriented metadata block (ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). The data in the example chart peaks in April (450) and is lowest in January (200), with values for each month represented by different colored bars—details that are both visually evident and explicitly encoded in the metadata and table.",
+          "key_concepts": [
+            "Page Object — Figure as a first-class page component",
+            "Structured metadata embedding (ChartType, AxisTitles, MarkdownDataTable)",
+            "Bar chart interpretation (monthly values, peak/trough)",
+            "Captioning and accessibility (figcaption and summaries)",
+            "Data extraction from visuals (tabular representation of chart data)"
+          ],
+          "main_topics": [
+            "Visualization as a page object",
+            "Metadata-driven content encoding",
+            "Trend analysis from chart data"
+          ],
+          "token_count": 470,
+          "created_at": "2025-09-24T22:03:04.117602"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp6p19hpo2.pdf",
+      "pdf_file": "/tmp/tmp6p19hpo2.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_54ad6c3c-175f-4c7f-986d-95dd2d629fb3/task_document_processing/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7.md",
+      "cache_file": "content/pipelines/pipeline_54ad6c3c-175f-4c7f-986d-95dd2d629fb3/task_document_processing/tmp6p19hpo2-book-cache-20250924_220242-6c6c1cb7.json",
+      "metadata": "content/pipelines/pipeline_54ad6c3c-175f-4c7f-986d-95dd2d629fb3/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_54ad6c3c-175f-4c7f-986d-95dd2d629fb3/task_summarization/tmp6p19hpo2-summary-20250924_220242-6c6c1cb7.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp6p19hpo2.pdf",
+      "enhanced_markdown": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7.md",
+      "cache_file": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed/tmp6p19hpo2-book-cache-20250924_220242-6c6c1cb7.json",
+      "figures_directory": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7/tmp6p19hpo2-book-figures-20250924_220242-6c6c1cb7",
+      "figures_processed": 1,
+      "document_length": 2641,
+      "analyzer_id": "enhanced-content-understanding-4e916a40-d656-402d-9259-5c555a508d73",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2641,
+        "estimated_tokens": 533
+      },
+      "main_folder": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7",
+      "job_id": "6c6c1cb7",
+      "timestamp": "20250924_220242",
+      "content_type": "book",
+      "book_title": "tmp6p19hpo2",
+      "metadata_file": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/metadata.json",
+      "input_directory": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/input",
+      "processed_directory": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed",
+      "markdown_directory": "content/books/tmp6p19hpo2-book-20250924_220242-6c6c1cb7/processed/tmp6p19hpo2-book-markdown-20250924_220242-6c6c1cb7",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T22:03:13.887588"
+    }
+  }
+}

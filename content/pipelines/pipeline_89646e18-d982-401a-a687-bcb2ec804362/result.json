@@ -1,0 +1,194 @@
+{
+  "pipeline_id": "89646e18-d982-401a-a687-bcb2ec804362",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T20:14:44.183466",
+  "end_time": "2025-09-24T20:15:19.785538",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T20:14:44.184389",
+      "end_time": "2025-09-24T20:14:58.276539",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T20:14:58.276558",
+      "end_time": "2025-09-24T20:15:19.785519",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "My Business Report",
+      "figures_directory": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e/tmpsp6v2n7h-book-figures-20250924_201444-373cc14e",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Object Model for Structured Documents",
+      "main_folder": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e",
+      "book_summary": {
+        "book_title": "Page Object Model for Structured Documents",
+        "overall_summary": "This book tells a practical, concept-driven story about representing documents as structured page objects so that visual content becomes as precise, discoverable, and machine-actionable as textual content. It begins by establishing the page object model and the anatomy of document components, showing why treating figures, tables, headings, and other elements as first-class structured objects unlocks better authoring, accessibility, searchability, and automated processing. From there it drills into concrete object definitions and real-world examples that illustrate how each component should be described, tagged, and stored.\n\nA focal chapter — on the Figure page object — demonstrates that a figure is not merely an image but a composite object made of metadata (title, chart type, topic keywords), a figcaption, a detailed textual description, a concise summary, an embedded data table (MarkdownDataTable), axis titles, and optional footnotes or annotations. The chapter uses a simple bar chart of monthly values to show how numeric values, a Markdown data table, labeled axes, color encodings, and figcaption text work together to make a figure expressive and usable both for humans and machines. It emphasizes the difference between DetailedDescription (for completeness and accessibility) and Summary (for quick scanning and indexing).\n\nThroughout the book the narrative balances principled modeling with hands-on patterns: how to design object schemas, which metadata fields are essential, how to write effective summaries and descriptions, and how to embed or link to tabular data. Later sections and examples show how these models support downstream tasks — programmatic extraction, semantic search, accessibility transforms (alt text generation and screen reader friendliness), reproducible publishing, and interoperability between authoring systems. The book also discusses tooling and workflows that make adoption realistic, from authoring templates to validation and transformation scripts.\n\nBy the end readers have a coherent mental model and practical recipes for making document components robust, discoverable, and interoperable. The book argues that this shift from unstructured blobs to structured page objects is foundational for modern document systems: it improves user experience, enables automation, preserves provenance, and makes documents resilient to future formats and platforms.",
+        "key_themes": [
+          "Structured representation of document components",
+          "Separation of content semantics from presentation",
+          "Metadata-driven discoverability and interoperability",
+          "Accessibility and semantic descriptions",
+          "Reproducibility and data provenance"
+        ],
+        "learning_objectives": [
+          "Understand the page object model and why documents should be decomposed into structured objects",
+          "Define and author Figure page objects with appropriate metadata, captioning, detailed descriptions, summaries, and embedded data tables",
+          "Differentiate DetailedDescription from Summary and write both effectively for accessibility and indexing",
+          "Embed and format tabular data (MarkdownDataTable) within visual objects to enable reproducibility and automated analysis",
+          "Apply axis titles, annotations, and color encodings consistently to preserve semantic meaning of visualizations"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier material that established the page object model and the anatomy of document components, this chapter drills into the Figure page object (section 2.2). It shows how a figure is not just an image but a structured object containing a caption, metadata (title, chart type, topic keywords), a detailed textual description, a concise summary, an embedded data table, axis titles, and optional footnotes/annotations. The chapter uses a concrete example — a bar chart of monthly values from January to June — to demonstrate how those parts come together: the figcaption, numeric values, a Markdown data table, labeled axes, and color encoding for months.",
+            "key_concepts": [
+              "Page Objects",
+              "Figure as structured object",
+              "Figure metadata (Title, ChartType, TopicKeywords)",
+              "DetailedDescription vs Summary",
+              "Embedded data table (MarkdownDataTable)",
+              "AxisTitles and Footnotes/Annotations"
+            ],
+            "main_topics": [
+              "Structure and components of a Figure page object",
+              "Representation of chart data and metadata",
+              "Interpreting and extracting insights from figure content"
+            ],
+            "token_count": 448,
+            "created_at": "2025-09-24T20:15:07.664516"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T20:15:19.783365"
+      },
+      "overall_summary": "This book tells a practical, concept-driven story about representing documents as structured page objects so that visual content becomes as precise, discoverable, and machine-actionable as textual content. It begins by establishing the page object model and the anatomy of document components, showing why treating figures, tables, headings, and other elements as first-class structured objects unlocks better authoring, accessibility, searchability, and automated processing. From there it drills into concrete object definitions and real-world examples that illustrate how each component should be described, tagged, and stored.\n\nA focal chapter — on the Figure page object — demonstrates that a figure is not merely an image but a composite object made of metadata (title, chart type, topic keywords), a figcaption, a detailed textual description, a concise summary, an embedded data table (MarkdownDataTable), axis titles, and optional footnotes or annotations. The chapter uses a simple bar chart of monthly values to show how numeric values, a Markdown data table, labeled axes, color encodings, and figcaption text work together to make a figure expressive and usable both for humans and machines. It emphasizes the difference between DetailedDescription (for completeness and accessibility) and Summary (for quick scanning and indexing).\n\nThroughout the book the narrative balances principled modeling with hands-on patterns: how to design object schemas, which metadata fields are essential, how to write effective summaries and descriptions, and how to embed or link to tabular data. Later sections and examples show how these models support downstream tasks — programmatic extraction, semantic search, accessibility transforms (alt text generation and screen reader friendliness), reproducible publishing, and interoperability between authoring systems. The book also discusses tooling and workflows that make adoption realistic, from authoring templates to validation and transformation scripts.\n\nBy the end readers have a coherent mental model and practical recipes for making document components robust, discoverable, and interoperable. The book argues that this shift from unstructured blobs to structured page objects is foundational for modern document systems: it improves user experience, enables automation, preserves provenance, and makes documents resilient to future formats and platforms.",
+      "key_themes": [
+        "Structured representation of document components",
+        "Separation of content semantics from presentation",
+        "Metadata-driven discoverability and interoperability",
+        "Accessibility and semantic descriptions",
+        "Reproducibility and data provenance"
+      ],
+      "learning_objectives": [
+        "Understand the page object model and why documents should be decomposed into structured objects",
+        "Define and author Figure page objects with appropriate metadata, captioning, detailed descriptions, summaries, and embedded data tables",
+        "Differentiate DetailedDescription from Summary and write both effectively for accessibility and indexing",
+        "Embed and format tabular data (MarkdownDataTable) within visual objects to enable reproducibility and automated analysis",
+        "Apply axis titles, annotations, and color encodings consistently to preserve semantic meaning of visualizations"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier material that established the page object model and the anatomy of document components, this chapter drills into the Figure page object (section 2.2). It shows how a figure is not just an image but a structured object containing a caption, metadata (title, chart type, topic keywords), a detailed textual description, a concise summary, an embedded data table, axis titles, and optional footnotes/annotations. The chapter uses a concrete example — a bar chart of monthly values from January to June — to demonstrate how those parts come together: the figcaption, numeric values, a Markdown data table, labeled axes, and color encoding for months.",
+          "key_concepts": [
+            "Page Objects",
+            "Figure as structured object",
+            "Figure metadata (Title, ChartType, TopicKeywords)",
+            "DetailedDescription vs Summary",
+            "Embedded data table (MarkdownDataTable)",
+            "AxisTitles and Footnotes/Annotations"
+          ],
+          "main_topics": [
+            "Structure and components of a Figure page object",
+            "Representation of chart data and metadata",
+            "Interpreting and extracting insights from figure content"
+          ],
+          "token_count": 448,
+          "created_at": "2025-09-24T20:15:07.664516"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpsp6v2n7h.pdf",
+      "pdf_file": "/tmp/tmpsp6v2n7h.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_89646e18-d982-401a-a687-bcb2ec804362/task_document_processing/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e.md",
+      "cache_file": "content/pipelines/pipeline_89646e18-d982-401a-a687-bcb2ec804362/task_document_processing/tmpsp6v2n7h-book-cache-20250924_201444-373cc14e.json",
+      "metadata": "content/pipelines/pipeline_89646e18-d982-401a-a687-bcb2ec804362/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_89646e18-d982-401a-a687-bcb2ec804362/task_summarization/tmpsp6v2n7h-summary-20250924_201444-373cc14e.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpsp6v2n7h.pdf",
+      "enhanced_markdown": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e.md",
+      "cache_file": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed/tmpsp6v2n7h-book-cache-20250924_201444-373cc14e.json",
+      "figures_directory": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e/tmpsp6v2n7h-book-figures-20250924_201444-373cc14e",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-a2ab3b0a-fc07-44cb-8a59-621c8890d0b8",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e",
+      "job_id": "373cc14e",
+      "timestamp": "20250924_201444",
+      "content_type": "book",
+      "book_title": "tmpsp6v2n7h",
+      "metadata_file": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/metadata.json",
+      "input_directory": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/input",
+      "processed_directory": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed",
+      "markdown_directory": "content/books/tmpsp6v2n7h-book-20250924_201444-373cc14e/processed/tmpsp6v2n7h-book-markdown-20250924_201444-373cc14e",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T20:15:19.783365"
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "pipeline_id": "8b3af2fc-e533-4182-86b8-67b33b68e9a8",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:30:08.735229",
+  "end_time": "2025-09-23T20:30:47.338526",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:30:08.735689",
+      "end_time": "2025-09-23T20:30:24.633329",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-23T20:30:24.633346",
+      "end_time": "2025-09-23T20:30:47.338510",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Complete Pipeline Test",
+      "figures_directory": "content/books/tmpdiwj2zje-book-20250923_203008-8ac09ffa/processed/tmpdiwj2zje-book-markdown-20250923_203008-8ac09ffa/tmpdiwj2zje-book-figures-20250923_203008-8ac09ffa",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2586,
+        "estimated_tokens": 521
+      },
+      "figures_processed": 1,
+      "document_length": 2586,
+      "book_title": "Page Objects and Figure Metadata: Structuring Visuals for Machine Readability",
+      "main_folder": "content/books/tmpdiwj2zje-book-20250923_203008-8ac09ffa",
+      "book_summary": {
+        "book_title": "Page Objects and Figure Metadata: Structuring Visuals for Machine Readability",
+        "overall_summary": "This book tells the story of how documents and their visual elements can be represented as structured page objects enriched with metadata so that visuals — like figures and charts — become first-class, machine-actionable artifacts. It begins with the core page-object concept: treating each unit on a page (text blocks, tables, figures) as an object with a defined structure and metadata fields. From there the narrative moves into practical schema design and shows, with concrete examples, how to represent common visual types (the included chapter demonstrates a bar chart for monthly values) so that both humans and programs can interpret and reuse the underlying information.\n\nThe middle of the book focuses on the metadata fields that make interpretation possible: titles, chart types, axis labels, detailed descriptions, structured data tables, keywords, and captions. Using the bar-chart example (January–June values with April as the peak and January as the trough), the chapter illustrates how embedding a MarkdownDataTable and explicit AxisTitles provides semantic context and a clean, machine-readable record of plotted values. The narrative highlights how these fields support indexing, search, programmatic extraction, and higher-level analysis while also making figures accessible and reproducible.\n\nThe book then confronts practical issues encountered when moving from ideals to implementation: noisy or redundant textual representations, discrepancies between visible plot text and embedded metadata, and the need to reconcile multiple content sources (caption, metadata, and the figure image). It offers guidance and patterns for validating and harmonizing those sources, and for designing pipelines that can prefer canonical machine-readable tables while still preserving human-readable captions and axis labels. The final sections translate concepts into applied workflows and best practices for building tooling that extracts, indexes, and repurposes figure data reliably.\n\nOverall, the book is both conceptual and hands-on: it gives readers an understanding of why structured page objects matter, shows concrete metadata schemas and examples, and outlines the engineering and editorial practices necessary to make figures truly actionable across archival, analytic, and publishing workflows. It leaves readers with a practical roadmap for turning static visuals into interoperable data assets.",
+        "key_themes": [
+          "Page-object modeling for document elements",
+          "Rich, machine-readable figure metadata",
+          "Bridging visual content and structured data",
+          "Reconciliation of multiple content sources (image, caption, metadata)",
+          "Practical tooling and best practices for extraction and indexing"
+        ],
+        "learning_objectives": [
+          "Understand the page-object concept and why structured representation of document elements matters",
+          "Design and populate metadata fields for figures (Title, ChartType, AxisTitles, DetailedDescription, DataTable, Keywords, Caption)",
+          "Extract and validate machine-readable data from visuals and reconcile discrepancies between visual text and embedded metadata",
+          "Apply patterns and workflows to index, search, and repurpose figures programmatically",
+          "Recognize common pitfalls (redundant/noisy text, inconsistent metadata) and implement practices to mitigate them"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter, labeled 2.2 Figure, extends the book's treatment of page objects by showing a concrete example of how a figure is represented and described within a page-object/metadata framework. Building on earlier chapters that introduced the page-object concept, document structure, and metadata fields, it demonstrates a bar chart representation for monthly data (January–June). The embedded metadata includes a Title, ChartType, TopicKeywords, DetailedDescription, a MarkdownDataTable for the values, AxisTitles, and a figcaption; the numeric values are Jan 200, Feb 300, Mar 400, Apr 450, May 350, and Jun 250, with April as the peak and January as the minimum. The visual/textual figure content reiterates the same trend: values rise through April and then decline toward June.\n\nThe chapter emphasizes how the figure's metadata supports interpretation, indexing, and programmatic extraction: axis labels (“Months” and “Values”) give semantic context, the data table supplies a clean, machine-readable record of the plotted values, and the summary text concisely captures the trend (increase to April, then decrease). It also implicitly highlights practical issues to watch for when working with page objects and figures—redundant or noisy textual representations (repeated numbers in the raw figure text) and the need to reconcile multiple content sources (caption, metadata, visible plot). Overall, the chapter shifts the reader from abstract page-object principles to the practical handling of a commonly used visualization type, showing how metadata and structured data make figures actionable for analysis and downstream uses.",
+            "key_concepts": [
+              "Page object representation of figures",
+              "Figure metadata fields (Title, ChartType, DetailedDescription, AxisTitles, DataTable)",
+              "Bar chart data interpretation (monthly values, peak and trough)",
+              "Machine-readable data extraction from figures",
+              "Importance of captions and axis labels for semantics"
+            ],
+            "main_topics": [
+              "Monthly bar chart data (Jan–Jun values)",
+              "Metadata-driven figure description",
+              "Trend identification (increase to April, then decrease)",
+              "Data normalization and redundancy in figure text"
+            ],
+            "token_count": 656,
+            "created_at": "2025-09-23T20:30:34.724388"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-23T20:30:47.337903"
+      },
+      "overall_summary": "This book tells the story of how documents and their visual elements can be represented as structured page objects enriched with metadata so that visuals — like figures and charts — become first-class, machine-actionable artifacts. It begins with the core page-object concept: treating each unit on a page (text blocks, tables, figures) as an object with a defined structure and metadata fields. From there the narrative moves into practical schema design and shows, with concrete examples, how to represent common visual types (the included chapter demonstrates a bar chart for monthly values) so that both humans and programs can interpret and reuse the underlying information.\n\nThe middle of the book focuses on the metadata fields that make interpretation possible: titles, chart types, axis labels, detailed descriptions, structured data tables, keywords, and captions. Using the bar-chart example (January–June values with April as the peak and January as the trough), the chapter illustrates how embedding a MarkdownDataTable and explicit AxisTitles provides semantic context and a clean, machine-readable record of plotted values. The narrative highlights how these fields support indexing, search, programmatic extraction, and higher-level analysis while also making figures accessible and reproducible.\n\nThe book then confronts practical issues encountered when moving from ideals to implementation: noisy or redundant textual representations, discrepancies between visible plot text and embedded metadata, and the need to reconcile multiple content sources (caption, metadata, and the figure image). It offers guidance and patterns for validating and harmonizing those sources, and for designing pipelines that can prefer canonical machine-readable tables while still preserving human-readable captions and axis labels. The final sections translate concepts into applied workflows and best practices for building tooling that extracts, indexes, and repurposes figure data reliably.\n\nOverall, the book is both conceptual and hands-on: it gives readers an understanding of why structured page objects matter, shows concrete metadata schemas and examples, and outlines the engineering and editorial practices necessary to make figures truly actionable across archival, analytic, and publishing workflows. It leaves readers with a practical roadmap for turning static visuals into interoperable data assets.",
+      "key_themes": [
+        "Page-object modeling for document elements",
+        "Rich, machine-readable figure metadata",
+        "Bridging visual content and structured data",
+        "Reconciliation of multiple content sources (image, caption, metadata)",
+        "Practical tooling and best practices for extraction and indexing"
+      ],
+      "learning_objectives": [
+        "Understand the page-object concept and why structured representation of document elements matters",
+        "Design and populate metadata fields for figures (Title, ChartType, AxisTitles, DetailedDescription, DataTable, Keywords, Caption)",
+        "Extract and validate machine-readable data from visuals and reconcile discrepancies between visual text and embedded metadata",
+        "Apply patterns and workflows to index, search, and repurpose figures programmatically",
+        "Recognize common pitfalls (redundant/noisy text, inconsistent metadata) and implement practices to mitigate them"
+      ],
+      "chapter_summaries": [
+        

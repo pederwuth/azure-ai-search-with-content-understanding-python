@@ -1,0 +1,43 @@
+{
+  "pipeline_id": "f83a1406-28ee-40be-9b42-5756003d9809",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "failed",
+  "start_time": "2025-09-24T21:04:18.995755",
+  "end_time": "2025-09-24T21:04:18.996029",
+  "error_message": "Task 'summarization' is not registered",
+  "task_executions": {},
+  "final_outputs": null
+}

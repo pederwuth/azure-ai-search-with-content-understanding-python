@@ -1,0 +1,50 @@
+{
+  "pipeline_id": "9b3326f9-491c-42d1-9857-5fc9a5dc6edf",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "failed",
+  "start_time": "2025-09-23T20:53:51.057036",
+  "end_time": "2025-09-23T20:53:51.060510",
+  "error_message": "Task 'summarization' failed: Invalid inputs for task summarization",
+  "task_executions": {
+    "summarization": {
+      "task_id": "summarization",
+      "status": "failed",
+      "start_time": "2025-09-23T20:53:51.057908",
+      "end_time": "2025-09-23T20:53:51.060502",
+      "error_message": "Invalid inputs for task summarization",
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": null
+}

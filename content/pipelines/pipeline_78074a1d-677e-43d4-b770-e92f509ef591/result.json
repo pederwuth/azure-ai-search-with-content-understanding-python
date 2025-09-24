@@ -1,0 +1,197 @@
+{
+  "pipeline_id": "78074a1d-677e-43d4-b770-e92f509ef591",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:52:19.536488",
+  "end_time": "2025-09-24T18:52:56.498705",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T18:52:19.536808",
+      "end_time": "2025-09-24T18:52:33.118205",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T18:52:33.118218",
+      "end_time": "2025-09-24T18:52:56.498696",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Summary File Test Fixed",
+      "figures_directory": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f/tmpnvt9hugz-book-figures-20250924_185219-a5f43f2f",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2742,
+        "estimated_tokens": 560
+      },
+      "figures_processed": 1,
+      "document_length": 2742,
+      "book_title": "Structuring Figures and Page Objects: Metadata for Accessibility and Analysis",
+      "main_folder": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f",
+      "book_summary": {
+        "book_title": "Structuring Figures and Page Objects: Metadata for Accessibility and Analysis",
+        "overall_summary": "This book tells the story of how documents are more than words on a page: they are collections of structured page objects that, when described correctly, become accessible, indexable, and machine-actionable. Beginning with document- and page-level architecture, it introduces a consistent way to think about the components that make up a page — text blocks, tables, lists, and, in the chapter highlighted here, figures. By moving from high-level structure to concrete examples, the book shows the reader how to transform visual artifacts into machine-readable metadata while preserving the human-readable experience.\n\nA central, worked example — a bar chart spanning January to June with numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), month-based color mapping (Jan & Apr orange, Feb & May green, Mar & Jun blue), axis titles (Months and Values), an embedded markdown data table, caption and summary — demonstrates the practical mechanics. The example is used to illustrate specific metadata fields (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles) and to show how these fields capture not only data but interpretive signals like trends (a rise to a peak in April followed by decline). This combination of numbers, labels, and concise summaries is presented as the model for making figures both interpretable for readers and usable by automated systems.\n\nThroughout the book, emphasis is placed on principles that enable downstream uses: accessibility (alt text, captions, summaries), search and indexing (topic keywords and structured fields), reproducibility (clear data tables and axis labels), and analytic reusability (explicit numeric values and metadata). Practical guidance covers how to choose which metadata fields to include, how to format embedded data (e.g., markdown data tables), and how to craft concise descriptive summaries that highlight trends and key takeaways. The book balances prescriptive schemas with examples and rationale, making it clear why each piece of metadata matters.\n\nBy the end, readers will have a mental model and a set of concrete practices for producing figures and other page objects that serve both human readers and automated pipelines. The book closes by connecting these practices to real-world workflows — publishing, data portals, accessibility remediation, and automated document processing — and points to implementation patterns and tools that help integrate structured figure metadata into existing systems.",
+        "key_themes": [
+          "Transforming visual elements into machine-readable metadata",
+          "Accessibility and interpretability of figures",
+          "Consistent page-object schemas for indexing and analysis",
+          "Practical, example-driven instruction",
+          "Bridging human-readable presentation with automated workflows"
+        ],
+        "learning_objectives": [
+          "Understand the concept of page objects and how figures fit into document structure",
+          "Learn a concrete metadata schema for describing figures (e.g., ChartType, AxisTitles, MarkdownDataTable, Summary)",
+          "Be able to convert a visual figure into structured data and descriptive fields that capture both values and interpretive context",
+          "Apply best practices for accessibility, reproducibility, and searchability when authoring figures",
+          "Integrate structured figure metadata into publishing, indexing, or analysis pipelines"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier material that described document and page-level structure, this chapter drills into a specific page object type: the Figure. It uses a concrete example — a bar chart spanning January to June — to show how a figure is represented both visually and as structured metadata. The chapter describes the chart's numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), the color mapping for months (January and April in orange, February and May in green, March and June in blue), axis titles (Months and Values), and an included markdown data table. A caption (“Figure 1: Here is a figure with text”) and a short summary highlight the visual trend: values increase from January to a peak in April, then decline in May and June.\n\nBeyond the raw numbers, the chapter emphasizes the metadata structure used to describe figures (fields such as ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles). This demonstrates how visual elements are turned into machine-readable information for indexing, accessibility, or downstream analysis. The example reinforces how clear axis labels, tabular data, and concise summaries support interpretability and make the figure usable both for human readers and automated systems.",
+            "key_concepts": [
+              "Page objects",
+              "Figure as a page object",
+              "Bar chart representation",
+              "Structured figure metadata",
+              "Axis titles and labels",
+              "Markdown data table",
+              "Trend identification (peak in April)"
+            ],
+            "main_topics": [
+              "Data visualization in documents",
+              "Figure metadata schema",
+              "Monthly value trends",
+              "Color encoding for categories",
+              "Accessibility and machine readability"
+            ],
+            "token_count": 532,
+            "created_at": "2025-09-24T18:52:42.722829"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T18:52:56.498153"
+      },
+      "overall_summary": "This book tells the story of how documents are more than words on a page: they are collections of structured page objects that, when described correctly, become accessible, indexable, and machine-actionable. Beginning with document- and page-level architecture, it introduces a consistent way to think about the components that make up a page — text blocks, tables, lists, and, in the chapter highlighted here, figures. By moving from high-level structure to concrete examples, the book shows the reader how to transform visual artifacts into machine-readable metadata while preserving the human-readable experience.\n\nA central, worked example — a bar chart spanning January to June with numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), month-based color mapping (Jan & Apr orange, Feb & May green, Mar & Jun blue), axis titles (Months and Values), an embedded markdown data table, caption and summary — demonstrates the practical mechanics. The example is used to illustrate specific metadata fields (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles) and to show how these fields capture not only data but interpretive signals like trends (a rise to a peak in April followed by decline). This combination of numbers, labels, and concise summaries is presented as the model for making figures both interpretable for readers and usable by automated systems.\n\nThroughout the book, emphasis is placed on principles that enable downstream uses: accessibility (alt text, captions, summaries), search and indexing (topic keywords and structured fields), reproducibility (clear data tables and axis labels), and analytic reusability (explicit numeric values and metadata). Practical guidance covers how to choose which metadata fields to include, how to format embedded data (e.g., markdown data tables), and how to craft concise descriptive summaries that highlight trends and key takeaways. The book balances prescriptive schemas with examples and rationale, making it clear why each piece of metadata matters.\n\nBy the end, readers will have a mental model and a set of concrete practices for producing figures and other page objects that serve both human readers and automated pipelines. The book closes by connecting these practices to real-world workflows — publishing, data portals, accessibility remediation, and automated document processing — and points to implementation patterns and tools that help integrate structured figure metadata into existing systems.",
+      "key_themes": [
+        "Transforming visual elements into machine-readable metadata",
+        "Accessibility and interpretability of figures",
+        "Consistent page-object schemas for indexing and analysis",
+        "Practical, example-driven instruction",
+        "Bridging human-readable presentation with automated workflows"
+      ],
+      "learning_objectives": [
+        "Understand the concept of page objects and how figures fit into document structure",
+        "Learn a concrete metadata schema for describing figures (e.g., ChartType, AxisTitles, MarkdownDataTable, Summary)",
+        "Be able to convert a visual figure into structured data and descriptive fields that capture both values and interpretive context",
+        "Apply best practices for accessibility, reproducibility, and searchability when authoring figures",
+        "Integrate structured figure metadata into publishing, indexing, or analysis pipelines"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier material that described document and page-level structure, this chapter drills into a specific page object type: the Figure. It uses a concrete example — a bar chart spanning January to June — to show how a figure is represented both visually and as structured metadata. The chapter describes the chart's numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), the color mapping for months (January and April in orange, February and May in green, March and June in blue), axis titles (Months and Values), and an included markdown data table. A caption (“Figure 1: Here is a figure with text”) and a short summary highlight the visual trend: values increase from January to a peak in April, then decline in May and June.\n\nBeyond the raw numbers, the chapter emphasizes the metadata structure used to describe figures (fields such as ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles). This demonstrates how visual elements are turned into machine-readable information for indexing, accessibility, or downstream analysis. The example reinforces how clear axis labels, tabular data, and concise summaries support interpretability and make the figure usable both for human readers and automated systems.",
+          "key_concepts": [
+            "Page objects",
+            "Figure as a page object",
+            "Bar chart representation",
+            "Structured figure metadata",
+            "Axis titles and labels",
+            "Markdown data table",
+            "Trend identification (peak in April)"
+          ],
+          "main_topics": [
+            "Data visualization in documents",
+            "Figure metadata schema",
+            "Monthly value trends",
+            "Color encoding for categories",
+            "Accessibility and machine readability"
+          ],
+          "token_count": 532,
+          "created_at": "2025-09-24T18:52:42.722829"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpnvt9hugz.pdf",
+      "pdf_file": "/tmp/tmpnvt9hugz.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_78074a1d-677e-43d4-b770-e92f509ef591/task_document_processing/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f.md",
+      "cache_file": "content/pipelines/pipeline_78074a1d-677e-43d4-b770-e92f509ef591/task_document_processing/tmpnvt9hugz-book-cache-20250924_185219-a5f43f2f.json",
+      "metadata": "content/pipelines/pipeline_78074a1d-677e-43d4-b770-e92f509ef591/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpnvt9hugz.pdf",
+      "enhanced_markdown": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f.md",
+      "cache_file": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed/tmpnvt9hugz-book-cache-20250924_185219-a5f43f2f.json",
+      "figures_directory": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f/tmpnvt9hugz-book-figures-20250924_185219-a5f43f2f",
+      "figures_processed": 1,
+      "document_length": 2742,
+      "analyzer_id": "enhanced-content-understanding-1eb3f68f-ed2d-4614-9ac8-f84881f4ea49",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2742,
+        "estimated_tokens": 560
+      },
+      "main_folder": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f",
+      "job_id": "a5f43f2f",
+      "timestamp": "20250924_185219",
+      "content_type": "book",
+      "book_title": "tmpnvt9hugz",
+      "metadata_file": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/metadata.json",
+      "input_directory": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/input",
+      "processed_directory": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed",
+      "markdown_directory": "content/books/tmpnvt9hugz-book-20250924_185219-a5f43f2f/processed/tmpnvt9hugz-book-markdown-20250924_185219-a5f43f2f",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T18:52:56.498153"
+    }
+  }
+}

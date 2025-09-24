@@ -1,0 +1,197 @@
+{
+  "pipeline_id": "028709f9-1be2-4771-b61a-f0a4c661af83",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T22:02:55.213949",
+  "end_time": "2025-09-24T22:03:35.392760",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T22:02:55.214459",
+      "end_time": "2025-09-24T22:03:12.010300",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T22:03:12.010317",
+      "end_time": "2025-09-24T22:03:35.392748",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "figures_directory": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce/tmp554hlzj5-book-figures-20250924_220255-4c6689ce",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects and Component Modeling for Accessible Visuals",
+      "main_folder": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce",
+      "book_summary": {
+        "book_title": "Page Objects and Component Modeling for Accessible Visuals",
+        "overall_summary": "This book presents a focused exploration of page objects and component modeling, using visual elements—particularly figures and charts—as the primary case study for demonstrating how semantic structure, visual rendering, and machine-readable metadata can be designed and packaged together. The opening material introduces the Page Object pattern adapted for documents and web content, arguing that each visual or interactive component should be treated as a first-class object with both human-facing presentation and structured metadata that downstream consumers can rely on.\n\nA central chapter drills deeply into a Figure page object, using a bar-chart example that reports monthly values from January to June (200, 300, 400, 450, 350, 250). The figure is described visually (figcaption) and mirrored by a machine-friendly metadata block that enumerates Title, ChartType, TopicKeywords, DetailedDescription, Summary, a MarkdownDataTable backing the numeric values, AxisTitles, and Footnotes/Annotations. The example highlights practical concerns such as identifying peaks and troughs (April peak at 450, January low at 200) and encoding color mappings for months (orange for Jan/Apr, green for Feb/May, blue for Mar/Jun).\n\nThroughout the book the author connects conceptual modeling with practical data interpretation. By mapping DetailedDescription and the MarkdownDataTable to the rendered figure and figcaption, readers see how a Figure object bundles semantic labels, numeric data, axis titles, and annotations so that readers, screen readers, and automated agents can render, analyze, or test visual content consistently. The text balances design rationale with concrete patterns for implementing accessible, testable, and machine-readable figures in business and finance contexts.\n\nThe book concludes by emphasizing the downstream benefits: improved accessibility for assistive technologies, more reliable automation and testing, explicit provenance and reproducibility for analytic visuals, and richer inputs for software agents or machine learning systems. Practical guidance and examples empower designers, engineers, analysts, and content creators to treat visual components as structured artifacts rather than opaque images or ad-hoc descriptions.",
+        "key_themes": [
+          "Page Objects and component modeling applied to visual content",
+          "Structured metadata for figures and charts (semantic + numeric)",
+          "Accessibility and machine-readability (figcaptions, annotations, screen readers)",
+          "Bridging human presentation and programmatic consumption",
+          "Reproducibility and provenance in analytic visualizations"
+        ],
+        "learning_objectives": [
+          "Understand the Page Object pattern and how to model visual components as first-class objects",
+          "Learn how to create structured, machine-friendly metadata for figures including titles, chart types, keywords, and data tables",
+          "Be able to encode visual attributes (axis titles, color mappings, annotations) so both humans and machines can interpret charts",
+          "Apply accessibility best practices by linking figcaptions, detailed descriptions, and screen-reader-friendly metadata",
+          "Use component models to support automated testing, data provenance, and downstream analytics"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on the book's earlier introduction to Page Objects and component modeling, this chapter drills into the Figure page object (section 2.2) and demonstrates how a visual element is represented both visually and as structured metadata. The chapter presents a bar chart example that reports monthly values from January to June (200, 300, 400, 450, 350, 250), highlights the peak in April (450) and the low in January (200), and documents color coding for months (orange for Jan/Apr, green for Feb/May, blue for Mar/Jun). The chapter includes both a human-facing figcaption and a machine-friendly block of metadata: Title, ChartType, TopicKeywords, DetailedDescription, Summary, a MarkdownDataTable, AxisTitles, and Footnotes/Annotations.\n\nThe chapter connects conceptual modeling with practical data-interpretation: it shows how a Figure object bundles semantic labels, numeric data, axis titles, and annotations so downstream consumers (readers, screen readers, or software agents) can accurately render or analyze the chart. By mapping the DetailedDescription and MarkdownDataTable to the rendered figure and figcaption, it illustrates the progression from abstract page-object design to concrete, accessible visual content useful in business and finance analysis contexts.",
+            "key_concepts": [
+              "Figure page object",
+              "Structured chart metadata (Title, ChartType, DetailedDescription, Summary)",
+              "MarkdownDataTable for tabular backing data",
+              "Axis titles and labeling (Months, Values)",
+              "Color coding and visual encoding",
+              "Peak and trough identification (April peak, January low)",
+              "Accessibility and machine-readability (figcaption, annotations)"
+            ],
+            "main_topics": [
+              "Data visualization (bar chart interpretation)",
+              "Page object modeling for figures",
+              "Metadata-driven rendering and analysis",
+              "Business/finance data presentation"
+            ],
+            "token_count": 588,
+            "created_at": "2025-09-24T22:03:20.725628"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T22:03:35.391026"
+      },
+      "overall_summary": "This book presents a focused exploration of page objects and component modeling, using visual elements—particularly figures and charts—as the primary case study for demonstrating how semantic structure, visual rendering, and machine-readable metadata can be designed and packaged together. The opening material introduces the Page Object pattern adapted for documents and web content, arguing that each visual or interactive component should be treated as a first-class object with both human-facing presentation and structured metadata that downstream consumers can rely on.\n\nA central chapter drills deeply into a Figure page object, using a bar-chart example that reports monthly values from January to June (200, 300, 400, 450, 350, 250). The figure is described visually (figcaption) and mirrored by a machine-friendly metadata block that enumerates Title, ChartType, TopicKeywords, DetailedDescription, Summary, a MarkdownDataTable backing the numeric values, AxisTitles, and Footnotes/Annotations. The example highlights practical concerns such as identifying peaks and troughs (April peak at 450, January low at 200) and encoding color mappings for months (orange for Jan/Apr, green for Feb/May, blue for Mar/Jun).\n\nThroughout the book the author connects conceptual modeling with practical data interpretation. By mapping DetailedDescription and the MarkdownDataTable to the rendered figure and figcaption, readers see how a Figure object bundles semantic labels, numeric data, axis titles, and annotations so that readers, screen readers, and automated agents can render, analyze, or test visual content consistently. The text balances design rationale with concrete patterns for implementing accessible, testable, and machine-readable figures in business and finance contexts.\n\nThe book concludes by emphasizing the downstream benefits: improved accessibility for assistive technologies, more reliable automation and testing, explicit provenance and reproducibility for analytic visuals, and richer inputs for software agents or machine learning systems. Practical guidance and examples empower designers, engineers, analysts, and content creators to treat visual components as structured artifacts rather than opaque images or ad-hoc descriptions.",
+      "key_themes": [
+        "Page Objects and component modeling applied to visual content",
+        "Structured metadata for figures and charts (semantic + numeric)",
+        "Accessibility and machine-readability (figcaptions, annotations, screen readers)",
+        "Bridging human presentation and programmatic consumption",
+        "Reproducibility and provenance in analytic visualizations"
+      ],
+      "learning_objectives": [
+        "Understand the Page Object pattern and how to model visual components as first-class objects",
+        "Learn how to create structured, machine-friendly metadata for figures including titles, chart types, keywords, and data tables",
+        "Be able to encode visual attributes (axis titles, color mappings, annotations) so both humans and machines can interpret charts",
+        "Apply accessibility best practices by linking figcaptions, detailed descriptions, and screen-reader-friendly metadata",
+        "Use component models to support automated testing, data provenance, and downstream analytics"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on the book's earlier introduction to Page Objects and component modeling, this chapter drills into the Figure page object (section 2.2) and demonstrates how a visual element is represented both visually and as structured metadata. The chapter presents a bar chart example that reports monthly values from January to June (200, 300, 400, 450, 350, 250), highlights the peak in April (450) and the low in January (200), and documents color coding for months (orange for Jan/Apr, green for Feb/May, blue for Mar/Jun). The chapter includes both a human-facing figcaption and a machine-friendly block of metadata: Title, ChartType, TopicKeywords, DetailedDescription, Summary, a MarkdownDataTable, AxisTitles, and Footnotes/Annotations.\n\nThe chapter connects conceptual modeling with practical data-interpretation: it shows how a Figure object bundles semantic labels, numeric data, axis titles, and annotations so downstream consumers (readers, screen readers, or software agents) can accurately render or analyze the chart. By mapping the DetailedDescription and MarkdownDataTable to the rendered figure and figcaption, it illustrates the progression from abstract page-object design to concrete, accessible visual content useful in business and finance analysis contexts.",
+          "key_concepts": [
+            "Figure page object",
+            "Structured chart metadata (Title, ChartType, DetailedDescription, Summary)",
+            "MarkdownDataTable for tabular backing data",
+            "Axis titles and labeling (Months, Values)",
+            "Color coding and visual encoding",
+            "Peak and trough identification (April peak, January low)",
+            "Accessibility and machine-readability (figcaption, annotations)"
+          ],
+          "main_topics": [
+            "Data visualization (bar chart interpretation)",
+            "Page object modeling for figures",
+            "Metadata-driven rendering and analysis",
+            "Business/finance data presentation"
+          ],
+          "token_count": 588,
+          "created_at": "2025-09-24T22:03:20.725628"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp554hlzj5.pdf",
+      "pdf_file": "/tmp/tmp554hlzj5.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_028709f9-1be2-4771-b61a-f0a4c661af83/task_document_processing/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce.md",
+      "cache_file": "content/pipelines/pipeline_028709f9-1be2-4771-b61a-f0a4c661af83/task_document_processing/tmp554hlzj5-book-cache-20250924_220255-4c6689ce.json",
+      "metadata": "content/pipelines/pipeline_028709f9-1be2-4771-b61a-f0a4c661af83/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_028709f9-1be2-4771-b61a-f0a4c661af83/task_summarization/tmp554hlzj5-summary-20250924_220255-4c6689ce.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp554hlzj5.pdf",
+      "enhanced_markdown": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce.md",
+      "cache_file": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed/tmp554hlzj5-book-cache-20250924_220255-4c6689ce.json",
+      "figures_directory": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce/tmp554hlzj5-book-figures-20250924_220255-4c6689ce",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-4ecad5a3-16ea-41be-8da4-c27568cbf9b5",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce",
+      "job_id": "4c6689ce",
+      "timestamp": "20250924_220255",
+      "content_type": "book",
+      "book_title": "tmp554hlzj5",
+      "metadata_file": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/metadata.json",
+      "input_directory": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/input",
+      "processed_directory": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed",
+      "markdown_directory": "content/books/tmp554hlzj5-book-20250924_220255-4c6689ce/processed/tmp554hlzj5-book-markdown-20250924_220255-4c6689ce",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T22:03:35.391026"
+    }
+  }
+}

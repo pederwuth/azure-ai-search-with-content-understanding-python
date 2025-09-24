@@ -1,0 +1,194 @@
+{
+  "pipeline_id": "b8ae4943-985d-4e91-a1dd-7df57fa2e01d",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T16:54:00.675019",
+  "end_time": "2025-09-24T16:54:40.439467",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T16:54:00.675429",
+      "end_time": "2025-09-24T16:54:14.423581",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T16:54:14.423598",
+      "end_time": "2025-09-24T16:54:40.439451",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7/tmpndhb5l4q-book-figures-20250924_165400-d8a219c7",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2586,
+        "estimated_tokens": 521
+      },
+      "figures_processed": 1,
+      "document_length": 2586,
+      "book_title": "Page Objects and Metadata-Driven Visualizations",
+      "main_folder": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7",
+      "book_summary": {
+        "book_title": "Page Objects and Metadata-Driven Visualizations",
+        "overall_summary": "This book presents a practical and conceptual framework for modeling page content as structured, machine-actionable objects. It begins by motivating why conventional document and web content often fails machine workflows—lack of consistent semantics, missing metadata, inaccessible visuals—and introduces the page-object abstraction as a way to encapsulate both the visible rendering and the underlying intent and data. Throughout, the book stresses that well-modeled page objects bridge human communication and automated processing: they preserve semantics for readers while enabling extraction, validation, and reuse by systems.\n\nA focused, early technical example— the Figure page object—shows how the idea works in detail. The book uses a concrete bar-chart example with embedded machine-readable metadata (title, chart type, topic keywords, detailed description, data table and axis titles) alongside rendered elements (figcaption, numeric values, month labels). This example crystallizes the approach: metadata expresses intent and semantics, the visible figure communicates to readers, and both are designed to be both accessible and machine-actionable. The chapter demonstrates practical techniques such as embedding summaries and data tables, labeling axes and captions for accessibility, and extracting the underlying numeric series for analytical interpretation (e.g., a January–June series [200, 300, 400, 450, 350, 250] that rises through April and then declines).\n\nBuilding on the Figure example, subsequent sections of the book broaden and deepen the pattern: other page-object types (tables, narratives, interactive components), conventions for metadata schemas, strategies for consistent rendering, and APIs and toolchains that produce, validate and consume page objects. The book ties these technical elements to real-world needs—automated reporting pipelines, accessible publishing, regulatory documentation, and repeatable analytics—showing how structured content reduces friction in business and finance contexts.\n\nBy the end, readers have a coherent set of principles, concrete patterns, and practical workflows. They can design page objects that make visualizations and documents both more usable for humans and more useful for machines, apply accessibility and documentation best practices, and implement data-extraction and validation processes that support robust analytics and automation.",
+        "key_themes": [
+          "Metadata-driven design",
+          "Bridging human-readable rendering and machine-actionable semantics",
+          "Accessibility and documentation as first-class requirements",
+          "Data extraction and analytic interpretation from visuals",
+          "Consistency and reusability in content modeling",
+          "Practical tooling and governance for production use"
+        ],
+        "learning_objectives": [
+          "Understand the page-object abstraction and why it matters for modern publishing and analytics",
+          "Design and encode metadata for visual components (e.g., figures and charts) so they are machine-actionable",
+          "Produce accessible captions, axis titles, summaries, and data tables that serve both readers and tools",
+          "Extract and interpret underlying data series from structured figures for downstream analysis",
+          "Apply patterns for consistent rendering, validation, and automated reporting in business and finance contexts",
+          "Plan workflows and tooling to govern, test, and maintain metadata-rich content in production"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier chapters that introduced the notion of page objects and the general structure used to model content on a page, this chapter drills into the Figure page object as a concrete example. It presents both the machine-readable metadata (title, chart type, topic keywords, detailed description, data table and axis titles embedded in a comment) and the rendered elements (a figcaption and a sequence of numeric values and month labels). The chapter shows how a Figure object encapsulates a visualization: metadata describes intent and semantics, while the visible figure and caption communicate the same information to readers.\n\nThe chapter also demonstrates how to extract and interpret the underlying data: a bar chart of monthly values from January to June with values [200, 300, 400, 450, 350, 250], showing an upward trend through April and a decline afterward. Important accessibility and documentation features are highlighted—captions, axis titles, summaries, and a data table—illustrating how metadata, visual elements, and textual summaries work together to make the figure both machine-actionable and human-understandable. This deepens the reader's understanding of how page objects support consistent rendering, data extraction, and analytic interpretation in business and finance contexts.",
+            "key_concepts": [
+              "Page Object: Figure",
+              "Metadata-driven visualization",
+              "Caption and accessibility",
+              "Data extraction from figure",
+              "Bar chart interpretation"
+            ],
+            "main_topics": [
+              "Figure structure and fields (title, chart type, keywords, description)",
+              "Monthly bar chart data and trend analysis",
+              "Axis titles and tabular representation"
+            ],
+            "token_count": 499,
+            "created_at": "2025-09-24T16:54:24.970184"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T16:54:40.438254"
+      },
+      "overall_summary": "This book presents a practical and conceptual framework for modeling page content as structured, machine-actionable objects. It begins by motivating why conventional document and web content often fails machine workflows—lack of consistent semantics, missing metadata, inaccessible visuals—and introduces the page-object abstraction as a way to encapsulate both the visible rendering and the underlying intent and data. Throughout, the book stresses that well-modeled page objects bridge human communication and automated processing: they preserve semantics for readers while enabling extraction, validation, and reuse by systems.\n\nA focused, early technical example— the Figure page object—shows how the idea works in detail. The book uses a concrete bar-chart example with embedded machine-readable metadata (title, chart type, topic keywords, detailed description, data table and axis titles) alongside rendered elements (figcaption, numeric values, month labels). This example crystallizes the approach: metadata expresses intent and semantics, the visible figure communicates to readers, and both are designed to be both accessible and machine-actionable. The chapter demonstrates practical techniques such as embedding summaries and data tables, labeling axes and captions for accessibility, and extracting the underlying numeric series for analytical interpretation (e.g., a January–June series [200, 300, 400, 450, 350, 250] that rises through April and then declines).\n\nBuilding on the Figure example, subsequent sections of the book broaden and deepen the pattern: other page-object types (tables, narratives, interactive components), conventions for metadata schemas, strategies for consistent rendering, and APIs and toolchains that produce, validate and consume page objects. The book ties these technical elements to real-world needs—automated reporting pipelines, accessible publishing, regulatory documentation, and repeatable analytics—showing how structured content reduces friction in business and finance contexts.\n\nBy the end, readers have a coherent set of principles, concrete patterns, and practical workflows. They can design page objects that make visualizations and documents both more usable for humans and more useful for machines, apply accessibility and documentation best practices, and implement data-extraction and validation processes that support robust analytics and automation.",
+      "key_themes": [
+        "Metadata-driven design",
+        "Bridging human-readable rendering and machine-actionable semantics",
+        "Accessibility and documentation as first-class requirements",
+        "Data extraction and analytic interpretation from visuals",
+        "Consistency and reusability in content modeling",
+        "Practical tooling and governance for production use"
+      ],
+      "learning_objectives": [
+        "Understand the page-object abstraction and why it matters for modern publishing and analytics",
+        "Design and encode metadata for visual components (e.g., figures and charts) so they are machine-actionable",
+        "Produce accessible captions, axis titles, summaries, and data tables that serve both readers and tools",
+        "Extract and interpret underlying data series from structured figures for downstream analysis",
+        "Apply patterns for consistent rendering, validation, and automated reporting in business and finance contexts",
+        "Plan workflows and tooling to govern, test, and maintain metadata-rich content in production"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier chapters that introduced the notion of page objects and the general structure used to model content on a page, this chapter drills into the Figure page object as a concrete example. It presents both the machine-readable metadata (title, chart type, topic keywords, detailed description, data table and axis titles embedded in a comment) and the rendered elements (a figcaption and a sequence of numeric values and month labels). The chapter shows how a Figure object encapsulates a visualization: metadata describes intent and semantics, while the visible figure and caption communicate the same information to readers.\n\nThe chapter also demonstrates how to extract and interpret the underlying data: a bar chart of monthly values from January to June with values [200, 300, 400, 450, 350, 250], showing an upward trend through April and a decline afterward. Important accessibility and documentation features are highlighted—captions, axis titles, summaries, and a data table—illustrating how metadata, visual elements, and textual summaries work together to make the figure both machine-actionable and human-understandable. This deepens the reader's understanding of how page objects support consistent rendering, data extraction, and analytic interpretation in business and finance contexts.",
+          "key_concepts": [
+            "Page Object: Figure",
+            "Metadata-driven visualization",
+            "Caption and accessibility",
+            "Data extraction from figure",
+            "Bar chart interpretation"
+          ],
+          "main_topics": [
+            "Figure structure and fields (title, chart type, keywords, description)",
+            "Monthly bar chart data and trend analysis",
+            "Axis titles and tabular representation"
+          ],
+          "token_count": 499,
+          "created_at": "2025-09-24T16:54:24.970184"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpndhb5l4q.pdf",
+      "pdf_file": "/tmp/tmpndhb5l4q.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_b8ae4943-985d-4e91-a1dd-7df57fa2e01d/task_document_processing/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7.md",
+      "cache_file": "content/pipelines/pipeline_b8ae4943-985d-4e91-a1dd-7df57fa2e01d/task_document_processing/tmpndhb5l4q-book-cache-20250924_165400-d8a219c7.json",
+      "metadata": "content/pipelines/pipeline_b8ae4943-985d-4e91-a1dd-7df57fa2e01d/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpndhb5l4q.pdf",
+      "enhanced_markdown": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7.md",
+      "cache_file": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed/tmpndhb5l4q-book-cache-20250924_165400-d8a219c7.json",
+      "figures_directory": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7/tmpndhb5l4q-book-figures-20250924_165400-d8a219c7",
+      "figures_processed": 1,
+      "document_length": 2586,
+      "analyzer_id": "enhanced-content-understanding-5d6d2fbc-e6c7-413a-be09-a150332d7942",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2586,
+        "estimated_tokens": 521
+      },
+      "main_folder": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7",
+      "job_id": "d8a219c7",
+      "timestamp": "20250924_165400",
+      "content_type": "book",
+      "book_title": "tmpndhb5l4q",
+      "metadata_file": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/metadata.json",
+      "input_directory": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/input",
+      "processed_directory": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed",
+      "markdown_directory": "content/books/tmpndhb5l4q-book-20250924_165400-d8a219c7/processed/tmpndhb5l4q-book-markdown-20250924_165400-d8a219c7",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T16:54:40.438254"
+    }
+  }
+}
