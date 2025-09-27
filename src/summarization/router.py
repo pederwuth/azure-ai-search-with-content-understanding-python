@@ -39,7 +39,8 @@ except ImportError as e:
 logger = logging.getLogger(__name__)
 
 # Get content output directory from environment or use default
-CONTENT_OUTPUT_DIRECTORY = os.getenv("CONTENT_OUTPUT_DIRECTORY", "content/books")
+CONTENT_OUTPUT_DIRECTORY = os.getenv(
+    "CONTENT_OUTPUT_DIRECTORY", "content/books")
 
 # Create router
 router = APIRouter(
@@ -48,14 +49,18 @@ router = APIRouter(
 )
 
 # Request/Response Models
+
+
 class SummarizationRequest(BaseModel):
     markdown_content: str
     title: str
+
 
 class SummarizationResponse(BaseModel):
     summary: BookSummary
     processing_time_seconds: float
     timestamp: str
+
 
 class SummarizationUploadResponse(BaseModel):
     summary: BookSummary
@@ -65,6 +70,7 @@ class SummarizationUploadResponse(BaseModel):
     output_directory: str
     job_id: str
 
+
 class HealthResponse(BaseModel):
     status: str
     timestamp: str
@@ -72,8 +78,10 @@ class HealthResponse(BaseModel):
     version: str
     summarization_available: bool
 
+
 # Initialize summarizer (will be lazy-loaded)
 _summarizer = None
+
 
 def get_summarizer():
     """Get or create the summarizer instance"""
@@ -81,6 +89,7 @@ def get_summarizer():
     if _summarizer is None and SUMMARIZATION_AVAILABLE:
         _summarizer = ProgressiveBookSummarizer()
     return _summarizer
+
 
 @router.get("/health", response_model=HealthResponse)
 async def health_check():
@@ -93,11 +102,12 @@ async def health_check():
         summarization_available=SUMMARIZATION_AVAILABLE
     )
 
+
 @router.post("/summarize", response_model=SummarizationResponse)
 async def summarize_markdown(request: SummarizationRequest):
     """
     Summarize markdown content directly.
-    
+
     This endpoint is used internally by the document processor
     and can also be called directly with markdown content.
     """
@@ -106,17 +116,17 @@ async def summarize_markdown(request: SummarizationRequest):
             status_code=503,
             detail="Summarization service is not available. Please check Azure OpenAI configuration."
         )
-    
+
     summarizer = get_summarizer()
     if not summarizer:
         raise HTTPException(
             status_code=503,
             detail="Failed to initialize summarization service"
         )
-    
+
     start_time = datetime.now()
     logger.info(f"Starting markdown summarization for: {request.title}")
-    
+
     try:
         # Process the markdown content
         book_summary = await asyncio.to_thread(
@@ -124,23 +134,25 @@ async def summarize_markdown(request: SummarizationRequest):
             request.markdown_content,
             request.title
         )
-        
+
         processing_time = (datetime.now() - start_time).total_seconds()
-        
-        logger.info(f"Completed summarization for '{request.title}' in {processing_time:.2f} seconds")
-        
+
+        logger.info(
+            f"Completed summarization for '{request.title}' in {processing_time:.2f} seconds")
+
         return SummarizationResponse(
             summary=book_summary,
             processing_time_seconds=processing_time,
             timestamp=datetime.now().isoformat()
         )
-        
+
     except Exception as e:
         logger.error(f"Error during summarization: {str(e)}")
         raise HTTPException(
             status_code=500,
             detail=f"Summarization failed: {str(e)}"
         )
+
 
 @router.post("/upload", response_model=SummarizationUploadResponse)
 async def upload_and_summarize(
@@ -149,7 +161,7 @@ async def upload_and_summarize(
 ):
     """
     Upload a markdown file and get a summary.
-    
+
     This endpoint allows standalone usage where users can upload
     markdown files directly for summarization. Results are saved
     to the content output directory.
@@ -159,52 +171,57 @@ async def upload_and_summarize(
             status_code=503,
             detail="Summarization service is not available. Please check Azure OpenAI configuration."
         )
-    
+
     summarizer = get_summarizer()
     if not summarizer:
         raise HTTPException(
             status_code=503,
             detail="Failed to initialize summarization service"
         )
-    
+
     # Validate file type
     if not file.filename or not file.filename.endswith(('.md', '.markdown', '.txt')):
         raise HTTPException(
-            status_code=400, 
+            status_code=400,
             detail="File must be a markdown file (.md, .markdown, or .txt)"
         )
-    
+
     try:
         # Read file content
         content = await file.read()
         markdown_content = content.decode('utf-8')
-        
+
         # Handle empty string or placeholder values as None for book_title (same as enhanced API)
         if book_title in ("", "string", None):
             book_title = None
-        
+
         # Use provided title or derive from filename
-        title = book_title or (file.filename.replace('.md', '').replace('.markdown', '').replace('.txt', '') if file.filename else "Unknown Book")
-        
-        logger.info(f"Starting file summarization for: {title} (file: {file.filename})")
+        title = book_title or (file.filename.replace('.md', '').replace(
+            '.markdown', '').replace('.txt', '') if file.filename else "Unknown Book")
+
+        logger.info(
+            f"Starting file summarization for: {title} (file: {file.filename})")
         start_time = datetime.now()
-        
+
         # Create directory structure similar to enhanced document processor
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         job_id = str(uuid.uuid4()).split('-')[0]
-        
+
         # Create folder structure: {book_title}-book-{timestamp}-{job_id}
-        safe_title = "".join(c for c in title if c.isalnum() or c in (' ', '-', '_')).rstrip()
-        safe_title = safe_title.replace(' ', '_')[:50]  # Limit length and replace spaces
-        
+        safe_title = "".join(c for c in title if c.isalnum()
+                             or c in (' ', '-', '_')).rstrip()
+        # Limit length and replace spaces
+        safe_title = safe_title.replace(' ', '_')[:50]
+
         main_folder_name = f"{safe_title}-book-{timestamp}-{job_id}"
         main_output_path = Path(CONTENT_OUTPUT_DIRECTORY) / main_folder_name
-        
+
         # Create folder structure
         input_dir = main_output_path / "input"
         processed_dir = main_output_path / "processed"
-        summaries_dir = processed_dir / f"{safe_title}-book-summaries-{timestamp}-{job_id}"
-        
+        summaries_dir = processed_dir / \
+            f"{safe_title}-book-summaries-{timestamp}-{job_id}"
+
         # Create all directories with proper error handling
         try:
             main_output_path.mkdir(parents=True, exist_ok=True)
@@ -214,24 +231,26 @@ async def upload_and_summarize(
             logger.info(f"Created directory structure: {summaries_dir}")
         except Exception as e:
             logger.error(f"Failed to create directories: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to create output directories: {e}")
-        
+            raise HTTPException(
+                status_code=500, detail=f"Failed to create output directories: {e}")
+
         # Save the original markdown file to input directory
         input_file_path = input_dir / file.filename
         with open(input_file_path, 'w', encoding='utf-8') as f:
             f.write(markdown_content)
-        
+
         # Process the markdown content
         book_summary = await asyncio.to_thread(
             summarizer.process_document_progressively,
             markdown_content,
             title
         )
-        
+
         processing_time = (datetime.now() - start_time).total_seconds()
-        
+
         # Save summary as JSON with error handling
-        summary_json_path = summaries_dir / f"{safe_title}-summary-{timestamp}-{job_id}.json"
+        summary_json_path = summaries_dir / \
+            f"{safe_title}-summary-{timestamp}-{job_id}.json"
         try:
             logger.info(f"Saving JSON summary to: {summary_json_path}")
             with open(summary_json_path, 'w', encoding='utf-8') as f:
@@ -259,15 +278,18 @@ async def upload_and_summarize(
             logger.info(f"Successfully saved JSON summary")
         except Exception as e:
             logger.error(f"Failed to save JSON summary: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to save summary files: {e}")
-        
+            raise HTTPException(
+                status_code=500, detail=f"Failed to save summary files: {e}")
+
         # Save summary as formatted markdown
-        summary_md_path = summaries_dir / f"{safe_title}-summary-{timestamp}-{job_id}.md"
+        summary_md_path = summaries_dir / \
+            f"{safe_title}-summary-{timestamp}-{job_id}.md"
         try:
             logger.info(f"Saving markdown summary to: {summary_md_path}")
             with open(summary_md_path, 'w', encoding='utf-8') as f:
                 f.write(f"# {book_summary.book_title}\n\n")
-                f.write(f"## Overall Summary\n{book_summary.overall_summary}\n\n")
+                f.write(
+                    f"## Overall Summary\n{book_summary.overall_summary}\n\n")
                 f.write(f"## Key Themes\n")
                 for theme in book_summary.key_themes:
                     f.write(f"- {theme}\n")
@@ -276,7 +298,8 @@ async def upload_and_summarize(
                     f.write(f"- {objective}\n")
                 f.write(f"\n## Chapter Summaries\n")
                 for ch in book_summary.chapter_summaries:
-                    f.write(f"\n### Chapter {ch.chapter_number}: {ch.chapter_title}\n")
+                    f.write(
+                        f"\n### Chapter {ch.chapter_number}: {ch.chapter_title}\n")
                     f.write(f"{ch.summary}\n\n")
                     f.write(f"**Key Concepts:**\n")
                     for concept in ch.key_concepts:
@@ -286,13 +309,15 @@ async def upload_and_summarize(
                         f.write(f"- {topic}\n")
                     f.write("\n")
                 f.write(f"\n## Summary Statistics\n")
-                f.write(f"- **Total Chapters:** {book_summary.total_chapters}\n")
-                f.write(f"- **Created At:** {book_summary.created_at.isoformat() if book_summary.created_at else 'Unknown'}\n")
+                f.write(
+                    f"- **Total Chapters:** {book_summary.total_chapters}\n")
+                f.write(
+                    f"- **Created At:** {book_summary.created_at.isoformat() if book_summary.created_at else 'Unknown'}\n")
             logger.info(f"Successfully saved markdown summary")
         except Exception as e:
             logger.error(f"Failed to save markdown summary: {e}")
             # Don't raise here, continue with metadata
-        
+
         # Create metadata file
         metadata_path = main_output_path / "metadata.json"
         metadata = {
@@ -313,13 +338,14 @@ async def upload_and_summarize(
                 "metadata": "metadata.json"
             }
         }
-        
+
         with open(metadata_path, 'w', encoding='utf-8') as f:
             json.dump(metadata, f, indent=2, ensure_ascii=False)
-        
-        logger.info(f"Completed file summarization for '{title}' in {processing_time:.2f} seconds")
+
+        logger.info(
+            f"Completed file summarization for '{title}' in {processing_time:.2f} seconds")
         logger.info(f"Files saved to: {main_output_path}")
-        
+
         return SummarizationUploadResponse(
             summary=book_summary,
             processing_time_seconds=processing_time,
@@ -333,7 +359,7 @@ async def upload_and_summarize(
             output_directory=str(main_output_path),
             job_id=job_id
         )
-        
+
     except UnicodeDecodeError:
         raise HTTPException(
             status_code=400,

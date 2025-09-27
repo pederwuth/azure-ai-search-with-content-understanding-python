@@ -30,7 +30,7 @@ class ChapterSummary:
     created_at: datetime
 
 
-@dataclass 
+@dataclass
 class BookSummary:
     """Represents the final comprehensive book summary"""
     book_title: str

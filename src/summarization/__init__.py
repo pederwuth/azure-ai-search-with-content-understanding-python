@@ -9,7 +9,7 @@ from .book_summarizer import ProgressiveBookSummarizer
 
 __all__ = [
     'BookChapter',
-    'ChapterSummary', 
+    'ChapterSummary',
     'BookSummary',
     'ProgressiveBookSummarizer'
 ]

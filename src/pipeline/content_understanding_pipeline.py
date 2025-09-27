@@ -38,7 +38,7 @@ class ContentUnderstandingPipeline:
 
         # Initialize components
         self.file_manager = FileManager()
-        
+
         # Initialize summarization factory (handles service/direct mode automatically)
         self.summarization_factory = get_summarization_factory()
 
@@ -142,7 +142,8 @@ class ContentUnderstandingPipeline:
 
             # Generate summary if requested
             if generate_summary:
-                logger.info("Generating book summary using summarization factory")
+                logger.info(
+                    "Generating book summary using summarization factory")
                 try:
                     book_summary = self._generate_book_summary(
                         enhanced_markdown, pdf_file.stem)
@@ -267,15 +268,16 @@ class ContentUnderstandingPipeline:
         """
         try:
             logger.info(f"Generating book summary for: {book_title}")
-            
+
             # Use the summarization factory to generate summary
             book_summary = self.summarization_factory.summarize_markdown(
                 markdown_content, book_title
             )
-            
-            logger.info(f"✅ Successfully generated summary with {len(book_summary.chapter_summaries)} chapters")
+
+            logger.info(
+                f"✅ Successfully generated summary with {len(book_summary.chapter_summaries)} chapters")
             return book_summary
-            
+
         except Exception as e:
             raise PipelineError(f"Summary generation failed: {e}") from e
 

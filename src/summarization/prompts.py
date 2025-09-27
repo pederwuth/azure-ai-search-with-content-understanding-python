@@ -7,7 +7,7 @@ from langchain.prompts import ChatPromptTemplate
 
 
 CHAPTER_SUMMARY_PROMPT = ChatPromptTemplate.from_template("""
-You are an expert book summarizer creating progressive chapter summaries.
+You are a professional book summarizer creating comprehensive chapter summaries for educational purposes.
 
 CONTEXT FROM PREVIOUS CHAPTERS:
 {previous_context}
@@ -18,8 +18,8 @@ Title: {chapter_title}
 Content:
 {chapter_content}
 
-Create a comprehensive summary that:
-1. **Builds on previous chapters** - Reference relevant concepts from earlier chapters
+Create a detailed chapter summary that:
+1. **Summarizes the main content** - Reference relevant concepts from earlier chapters
 2. **Identifies key concepts** - Extract main ideas and important terms
 3. **Explains relationships** - Show how this chapter connects to previous content
 4. **Highlights progression** - Show how understanding is building
@@ -36,13 +36,13 @@ Format as JSON:
 
 
 FINAL_SUMMARY_PROMPT = ChatPromptTemplate.from_template("""
-You are an expert book summarizer creating a comprehensive book overview.
+You are a professional book summarizer creating a comprehensive book summary for educational purposes.
 
 ALL CHAPTER SUMMARIES:
 {all_chapter_summaries}
 
 Create a comprehensive book summary that:
-1. **Overall narrative** - Tell the complete story of the book
+1. **Overall narrative** - Summarize the complete content of the book
 2. **Key themes** - Identify major themes running through the book
 3. **Learning progression** - Show how concepts build throughout
 4. **Practical value** - What readers will gain from this book

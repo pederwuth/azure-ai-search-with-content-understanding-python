@@ -16,7 +16,7 @@ from pydantic import BaseModel
 class TaskStatus(str, Enum):
     """Status of a task execution"""
     PENDING = "pending"
-    RUNNING = "running" 
+    RUNNING = "running"
     COMPLETED = "completed"
     FAILED = "failed"
     SKIPPED = "skipped"
@@ -54,23 +54,23 @@ class TaskInputs:
     data: Dict[str, Any] = field(default_factory=dict)
     files: Dict[str, Path] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def get_file(self, key: str) -> Optional[Path]:
         """Get a file path by key"""
         return self.files.get(key)
-    
+
     def get_data(self, key: str) -> Any:
         """Get data by key"""
         return self.data.get(key)
-    
+
     def has_file(self, key: str) -> bool:
         """Check if file exists"""
         return key in self.files and self.files[key].exists()
-    
+
     def add_data(self, key: str, value: Any):
         """Add data to inputs"""
         self.data[key] = value
-    
+
     def add_file(self, key: str, file_path: Union[str, Path]):
         """Add a file to inputs"""
         self.files[key] = Path(file_path)
@@ -82,11 +82,11 @@ class TaskOutputs:
     data: Dict[str, Any] = field(default_factory=dict)
     files: Dict[str, Path] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def add_file(self, key: str, file_path: Union[str, Path]):
         """Add a file to outputs"""
         self.files[key] = Path(file_path)
-    
+
     def add_data(self, key: str, value: Any):
         """Add data to outputs"""
         self.data[key] = value
@@ -126,7 +126,7 @@ class TaskExecution:
     outputs: Optional[TaskOutputs] = None
     error_message: Optional[str] = None
     execution_metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     @property
     def duration_seconds(self) -> Optional[float]:
         """Calculate execution duration in seconds"""
@@ -144,7 +144,7 @@ class PipelineConfig(BaseModel):
     metadata: Dict[str, Any] = {}
 
 
-@dataclass  
+@dataclass
 class PipelineResult:
     """Result of a pipeline execution"""
     pipeline_id: str
@@ -155,14 +155,14 @@ class PipelineResult:
     task_executions: Dict[str, TaskExecution] = field(default_factory=dict)
     final_outputs: Optional[TaskOutputs] = None
     error_message: Optional[str] = None
-    
+
     @property
     def duration_seconds(self) -> Optional[float]:
         """Calculate pipeline duration in seconds"""
         if self.end_time:
             return (self.end_time - self.start_time).total_seconds()
         return None
-    
+
     def get_task_execution(self, task_id: str) -> Optional[TaskExecution]:
         """Get execution info for a specific task"""
         return self.task_executions.get(task_id)

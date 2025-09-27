@@ -28,15 +28,20 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Pydantic models for API
+
+
 class SummarizeRequest(BaseModel):
     book_title: str = Field(..., description="Title of the book")
-    markdown_content: str = Field(..., description="Markdown content to summarize")
+    markdown_content: str = Field(...,
+                                  description="Markdown content to summarize")
+
 
 class HealthResponse(BaseModel):
     status: str
     timestamp: str
     service: str
     version: str
+
 
 # Create FastAPI app
 app = FastAPI(
@@ -47,17 +52,19 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+
 class MockBookSummarizer:
     """Mock summarizer that generates realistic test data"""
-    
+
     def create_mock_summary(self, markdown_content: str, book_title: str):
         """Create a mock book summary"""
-        
+
         # Count chapters from markdown
-        chapter_count = len([line for line in markdown_content.split('\n') if line.startswith('## ')])
+        chapter_count = len(
+            [line for line in markdown_content.split('\n') if line.startswith('## ')])
         if chapter_count == 0:
             chapter_count = 1
-        
+
         # Create mock chapter summaries
         chapter_summaries = []
         for i in range(chapter_count):
@@ -74,14 +81,14 @@ class MockBookSummarizer:
                 "token_count": 150,
                 "created_at": datetime.now().isoformat()
             })
-        
+
         # Create mock book summary
         book_summary = {
             "book_title": book_title,  # Use correct field name
             "overall_summary": f"This comprehensive guide on {book_title} provides readers with essential knowledge and practical insights. The book is structured to build understanding progressively through {chapter_count} well-organized chapters.",
             "key_themes": [
                 "Foundational principles",
-                "Practical applications", 
+                "Practical applications",
                 "Best practices",
                 "Real-world examples"
             ],
@@ -95,11 +102,13 @@ class MockBookSummarizer:
             "total_chapters": chapter_count,
             "created_at": datetime.now().isoformat()
         }
-        
+
         return book_summary
+
 
 # Global mock summarizer
 mock_summarizer = MockBookSummarizer()
+
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
@@ -111,28 +120,32 @@ async def health_check():
         version="1.0.0-test"
     )
 
+
 @app.post("/summarize")
 async def summarize_content(request: SummarizeRequest):
     """Summarize markdown content (mock version)"""
     try:
         logger.info(f"Creating mock summary for book: {request.book_title}")
-        
+
         # Simulate processing time
         await asyncio.sleep(1)
-        
+
         # Generate mock summary
         book_summary = mock_summarizer.create_mock_summary(
             request.markdown_content,
             request.book_title
         )
-        
-        logger.info(f"✅ Successfully created mock summary for '{request.book_title}' with {len(book_summary['chapter_summaries'])} chapters")
-        
+
+        logger.info(
+            f"✅ Successfully created mock summary for '{request.book_title}' with {len(book_summary['chapter_summaries'])} chapters")
+
         return book_summary
-        
+
     except Exception as e:
         logger.error(f"❌ Error creating mock summary: {e}")
-        raise HTTPException(status_code=500, detail=f"Mock summarization failed: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Mock summarization failed: {str(e)}")
+
 
 @app.post("/summarize-file")
 async def summarize_file(
@@ -140,39 +153,46 @@ async def summarize_file(
     book_title: Optional[str] = Form(None, description="Optional book title")
 ):
     """Upload and summarize a markdown file (mock version)"""
-    
+
     # Validate file type
     if not file.filename or not file.filename.endswith(('.md', '.markdown', '.txt')):
         raise HTTPException(
-            status_code=400, 
+            status_code=400,
             detail="File must be a markdown file (.md, .markdown, or .txt)"
         )
-    
+
     try:
         # Read file content
         content = await file.read()
         markdown_content = content.decode('utf-8')
-        
+
         # Use provided title or derive from filename
-        title = book_title or (file.filename.replace('.md', '').replace('.markdown', '').replace('.txt', '') if file.filename else "Unknown Book")
-        
-        logger.info(f"Creating mock summary for file: {title} (file: {file.filename})")
-        
+        title = book_title or (file.filename.replace('.md', '').replace(
+            '.markdown', '').replace('.txt', '') if file.filename else "Unknown Book")
+
+        logger.info(
+            f"Creating mock summary for file: {title} (file: {file.filename})")
+
         # Simulate processing time
         await asyncio.sleep(1)
-        
+
         # Generate mock summary
-        book_summary = mock_summarizer.create_mock_summary(markdown_content, title)
-        
-        logger.info(f"✅ Successfully created mock summary for file '{file.filename}' with {len(book_summary['chapter_summaries'])} chapters")
-        
+        book_summary = mock_summarizer.create_mock_summary(
+            markdown_content, title)
+
+        logger.info(
+            f"✅ Successfully created mock summary for file '{file.filename}' with {len(book_summary['chapter_summaries'])} chapters")
+
         return book_summary
-        
+
     except UnicodeDecodeError:
-        raise HTTPException(status_code=400, detail="File must be valid UTF-8 text")
+        raise HTTPException(
+            status_code=400, detail="File must be valid UTF-8 text")
     except Exception as e:
         logger.error(f"❌ Error creating mock file summary: {e}")
-        raise HTTPException(status_code=500, detail=f"Mock file summarization failed: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Mock file summarization failed: {str(e)}")
+
 
 def main():
     """Run the test summarization service"""
@@ -183,7 +203,7 @@ def main():
     print("🔍 Health Check: http://localhost:8001/health")
     print("⚠️  This service uses MOCK DATA - not real AI summarization")
     print()
-    
+
     # Run with uvicorn
     uvicorn.run(
         "test_summarization_service:app",
@@ -192,6 +212,7 @@ def main():
         reload=True,
         log_level="info"
     )
+
 
 if __name__ == "__main__":
     main()

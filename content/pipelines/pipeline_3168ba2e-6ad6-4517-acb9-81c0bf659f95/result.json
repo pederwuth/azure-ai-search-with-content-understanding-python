@@ -1,0 +1,481 @@
+{
+  "pipeline_id": "3168ba2e-6ad6-4517-acb9-81c0bf659f95",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-27T20:53:14.964088",
+  "end_time": "2025-09-27T20:54:57.259862",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-27T20:53:14.965945",
+      "end_time": "2025-09-27T20:53:45.359011",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-27T20:53:45.359032",
+      "end_time": "2025-09-27T20:54:57.259841",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_part2 (2).pdf",
+      "figures_directory": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c/sample_part2_(2)-book-figures-20250927_205314-3161cb9c",
+      "processing_stats": {
+        "total_figures": 2,
+        "figures_with_content": 2,
+        "markdown_characters": 20994,
+        "estimated_tokens": 4148
+      },
+      "figures_processed": 2,
+      "document_length": 20994,
+      "book_title": "One‑Semester General Chemistry–Organic Chemistry–Biochemistry (GOB) Textbook",
+      "main_folder": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c",
+      "book_summary": {
+        "book_title": "One‑Semester General Chemistry–Organic Chemistry–Biochemistry (GOB) Textbook",
+        "overall_summary": "This textbook is a purpose‑built, one‑semester integration of general chemistry, organic chemistry, and biochemistry designed primarily for health‑profession and allied health students. The front matter (three acknowledgements pages and a Preface) explains the book’s origin, the collaborative, peer‑reviewed process that produced it, and the authors’ pedagogical intent: concise chapters, an early introduction to carbon chemistry, and modular online/print resources. The Preface also lays out the practical structure and teaching features used throughout: Learning Objectives, worked Example Problems paired with Skill‑Building Exercises, end‑of‑section Key Takeaways and Concept Review Exercises, and optional contextual pieces (Looking Closer, To Your Health, Career Focus) that connect chemical ideas to health careers.\n\nThe book begins by establishing foundational ideas in Chapter 1: definitions and classifications of matter, the particulate model (atoms, molecules, ions), and the quantitative habits of mind required for chemistry. An opening essay underscores the real‑world consequences of poor quantitative communication (for example, medication dosing errors) and motivates careful use of units, significant figures, and dimensional analysis. From this base the text moves through the essential topics of general chemistry (measurement and units; atomic and molecular structure; stoichiometry; bonding; states of matter; energetics; equilibrium; acids and bases) while interleaving an early, focused introduction to organic structure and reactivity so carbon chemistry can be applied promptly.\n\nThe organic and biochemistry portions occupy roughly a quarter of the course each and emphasize transferable skills: structural thinking, functional group recognition, reaction mechanisms at a conceptual level, and biochemical logic (macromolecules, metabolism, and molecular recognition) that is directly relevant to health fields. Chapters are intentionally short and skill oriented so instructors can tailor the sequence; worked problems and dimensional analysis are emphasized to build students’ quantitative confidence. Throughout, the book stresses chemistry’s role as the ‘‘central science,’’ using cross‑disciplinary examples to show how chemical principles connect to biology, medicine, and everyday life while maintaining a tight focus on core concepts required for a single semester.",
+        "key_themes": [
+          "Measurement and quantitative reasoning (units, significant figures, dimensional analysis)",
+          "Chemistry as the central, applied science linking general, organic, and biochemical ideas",
+          "Concise, skills‑focused pedagogy: short chapters, examples paired with practice",
+          "Safety and clear communication in numerical contexts (real‑world consequences)",
+          "Modular, modern publishing: online resources and flexible, one‑semester design",
+          "Peer review and collaborative authorship for reliability and rapid updates"
+        ],
+        "learning_objectives": [
+          "Define chemistry and explain its relationship to other sciences and to everyday problems",
+          "Classify types of matter and distinguish physical vs. chemical properties and changes",
+          "Use SI units, metric prefixes, scientific notation, and significant figures correctly",
+          "Apply dimensional analysis and unit conversions to solve quantitative problems",
+          "Interpret and use the particulate model (atoms, molecules, ions) to explain macroscopic observations",
+          "Recognize basic organic functional groups and use structural reasoning early in the course",
+          "Explain fundamental biochemical concepts (structures of biomolecules, metabolic logic) at a level appropriate for health professions",
+          "Translate chemical understanding into safer, clearer communication in laboratory and clinical contexts"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "Acknowledgements",
+            "summary": "This Acknowledgements chapter recounts the unusual origin story of how the textbook found its publisher and gives credit to the many people and teams who made the book possible. It opens with a serendipitous reconnection between an author and an industry contact that rapidly led to a publishing contract, then lists and thanks the editorial, project management, technology, and production teams, as well as external reviewers who provided critical feedback. As front matter, the chapter does not present technical content but frames the book’s development process and establishes the collaborative and peer-reviewed foundations that support the text’s reliability and pedagogical choices. Building on themes introduced in the Preface/Introduction, the acknowledgements underscore the book’s editorial oversight, production quality, and the community input that shaped its final form.",
+            "key_concepts": [
+              "serendipitous networking",
+              "editorial support",
+              "project management",
+              "technology and production teams",
+              "peer review and external feedback",
+              "attribution and transparency"
+            ],
+            "main_topics": [
+              "origin story of the publishing relationship",
+              "thanks to individuals and teams (editorial, project managers, technology, production)",
+              "list of manuscript reviewers",
+              "importance of collaborative development"
+            ],
+            "token_count": 437,
+            "created_at": "2025-09-27T20:53:54.339219"
+          },
+          {
+            "chapter_number": 2,
+            "chapter_title": "Acknowledgements",
+            "summary": "This brief Acknowledgements chapter lists the many individual reviewers, faculty, and institutional contacts who contributed to the textbook, followed by thanks to ANSR Source for performing accuracy checks on portions of the text. It complements the origin story and publishing details introduced in Chapter 1 by showing, in concrete terms, the community of educators and reviewers from a wide range of colleges and universities who participated in shaping the book. The chapter also includes personal notes of gratitude from the authors (RJS, JWH, and DWB) to colleagues, spouses, children, and friends whose support made the writing possible. Finally, it reiterates the book’s openness to reader feedback and highlights the Flat World process that allows quick updates to correct any remaining inaccuracies.",
+            "key_concepts": [
+              "acknowledgements",
+              "peer review and reviewer contributions",
+              "accuracy checks (ANSR Source)",
+              "institutional collaboration",
+              "Flat World iterative update process",
+              "author personal acknowledgements and support networks",
+              "reader feedback and continuous improvement"
+            ],
+            "main_topics": [
+              "List of contributing reviewers and their institutions",
+              "Role of ANSR Source in accuracy verification",
+              "Authors' personal thank-yous to family and colleagues",
+              "Invitation for reader-reported corrections",
+              "Emphasis on the collaborative nature of textbook creation"
+            ],
+            "token_count": 492,
+            "created_at": "2025-09-27T20:54:00.889597"
+          },
+          {
+            "chapter_number": 3,
+            "chapter_title": "Acknowledgements",
+            "summary": "This very short acknowledgements page contains only two sets of initials, \"JWH\" and \"RJS\", followed by the date \"February 2011\" and two HTML-style comments indicating page number and a page break. There is no narrative content or extended gratitude here; instead the page functions as a formal sign-off or closing entry for the acknowledgements section. The presence of page metadata suggests this is a typesetting or pagination marker showing where the acknowledgements end in the printed or digital layout.\n\nIn the context of the prior two chapters, which told the origin story of the book and listed the many individual reviewers, faculty, and institutional contacts, this page serves as a concise administrative capstone. It confirms that the acknowledgements were finalized by (or on behalf of) the individuals represented by the initials and provides a timestamp for that finalization. It also signals a transition from front-matter material toward the substantive content that follows in later chapters.",
+            "key_concepts": [
+              "author/signatory initials (JWH, RJS)",
+              "formal sign-off",
+              "finalization date (February 2011)",
+              "page metadata (PageNumber, PageBreak)",
+              "acknowledgements closure"
+            ],
+            "main_topics": [
+              "authorship attribution",
+              "publication timeline",
+              "document pagination/metadata"
+            ],
+            "token_count": 449,
+            "created_at": "2025-09-27T20:54:09.479475"
+          },
+          {
+            "chapter_number": 4,
+            "chapter_title": "Preface",
+            "summary": "The Preface explains why the authors created a new, single-semester general chemistry–organic chemistry–biochemistry (GOB) textbook and how it differs from other offerings. The authors emphasize two main motivations: (1) a multi-author team whose members are specialists in general chemistry, organic chemistry, and biochemistry, bringing targeted expertise to each portion of the course; and (2) an enthusiasm for a modern, flexible publishing model that includes online access to chapters, individual resources, and print copies to let students customize learning tools. The Preface positions the book explicitly for one-semester GOB courses (frequently populated by health-professions students) and argues that a purpose-built one-semester text is preferable to condensed or cherry-picked two-semester texts.\n\nThe Preface also outlines the book’s structure, pedagogy, and student-facing features. Content is roughly split into one-half general chemistry, one-quarter organic chemistry, and one-quarter biochemistry, with an early introduction to organic molecules so carbon chemistry can be used promptly. Chapters are intentionally short and focused; the first chapter collects essential prerequisite skills rather than hiding them in an appendix. Each section begins with Learning Objectives and ends with Key Takeaways and Concept Review Exercises; worked Example Problems are paired with immediate Skill-Building Exercises. Additional features include Looking Closer essays, To Your Health vignettes, and Career Focus pieces that tie topics to health professions, but these extras are kept minimal so the book stays centered on core chemistry concepts and skill development.",
+            "key_concepts": [
+              "One-semester GOB (general, organic, biochemistry) focus",
+              "Author-team subject specialization (G, O, B)",
+              "Concise chapter design tailored for a single term",
+              "Online and print publishing strategy with modular resources",
+              "Pedagogical structure: Learning Objectives → Examples → Skill-Building → Concept Review → End-of-section/Additional Exercises",
+              "Early introduction to organic chemistry",
+              "Emphasis on consistent problem-solving style and unit analysis",
+              "Target audience: health-professions students"
+            ],
+            "main_topics": [
+              "Rationale for a new one-semester textbook",
+              "Author expertise and team composition",
+              "Book organization and topic distribution (1/2 G, 1/4 O, 1/4 B)",
+              "Chapter and section-level pedagogical features",
+              "Supplementary features (Looking Closer, To Your Health, Career Focus)",
+              "Instructional emphasis on skills and concise coverage"
+            ],
+            "token_count": 738,
+            "created_at": "2025-09-27T20:54:17.004754"
+          },
+          {
+            "chapter_number": 5,
+            "chapter_title": "Chapter 1 Chemistry, Matter, and Measurement",
+            "summary": "Chapter 1 establishes the foundational language and quantitative habits of mind that the rest of this GOB textbook will build on. It defines chemistry as the study of matter and its transformations and introduces a clear classification of matter (elements, compounds, mixtures; homogeneous vs. heterogeneous) and the distinction between physical and chemical properties and changes. The chapter also reviews basic particulate ideas — atoms, molecules, and ions — and ties macroscopic observations (color, phase, reactivity) to microscopic models that will be carried forward into both general chemistry and later organic/biochemical contexts.\n\nA substantial portion of the chapter is devoted to measurement and numerical reasoning: the International System of Units (SI) and commonly used metric units, unit prefixes, scientific notation, significant figures, accuracy vs. precision, error and uncertainty, dimensional analysis (unit conversions), and common laboratory quantities such as mass, volume, density, and temperature (°C, K, °F). Worked examples emphasize converting units, carrying correct significant figures, calculating density, and using dimensional analysis to avoid algebraic mistakes — practical skills essential for quantitative problem solving in subsequent chapters on stoichiometry, thermochemistry, and molecular structure. By combining conceptual classification of matter with rigorous measurement practice, the chapter sets both the conceptual and practical groundwork the authors noted in the Preface for an integrated single-semester GOB treatment.",
+            "key_concepts": [
+              "Matter classification: elements, compounds, mixtures (homogeneous vs. heterogeneous)",
+              "Physical vs. chemical properties and changes",
+              "Atoms, molecules, ions — particulate model",
+              "SI units and metric prefixes",
+              "Scientific notation",
+              "Significant figures, accuracy, precision, and uncertainty",
+              "Dimensional analysis and unit conversions",
+              "Density (mass/volume) and temperature scales (Celsius, Kelvin, Fahrenheit)",
+              "Conservation of mass as experimental foundation"
+            ],
+            "main_topics": [
+              "What is chemistry: scope and definitions",
+              "Classification of matter and states",
+              "Introduction to atoms and molecules",
+              "Fundamentals of measurement and units",
+              "Numerical methods: scientific notation and significant figures",
+              "Dimensional analysis and problem solving",
+              "Basic physical properties: density and temperature"
+            ],
+            "token_count": 692,
+            "created_at": "2025-09-27T20:54:26.599613"
+          },
+          {
+            "chapter_number": 6,
+            "chapter_title": "Opening Essay",
+            "summary": "This opening essay uses a stark real-world example — a pediatric morphine overdose caused by a misread dosage — to stress that quantities and their correct units are not abstract details but matters of safety and consequence. The anecdote (reported by the US Pharmacopeia) illustrates how the two parts of any quantity, the numerical amount and the unit, must be communicated and interpreted precisely; a misread unit or digit can produce errors ranging from minor inconveniences (a traffic ticket) to life‑threatening medical mistakes. The essay then broadens the point: measurements and quantities pervade everyday life (speed limits, recipes, medicine) and are a foundational skill in chemistry and other technical fields.\n\nThe essay also situates chemistry as the ‘‘central science’’ and previews the book’s approach: learning to express and use quantities correctly is one of the very first habits students must acquire. It points out that chemical processes are everywhere — cooking, combustion, cleaning, and even reading — so mastering measurement and the language of chemistry prepares students not only for more advanced topics in general and organic chemistry and biochemistry, but also for safer, clearer communication in practical contexts. This short opening thus serves as both a safety caution and a motivational bridge into Chapter 1’s formal treatment of what chemistry is and how we measure and describe matter.",
+            "key_concepts": [
+              "Quantity (amount + unit)",
+              "Units of measurement",
+              "Precision and accuracy in measurement",
+              "Communication of numerical information",
+              "Consequences of measurement errors",
+              "Chemistry as the central science",
+              "U.S. Pharmacopeia and standards"
+            ],
+            "main_topics": [
+              "Importance of correct units and notation",
+              "Real-world example of measurement error (medical overdose)",
+              "Everyday chemical processes and applications",
+              "Motivation for learning measurement skills",
+              "Link to Chapter 1: defining chemistry and measurement"
+            ],
+            "token_count": 588,
+            "created_at": "2025-09-27T20:54:34.509371"
+          },
+          {
+            "chapter_number": 7,
+            "chapter_title": "LEARNING OBJECTIVES",
+            "summary": "This chapter establishes the fundamental definitions and context for the course: chemistry is defined as the study of matter—what it consists of, its properties, and how it changes—and science is described as the process of learning about the natural universe by observing, testing, and creating explanatory models. The chapter emphasizes that matter is anything with mass that occupies space and reminds readers that some everyday examples (like air) are matter even if we seldom notice them. It also highlights the role of mathematics as the language used to express chemical ideas and relationships.\n\nThe chapter places chemistry in the broader landscape of science, showing its central, interdisciplinary role connecting physics, biology, geology, medicine, and specialized subfields such as biochemistry and geochemistry. A brief historical perspective contrasts modern chemistry with alchemy, explaining how early, secretive alchemical practices (including attempts to transmute metals and synthesize a philosopher's stone) evolved into the evidence-based, open science of chemistry practiced since the 1600s and 1700s. The stated learning objectives (defining chemistry relative to other sciences and identifying steps of the scientific method) prepare students to approach the book's integrated general–organic–biochemistry curriculum with a common vocabulary and scientific mindset.",
+            "key_concepts": [
+              "Chemistry: study of matter, its properties, and transformations",
+              "Matter: anything with mass that occupies space",
+              "Science: observation, testing, and model building (scientific method)",
+              "Interdisciplinary connections (chemistry links to physics, biology, geology, medicine)",
+              "Mathematics as the language of science",
+              "Alchemy and the historical development of modern chemistry"
+            ],
+            "main_topics": [
+              "Definition and scope of chemistry",
+              "Definition of matter",
+              "Role of the scientific method",
+              "Interrelationships among scientific disciplines",
+              "Historical context: alchemy to modern chemistry"
+            ],
+            "token_count": 614,
+            "created_at": "2025-09-27T20:54:41.942774"
+          }
+        ],
+        "total_chapters": 7,
+        "created_at": "2025-09-27T20:54:57.255542"
+      },
+      "overall_summary": "This textbook is a purpose‑built, one‑semester integration of general chemistry, organic chemistry, and biochemistry designed primarily for health‑profession and allied health students. The front matter (three acknowledgements pages and a Preface) explains the book’s origin, the collaborative, peer‑reviewed process that produced it, and the authors’ pedagogical intent: concise chapters, an early introduction to carbon chemistry, and modular online/print resources. The Preface also lays out the practical structure and teaching features used throughout: Learning Objectives, worked Example Problems paired with Skill‑Building Exercises, end‑of‑section Key Takeaways and Concept Review Exercises, and optional contextual pieces (Looking Closer, To Your Health, Career Focus) that connect chemical ideas to health careers.\n\nThe book begins by establishing foundational ideas in Chapter 1: definitions and classifications of matter, the particulate model (atoms, molecules, ions), and the quantitative habits of mind required for chemistry. An opening essay underscores the real‑world consequences of poor quantitative communication (for example, medication dosing errors) and motivates careful use of units, significant figures, and dimensional analysis. From this base the text moves through the essential topics of general chemistry (measurement and units; atomic and molecular structure; stoichiometry; bonding; states of matter; energetics; equilibrium; acids and bases) while interleaving an early, focused introduction to organic structure and reactivity so carbon chemistry can be applied promptly.\n\nThe organic and biochemistry portions occupy roughly a quarter of the course each and emphasize transferable skills: structural thinking, functional group recognition, reaction mechanisms at a conceptual level, and biochemical logic (macromolecules, metabolism, and molecular recognition) that is directly relevant to health fields. Chapters are intentionally short and skill oriented so instructors can tailor the sequence; worked problems and dimensional analysis are emphasized to build students’ quantitative confidence. Throughout, the book stresses chemistry’s role as the ‘‘central science,’’ using cross‑disciplinary examples to show how chemical principles connect to biology, medicine, and everyday life while maintaining a tight focus on core concepts required for a single semester.",
+      "key_themes": [
+        "Measurement and quantitative reasoning (units, significant figures, dimensional analysis)",
+        "Chemistry as the central, applied science linking general, organic, and biochemical ideas",
+        "Concise, skills‑focused pedagogy: short chapters, examples paired with practice",
+        "Safety and clear communication in numerical contexts (real‑world consequences)",
+        "Modular, modern publishing: online resources and flexible, one‑semester design",
+        "Peer review and collaborative authorship for reliability and rapid updates"
+      ],
+      "learning_objectives": [
+        "Define chemistry and explain its relationship to other sciences and to everyday problems",
+        "Classify types of matter and distinguish physical vs. chemical properties and changes",
+        "Use SI units, metric prefixes, scientific notation, and significant figures correctly",
+        "Apply dimensional analysis and unit conversions to solve quantitative problems",
+        "Interpret and use the particulate model (atoms, molecules, ions) to explain macroscopic observations",
+        "Recognize basic organic functional groups and use structural reasoning early in the course",
+        "Explain fundamental biochemical concepts (structures of biomolecules, metabolic logic) at a level appropriate for health professions",
+        "Translate chemical understanding into safer, clearer communication in laboratory and clinical contexts"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "Acknowledgements",
+          "summary": "This Acknowledgements chapter recounts the unusual origin story of how the textbook found its publisher and gives credit to the many people and teams who made the book possible. It opens with a serendipitous reconnection between an author and an industry contact that rapidly led to a publishing contract, then lists and thanks the editorial, project management, technology, and production teams, as well as external reviewers who provided critical feedback. As front matter, the chapter does not present technical content but frames the book’s development process and establishes the collaborative and peer-reviewed foundations that support the text’s reliability and pedagogical choices. Building on themes introduced in the Preface/Introduction, the acknowledgements underscore the book’s editorial oversight, production quality, and the community input that shaped its final form.",
+          "key_concepts": [
+            "serendipitous networking",
+            "editorial support",
+            "project management",
+            "technology and production teams",
+            "peer review and external feedback",
+            "attribution and transparency"
+          ],
+          "main_topics": [
+            "origin story of the publishing relationship",
+            "thanks to individuals and teams (editorial, project managers, technology, production)",
+            "list of manuscript reviewers",
+            "importance of collaborative development"
+          ],
+          "token_count": 437,
+          "created_at": "2025-09-27T20:53:54.339219"
+        },
+        {
+          "chapter_number": 2,
+          "chapter_title": "Acknowledgements",
+          "summary": "This brief Acknowledgements chapter lists the many individual reviewers, faculty, and institutional contacts who contributed to the textbook, followed by thanks to ANSR Source for performing accuracy checks on portions of the text. It complements the origin story and publishing details introduced in Chapter 1 by showing, in concrete terms, the community of educators and reviewers from a wide range of colleges and universities who participated in shaping the book. The chapter also includes personal notes of gratitude from the authors (RJS, JWH, and DWB) to colleagues, spouses, children, and friends whose support made the writing possible. Finally, it reiterates the book’s openness to reader feedback and highlights the Flat World process that allows quick updates to correct any remaining inaccuracies.",
+          "key_concepts": [
+            "acknowledgements",
+            "peer review and reviewer contributions",
+            "accuracy checks (ANSR Source)",
+            "institutional collaboration",
+            "Flat World iterative update process",
+            "author personal acknowledgements and support networks",
+            "reader feedback and continuous improvement"
+          ],
+          "main_topics": [
+            "List of contributing reviewers and their institutions",
+            "Role of ANSR Source in accuracy verification",
+            "Authors' personal thank-yous to family and colleagues",
+            "Invitation for reader-reported corrections",
+            "Emphasis on the collaborative nature of textbook creation"
+          ],
+          "token_count": 492,
+          "created_at": "2025-09-27T20:54:00.889597"
+        },
+        {
+          "chapter_number": 3,
+          "chapter_title": "Acknowledgements",
+          "summary": "This very short acknowledgements page contains only two sets of initials, \"JWH\" and \"RJS\", followed by the date \"February 2011\" and two HTML-style comments indicating page number and a page break. There is no narrative content or extended gratitude here; instead the page functions as a formal sign-off or closing entry for the acknowledgements section. The presence of page metadata suggests this is a typesetting or pagination marker showing where the acknowledgements end in the printed or digital layout.\n\nIn the context of the prior two chapters, which told the origin story of the book and listed the many individual reviewers, faculty, and institutional contacts, this page serves as a concise administrative capstone. It confirms that the acknowledgements were finalized by (or on behalf of) the individuals represented by the initials and provides a timestamp for that finalization. It also signals a transition from front-matter material toward the substantive content that follows in later chapters.",
+          "key_concepts": [
+            "author/signatory initials (JWH, RJS)",
+            "formal sign-off",
+            "finalization date (February 2011)",
+            "page metadata (PageNumber, PageBreak)",
+            "acknowledgements closure"
+          ],
+          "main_topics": [
+            "authorship attribution",
+            "publication timeline",
+            "document pagination/metadata"
+          ],
+          "token_count": 449,
+          "created_at": "2025-09-27T20:54:09.479475"
+        },
+        {
+          "chapter_number": 4,
+          "chapter_title": "Preface",
+          "summary": "The Preface explains why the authors created a new, single-semester general chemistry–organic chemistry–biochemistry (GOB) textbook and how it differs from other offerings. The authors emphasize two main motivations: (1) a multi-author team whose members are specialists in general chemistry, organic chemistry, and biochemistry, bringing targeted expertise to each portion of the course; and (2) an enthusiasm for a modern, flexible publishing model that includes online access to chapters, individual resources, and print copies to let students customize learning tools. The Preface positions the book explicitly for one-semester GOB courses (frequently populated by health-professions students) and argues that a purpose-built one-semester text is preferable to condensed or cherry-picked two-semester texts.\n\nThe Preface also outlines the book’s structure, pedagogy, and student-facing features. Content is roughly split into one-half general chemistry, one-quarter organic chemistry, and one-quarter biochemistry, with an early introduction to organic molecules so carbon chemistry can be used promptly. Chapters are intentionally short and focused; the first chapter collects essential prerequisite skills rather than hiding them in an appendix. Each section begins with Learning Objectives and ends with Key Takeaways and Concept Review Exercises; worked Example Problems are paired with immediate Skill-Building Exercises. Additional features include Looking Closer essays, To Your Health vignettes, and Career Focus pieces that tie topics to health professions, but these extras are kept minimal so the book stays centered on core chemistry concepts and skill development.",
+          "key_concepts": [
+            "One-semester GOB (general, organic, biochemistry) focus",
+            "Author-team subject specialization (G, O, B)",
+            "Concise chapter design tailored for a single term",
+            "Online and print publishing strategy with modular resources",
+            "Pedagogical structure: Learning Objectives → Examples → Skill-Building → Concept Review → End-of-section/Additional Exercises",
+            "Early introduction to organic chemistry",
+            "Emphasis on consistent problem-solving style and unit analysis",
+            "Target audience: health-professions students"
+          ],
+          "main_topics": [
+            "Rationale for a new one-semester textbook",
+            "Author expertise and team composition",
+            "Book organization and topic distribution (1/2 G, 1/4 O, 1/4 B)",
+            "Chapter and section-level pedagogical features",
+            "Supplementary features (Looking Closer, To Your Health, Career Focus)",
+            "Instructional emphasis on skills and concise coverage"
+          ],
+          "token_count": 738,
+          "created_at": "2025-09-27T20:54:17.004754"
+        },
+        {
+          "chapter_number": 5,
+          "chapter_title": "Chapter 1 Chemistry, Matter, and Measurement",
+          "summary": "Chapter 1 establishes the foundational language and quantitative habits of mind that the rest of this GOB textbook will build on. It defines chemistry as the study of matter and its transformations and introduces a clear classification of matter (elements, compounds, mixtures; homogeneous vs. heterogeneous) and the distinction between physical and chemical properties and changes. The chapter also reviews basic particulate ideas — atoms, molecules, and ions — and ties macroscopic observations (color, phase, reactivity) to microscopic models that will be carried forward into both general chemistry and later organic/biochemical contexts.\n\nA substantial portion of the chapter is devoted to measurement and numerical reasoning: the International System of Units (SI) and commonly used metric units, unit prefixes, scientific notation, significant figures, accuracy vs. precision, error and uncertainty, dimensional analysis (unit conversions), and common laboratory quantities such as mass, volume, density, and temperature (°C, K, °F). Worked examples emphasize converting units, carrying correct significant figures, calculating density, and using dimensional analysis to avoid algebraic mistakes — practical skills essential for quantitative problem solving in subsequent chapters on stoichiometry, thermochemistry, and molecular structure. By combining conceptual classification of matter with rigorous measurement practice, the chapter sets both the conceptual and practical groundwork the authors noted in the Preface for an integrated single-semester GOB treatment.",
+          "key_concepts": [
+            "Matter classification: elements, compounds, mixtures (homogeneous vs. heterogeneous)",
+            "Physical vs. chemical properties and changes",
+            "Atoms, molecules, ions — particulate model",
+            "SI units and metric prefixes",
+            "Scientific notation",
+            "Significant figures, accuracy, precision, and uncertainty",
+            "Dimensional analysis and unit conversions",
+            "Density (mass/volume) and temperature scales (Celsius, Kelvin, Fahrenheit)",
+            "Conservation of mass as experimental foundation"
+          ],
+          "main_topics": [
+            "What is chemistry: scope and definitions",
+            "Classification of matter and states",
+            "Introduction to atoms and molecules",
+            "Fundamentals of measurement and units",
+            "Numerical methods: scientific notation and significant figures",
+            "Dimensional analysis and problem solving",
+            "Basic physical properties: density and temperature"
+          ],
+          "token_count": 692,
+          "created_at": "2025-09-27T20:54:26.599613"
+        },
+        {
+          "chapter_number": 6,
+          "chapter_title": "Opening Essay",
+          "summary": "This opening essay uses a stark real-world example — a pediatric morphine overdose caused by a misread dosage — to stress that quantities and their correct units are not abstract details but matters of safety and consequence. The anecdote (reported by the US Pharmacopeia) illustrates how the two parts of any quantity, the numerical amount and the unit, must be communicated and interpreted precisely; a misread unit or digit can produce errors ranging from minor inconveniences (a traffic ticket) to life‑threatening medical mistakes. The essay then broadens the point: measurements and quantities pervade everyday life (speed limits, recipes, medicine) and are a foundational skill in chemistry and other technical fields.\n\nThe essay also situates chemistry as the ‘‘central science’’ and previews the book’s approach: learning to express and use quantities correctly is one of the very first habits students must acquire. It points out that chemical processes are everywhere — cooking, combustion, cleaning, and even reading — so mastering measurement and the language of chemistry prepares students not only for more advanced topics in general and organic chemistry and biochemistry, but also for safer, clearer communication in practical contexts. This short opening thus serves as both a safety caution and a motivational bridge into Chapter 1’s formal treatment of what chemistry is and how we measure and describe matter.",
+          "key_concepts": [
+            "Quantity (amount + unit)",
+            "Units of measurement",
+            "Precision and accuracy in measurement",
+            "Communication of numerical information",
+            "Consequences of measurement errors",
+            "Chemistry as the central science",
+            "U.S. Pharmacopeia and standards"
+          ],
+          "main_topics": [
+            "Importance of correct units and notation",
+            "Real-world example of measurement error (medical overdose)",
+            "Everyday chemical processes and applications",
+            "Motivation for learning measurement skills",
+            "Link to Chapter 1: defining chemistry and measurement"
+          ],
+          "token_count": 588,
+          "created_at": "2025-09-27T20:54:34.509371"
+        },
+        {
+          "chapter_number": 7,
+          "chapter_title": "LEARNING OBJECTIVES",
+          "summary": "This chapter establishes the fundamental definitions and context for the course: chemistry is defined as the study of matter—what it consists of, its properties, and how it changes—and science is described as the process of learning about the natural universe by observing, testing, and creating explanatory models. The chapter emphasizes that matter is anything with mass that occupies space and reminds readers that some everyday examples (like air) are matter even if we seldom notice them. It also highlights the role of mathematics as the language used to express chemical ideas and relationships.\n\nThe chapter places chemistry in the broader landscape of science, showing its central, interdisciplinary role connecting physics, biology, geology, medicine, and specialized subfields such as biochemistry and geochemistry. A brief historical perspective contrasts modern chemistry with alchemy, explaining how early, secretive alchemical practices (including attempts to transmute metals and synthesize a philosopher's stone) evolved into the evidence-based, open science of chemistry practiced since the 1600s and 1700s. The stated learning objectives (defining chemistry relative to other sciences and identifying steps of the scientific method) prepare students to approach the book's integrated general–organic–biochemistry curriculum with a common vocabulary and scientific mindset.",
+          "key_concepts": [
+            "Chemistry: study of matter, its properties, and transformations",
+            "Matter: anything with mass that occupies space",
+            "Science: observation, testing, and model building (scientific method)",
+            "Interdisciplinary connections (chemistry links to physics, biology, geology, medicine)",
+            "Mathematics as the language of science",
+            "Alchemy and the historical development of modern chemistry"
+          ],
+          "main_topics": [
+            "Definition and scope of chemistry",
+            "Definition of matter",
+            "Role of the scientific method",
+            "Interrelationships among scientific disciplines",
+            "Historical context: alchemy to modern chemistry"
+          ],
+          "token_count": 614,
+          "created_at": "2025-09-27T20:54:41.942774"
+        }
+      ],
+      "total_chapters": 7
+    },
+    "files": {
+      "pdf": "/tmp/tmpy303uif1.pdf",
+      "pdf_file": "/tmp/tmpy303uif1.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_3168ba2e-6ad6-4517-acb9-81c0bf659f95/task_document_processing/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c.md",
+      "cache_file": "content/pipelines/pipeline_3168ba2e-6ad6-4517-acb9-81c0bf659f95/task_document_processing/sample_part2_(2)-book-cache-20250927_205314-3161cb9c.json",
+      "metadata": "content/pipelines/pipeline_3168ba2e-6ad6-4517-acb9-81c0bf659f95/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_3168ba2e-6ad6-4517-acb9-81c0bf659f95/task_summarization/sample_part2_(2)-summary-20250927_205314-3161cb9c.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpy303uif1.pdf",
+      "enhanced_markdown": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c.md",
+      "cache_file": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed/sample_part2_(2)-book-cache-20250927_205314-3161cb9c.json",
+      "figures_directory": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c/sample_part2_(2)-book-figures-20250927_205314-3161cb9c",
+      "figures_processed": 2,
+      "document_length": 20994,
+      "analyzer_id": "enhanced-content-understanding-7346b3ef-71e8-4d3f-a861-00b263e70c16",
+      "processing_stats": {
+        "total_figures": 2,
+        "figures_with_content": 2,
+        "markdown_characters": 20994,
+        "estimated_tokens": 4148
+      },
+      "main_folder": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c",
+      "job_id": "3161cb9c",
+      "timestamp": "20250927_205314",
+      "content_type": "book",
+      "book_title": "sample_part2_(2)",
+      "metadata_file": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/metadata.json",
+      "input_directory": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/input",
+      "processed_directory": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed",
+      "markdown_directory": "content/books/sample_part2_(2)-book-20250927_205314-3161cb9c/processed/sample_part2_(2)-book-markdown-20250927_205314-3161cb9c",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 7,
+      "key_themes_count": 6,
+      "learning_objectives_count": 8,
+      "created_at": "2025-09-27T20:54:57.255542"
+    }
+  }
+}

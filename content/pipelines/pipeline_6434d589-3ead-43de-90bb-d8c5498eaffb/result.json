@@ -1,0 +1,206 @@
+{
+  "pipeline_id": "6434d589-3ead-43de-90bb-d8c5498eaffb",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-26T20:22:14.568122",
+  "end_time": "2025-09-26T20:22:58.669631",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-26T20:22:14.568565",
+      "end_time": "2025-09-26T20:22:28.764129",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-26T20:22:28.764146",
+      "end_time": "2025-09-26T20:22:58.669616",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/string-book-20250926_202214-13b6be00/processed/string-book-markdown-20250926_202214-13b6be00/string-book-figures-20250926_202214-13b6be00",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Understanding Page Objects: Figures, Metadata, and Machine-Readable Documents",
+      "main_folder": "content/books/string-book-20250926_202214-13b6be00",
+      "book_summary": {
+        "book_title": "Understanding Page Objects: Figures, Metadata, and Machine-Readable Documents",
+        "overall_summary": "This book presents a practical, disciplined approach to treating figures and other visual elements as first-class page objects within digital documents. Beginning with foundational definitions of page objects and document structure, it frames figures not just as static images but as layered containers of meaning: visual marks, axis labels, embedded tabular data, captions, and explicit metadata annotations. The central example—a bar chart—is used throughout to ground abstract ideas in a concrete, reproducible case that links visual interpretation to underlying numeric truth.\n\nThe narrative then unfolds how each layer contributes to both human comprehension and machine processing. The figure example demonstrates axis titles, a MarkdownDataTable, a caption, a ChartType annotation, detailed value labels, color encodings by category, and keyword metadata. Readers learn to read a figure visually (spotting the April peak and January trough) and semantically (validating those readings against the Markdown table and axis labels), which illustrates how machine-readable fields and human-facing visuals complement one another.\n\nBuilding on the example, the book lays out practical methods for authoring and annotating figures so they become reliably extractable and interpretable by software: which metadata fields matter (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable), how to encode categorical colors, and how to structure captions for disambiguation. It also addresses validation and error-checking strategies—how to confirm that a visual peak corresponds to a numerical maximum in embedded data—and emphasizes accessibility and discoverability as design goals.\n\nFinally, the book situates these techniques within broader workflows for document engineering: pipeline design for data extraction, indexing and search using metadata, automated quality assurance, and authoring conventions that make documents both human-friendly and machine-actionable. By the end, readers will understand the theory, see detailed examples, and have concrete guidelines to produce figures that communicate clearly, validate reliably, and integrate smoothly into automated systems.",
+        "key_themes": [
+          "Figures as multi-layered page objects (visual + semantic)",
+          "Metadata and annotations for machine readability",
+          "Linking visual perception to underlying tabular data",
+          "Designing for validation and automated extraction",
+          "Color encoding and categorical semantics",
+          "Accessibility, discoverability, and searchability",
+          "Practical authoring conventions and standards"
+        ],
+        "learning_objectives": [
+          "Describe the components of a figure page object and their roles",
+          "Interpret a chart both visually and semantically using embedded tables and labels",
+          "Apply metadata fields (e.g., ChartType, TopicKeywords, MarkdownDataTable) to make figures machine-readable",
+          "Design color encodings and annotations that clarify categorical groupings",
+          "Validate visual claims (peaks, troughs, trends) against underlying data",
+          "Implement authoring and QA workflows to produce reliably extractable figures",
+          "Integrate annotated figures into search, indexing, and data pipelines"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter drills into the \"Figure\" page object by presenting a concrete bar-chart example that links visual elements to underlying metadata and tabular data. Building on earlier coverage of page objects and document structure, it shows how a figure carries multiple layers of information: a caption (Figure 1: Here is a figure with text), axis titles (Months, Values), a Markdown data table, a chart type (bar), detailed value labels for January–June, and color encodings for month groupings. The narrative emphasizes reading the figure both visually and semantically — identifying the peak in April (450), the low in January (200), and intermediate highs in March (400) and May (350) — and using the provided table and axis labels to confirm numeric interpretation.\n\nThe chapter also demonstrates how annotations and metadata (ChartType, TopicKeywords, DetailedDescription, Summary, and MarkdownDataTable) work together to make a figure machine- and human-readable. It highlights the role of color encoding (orange for Jan & Apr, green for Feb & May, blue for Mar & Jun) as an explicit metadata attribute that aids quick pattern recognition. Overall, this example advances understanding from abstract page-object definitions to practical application: how to extract, validate, and interpret embedded data and descriptive fields within a figure object.",
+            "key_concepts": [
+              "Page Object: Figure",
+              "Bar chart (ChartType)",
+              "Axis titles (Months, Values)",
+              "MarkdownDataTable",
+              "Caption / Figcaption",
+              "Color encoding by category",
+              "Peak and trough identification (April peak, January low)",
+              "Metadata and annotations"
+            ],
+            "main_topics": [
+              "Data visualization interpretation",
+              "Figure metadata structure",
+              "Mapping tabular data to visual elements"
+            ],
+            "token_count": 551,
+            "created_at": "2025-09-26T20:22:38.798050"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-26T20:22:58.667653"
+      },
+      "overall_summary": "This book presents a practical, disciplined approach to treating figures and other visual elements as first-class page objects within digital documents. Beginning with foundational definitions of page objects and document structure, it frames figures not just as static images but as layered containers of meaning: visual marks, axis labels, embedded tabular data, captions, and explicit metadata annotations. The central example—a bar chart—is used throughout to ground abstract ideas in a concrete, reproducible case that links visual interpretation to underlying numeric truth.\n\nThe narrative then unfolds how each layer contributes to both human comprehension and machine processing. The figure example demonstrates axis titles, a MarkdownDataTable, a caption, a ChartType annotation, detailed value labels, color encodings by category, and keyword metadata. Readers learn to read a figure visually (spotting the April peak and January trough) and semantically (validating those readings against the Markdown table and axis labels), which illustrates how machine-readable fields and human-facing visuals complement one another.\n\nBuilding on the example, the book lays out practical methods for authoring and annotating figures so they become reliably extractable and interpretable by software: which metadata fields matter (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable), how to encode categorical colors, and how to structure captions for disambiguation. It also addresses validation and error-checking strategies—how to confirm that a visual peak corresponds to a numerical maximum in embedded data—and emphasizes accessibility and discoverability as design goals.\n\nFinally, the book situates these techniques within broader workflows for document engineering: pipeline design for data extraction, indexing and search using metadata, automated quality assurance, and authoring conventions that make documents both human-friendly and machine-actionable. By the end, readers will understand the theory, see detailed examples, and have concrete guidelines to produce figures that communicate clearly, validate reliably, and integrate smoothly into automated systems.",
+      "key_themes": [
+        "Figures as multi-layered page objects (visual + semantic)",
+        "Metadata and annotations for machine readability",
+        "Linking visual perception to underlying tabular data",
+        "Designing for validation and automated extraction",
+        "Color encoding and categorical semantics",
+        "Accessibility, discoverability, and searchability",
+        "Practical authoring conventions and standards"
+      ],
+      "learning_objectives": [
+        "Describe the components of a figure page object and their roles",
+        "Interpret a chart both visually and semantically using embedded tables and labels",
+        "Apply metadata fields (e.g., ChartType, TopicKeywords, MarkdownDataTable) to make figures machine-readable",
+        "Design color encodings and annotations that clarify categorical groupings",
+        "Validate visual claims (peaks, troughs, trends) against underlying data",
+        "Implement authoring and QA workflows to produce reliably extractable figures",
+        "Integrate annotated figures into search, indexing, and data pipelines"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter drills into the \"Figure\" page object by presenting a concrete bar-chart example that links visual elements to underlying metadata and tabular data. Building on earlier coverage of page objects and document structure, it shows how a figure carries multiple layers of information: a caption (Figure 1: Here is a figure with text), axis titles (Months, Values), a Markdown data table, a chart type (bar), detailed value labels for January–June, and color encodings for month groupings. The narrative emphasizes reading the figure both visually and semantically — identifying the peak in April (450), the low in January (200), and intermediate highs in March (400) and May (350) — and using the provided table and axis labels to confirm numeric interpretation.\n\nThe chapter also demonstrates how annotations and metadata (ChartType, TopicKeywords, DetailedDescription, Summary, and MarkdownDataTable) work together to make a figure machine- and human-readable. It highlights the role of color encoding (orange for Jan & Apr, green for Feb & May, blue for Mar & Jun) as an explicit metadata attribute that aids quick pattern recognition. Overall, this example advances understanding from abstract page-object definitions to practical application: how to extract, validate, and interpret embedded data and descriptive fields within a figure object.",
+          "key_concepts": [
+            "Page Object: Figure",
+            "Bar chart (ChartType)",
+            "Axis titles (Months, Values)",
+            "MarkdownDataTable",
+            "Caption / Figcaption",
+            "Color encoding by category",
+            "Peak and trough identification (April peak, January low)",
+            "Metadata and annotations"
+          ],
+          "main_topics": [
+            "Data visualization interpretation",
+            "Figure metadata structure",
+            "Mapping tabular data to visual elements"
+          ],
+          "token_count": 551,
+          "created_at": "2025-09-26T20:22:38.798050"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpymu2qq3e.pdf",
+      "pdf_file": "/tmp/tmpymu2qq3e.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_6434d589-3ead-43de-90bb-d8c5498eaffb/task_document_processing/string-book-markdown-20250926_202214-13b6be00.md",
+      "cache_file": "content/pipelines/pipeline_6434d589-3ead-43de-90bb-d8c5498eaffb/task_document_processing/string-book-cache-20250926_202214-13b6be00.json",
+      "metadata": "content/pipelines/pipeline_6434d589-3ead-43de-90bb-d8c5498eaffb/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_6434d589-3ead-43de-90bb-d8c5498eaffb/task_summarization/string-summary-20250926_202214-13b6be00.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpymu2qq3e.pdf",
+      "enhanced_markdown": "content/books/string-book-20250926_202214-13b6be00/processed/string-book-markdown-20250926_202214-13b6be00/string-book-markdown-20250926_202214-13b6be00.md",
+      "cache_file": "content/books/string-book-20250926_202214-13b6be00/processed/string-book-cache-20250926_202214-13b6be00.json",
+      "figures_directory": "content/books/string-book-20250926_202214-13b6be00/processed/string-book-markdown-20250926_202214-13b6be00/string-book-figures-20250926_202214-13b6be00",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-4134a3c6-6a33-448d-9b37-83f8a2748e1c",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/string-book-20250926_202214-13b6be00",
+      "job_id": "13b6be00",
+      "timestamp": "20250926_202214",
+      "content_type": "book",
+      "book_title": "string",
+      "metadata_file": "content/books/string-book-20250926_202214-13b6be00/metadata.json",
+      "input_directory": "content/books/string-book-20250926_202214-13b6be00/input",
+      "processed_directory": "content/books/string-book-20250926_202214-13b6be00/processed",
+      "markdown_directory": "content/books/string-book-20250926_202214-13b6be00/processed/string-book-markdown-20250926_202214-13b6be00",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 7,
+      "learning_objectives_count": 7,
+      "created_at": "2025-09-26T20:22:58.667653"
+    }
+  }
+}

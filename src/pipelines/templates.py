@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def get_pipeline_templates() -> Dict[str, PipelineConfig]:
     """
     Get all available pipeline templates
-    
+
     Returns:
         Dict[str, PipelineConfig]: Dictionary of template name to pipeline config
     """
@@ -30,25 +30,26 @@ def get_pipeline_templates() -> Dict[str, PipelineConfig]:
 def create_pipeline_from_template(template_name: str, **kwargs) -> PipelineConfig:
     """
     Create a pipeline from a template with customizations
-    
+
     Args:
         template_name: Name of the template to use
         **kwargs: Template-specific parameters
-        
+
     Returns:
         PipelineConfig: Configured pipeline
-        
+
     Raises:
         ValueError: If template is not found
     """
     templates = get_pipeline_templates()
-    
+
     if template_name not in templates:
         available = list(templates.keys())
-        raise ValueError(f"Template '{template_name}' not found. Available: {available}")
-    
+        raise ValueError(
+            f"Template '{template_name}' not found. Available: {available}")
+
     config = templates[template_name]
-    
+
     # Apply customizations based on kwargs
     if kwargs:
         # Create a copy of the config with modifications
@@ -59,16 +60,16 @@ def create_pipeline_from_template(template_name: str, **kwargs) -> PipelineConfi
                 inputs=dict(task.inputs),
                 settings=dict(task.settings)
             )
-            
+
             # Apply customizations
             if task.task_id in kwargs:
                 task_params = kwargs[task.task_id]
                 if isinstance(task_params, dict):
                     new_task.inputs.update(task_params.get('inputs', {}))
                     new_task.settings.update(task_params.get('settings', {}))
-            
+
             new_tasks.append(new_task)
-        
+
         config = PipelineConfig(
             name=config.name,
             description=config.description,
@@ -76,13 +77,13 @@ def create_pipeline_from_template(template_name: str, **kwargs) -> PipelineConfi
             settings=dict(config.settings),
             metadata=dict(config.metadata)
         )
-        
+
         # Apply global settings
         if 'settings' in kwargs:
             config.settings.update(kwargs['settings'])
         if 'metadata' in kwargs:
             config.metadata.update(kwargs['metadata'])
-    
+
     return config
 
 
@@ -241,12 +242,12 @@ def _create_summarization_only_pipeline() -> PipelineConfig:
 def list_template_info() -> List[Dict[str, Any]]:
     """
     Get information about all available templates
-    
+
     Returns:
         List[Dict]: List of template information
     """
     templates = get_pipeline_templates()
-    
+
     template_info = []
     for name, config in templates.items():
         info = {
@@ -259,5 +260,5 @@ def list_template_info() -> List[Dict[str, Any]]:
             "template_version": config.metadata.get("template_version")
         }
         template_info.append(info)
-    
+
     return template_info

@@ -12,7 +12,7 @@ from .models import TaskMetadata, PipelineConfig, TaskStatus
 
 __all__ = [
     'BaseTask',
-    'TaskInputs', 
+    'TaskInputs',
     'TaskOutputs',
     'TaskConfig',
     'TaskRegistry',

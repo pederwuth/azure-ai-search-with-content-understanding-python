@@ -248,6 +248,63 @@ class EnhancedDocumentProcessor:
             logger.error(f"Error creating analyzer {analyzer_id}: {e}")
             raise
 
+    def _extract_book_title_from_content(self, document_result) -> Optional[str]:
+        """
+        Extract book title from Document Intelligence result.
+
+        Args:
+            document_result: Result from Document Intelligence analysis
+
+        Returns:
+            Extracted book title or None if not found
+        """
+        try:
+            # Look for title in various places in the document structure
+            if hasattr(document_result, 'pages') and document_result.pages:
+                first_page = document_result.pages[0]
+
+                # Look for the largest text on the first page (likely title)
+                if hasattr(first_page, 'lines') and first_page.lines:
+                    # Get text from first few lines and find the longest/most prominent one
+                    potential_titles = []
+                    # Check first 5 lines
+                    for i, line in enumerate(first_page.lines[:5]):
+                        if hasattr(line, 'content'):
+                            text = line.content.strip()
+                            # Skip if it looks like metadata, page numbers, or too short
+                            if (len(text) > 5 and
+                                not text.isdigit() and
+                                not text.lower().startswith(('page', 'chapter', 'www', 'http')) and
+                                not '©' in text and
+                                    len(text.split()) > 1):  # Multi-word titles preferred
+                                potential_titles.append(text)
+
+                    if potential_titles:
+                        # Return the first good candidate
+                        title = potential_titles[0]
+                        # Clean up the title
+                        title = title.replace('\n', ' ').replace('\r', ' ')
+                        title = ' '.join(title.split())  # Normalize whitespace
+                        return title[:50]  # Limit length
+
+            # Fallback: look in document-level content if available
+            if hasattr(document_result, 'content') and document_result.content:
+                lines = document_result.content.split(
+                    '\n')[:10]  # First 10 lines
+                for line in lines:
+                    line = line.strip()
+                    if (len(line) > 10 and
+                        len(line) < 100 and
+                        not line.isdigit() and
+                            len(line.split()) > 2):  # Multi-word title
+                        return line[:50]
+
+        except Exception as e:
+            logger.warning(
+                f"Failed to extract title from document content: {e}")
+
+        return None
+
     def process_pdf_with_enhanced_understanding(
         self,
         pdf_path: str | Path,
@@ -280,11 +337,19 @@ class EnhancedDocumentProcessor:
         if not pdf_file.exists():
             raise FileNotFoundError(f"PDF file not found: {pdf_path}")
 
-        # Determine book title from custom_filename or PDF name
+        # Determine initial book title from custom_filename, original_filename, or PDF name
+        # If none provided, we'll extract it from document content later
+        extract_title_from_content = False
         if custom_filename:
             book_title = custom_filename.lower().replace(' ', '_').replace('-', '_')
+        elif original_filename and not original_filename.startswith('tmp'):
+            # Use original filename (strip .pdf extension) if it's not a temporary name
+            original_stem = Path(original_filename).stem
+            book_title = original_stem.lower().replace(' ', '_').replace('-', '_')
         else:
+            # No meaningful filename provided - we'll extract from document content
             book_title = pdf_file.stem.lower().replace(' ', '_').replace('-', '_')
+            extract_title_from_content = True
 
         # Generate timestamp and job ID
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -330,7 +395,7 @@ class EnhancedDocumentProcessor:
             timestamp = None
             job_id = None
 
-        logger.info(f"Processing PDF: {pdf_file.name}")
+        logger.info(f"Processing PDF: {book_title} (from {pdf_file.name})")
         logger.info(f"Output directory: {output_path}")
 
         # Step 1: Create Content Understanding analyzer
@@ -377,6 +442,27 @@ class EnhancedDocumentProcessor:
                         f"Document analysis failed after {elapsed_time:.1f} seconds: {e}")
                     raise
             md_content = result.content
+
+            # Extract book title from document content if needed
+            if extract_title_from_content:
+                extracted_title = self._extract_book_title_from_content(result)
+                if extracted_title:
+                    logger.info(
+                        f"📖 Extracted book title from content: '{extracted_title}'")
+                    # Clean up the extracted title for use as filename
+                    cleaned_title = extracted_title.lower().replace(' ', '_').replace('-', '_')
+                    # Remove special characters that might cause issues
+                    import re
+                    cleaned_title = re.sub(
+                        r'[^\w\s-]', '', cleaned_title).strip()
+                    cleaned_title = re.sub(r'[-\s]+', '_', cleaned_title)
+
+                    # Only use if meaningful
+                    if cleaned_title and len(cleaned_title) > 3:
+                        old_book_title = book_title
+                        book_title = cleaned_title
+                        logger.info(
+                            f"📝 Updated book title from '{old_book_title}' to '{book_title}'")
 
             # Step 3: Process figures with Content Understanding
             figure_contents = []
@@ -546,7 +632,7 @@ class EnhancedDocumentProcessor:
                 })
 
             logger.info("✅ Enhanced document processing complete!")
-            logger.info(f"📄 Document: {pdf_file.name}")
+            logger.info(f"📄 Document: {book_title} (from {pdf_file.name})")
             logger.info(
                 f"📚 Figures processed: {processing_results['figures_processed']}")
             logger.info(

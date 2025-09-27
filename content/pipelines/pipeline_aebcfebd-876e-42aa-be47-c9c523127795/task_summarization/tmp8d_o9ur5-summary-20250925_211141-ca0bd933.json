@@ -1,0 +1,41 @@
+{
+  "book_title": "Document Page Object Modeling and Figure Extraction",
+  "overall_summary": "This book tells the story of how modern document understanding systems move from low-level page layout to high-value structured content by modeling page objects, with a detailed deep-dive on Figures. It begins by establishing core concepts of page layout and object modeling — how pages are decomposed into text blocks, images, tables, and figures — and why an object-centric approach enables consistent extraction, indexing, and downstream analysis. Early chapters introduce the vocabulary and representations needed to reason about visual and semantic information together.\n\nBuilding on that foundation, the book drills into the concrete example of the Figure as a page object type. Using a bar chart of monthly values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), it explains both the visible visual elements and the embedded metadata (caption: \"Figure 1: Here is a figure with text\", axis labels: \"Months\" and \"Values\", and an explicit data table and summary). The example is used to teach how to parse bars, align them with axis ticks, reconcile numeric labels with a metadata table, and extract key insights such as the highest (April = 450) and lowest (January = 200) points.\n\nSubsequent sections translate the example into practical processing guidance: how to detect and classify figures on a page, how to extract and normalize axis labels and numeric data, methods for aligning visual marks to tabular metadata, and strategies for resolving inconsistencies when visual and textual cues disagree. The book also addresses implementation concerns such as OCR limits, graphical noise, semantic labeling, and the importance of capturing both visible content and embedded descriptive metadata for robust downstream use.\n\nFinally, the book situates these techniques within real-world workflows: building pipelines that convert visual documents into structured datasets, improving accessibility through explicit captions and labels, supporting search and analytics with extracted numeric series, and evaluating extraction quality. Throughout, practical examples, heuristics, and best-practice patterns are emphasized so readers can move from theory to applied systems that reliably interpret figures and other page objects.",
+  "key_themes": [
+    "Page object-centric modeling of documents",
+    "Bridging visual elements and embedded metadata",
+    "Robust extraction of structured data from figures",
+    "Alignment and reconciliation between chart visuals and descriptive tables",
+    "Practical system design for document understanding"
+  ],
+  "learning_objectives": [
+    "Understand page layout primitives and how to model page objects like figures",
+    "Identify and extract visual and textual components of figures (captions, axis labels, annotations)",
+    "Parse chart visuals (e.g., bar charts) and align them to embedded data tables",
+    "Detect key data insights from visuals (e.g., maxima/minima) and validate them against metadata",
+    "Design and evaluate pipelines that convert visual page objects into reliable structured outputs"
+  ],
+  "chapter_summaries": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "This is title",
+      "summary": "Building on the foundational material about page layout and object modeling from earlier chapters, this chapter drills into a concrete page object type: the Figure. It explains how a figure is represented in a document both visually and as embedded metadata (caption, data table, axis titles, and annotations). The chapter uses a bar chart example covering monthly values from January through June to show how visual elements convey quantitative information and how those elements should be interpreted and captured when extracting structured content from a page.\n\nThe chapter also demonstrates practical details readers should expect when processing figures: explicit captions (Figure 1: Here is a figure with text), labeled axes (Months and Values), a descriptive metadata block that includes a data table and summary, and the numeric data itself (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250). It emphasizes that metadata and the visible chart often reinforce each other (e.g., the metadata table matches the bars) and highlights the importance of recognizing highest and lowest points (April = 450, January = 200) when extracting insights from visual page objects.",
+      "key_concepts": [
+        "Page object: Figure",
+        "Caption and figure metadata",
+        "Bar chart data extraction",
+        "Axis labeling (x/y titles)",
+        "Data-table embedding and alignment"
+      ],
+      "main_topics": [
+        "Representation of figures in documents",
+        "Mapping visual elements to structured data",
+        "Interpreting chart metadata and annotations"
+      ],
+      "token_count": 507,
+      "created_at": "2025-09-25T21:12:13.870497"
+    }
+  ],
+  "total_chapters": 1,
+  "created_at": "2025-09-25T21:12:29.554586"
+}

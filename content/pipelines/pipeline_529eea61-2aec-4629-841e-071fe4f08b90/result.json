@@ -1,0 +1,192 @@
+{
+  "pipeline_id": "529eea61-2aec-4629-841e-071fe4f08b90",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-26T20:26:41.695902",
+  "end_time": "2025-09-26T20:27:16.663395",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-26T20:26:41.696197",
+      "end_time": "2025-09-26T20:26:56.161483",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-26T20:26:56.161497",
+      "end_time": "2025-09-26T20:27:16.663384",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/string-book-20250926_202641-650961cd/processed/string-book-markdown-20250926_202641-650961cd/string-book-figures-20250926_202641-650961cd",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects and Embedded Data Visualizations",
+      "main_folder": "content/books/string-book-20250926_202641-650961cd",
+      "book_summary": {
+        "book_title": "Page Objects and Embedded Data Visualizations",
+        "overall_summary": "This book tells the story of how figures and embedded visualizations should be treated as first-class, metadata-rich page objects inside documents. Starting from concrete examples, it introduces a model for representing a figure not just as an image but as a structured object containing the visual, a data table, metadata attributes (chart type, axis titles), color encodings, and an accessible caption. The narrative grounds abstract ideas in hands-on artifacts so readers see both the what and the why.\n\nFrom that foundation the book explains how metadata makes figures interoperable, discoverable, and reusable. By annotating visuals with ChartType, AxisTitles, and an embedded MarkdownDataTable, authors can make the underlying data explicit, enable programmatic inspection or transformation, and ensure captions and tabular alternatives support accessibility. Color and categorical encoding are presented as deliberate design choices that clarify groupings and relationships rather than purely aesthetic decisions.\n\nThe text progresses by showing small, clear examples (like a six-month bar chart) and then generalizing those patterns into principles, best practices, and schema suggestions. Readers learn how to encode semantics into visuals, how to craft captions that convey the same information as the graphic, and how to pair visual design decisions (e.g., color assignments) with data-structure and accessibility concerns. Practical guidance on how to convert a figure into a page object, annotate it, and include an accessible data table is emphasized throughout.\n\nUltimately the book equips readers to produce documents where figures are robust assets: machine-readable, accessible, and easier to maintain or repurpose. Whether the goal is to improve clarity for human readers, support assistive technologies, or enable downstream automation (search, transformation, re-rendering), the practices taught turn isolated images into documented, interoperable components of a document ecosystem.",
+        "key_themes": [
+          "Page objects as structured representations of figures",
+          "Metadata-driven visualizations (ChartType, AxisTitles, embedded data)",
+          "Accessibility through captions and tabular alternatives",
+          "Intentional visual encoding and color for grouping",
+          "Interoperability, reuse, and machine-readability of document assets"
+        ],
+        "learning_objectives": [
+          "Recognize and represent figures as page objects with embedded metadata",
+          "Annotate visualizations with the minimal metadata needed for clarity and reuse",
+          "Design captions and tabular fallbacks that preserve the visual’s informational content",
+          "Apply color and categorical encoding deliberately to reinforce data groupings",
+          "Integrate documented figures into workflows that support accessibility and automation"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter focuses on a concrete Page Object: a Figure (Figure 1) that presents a bar chart of monthly values from January through June. Building on earlier material that introduced document/page object structure and the role of embedded data visualizations, it annotates the figure with metadata (ChartType: bar, AxisTitles: Months and Values, MarkdownDataTable) and a caption. The visual data show a clear monthly sequence with a low of 200 in January, a rise to a peak of 450 in April, and intermediate highs in March (400) and May (350), while June and February sit lower at 250 and 300 respectively. Color encoding is also specified: January and April in orange, February and May in green, and March and June in blue, reinforcing how color can group or distinguish entries in a small time-series.",
+            "key_concepts": [
+              "Page Object (Figure) representation",
+              "Bar chart interpretation",
+              "Metadata for figures (ChartType, AxisTitles, MarkdownDataTable)",
+              "Color encoding and categorical grouping",
+              "Captioning and accessibility through tabular data"
+            ],
+            "main_topics": [
+              "Visualization of monthly business/finance values",
+              "Embedding structured metadata with figures",
+              "Reading trends and peaks in bar charts"
+            ],
+            "token_count": 443,
+            "created_at": "2025-09-26T20:27:04.652955"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-26T20:27:16.661271"
+      },
+      "overall_summary": "This book tells the story of how figures and embedded visualizations should be treated as first-class, metadata-rich page objects inside documents. Starting from concrete examples, it introduces a model for representing a figure not just as an image but as a structured object containing the visual, a data table, metadata attributes (chart type, axis titles), color encodings, and an accessible caption. The narrative grounds abstract ideas in hands-on artifacts so readers see both the what and the why.\n\nFrom that foundation the book explains how metadata makes figures interoperable, discoverable, and reusable. By annotating visuals with ChartType, AxisTitles, and an embedded MarkdownDataTable, authors can make the underlying data explicit, enable programmatic inspection or transformation, and ensure captions and tabular alternatives support accessibility. Color and categorical encoding are presented as deliberate design choices that clarify groupings and relationships rather than purely aesthetic decisions.\n\nThe text progresses by showing small, clear examples (like a six-month bar chart) and then generalizing those patterns into principles, best practices, and schema suggestions. Readers learn how to encode semantics into visuals, how to craft captions that convey the same information as the graphic, and how to pair visual design decisions (e.g., color assignments) with data-structure and accessibility concerns. Practical guidance on how to convert a figure into a page object, annotate it, and include an accessible data table is emphasized throughout.\n\nUltimately the book equips readers to produce documents where figures are robust assets: machine-readable, accessible, and easier to maintain or repurpose. Whether the goal is to improve clarity for human readers, support assistive technologies, or enable downstream automation (search, transformation, re-rendering), the practices taught turn isolated images into documented, interoperable components of a document ecosystem.",
+      "key_themes": [
+        "Page objects as structured representations of figures",
+        "Metadata-driven visualizations (ChartType, AxisTitles, embedded data)",
+        "Accessibility through captions and tabular alternatives",
+        "Intentional visual encoding and color for grouping",
+        "Interoperability, reuse, and machine-readability of document assets"
+      ],
+      "learning_objectives": [
+        "Recognize and represent figures as page objects with embedded metadata",
+        "Annotate visualizations with the minimal metadata needed for clarity and reuse",
+        "Design captions and tabular fallbacks that preserve the visual’s informational content",
+        "Apply color and categorical encoding deliberately to reinforce data groupings",
+        "Integrate documented figures into workflows that support accessibility and automation"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter focuses on a concrete Page Object: a Figure (Figure 1) that presents a bar chart of monthly values from January through June. Building on earlier material that introduced document/page object structure and the role of embedded data visualizations, it annotates the figure with metadata (ChartType: bar, AxisTitles: Months and Values, MarkdownDataTable) and a caption. The visual data show a clear monthly sequence with a low of 200 in January, a rise to a peak of 450 in April, and intermediate highs in March (400) and May (350), while June and February sit lower at 250 and 300 respectively. Color encoding is also specified: January and April in orange, February and May in green, and March and June in blue, reinforcing how color can group or distinguish entries in a small time-series.",
+          "key_concepts": [
+            "Page Object (Figure) representation",
+            "Bar chart interpretation",
+            "Metadata for figures (ChartType, AxisTitles, MarkdownDataTable)",
+            "Color encoding and categorical grouping",
+            "Captioning and accessibility through tabular data"
+          ],
+          "main_topics": [
+            "Visualization of monthly business/finance values",
+            "Embedding structured metadata with figures",
+            "Reading trends and peaks in bar charts"
+          ],
+          "token_count": 443,
+          "created_at": "2025-09-26T20:27:04.652955"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp5p2uh6qj.pdf",
+      "pdf_file": "/tmp/tmp5p2uh6qj.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_529eea61-2aec-4629-841e-071fe4f08b90/task_document_processing/string-book-markdown-20250926_202641-650961cd.md",
+      "cache_file": "content/pipelines/pipeline_529eea61-2aec-4629-841e-071fe4f08b90/task_document_processing/string-book-cache-20250926_202641-650961cd.json",
+      "metadata": "content/pipelines/pipeline_529eea61-2aec-4629-841e-071fe4f08b90/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_529eea61-2aec-4629-841e-071fe4f08b90/task_summarization/string-summary-20250926_202641-650961cd.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp5p2uh6qj.pdf",
+      "enhanced_markdown": "content/books/string-book-20250926_202641-650961cd/processed/string-book-markdown-20250926_202641-650961cd/string-book-markdown-20250926_202641-650961cd.md",
+      "cache_file": "content/books/string-book-20250926_202641-650961cd/processed/string-book-cache-20250926_202641-650961cd.json",
+      "figures_directory": "content/books/string-book-20250926_202641-650961cd/processed/string-book-markdown-20250926_202641-650961cd/string-book-figures-20250926_202641-650961cd",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-50e2b477-4bf6-45f1-b330-d2d6dd82c409",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/string-book-20250926_202641-650961cd",
+      "job_id": "650961cd",
+      "timestamp": "20250926_202641",
+      "content_type": "book",
+      "book_title": "string",
+      "metadata_file": "content/books/string-book-20250926_202641-650961cd/metadata.json",
+      "input_directory": "content/books/string-book-20250926_202641-650961cd/input",
+      "processed_directory": "content/books/string-book-20250926_202641-650961cd/processed",
+      "markdown_directory": "content/books/string-book-20250926_202641-650961cd/processed/string-book-markdown-20250926_202641-650961cd",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-26T20:27:16.661271"
+    }
+  }
+}

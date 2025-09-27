@@ -21,6 +21,7 @@ import signal
 import requests
 from pathlib import Path
 
+
 def start_summarization_service():
     """Start the standalone summarization service on port 8001"""
     print("🚀 Starting Standalone Book Summarization Service...")
@@ -28,9 +29,10 @@ def start_summarization_service():
     print("📖 Docs: http://localhost:8001/docs")
     print("🔍 Health: http://localhost:8001/health")
     print()
-    
+
     # Run the summarization service
     subprocess.run([sys.executable, "summarization_service.py"])
+
 
 def start_main_service():
     """Start the main document processing service on port 8000"""
@@ -39,9 +41,10 @@ def start_main_service():
     print("📖 Docs: http://localhost:8000/docs")
     print("🔍 Health: http://localhost:8000/enhanced/status")
     print()
-    
+
     # Run the main service
     subprocess.run([sys.executable, "run_server.py"])
+
 
 def check_service_health(url, service_name):
     """Check if a service is healthy"""
@@ -51,11 +54,13 @@ def check_service_health(url, service_name):
             print(f"✅ {service_name} is healthy")
             return True
         else:
-            print(f"⚠️ {service_name} responded with status {response.status_code}")
+            print(
+                f"⚠️ {service_name} responded with status {response.status_code}")
             return False
     except Exception as e:
         print(f"❌ {service_name} is not responding: {e}")
         return False
+
 
 def start_both_services():
     """Start both services in parallel"""
@@ -63,27 +68,30 @@ def start_both_services():
     print("📍 Summarization Service: http://localhost:8001")
     print("📍 Main Service: http://localhost:8000")
     print()
-    
+
     # Start summarization service in background
     print("Starting summarization service...")
-    summarization_process = subprocess.Popen([sys.executable, "summarization_service.py"])
-    
+    summarization_process = subprocess.Popen(
+        [sys.executable, "summarization_service.py"])
+
     # Wait a moment
     time.sleep(3)
-    
-    # Start main service in background  
+
+    # Start main service in background
     print("Starting main service...")
     main_process = subprocess.Popen([sys.executable, "run_server.py"])
-    
+
     # Wait for services to start
     print("⏳ Waiting for services to initialize...")
     time.sleep(10)
-    
+
     # Check health
     print("\n🔍 Health Check:")
-    summarization_healthy = check_service_health("http://localhost:8001/health", "Summarization Service")
-    main_healthy = check_service_health("http://localhost:8000/docs", "Main Service")
-    
+    summarization_healthy = check_service_health(
+        "http://localhost:8001/health", "Summarization Service")
+    main_healthy = check_service_health(
+        "http://localhost:8000/docs", "Main Service")
+
     if summarization_healthy and main_healthy:
         print("\n🎉 Both services are running successfully!")
         print("\n📋 Available Services:")
@@ -92,22 +100,23 @@ def start_both_services():
         print("\n💡 The main service can now call the summarization service automatically!")
     else:
         print("\n⚠️ Some services may not be fully ready yet")
-    
+
     # Handle shutdown
     def signal_handler(sig, frame):
         print("\n🛑 Shutting down services...")
         summarization_process.terminate()
         main_process.terminate()
         sys.exit(0)
-    
+
     signal.signal(signal.SIGINT, signal_handler)
-    
+
     try:
         # Wait for both processes
         summarization_process.wait()
         main_process.wait()
     except KeyboardInterrupt:
         print("\n🛑 Services stopped")
+
 
 def show_help():
     """Show usage help"""
@@ -140,13 +149,14 @@ Examples:
     - Microservices architecture with automatic failover
 """)
 
+
 def main():
     if len(sys.argv) != 2:
         show_help()
         return
-    
+
     command = sys.argv[1].lower()
-    
+
     if command == "summarization":
         start_summarization_service()
     elif command == "main":
@@ -158,6 +168,7 @@ def main():
     else:
         print(f"❌ Unknown command: {command}")
         show_help()
+
 
 if __name__ == "__main__":
     main()

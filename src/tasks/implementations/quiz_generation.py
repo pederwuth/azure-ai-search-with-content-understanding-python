@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class QuizGenerationTask(BaseTask):
     """Task that generates quizzes from book summaries and content"""
-    
+
     @property
     def metadata(self) -> TaskMetadata:
         """Get task metadata"""
@@ -24,38 +24,40 @@ class QuizGenerationTask(BaseTask):
             name="Quiz Generation",
             description="Generate interactive quizzes and assessments from book content to test comprehension",
             version="1.0.0",
-            input_types=[TaskInputType.BOOK_SUMMARY, TaskInputType.ENHANCED_MARKDOWN],
+            input_types=[TaskInputType.BOOK_SUMMARY,
+                         TaskInputType.ENHANCED_MARKDOWN],
             output_types=[TaskOutputType.QUIZ, TaskOutputType.METADATA],
-            dependencies=["summarization"],  # Requires summarization to run first
+            # Requires summarization to run first
+            dependencies=["summarization"],
             estimated_duration_minutes=7,
             resource_requirements={
                 "azure_openai": True,
                 "memory_gb": 1
             }
         )
-    
+
     async def execute(self, inputs: TaskInputs) -> TaskOutputs:
         """
         Execute quiz generation
-        
+
         Args:
             inputs: Task inputs containing book summary and enhanced markdown
-            
+
         Returns:
             TaskOutputs: Generated quiz and metadata
         """
         self.logger.info("Starting quiz generation")
-        
+
         # TODO: Implement quiz generation
         # This is a placeholder for future implementation
-        
+
         # Get book summary from inputs
         book_summary = inputs.data.get('book_summary')
         if not book_summary:
             raise ValueError("No book summary found in inputs")
-        
+
         self.logger.info(f"Generating quiz for: {book_summary.book_title}")
-        
+
         # Placeholder implementation
         quiz = {
             "title": f"Quiz: {book_summary.book_title}",
@@ -79,20 +81,20 @@ class QuizGenerationTask(BaseTask):
             "estimated_time_minutes": 5,
             "created_at": "2025-09-22T00:00:00Z"
         }
-        
+
         # Prepare outputs
         outputs = TaskOutputs()
         outputs.add_data('quiz', quiz)
         outputs.add_data('total_questions', quiz['total_questions'])
         outputs.add_data('difficulty', quiz['difficulty'])
-        
+
         outputs.metadata.update({
             'quiz_generation_completed': True,
             'total_questions': quiz['total_questions'],
             'difficulty': quiz['difficulty'],
             'estimated_time_minutes': quiz['estimated_time_minutes']
         })
-        
+
         self.logger.info("Quiz generation completed (placeholder)")
         return outputs
 

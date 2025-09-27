@@ -1,0 +1,196 @@
+{
+  "pipeline_id": "1ac3cd9a-cfac-41d2-9277-eba427cb31c4",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T22:19:22.486461",
+  "end_time": "2025-09-25T22:19:55.288065",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T22:19:22.486968",
+      "end_time": "2025-09-25T22:19:35.979069",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T22:19:35.979093",
+      "end_time": "2025-09-25T22:19:55.288049",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "meaningful_custom_filename",
+      "figures_directory": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d/tmpwxmc_19m-book-figures-20250925_221922-5bed0c2d",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2628,
+        "estimated_tokens": 531
+      },
+      "figures_processed": 1,
+      "document_length": 2628,
+      "book_title": "Structuring Page Content: The Figure Page Object and Metadata for Accessible, Reusable Visuals",
+      "main_folder": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d",
+      "book_summary": {
+        "book_title": "Structuring Page Content: The Figure Page Object and Metadata for Accessible, Reusable Visuals",
+        "overall_summary": "This book explains how to represent and interpret figures (charts, graphs, and images) as first-class page objects by combining human-readable descriptions with structured metadata and raw data. Beginning with a foundation in page structure and a taxonomy of page objects, it focuses in depth on the Figure page object: how to document its caption, name and type, keywords, detailed descriptions, axis titles, annotations, and an embedded data table. Using a concrete bar chart example (monthly values from January to June), the book illustrates how text and table data together let readers and machines identify key insights — for instance that April is the peak month (450) and January the trough (200).\n\nThe narrative shows practical techniques for translating visual elements into machine-friendly representations (Markdown data tables, structured metadata fields) so that visuals are not black boxes. It stresses the importance of axis titles, units, and chart types for accurate interpretation, and demonstrates how footnotes and annotations capture context that affects meaning. The book also surfaces how consistent metadata enables downstream tasks like automated data extraction, accessibility (alt text and screen-reader friendly descriptions), indexing, and analytical reuse.\n\nThroughout, the text balances theory and applied guidance: it gives a clear taxonomy and field-level specification for Figure objects and ties those specifications to workflows — from authoring and editorial review to programmatic ingestion and analysis. Case examples and the bar chart walkthrough show how following the spec prevents misinterpretation (e.g., misreading axis units or missing an explanatory footnote) and enables tools to extract reliable numeric values from visualizations.\n\nBy the end, readers understand not only what metadata to capture for a Figure but why each element matters, how elements interact to convey meaning, and how to operationalize the model to improve accessibility, automation, and data quality. The book positions the Figure page object as a bridge between visual communication and reproducible, machine-actionable content.",
+        "key_themes": [
+          "Structured metadata for visual content",
+          "Bridging human description and machine-readable data",
+          "Accessibility and inclusive information design",
+          "Reliable data extraction from visualizations",
+          "Contextual annotations and provenance"
+        ],
+        "learning_objectives": [
+          "Understand the taxonomy of page objects and where Figures fit in",
+          "Describe and populate the essential metadata fields for a Figure (Title, ChartType, TopicKeywords, DetailedDescription, AxisTitles, FootnotesAndAnnotations)",
+          "Translate visual elements into structured, tabular representations (e.g., Markdown data tables) for downstream processing",
+          "Use annotations and footnotes to preserve context and prevent misinterpretation",
+          "Apply Figure metadata to improve accessibility, automated extraction, and analytical reuse"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier chapters that introduced page structure and the taxonomy of page objects, this chapter dives into the specifics of a Figure page object and how its embedded metadata and visual content are represented and interpreted. The chapter uses a bar chart example (January–June) to show how a Figure is documented: a figcaption, structured metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations) and the visualized values themselves. The narrative walks through reading the descriptive metadata and the raw chart data — identifying that April is the peak month (450) and January the lowest (200) — and demonstrates how the combination of text and tabular data enables accurate interpretation and downstream use (accessibility, automated data extraction, and analysis).",
+            "key_concepts": [
+              "Page Object (Figure)",
+              "Figure metadata fields (Title, ChartType, TopicKeywords, DetailedDescription)",
+              "Data extraction from visual elements",
+              "Axis titles and their role in interpretation",
+              "Markdown data tables as structured representations",
+              "Annotations and footnotes"
+            ],
+            "main_topics": [
+              "Representation of figures on a page",
+              "Converting visual charts to structured data",
+              "Interpreting bar charts (monthly values, peaks/troughs)",
+              "Metadata-driven accessibility and analysis"
+            ],
+            "token_count": 486,
+            "created_at": "2025-09-25T22:19:45.367349"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T22:19:55.286106"
+      },
+      "overall_summary": "This book explains how to represent and interpret figures (charts, graphs, and images) as first-class page objects by combining human-readable descriptions with structured metadata and raw data. Beginning with a foundation in page structure and a taxonomy of page objects, it focuses in depth on the Figure page object: how to document its caption, name and type, keywords, detailed descriptions, axis titles, annotations, and an embedded data table. Using a concrete bar chart example (monthly values from January to June), the book illustrates how text and table data together let readers and machines identify key insights — for instance that April is the peak month (450) and January the trough (200).\n\nThe narrative shows practical techniques for translating visual elements into machine-friendly representations (Markdown data tables, structured metadata fields) so that visuals are not black boxes. It stresses the importance of axis titles, units, and chart types for accurate interpretation, and demonstrates how footnotes and annotations capture context that affects meaning. The book also surfaces how consistent metadata enables downstream tasks like automated data extraction, accessibility (alt text and screen-reader friendly descriptions), indexing, and analytical reuse.\n\nThroughout, the text balances theory and applied guidance: it gives a clear taxonomy and field-level specification for Figure objects and ties those specifications to workflows — from authoring and editorial review to programmatic ingestion and analysis. Case examples and the bar chart walkthrough show how following the spec prevents misinterpretation (e.g., misreading axis units or missing an explanatory footnote) and enables tools to extract reliable numeric values from visualizations.\n\nBy the end, readers understand not only what metadata to capture for a Figure but why each element matters, how elements interact to convey meaning, and how to operationalize the model to improve accessibility, automation, and data quality. The book positions the Figure page object as a bridge between visual communication and reproducible, machine-actionable content.",
+      "key_themes": [
+        "Structured metadata for visual content",
+        "Bridging human description and machine-readable data",
+        "Accessibility and inclusive information design",
+        "Reliable data extraction from visualizations",
+        "Contextual annotations and provenance"
+      ],
+      "learning_objectives": [
+        "Understand the taxonomy of page objects and where Figures fit in",
+        "Describe and populate the essential metadata fields for a Figure (Title, ChartType, TopicKeywords, DetailedDescription, AxisTitles, FootnotesAndAnnotations)",
+        "Translate visual elements into structured, tabular representations (e.g., Markdown data tables) for downstream processing",
+        "Use annotations and footnotes to preserve context and prevent misinterpretation",
+        "Apply Figure metadata to improve accessibility, automated extraction, and analytical reuse"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier chapters that introduced page structure and the taxonomy of page objects, this chapter dives into the specifics of a Figure page object and how its embedded metadata and visual content are represented and interpreted. The chapter uses a bar chart example (January–June) to show how a Figure is documented: a figcaption, structured metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations) and the visualized values themselves. The narrative walks through reading the descriptive metadata and the raw chart data — identifying that April is the peak month (450) and January the lowest (200) — and demonstrates how the combination of text and tabular data enables accurate interpretation and downstream use (accessibility, automated data extraction, and analysis).",
+          "key_concepts": [
+            "Page Object (Figure)",
+            "Figure metadata fields (Title, ChartType, TopicKeywords, DetailedDescription)",
+            "Data extraction from visual elements",
+            "Axis titles and their role in interpretation",
+            "Markdown data tables as structured representations",
+            "Annotations and footnotes"
+          ],
+          "main_topics": [
+            "Representation of figures on a page",
+            "Converting visual charts to structured data",
+            "Interpreting bar charts (monthly values, peaks/troughs)",
+            "Metadata-driven accessibility and analysis"
+          ],
+          "token_count": 486,
+          "created_at": "2025-09-25T22:19:45.367349"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpwxmc_19m.pdf",
+      "pdf_file": "/tmp/tmpwxmc_19m.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_1ac3cd9a-cfac-41d2-9277-eba427cb31c4/task_document_processing/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d.md",
+      "cache_file": "content/pipelines/pipeline_1ac3cd9a-cfac-41d2-9277-eba427cb31c4/task_document_processing/tmpwxmc_19m-book-cache-20250925_221922-5bed0c2d.json",
+      "metadata": "content/pipelines/pipeline_1ac3cd9a-cfac-41d2-9277-eba427cb31c4/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_1ac3cd9a-cfac-41d2-9277-eba427cb31c4/task_summarization/tmpwxmc_19m-summary-20250925_221922-5bed0c2d.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpwxmc_19m.pdf",
+      "enhanced_markdown": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d.md",
+      "cache_file": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed/tmpwxmc_19m-book-cache-20250925_221922-5bed0c2d.json",
+      "figures_directory": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d/tmpwxmc_19m-book-figures-20250925_221922-5bed0c2d",
+      "figures_processed": 1,
+      "document_length": 2628,
+      "analyzer_id": "enhanced-content-understanding-0184ec86-9460-4b1e-9cad-1cd9336e598f",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2628,
+        "estimated_tokens": 531
+      },
+      "main_folder": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d",
+      "job_id": "5bed0c2d",
+      "timestamp": "20250925_221922",
+      "content_type": "book",
+      "book_title": "tmpwxmc_19m",
+      "metadata_file": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/metadata.json",
+      "input_directory": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/input",
+      "processed_directory": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed",
+      "markdown_directory": "content/books/tmpwxmc_19m-book-20250925_221922-5bed0c2d/processed/tmpwxmc_19m-book-markdown-20250925_221922-5bed0c2d",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-25T22:19:55.286106"
+    }
+  }
+}

@@ -10,7 +10,7 @@ from .storage import PipelineStorage
 
 __all__ = [
     'pipeline_router',
-    'get_pipeline_templates', 
+    'get_pipeline_templates',
     'create_pipeline_from_template',
     'PipelineStorage'
 ]

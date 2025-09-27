@@ -1,0 +1,109 @@
+{
+  "book_title": "Document Intelligence: Structuring Text, Page Objects, and Automated Extraction (with a Latin example)",
+  "overall_summary": "This book presents a practical, concept-driven introduction to turning documents into usable data. It begins by framing the purpose and scope of the work, defining audiences and the roadmap that guides readers through both conceptual ideas and hands-on approaches. The opening chapter establishes the organizing logic: why document structure matters, what questions the rest of the book will answer, and how the subsequent material builds toward operational systems.\n\nUsing Latin as a simple content example, the book then grounds abstract ideas in a concrete subject: what Latin is, where it originated, and why even a single content example can illuminate broader issues in text representation and historical data. This short, focused chapter signals how subject matter expertise and metadata interact — content must be known before it can be structured, annotated, or mined for insights.\n\nThe middle section turns to page-level objects and semantic markup. It explains how tables, figures, captions, headers, rows, and axis labels create machine- and human-readable structure on a page, and why clear captions and consistent headers are essential for downstream processing. Concrete mini-examples show how to encode tabular data and chart metadata to maximize interpretability and reusability.\n\nThe book culminates by introducing AI Document Intelligence as the practical technology that operationalizes these earlier concepts. It describes how automated extraction systems recover text, key-value pairs, tables, and page structure; contrasts prebuilt and customized models; and outlines deployment patterns (cloud, on-premises, SDK, and studio-based customization). Practical business use cases — document processing, knowledge mining, and industry-specific model customization — and pointers to demos connect the theoretical progression to real-world action, highlighting how properly structured documents enable automation, searchability, and analytics.",
+  "key_themes": [
+    "Document structure and semantic markup",
+    "Bridging human content and machine-readable data",
+    "Page objects: tables, figures, captions, and metadata",
+    "Automated extraction and AI Document Intelligence",
+    "Prebuilt versus customized models and deployment options",
+    "Practical workflows for turning documents into actionable information"
+  ],
+  "learning_objectives": [
+    "Understand why explicit document structure matters for both humans and machines",
+    "Recognize common page objects (tables, figures, captions) and how to encode them semantically",
+    "See how subject content (illustrated with a Latin example) informs metadata and annotation choices",
+    "Learn the capabilities of AI Document Intelligence: text, key‑value, table, and structure extraction",
+    "Compare prebuilt and custom model strategies and know when to use cloud, on‑premises, or SDK solutions",
+    "Apply concepts to real use cases: document processing pipelines, knowledge mining, and model customization"
+  ],
+  "chapter_summaries": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "This is title",
+      "summary": "Because no prior chapters or in-chapter content were provided, this chapter appears to serve as an introductory or title chapter. It likely establishes the book’s purpose, scope, audience, and structure, and sets expectations for what follows. The chapter functions as a framing device: introducing central questions, defining the subject area, and outlining the roadmap that later chapters will follow.  \n\nIn the absence of explicit content, the chapter’s primary contribution is to create a foundation for subsequent material—introducing key terms, the organizing logic of the book, and the goals readers should keep in mind. It prepares readers for progressively deeper treatment by signaling themes and methods that later chapters will develop and connect to each other.",
+      "key_concepts": [
+        "Purpose and scope",
+        "Audience and objectives",
+        "Roadmap and structure"
+      ],
+      "main_topics": [
+        "Introduction to the subject",
+        "Definitions and terminology",
+        "Overview of chapter progression"
+      ],
+      "token_count": 341,
+      "created_at": "2025-09-27T00:06:55.318338"
+    },
+    {
+      "chapter_number": 2,
+      "chapter_title": "1. Text",
+      "summary": "Building on the introductory framing from Chapter 1, which set the book's purpose and scope, Chapter 2 moves from framing into subject matter by defining what Latin is. It provides a concise identification: Latin is an ancient Italic language that originated in the region of Latium in ancient Rome. This statement establishes the linguistic and geographic starting point for the book’s deeper exploration.\n\nBy introducing Latin at this foundational level, the chapter narrows the reader’s focus from the general aims and structure described earlier to a concrete subject for further study. The simple definition both situates Latin in time and place and signals lines of inquiry that later chapters will follow—its relationship to other Italic languages, its role in Roman culture, and its long-term influence on later languages and disciplines.",
+      "key_concepts": [
+        "Latin",
+        "Italic language",
+        "Latium",
+        "Ancient Rome",
+        "Language origin",
+        "Historical linguistics"
+      ],
+      "main_topics": [
+        "Definition of Latin",
+        "Geographic origin (Latium)",
+        "Cultural and historical context (ancient Rome)",
+        "Linguistic classification (Italic family)",
+        "Foundational role for later chapters"
+      ],
+      "token_count": 387,
+      "created_at": "2025-09-27T00:07:02.181946"
+    },
+    {
+      "chapter_number": 3,
+      "chapter_title": "2. Page Objects",
+      "summary": "Building on the book’s framing and subject introduction from Chapters 1 and 2, this chapter moves from high-level purpose and definition to concrete page-level objects used to present information. It provides simple, practical examples of two common objects: a table and a figure. The table example demonstrates structural elements (caption, header row, cells) with a tiny dataset (names and corp entries). The figure example embeds chart-like data and descriptive metadata (figcaption, monthly values, axis titles) and illustrates how a visual summary can be encoded alongside textual labels.\n\nTaken together, these examples show how semantic page objects support clarity and usability: captions and headers give context; structured rows and cells make tabular data machine- and human-readable; figcaptions and explicit axis labels make graphical data interpretable. This chapter thus advances the reader from understanding what the subject is (Chapter 2’s definition of Latin and its context) to understanding how to present subject-related data effectively on a page, establishing a foundation for later chapters that will likely cover richer content, annotation, and layout practices.",
+      "key_concepts": [
+        "Table structure (caption, headers, rows, cells)",
+        "Figure/figcaption",
+        "Chart data and axis titles",
+        "Semantic markup and metadata",
+        "Data presentation and readability"
+      ],
+      "main_topics": [
+        "Using tables to present tabular data",
+        "Using figures to present graphical data",
+        "Importance of captions and labels",
+        "Encoding data and annotations in page objects"
+      ],
+      "token_count": 489,
+      "created_at": "2025-09-27T00:07:13.922210"
+    },
+    {
+      "chapter_number": 4,
+      "chapter_title": "3. Others",
+      "summary": "Chapter 4 transitions from the book’s earlier framing and examples into a practical technology that can operationalize the document objects introduced earlier. After the introduction (Chapter 1) and a concrete subject example (Chapter 2), and the page-level examples of tables and figures (Chapter 3), this chapter presents AI Document Intelligence: a machine‑learning service that automatically extracts text, key–value pairs, tables, and document structure so that documents become usable data. The chapter emphasizes qualities of the extraction (marked as clear, precise, coherent) and notes that the system can be deployed with prebuilt models or customized models via a studio or SDK, on premises or in the cloud.\n\nThe chapter further positions the technology as a way to shift from compiling information to acting on it, outlining practical business use cases — document processing, knowledge mining, and industry-specific model customization — and mentioning hands-on webinar demos. It also hints at metadata and page-level details (for example, footer and page-number comments) as extractable structure, reinforcing how the service connects to the earlier examples of page content and presentation.",
+      "key_concepts": [
+        "AI Document Intelligence",
+        "text extraction",
+        "key–value extraction",
+        "table and structure extraction",
+        "prebuilt vs. custom models",
+        "studio and SDK",
+        "on‑premises and cloud deployment",
+        "knowledge mining",
+        "document processing",
+        "metadata and page structure"
+      ],
+      "main_topics": [
+        "automating document-to-data conversion",
+        "extraction quality and evaluation (clear, precise, coherent)",
+        "model customization and deployment options",
+        "practical use cases and demos",
+        "handling page-level objects and metadata"
+      ],
+      "token_count": 569,
+      "created_at": "2025-09-27T00:07:24.185657"
+    }
+  ],
+  "total_chapters": 4,
+  "created_at": "2025-09-27T00:07:36.841848"
+}

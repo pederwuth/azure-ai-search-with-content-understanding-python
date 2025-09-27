@@ -101,6 +101,14 @@ class DocumentProcessingTask(BaseTask):
 
         self.logger.info(f"Processing PDF: {pdf_file}")
 
+        # Debug: Log all input data keys and values
+        self.logger.info(
+            f"🔍 Document task inputs.data keys: {list(inputs.data.keys())}")
+        self.logger.info(
+            f"🔍 Document task custom_filename: {inputs.data.get('custom_filename')}")
+        self.logger.info(
+            f"🔍 Document task original_filename: {inputs.data.get('original_filename')}")
+
         # Get configuration from inputs
         custom_filename = inputs.data.get('custom_filename')
         analyzer_template = inputs.data.get(

@@ -247,6 +247,11 @@ class PipelineExecutor:
             if input_key in available_outputs.files:
                 task_inputs.files[input_key] = available_outputs.files[input_key]
 
+        # Also pass ALL available data to support custom parameters like custom_filename, original_filename, etc.
+        for key, value in available_outputs.data.items():
+            if key not in task_inputs.data:  # Don't overwrite already set inputs
+                task_inputs.add_data(key, value)
+
         return task_inputs
 
     async def _save_task_outputs(self,

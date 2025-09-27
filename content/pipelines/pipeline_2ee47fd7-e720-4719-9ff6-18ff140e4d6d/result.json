@@ -1,0 +1,194 @@
+{
+  "pipeline_id": "2ee47fd7-e720-4719-9ff6-18ff140e4d6d",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T22:23:34.250236",
+  "end_time": "2025-09-25T22:24:28.210564",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T22:23:34.250533",
+      "end_time": "2025-09-25T22:24:07.018397",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T22:24:07.018420",
+      "end_time": "2025-09-25T22:24:28.210543",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "meaningful_custom_filename",
+      "figures_directory": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1/tmprxvcnanf-book-figures-20250925_222334-02f3c3d1",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page-Object Patterns for Data Visualization (inferred)",
+      "main_folder": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1",
+      "book_summary": {
+        "book_title": "Page-Object Patterns for Data Visualization (inferred)",
+        "overall_summary": "This book tells a practical and conceptual story about modeling visualizations as page objects: structured, metadata-rich, reusable components that encapsulate both the visual and semantic aspects of a figure. It begins by introducing the page-object approach and the core ideas of page structure, metadata, and component encapsulation. From these foundations the text immediately moves to a concrete example — a single figure implemented as a page object — to make abstract principles tangible. That example, a bar chart of monthly values with explicit axis labels, a Markdown data table, color-encoded categories, annotations and a caption, illustrates how visual content and descriptive metadata work together to create communicative, testable artifacts.\n\nAfter grounding readers with the example, the book expands outward to show how the same approach scales and generalizes: different chart types, composition of multiple figures into pages or reports, linking data tables to plots, and encoding semantic structure such as axis titles, categories, and annotations. Along the way it emphasizes the role of metadata and machine-readable descriptions (captions, footnotes, data provenance) in making visualizations reproducible, interpretable, and interoperable with downstream tooling.\n\nThe narrative then turns to practicalities: implementation patterns, serialization and interchange formats (for example Markdown tables and structured metadata), testing and validation of page objects, and accessibility considerations that ensure figures are useful to broad audiences. The book shows how to build libraries and pipelines that produce consistent, high-quality figures for reports, papers, dashboards, and automated workflows.\n\nFinally, the book synthesizes these strands into guidance for production use: conventions for naming and organizing page objects, best practices for color encoding and annotation, strategies for documenting and publishing figures, and recipes for integrating page-object visualizations into reproducible research and deployment pipelines. Readers finish with a clear toolkit for designing, producing, and maintaining figures that are both visually effective and semantically robust.",
+        "key_themes": [
+          "Page-object design for visual artifacts",
+          "Metadata and semantic description for reproducibility",
+          "Component encapsulation and modularity",
+          "Data-to-visual encoding and annotation practices",
+          "Practical tooling and standards for production use"
+        ],
+        "learning_objectives": [
+          "Understand the page-object approach and how to represent figures as structured objects combining visuals and metadata",
+          "Be able to construct modular, reusable visualization components (captions, axes, data tables, annotations, color encodings)",
+          "Apply best practices for reproducibility, accessibility, and serialization of figures into documentation and automated pipelines"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter focuses on the \"Figure\" page object and applies the page-object approach introduced in earlier chapters to a concrete visualization example. Building on the foundational concepts of page structure, metadata and component encapsulation introduced previously, the chapter shows how a figure is represented with a caption, explicit axis labels, a data table, color-encoded categories, and free-text annotations. The concrete instance is a bar chart of monthly values from January to June (200, 300, 400, 450, 350, 250), accompanied by a Markdown data table and axis titles labeled \"Months\" and \"Values.\" The figure highlights a clear peak in April (450) and a low in January (200), and uses three colors to group months: orange (January, April), green (February, May) and blue (March, June).",
+            "key_concepts": [
+              "Page object: Figure",
+              "Bar chart data representation",
+              "Axis titles and labels",
+              "Figure metadata (caption, annotations, footnotes)",
+              "Markdown data table",
+              "Color encoding for categories",
+              "Peak and trough identification in time-series"
+            ],
+            "main_topics": [
+              "Visual encoding of monthly business/finance data",
+              "Interpreting bar charts (peak, low, fluctuations)",
+              "Representing chart metadata within a page object",
+              "Translating visualization into structured data (table + axis labels)"
+            ],
+            "token_count": 519,
+            "created_at": "2025-09-25T22:24:17.610350"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T22:24:28.200102"
+      },
+      "overall_summary": "This book tells a practical and conceptual story about modeling visualizations as page objects: structured, metadata-rich, reusable components that encapsulate both the visual and semantic aspects of a figure. It begins by introducing the page-object approach and the core ideas of page structure, metadata, and component encapsulation. From these foundations the text immediately moves to a concrete example — a single figure implemented as a page object — to make abstract principles tangible. That example, a bar chart of monthly values with explicit axis labels, a Markdown data table, color-encoded categories, annotations and a caption, illustrates how visual content and descriptive metadata work together to create communicative, testable artifacts.\n\nAfter grounding readers with the example, the book expands outward to show how the same approach scales and generalizes: different chart types, composition of multiple figures into pages or reports, linking data tables to plots, and encoding semantic structure such as axis titles, categories, and annotations. Along the way it emphasizes the role of metadata and machine-readable descriptions (captions, footnotes, data provenance) in making visualizations reproducible, interpretable, and interoperable with downstream tooling.\n\nThe narrative then turns to practicalities: implementation patterns, serialization and interchange formats (for example Markdown tables and structured metadata), testing and validation of page objects, and accessibility considerations that ensure figures are useful to broad audiences. The book shows how to build libraries and pipelines that produce consistent, high-quality figures for reports, papers, dashboards, and automated workflows.\n\nFinally, the book synthesizes these strands into guidance for production use: conventions for naming and organizing page objects, best practices for color encoding and annotation, strategies for documenting and publishing figures, and recipes for integrating page-object visualizations into reproducible research and deployment pipelines. Readers finish with a clear toolkit for designing, producing, and maintaining figures that are both visually effective and semantically robust.",
+      "key_themes": [
+        "Page-object design for visual artifacts",
+        "Metadata and semantic description for reproducibility",
+        "Component encapsulation and modularity",
+        "Data-to-visual encoding and annotation practices",
+        "Practical tooling and standards for production use"
+      ],
+      "learning_objectives": [
+        "Understand the page-object approach and how to represent figures as structured objects combining visuals and metadata",
+        "Be able to construct modular, reusable visualization components (captions, axes, data tables, annotations, color encodings)",
+        "Apply best practices for reproducibility, accessibility, and serialization of figures into documentation and automated pipelines"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter focuses on the \"Figure\" page object and applies the page-object approach introduced in earlier chapters to a concrete visualization example. Building on the foundational concepts of page structure, metadata and component encapsulation introduced previously, the chapter shows how a figure is represented with a caption, explicit axis labels, a data table, color-encoded categories, and free-text annotations. The concrete instance is a bar chart of monthly values from January to June (200, 300, 400, 450, 350, 250), accompanied by a Markdown data table and axis titles labeled \"Months\" and \"Values.\" The figure highlights a clear peak in April (450) and a low in January (200), and uses three colors to group months: orange (January, April), green (February, May) and blue (March, June).",
+          "key_concepts": [
+            "Page object: Figure",
+            "Bar chart data representation",
+            "Axis titles and labels",
+            "Figure metadata (caption, annotations, footnotes)",
+            "Markdown data table",
+            "Color encoding for categories",
+            "Peak and trough identification in time-series"
+          ],
+          "main_topics": [
+            "Visual encoding of monthly business/finance data",
+            "Interpreting bar charts (peak, low, fluctuations)",
+            "Representing chart metadata within a page object",
+            "Translating visualization into structured data (table + axis labels)"
+          ],
+          "token_count": 519,
+          "created_at": "2025-09-25T22:24:17.610350"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmprxvcnanf.pdf",
+      "pdf_file": "/tmp/tmprxvcnanf.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_2ee47fd7-e720-4719-9ff6-18ff140e4d6d/task_document_processing/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1.md",
+      "cache_file": "content/pipelines/pipeline_2ee47fd7-e720-4719-9ff6-18ff140e4d6d/task_document_processing/tmprxvcnanf-book-cache-20250925_222334-02f3c3d1.json",
+      "metadata": "content/pipelines/pipeline_2ee47fd7-e720-4719-9ff6-18ff140e4d6d/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_2ee47fd7-e720-4719-9ff6-18ff140e4d6d/task_summarization/tmprxvcnanf-summary-20250925_222334-02f3c3d1.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmprxvcnanf.pdf",
+      "enhanced_markdown": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1.md",
+      "cache_file": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed/tmprxvcnanf-book-cache-20250925_222334-02f3c3d1.json",
+      "figures_directory": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1/tmprxvcnanf-book-figures-20250925_222334-02f3c3d1",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-233660f1-b445-48c1-9761-634825ae2322",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1",
+      "job_id": "02f3c3d1",
+      "timestamp": "20250925_222334",
+      "content_type": "book",
+      "book_title": "tmprxvcnanf",
+      "metadata_file": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/metadata.json",
+      "input_directory": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/input",
+      "processed_directory": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed",
+      "markdown_directory": "content/books/tmprxvcnanf-book-20250925_222334-02f3c3d1/processed/tmprxvcnanf-book-markdown-20250925_222334-02f3c3d1",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 3,
+      "created_at": "2025-09-25T22:24:28.200102"
+    }
+  }
+}

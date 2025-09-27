@@ -5,6 +5,11 @@ This API provides endpoints to test and use the Content Understanding
 implementation created in Phase 2.
 """
 
+import uvicorn
+from pydantic import BaseModel
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, BackgroundTasks, Depends
 import sys
 import os
 import logging
@@ -28,11 +33,6 @@ except ImportError:
     pass
 
 # FastAPI imports
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form, BackgroundTasks, Depends
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, FileResponse
-from pydantic import BaseModel
-import uvicorn
 
 # Environment configuration
 CONTENT_OUTPUT_DIRECTORY = os.getenv(
@@ -331,7 +331,7 @@ async def root():
         "books": "/books",
         "test_pipeline": "/test-pipeline"
     }
-    
+
     # Add enhanced processing endpoints if available
     if ENHANCED_PROCESSING_AVAILABLE:
         endpoints.update({
@@ -340,7 +340,7 @@ async def root():
             "enhanced_download": "/enhanced/download/{job_id}/{file_type}",
             "enhanced_jobs": "/enhanced/jobs"
         })
-    
+
     # Add summarization endpoints if available
     if SUMMARIZATION_AVAILABLE:
         endpoints.update({
@@ -348,7 +348,7 @@ async def root():
             "summarize_markdown": "/summarization/summarize",
             "upload_and_summarize": "/summarization/upload"
         })
-    
+
     # Add pipeline endpoints if available
     if PIPELINE_AVAILABLE:
         endpoints.update({
@@ -359,7 +359,7 @@ async def root():
             "pipeline_list": "/pipeline/list",
             "pipeline_tasks": "/pipeline/tasks"
         })
-    
+
     return {
         "name": "Educational Content Understanding API",
         "version": "1.0.0",

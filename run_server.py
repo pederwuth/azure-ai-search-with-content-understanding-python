@@ -3,6 +3,8 @@
 Server runner for the Educational Content Understanding API.
 """
 
+from src.api_server import app
+import uvicorn
 import os
 import sys
 from pathlib import Path
@@ -17,19 +19,18 @@ try:
 except ImportError:
     pass
 
-import uvicorn
-from src.api_server import app
 
 if __name__ == "__main__":
     print("🚀 Starting Educational Content Understanding API...")
-    print(f"📁 Content output directory: {os.getenv('CONTENT_OUTPUT_DIRECTORY', 'content/books')}")
+    print(
+        f"📁 Content output directory: {os.getenv('CONTENT_OUTPUT_DIRECTORY', 'content/books')}")
     print("📋 Available endpoints:")
     print("   • POST /enhanced/process - Enhanced document processing")
     print("   • GET /enhanced/status/{job_id} - Job status")
     print("   • GET /enhanced/download/{job_id}/markdown - Download results")
     print("   • GET /docs - API documentation")
     print()
-    
+
     uvicorn.run(
         "src.api_server:app",
         host="0.0.0.0",

@@ -199,8 +199,9 @@ async def execute_pipeline_template(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(..., description="Input file (usually PDF)"),
     custom_filename: Optional[str] = Form(
-        None, description="Custom name for the book"),
-    settings: str = Form("{}", description="Pipeline settings as JSON string")
+        default=None, description="Custom name for the book (optional)"),
+    settings: str = Form(
+        default="{}", description="Pipeline settings as JSON string")
 ):
     """
     Execute a pipeline using a pre-built template
@@ -475,10 +476,30 @@ async def _execute_template_pipeline_background(
             config = create_pipeline_from_template(template_name, **settings)
 
             # Prepare initial inputs
+            # Debug logging to see what filename we received
+            logger.info(
+                f"🔍 Filename received: '{filename}', Custom filename: '{custom_filename}'")
+
+            # Filter out Swagger UI placeholder values
+            swagger_placeholders = {"string", "str",
+                                    "text", "filename", "name", "title"}
+            if custom_filename and custom_filename.lower().strip() in swagger_placeholders:
+                logger.info(
+                    f"🚫 Ignoring Swagger UI placeholder value: '{custom_filename}'")
+                custom_filename = None
+
+            # Use custom_filename as original_filename if provided and filename looks temporary
+            effective_filename = filename
+            if custom_filename and (not filename or filename.startswith('tmp') or '.' not in filename):
+                effective_filename = custom_filename if custom_filename.endswith(
+                    '.pdf') else f"{custom_filename}.pdf"
+                logger.info(
+                    f"🔄 Using custom_filename as effective filename: '{effective_filename}'")
+
             initial_inputs = {
                 "pdf": temp_pdf_path,
                 "pdf_file": temp_pdf_path,
-                "original_filename": filename
+                "original_filename": effective_filename
             }
 
             if custom_filename:
