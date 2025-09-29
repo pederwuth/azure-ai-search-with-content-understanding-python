@@ -20,10 +20,16 @@ class Settings:
 
     def __init__(self):
         """Initialize settings from environment variables."""
+        import logging
+        logger = logging.getLogger(__name__)
+        
         # Load .env file if it exists
         env_file = Path(".env")
         if env_file.exists():
             load_dotenv(env_file, override=True)
+            logger.info(f"📄 Configuration loaded from {env_file}")
+        else:
+            logger.warning("⚠️  No .env file found, using system environment variables")
 
         # Azure OpenAI settings (GPT-5-mini)
         self.azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
@@ -31,6 +37,13 @@ class Settings:
             "AZURE_OPENAI_CHAT_DEPLOYMENT_NAME")
         self.azure_openai_chat_api_version = os.getenv(
             "AZURE_OPENAI_CHAT_API_VERSION", "2024-12-01-preview")
+        
+        # Log Azure OpenAI configuration
+        if self.azure_openai_endpoint and self.azure_openai_chat_deployment_name:
+            logger.info(f"🤖 Azure OpenAI configured: {self.azure_openai_chat_deployment_name}")
+            logger.info(f"🔗 Endpoint: {self.azure_openai_endpoint}")
+        else:
+            logger.warning("⚠️  Azure OpenAI configuration incomplete")
         self.azure_openai_embedding_deployment_name = os.getenv(
             "AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME")
         self.azure_openai_embedding_api_version = os.getenv(

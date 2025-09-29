@@ -13,9 +13,19 @@ sys.path.append(str(Path(__file__).parent / "src"))
 # Load environment variables
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    dotenv_loaded = load_dotenv()
+    print(f"📄 Environment file loaded: {dotenv_loaded}")
+    
+    # Log key Azure OpenAI configuration
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    azure_deployment = os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME")
+    if azure_endpoint and azure_deployment:
+        print(f"🤖 Azure OpenAI Model: {azure_deployment}")
+        print(f"🔗 Azure OpenAI Endpoint: {azure_endpoint}")
+    else:
+        print("⚠️  Azure OpenAI configuration not found in environment")
 except ImportError:
-    pass
+    print("⚠️  python-dotenv not available, environment variables must be set manually")
 
 import uvicorn
 from src.api_server import app

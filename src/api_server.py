@@ -47,6 +47,15 @@ except ImportError as e:
     logger.error(f"Failed to import enhanced processing components: {e}")
     ENHANCED_PROCESSING_AVAILABLE = False
 
+# Summarization components
+try:
+    from .summarization.router import router as summarization_router
+    SUMMARIZATION_AVAILABLE = True
+    logger.info("Summarization components imported successfully")
+except ImportError as e:
+    logger.error(f"Failed to import summarization components: {e}")
+    SUMMARIZATION_AVAILABLE = False
+
 # FastAPI app configuration
 app = FastAPI(
     title="Educational Content Understanding API",
@@ -67,6 +76,11 @@ app.add_middleware(
 if ENHANCED_PROCESSING_AVAILABLE:
     app.include_router(enhanced_router)
     logger.info("Enhanced processing endpoints added")
+
+# Include summarization router if available
+if SUMMARIZATION_AVAILABLE:
+    app.include_router(summarization_router)
+    logger.info("Summarization endpoints added")
 
 # Global variables for job tracking
 # Legacy job tracking removed - use enhanced processing endpoints instead
