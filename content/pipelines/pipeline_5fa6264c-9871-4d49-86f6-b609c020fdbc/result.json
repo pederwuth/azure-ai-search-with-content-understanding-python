@@ -1,0 +1,191 @@
+{
+  "pipeline_id": "5fa6264c-9871-4d49-86f6-b609c020fdbc",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:39:45.863211",
+  "end_time": "2025-09-24T18:40:28.978994",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T18:39:45.864100",
+      "end_time": "2025-09-24T18:39:59.842485",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T18:39:59.842502",
+      "end_time": "2025-09-24T18:40:28.978984",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Summary Debug",
+      "figures_directory": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed/tmp678b47uf-book-markdown-20250924_183945-d7a55212/tmp678b47uf-book-figures-20250924_183945-d7a55212",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects for Data Visualization: Designing Clear, Verifiable Figures",
+      "main_folder": "content/books/tmp678b47uf-book-20250924_183945-d7a55212",
+      "book_summary": {
+        "book_title": "Page Objects for Data Visualization: Designing Clear, Verifiable Figures",
+        "overall_summary": "This book presents a focused methodology for creating reliable, interpretable visual artifacts — called page objects — that communicate business and analytical findings with clarity and verifiability. It begins by defining page objects as self-contained units on a page (figures, tables, charts, etc.) and articulates why treating them as first-class design and documentation elements improves communication between analysts, designers, and stakeholders. A running example (a monthly business bar chart covering January–June) grounds the discussion, illustrating how a well-constructed figure combines graphical elements, labeling, color grouping, a data backing table, and a succinct caption.\n\nFrom theory to practice, the book walks readers through the core principles of visualization quality: accurate representation of data, clear axis and legend labeling, explicit color semantics, and reproducible data backing. The example chapter demonstrates these concepts concretely: a bar chart with months on the x-axis, values on the y-axis, specific color mappings for paired months (January & April in orange, February & May in green, March & June in blue), a Markdown data table with the underlying numeric series (200, 300, 400, 450, 350, 250), and a caption that highlights the peak and the low point. This reinforces how multiple annotations work together to make trends and comparisons both interpretable and verifiable.\n\nBeyond a single figure, the narrative expands to procedural guidance for integrating page objects into reporting workflows: standards for annotation, templates for consistent figure production, and lightweight checks to ensure that captions and tabular data match graphical representations. The book emphasizes reproducibility and accountability — that every visual claim should be traceable to a clearly presented data source and a concise explanatory caption. Practical heuristics and checklists help readers evaluate and improve existing figures in reports and dashboards.\n\nFinally, the book positions these practices in the broader context of organizational decision-making. By making figures self-describing and verifiable, teams reduce misinterpretation, accelerate reviews, and foster trust between data producers and consumers. The result is a compact, actionable handbook that helps analysts, designers, and communicators produce figures that are not only attractive but also robust, auditable, and easy to reuse across documents and presentations.",
+        "key_themes": [
+          "Page objects as first-class design and documentation elements",
+          "Clarity through explicit labeling and captioning",
+          "Verifiability by including backing data (tables) with visuals",
+          "Use of color to encode categorical or grouped information consistently",
+          "Reproducibility and accountable visual communication"
+        ],
+        "learning_objectives": [
+          "Understand the concept of a page object and its role in reporting",
+          "Design bar charts and similar figures that combine graphic, textual, and tabular elements",
+          "Apply consistent color coding and axis/legend conventions to improve interpretability",
+          "Create captions that summarize key patterns while pointing to supporting data",
+          "Implement simple checks to ensure the graphical display matches the underlying data"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter focuses on a concrete Page Object example: a Figure that presents monthly business/finance data as a bar chart covering January through June. The figure is accompanied by a caption, axis titles (Months and Values), a Markdown data table, and explicit color coding (January & April in orange, February & May in green, March & June in blue). Numerically the series shows values of 200, 300, 400, 450, 350, and 250, with a clear peak in April (450) and the lowest point in January (200).\n\nBuilding on earlier material about page objects and basic visualization best practices, this chapter moves from abstract description to a concrete visual artifact and its annotations. It demonstrates how a figure should combine graphical bars, a legend-like color scheme, axis labels, a tabular backup of the data, and a succinct caption to make the information both interpretable and verifiable. The chapter thus reinforces how properly annotated figures support accurate interpretation of trends and comparisons in business data.",
+            "key_concepts": [
+              "Page Object: Figure",
+              "Bar chart interpretation",
+              "Axis labeling (Months, Values)",
+              "Data backing table (Markdown table)",
+              "Color coding to group categories",
+              "Captioning and annotation"
+            ],
+            "main_topics": [
+              "Monthly value trends (Jan–Jun)",
+              "Visual encoding and color grouping",
+              "Figure metadata and data verification"
+            ],
+            "token_count": 483,
+            "created_at": "2025-09-24T18:40:10.558704"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T18:40:28.978368"
+      },
+      "overall_summary": "This book presents a focused methodology for creating reliable, interpretable visual artifacts — called page objects — that communicate business and analytical findings with clarity and verifiability. It begins by defining page objects as self-contained units on a page (figures, tables, charts, etc.) and articulates why treating them as first-class design and documentation elements improves communication between analysts, designers, and stakeholders. A running example (a monthly business bar chart covering January–June) grounds the discussion, illustrating how a well-constructed figure combines graphical elements, labeling, color grouping, a data backing table, and a succinct caption.\n\nFrom theory to practice, the book walks readers through the core principles of visualization quality: accurate representation of data, clear axis and legend labeling, explicit color semantics, and reproducible data backing. The example chapter demonstrates these concepts concretely: a bar chart with months on the x-axis, values on the y-axis, specific color mappings for paired months (January & April in orange, February & May in green, March & June in blue), a Markdown data table with the underlying numeric series (200, 300, 400, 450, 350, 250), and a caption that highlights the peak and the low point. This reinforces how multiple annotations work together to make trends and comparisons both interpretable and verifiable.\n\nBeyond a single figure, the narrative expands to procedural guidance for integrating page objects into reporting workflows: standards for annotation, templates for consistent figure production, and lightweight checks to ensure that captions and tabular data match graphical representations. The book emphasizes reproducibility and accountability — that every visual claim should be traceable to a clearly presented data source and a concise explanatory caption. Practical heuristics and checklists help readers evaluate and improve existing figures in reports and dashboards.\n\nFinally, the book positions these practices in the broader context of organizational decision-making. By making figures self-describing and verifiable, teams reduce misinterpretation, accelerate reviews, and foster trust between data producers and consumers. The result is a compact, actionable handbook that helps analysts, designers, and communicators produce figures that are not only attractive but also robust, auditable, and easy to reuse across documents and presentations.",
+      "key_themes": [
+        "Page objects as first-class design and documentation elements",
+        "Clarity through explicit labeling and captioning",
+        "Verifiability by including backing data (tables) with visuals",
+        "Use of color to encode categorical or grouped information consistently",
+        "Reproducibility and accountable visual communication"
+      ],
+      "learning_objectives": [
+        "Understand the concept of a page object and its role in reporting",
+        "Design bar charts and similar figures that combine graphic, textual, and tabular elements",
+        "Apply consistent color coding and axis/legend conventions to improve interpretability",
+        "Create captions that summarize key patterns while pointing to supporting data",
+        "Implement simple checks to ensure the graphical display matches the underlying data"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter focuses on a concrete Page Object example: a Figure that presents monthly business/finance data as a bar chart covering January through June. The figure is accompanied by a caption, axis titles (Months and Values), a Markdown data table, and explicit color coding (January & April in orange, February & May in green, March & June in blue). Numerically the series shows values of 200, 300, 400, 450, 350, and 250, with a clear peak in April (450) and the lowest point in January (200).\n\nBuilding on earlier material about page objects and basic visualization best practices, this chapter moves from abstract description to a concrete visual artifact and its annotations. It demonstrates how a figure should combine graphical bars, a legend-like color scheme, axis labels, a tabular backup of the data, and a succinct caption to make the information both interpretable and verifiable. The chapter thus reinforces how properly annotated figures support accurate interpretation of trends and comparisons in business data.",
+          "key_concepts": [
+            "Page Object: Figure",
+            "Bar chart interpretation",
+            "Axis labeling (Months, Values)",
+            "Data backing table (Markdown table)",
+            "Color coding to group categories",
+            "Captioning and annotation"
+          ],
+          "main_topics": [
+            "Monthly value trends (Jan–Jun)",
+            "Visual encoding and color grouping",
+            "Figure metadata and data verification"
+          ],
+          "token_count": 483,
+          "created_at": "2025-09-24T18:40:10.558704"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp678b47uf.pdf",
+      "pdf_file": "/tmp/tmp678b47uf.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_5fa6264c-9871-4d49-86f6-b609c020fdbc/task_document_processing/tmp678b47uf-book-markdown-20250924_183945-d7a55212.md",
+      "cache_file": "content/pipelines/pipeline_5fa6264c-9871-4d49-86f6-b609c020fdbc/task_document_processing/tmp678b47uf-book-cache-20250924_183945-d7a55212.json",
+      "metadata": "content/pipelines/pipeline_5fa6264c-9871-4d49-86f6-b609c020fdbc/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp678b47uf.pdf",
+      "enhanced_markdown": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed/tmp678b47uf-book-markdown-20250924_183945-d7a55212/tmp678b47uf-book-markdown-20250924_183945-d7a55212.md",
+      "cache_file": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed/tmp678b47uf-book-cache-20250924_183945-d7a55212.json",
+      "figures_directory": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed/tmp678b47uf-book-markdown-20250924_183945-d7a55212/tmp678b47uf-book-figures-20250924_183945-d7a55212",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-e5f53442-18f5-4005-96ba-d0ad50ac5083",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmp678b47uf-book-20250924_183945-d7a55212",
+      "job_id": "d7a55212",
+      "timestamp": "20250924_183945",
+      "content_type": "book",
+      "book_title": "tmp678b47uf",
+      "metadata_file": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/metadata.json",
+      "input_directory": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/input",
+      "processed_directory": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed",
+      "markdown_directory": "content/books/tmp678b47uf-book-20250924_183945-d7a55212/processed/tmp678b47uf-book-markdown-20250924_183945-d7a55212",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T18:40:28.978368"
+    }
+  }
+}

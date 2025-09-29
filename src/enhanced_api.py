@@ -26,7 +26,7 @@ router = APIRouter(prefix="/enhanced", tags=["Enhanced Processing"])
 class EnhancedProcessingRequest(BaseModel):
     """Request model for enhanced document processing."""
     custom_filename: Optional[str] = Field(
-        default=None, 
+        default=None,
         description="Optional custom name for the book (leave empty to use PDF filename)",
         examples=["machine_learning_basics", ""],
         title="Custom Filename (Optional)"
@@ -43,7 +43,7 @@ class EnhancedProcessingRequest(BaseModel):
         default="book",
         description="Type of content being processed"
     )
-    
+
     @field_validator('custom_filename')
     @classmethod
     def validate_custom_filename(cls, v):
@@ -82,7 +82,7 @@ async def process_pdf_enhanced(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(..., description="PDF file to process"),
     custom_filename: Optional[str] = Form(
-        None, 
+        None,
         description="Optional custom name for the book (leave empty to use PDF filename)",
         title="Custom Filename (Optional)"
     ),
@@ -106,7 +106,7 @@ async def process_pdf_enhanced(
 
     This endpoint provides the same high-quality processing as the notebook
     'search_with_visual_document.ipynb' with rich content understanding analysis.
-    
+
     Parameters:
     - file: PDF file to process
     - custom_filename: Optional custom name for the book. Leave empty to automatically 
@@ -129,8 +129,9 @@ async def process_pdf_enhanced(
     # Handle empty string or placeholder values as None for custom_filename
     if custom_filename in ("", "string", None):
         custom_filename = None
-    
-    logger.info(f"Processing request - filename: {file.filename}, custom_filename: {custom_filename}")
+
+    logger.info(
+        f"Processing request - filename: {file.filename}, custom_filename: {custom_filename}")
 
     # Initialize job
     enhanced_jobs[job_id] = {
@@ -178,7 +179,7 @@ async def _process_pdf_enhanced_background(
         # Update job status
         enhanced_jobs[job_id]["status"] = "processing"
         enhanced_jobs[job_id]["message"] = "Analyzing document with enhanced content understanding..."
-        
+
         # Create temporary file for processing
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
             temp_file.write(file_content)
@@ -226,7 +227,7 @@ async def _process_pdf_enhanced_background(
                 "document_length": results["document_length"],
                 "processing_stats": results["processing_stats"]
             }
-            
+
             # Add content/books structure specific fields
             if use_content_books_structure and "main_folder" in results:
                 job_update.update({
@@ -236,7 +237,7 @@ async def _process_pdf_enhanced_background(
                     "metadata_file": results["metadata_file"],
                     "folder_structure": results["folder_structure"]
                 })
-            
+
             enhanced_jobs[job_id].update(job_update)
 
             logger.info(f"Enhanced processing completed for job {job_id}")

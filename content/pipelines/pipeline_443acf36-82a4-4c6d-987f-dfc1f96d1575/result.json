@@ -1,0 +1,51 @@
+{
+  "pipeline_id": "443acf36-82a4-4c6d-987f-dfc1f96d1575",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "failed",
+  "start_time": "2025-09-23T20:13:02.957269",
+  "end_time": "2025-09-23T20:13:19.681582",
+  "error_message": "Task 'document_processing' failed: [Errno 21] Is a directory: 'content/books/tmpxwnbequs-book-20250923_201302-844054e0/processed/tmpxwnbequs-book-markdown-20250923_201302-844054e0/tmpxwnbequs-book-figures-20250923_201302-844054e0'",
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "failed",
+      "start_time": "2025-09-23T20:13:02.957822",
+      "end_time": "2025-09-23T20:13:19.681570",
+      "error_message": "[Errno 21] Is a directory: 'content/books/tmpxwnbequs-book-20250923_201302-844054e0/processed/tmpxwnbequs-book-markdown-20250923_201302-844054e0/tmpxwnbequs-book-figures-20250923_201302-844054e0'",
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": null
+}

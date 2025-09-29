@@ -1,0 +1,60 @@
+{
+  "pipeline_id": "588a2965-8ba5-4847-baca-1b0cd13c8223",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "failed",
+  "start_time": "2025-09-26T21:09:09.635836",
+  "end_time": "2025-09-26T21:09:26.157249",
+  "error_message": "Task 'summarization' failed: name 'current_chapter' is not defined",
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-26T21:09:09.636274",
+      "end_time": "2025-09-26T21:09:25.840132",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "failed",
+      "start_time": "2025-09-26T21:09:25.840147",
+      "end_time": "2025-09-26T21:09:26.157240",
+      "error_message": "name 'current_chapter' is not defined",
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": null
+}

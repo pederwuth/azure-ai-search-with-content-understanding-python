@@ -1,0 +1,202 @@
+{
+  "pipeline_id": "162cde31-055a-47ce-acc8-00ced788f802",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T22:18:52.325972",
+  "end_time": "2025-09-25T22:19:35.985169",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T22:18:52.326801",
+      "end_time": "2025-09-25T22:19:07.848335",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T22:19:07.848380",
+      "end_time": "2025-09-25T22:19:35.985150",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "meaningful_custom_filename",
+      "figures_directory": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed/tmp77t692u4-book-markdown-20250925_221852-8e7db543/tmp77t692u4-book-figures-20250925_221852-8e7db543",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "figures_processed": 1,
+      "document_length": 2503,
+      "book_title": "Page Objects for UI Components: Modeling, Testing, and Validating Visual Elements",
+      "main_folder": "content/books/tmp77t692u4-book-20250925_221852-8e7db543",
+      "book_summary": {
+        "book_title": "Page Objects for UI Components: Modeling, Testing, and Validating Visual Elements",
+        "overall_summary": "This book tells a coherent, practical story about treating user interface elements as first-class, testable objects. It begins by introducing the page object pattern and the high-level rationale for modeling UI components as discrete, discoverable, and programmatic entities. From that foundation it moves into concrete techniques for representing not only entire pages but also the component-level pieces that make up modern interfaces: fields, buttons, tables, and, importantly, figures and visualizations.\n\nA central strand of the book is the idea that visual elements can and should expose both human-facing renderings and machine-readable descriptions. The book demonstrates this with a focused chapter on figures: a bar chart example (January–June) is shown both as a visual and as a rich metadata block that contains ChartType, TopicKeywords, DetailedDescription, AxisTitles, and a MarkdownDataTable. That dual presentation is used to show how tests, accessibility tools, and automation harnesses can reliably extract and assert on chart content rather than relying on brittle pixel checks.\n\nAs the narrative proceeds readers are guided through how to design page objects that encapsulate behavior and structure, how to attach structured metadata to components, and how to use those constructs in automated validation and data-driven testing. The book highlights practical implementation patterns, including property exposure, consistent naming, and embedding explicit data tables for visualizations so that peak and trough values (for example, April = 450, January = 200 in the bar chart) become first-class assertions in test suites.\n\nThe final sections synthesize the lessons into maintainable practices for teams: how to document components, integrate metadata into CI pipelines, support accessibility and automated checks, and scale the approach across large applications. Throughout, the emphasis is on making UI testing less brittle, more declarative, and more aligned with product intent by treating components as well-described objects that speak both to humans and machines.",
+        "key_themes": [
+          "Page object pattern applied to UI components",
+          "Dual representation: visual rendering plus machine-readable metadata",
+          "Designing testable, discoverable UI components",
+          "Data-driven testing for visualizations",
+          "Accessibility and programmatic exposure of content",
+          "Reducing brittleness in UI automation"
+        ],
+        "learning_objectives": [
+          "Understand the page object pattern and adapt it to component-level modeling",
+          "Create page objects that expose both behavior and structured metadata",
+          "Represent visual elements—like charts—as machine-readable objects",
+          "Author automated tests that assert on data and semantics rather than pixels",
+          "Embed explicit data tables and axis metadata to make charts verifiable",
+          "Integrate component metadata into CI, accessibility checks, and documentation"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier chapters that introduced the page object pattern and the general idea of modeling UI components as discrete, testable objects, this chapter focuses on one specific kind of page object: figures (visual data elements). It presents a concrete bar-chart example (January–June) delivered both as a visual element and as structured metadata embedded in a comment block. The chapter shows the figure's textual caption, the plotted monthly values, axis labels (Months and Values), and an explicit data table that lists the exact values for each month, emphasizing that April is the peak (450) and January is the trough (200). \n\nBeyond simply showing the chart, the chapter demonstrates how a figure can be represented as a rich page object by exposing properties such as ChartType, TopicKeywords, DetailedDescription, AxisTitles, and a MarkdownDataTable. This dual presentation (visual + machine-readable metadata) illustrates practical techniques for capturing chart content programmatically—useful for automated validation, accessibility, and data-driven testing—and connects the theoretical page-object ideas from earlier chapters to a real, data-focused UI component.",
+            "key_concepts": [
+              "Page Objects",
+              "Figure as a page object",
+              "Bar chart data and interpretation",
+              "Structured figure metadata",
+              "Axis titles and labels",
+              "Embedded data table",
+              "Programmatic extraction of visual data"
+            ],
+            "main_topics": [
+              "Data visualization within page objects",
+              "Embedding and using metadata for figures",
+              "Interpreting monthly value trends (Jan–Jun)",
+              "Mapping visual elements to object properties for testing/automation"
+            ],
+            "token_count": 491,
+            "created_at": "2025-09-25T22:19:20.597764"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T22:19:33.244034"
+      },
+      "overall_summary": "This book tells a coherent, practical story about treating user interface elements as first-class, testable objects. It begins by introducing the page object pattern and the high-level rationale for modeling UI components as discrete, discoverable, and programmatic entities. From that foundation it moves into concrete techniques for representing not only entire pages but also the component-level pieces that make up modern interfaces: fields, buttons, tables, and, importantly, figures and visualizations.\n\nA central strand of the book is the idea that visual elements can and should expose both human-facing renderings and machine-readable descriptions. The book demonstrates this with a focused chapter on figures: a bar chart example (January–June) is shown both as a visual and as a rich metadata block that contains ChartType, TopicKeywords, DetailedDescription, AxisTitles, and a MarkdownDataTable. That dual presentation is used to show how tests, accessibility tools, and automation harnesses can reliably extract and assert on chart content rather than relying on brittle pixel checks.\n\nAs the narrative proceeds readers are guided through how to design page objects that encapsulate behavior and structure, how to attach structured metadata to components, and how to use those constructs in automated validation and data-driven testing. The book highlights practical implementation patterns, including property exposure, consistent naming, and embedding explicit data tables for visualizations so that peak and trough values (for example, April = 450, January = 200 in the bar chart) become first-class assertions in test suites.\n\nThe final sections synthesize the lessons into maintainable practices for teams: how to document components, integrate metadata into CI pipelines, support accessibility and automated checks, and scale the approach across large applications. Throughout, the emphasis is on making UI testing less brittle, more declarative, and more aligned with product intent by treating components as well-described objects that speak both to humans and machines.",
+      "key_themes": [
+        "Page object pattern applied to UI components",
+        "Dual representation: visual rendering plus machine-readable metadata",
+        "Designing testable, discoverable UI components",
+        "Data-driven testing for visualizations",
+        "Accessibility and programmatic exposure of content",
+        "Reducing brittleness in UI automation"
+      ],
+      "learning_objectives": [
+        "Understand the page object pattern and adapt it to component-level modeling",
+        "Create page objects that expose both behavior and structured metadata",
+        "Represent visual elements—like charts—as machine-readable objects",
+        "Author automated tests that assert on data and semantics rather than pixels",
+        "Embed explicit data tables and axis metadata to make charts verifiable",
+        "Integrate component metadata into CI, accessibility checks, and documentation"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier chapters that introduced the page object pattern and the general idea of modeling UI components as discrete, testable objects, this chapter focuses on one specific kind of page object: figures (visual data elements). It presents a concrete bar-chart example (January–June) delivered both as a visual element and as structured metadata embedded in a comment block. The chapter shows the figure's textual caption, the plotted monthly values, axis labels (Months and Values), and an explicit data table that lists the exact values for each month, emphasizing that April is the peak (450) and January is the trough (200). \n\nBeyond simply showing the chart, the chapter demonstrates how a figure can be represented as a rich page object by exposing properties such as ChartType, TopicKeywords, DetailedDescription, AxisTitles, and a MarkdownDataTable. This dual presentation (visual + machine-readable metadata) illustrates practical techniques for capturing chart content programmatically—useful for automated validation, accessibility, and data-driven testing—and connects the theoretical page-object ideas from earlier chapters to a real, data-focused UI component.",
+          "key_concepts": [
+            "Page Objects",
+            "Figure as a page object",
+            "Bar chart data and interpretation",
+            "Structured figure metadata",
+            "Axis titles and labels",
+            "Embedded data table",
+            "Programmatic extraction of visual data"
+          ],
+          "main_topics": [
+            "Data visualization within page objects",
+            "Embedding and using metadata for figures",
+            "Interpreting monthly value trends (Jan–Jun)",
+            "Mapping visual elements to object properties for testing/automation"
+          ],
+          "token_count": 491,
+          "created_at": "2025-09-25T22:19:20.597764"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp77t692u4.pdf",
+      "pdf_file": "/tmp/tmp77t692u4.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_162cde31-055a-47ce-acc8-00ced788f802/task_document_processing/tmp77t692u4-book-markdown-20250925_221852-8e7db543.md",
+      "cache_file": "content/pipelines/pipeline_162cde31-055a-47ce-acc8-00ced788f802/task_document_processing/tmp77t692u4-book-cache-20250925_221852-8e7db543.json",
+      "metadata": "content/pipelines/pipeline_162cde31-055a-47ce-acc8-00ced788f802/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_162cde31-055a-47ce-acc8-00ced788f802/task_summarization/tmp77t692u4-summary-20250925_221852-8e7db543.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp77t692u4.pdf",
+      "enhanced_markdown": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed/tmp77t692u4-book-markdown-20250925_221852-8e7db543/tmp77t692u4-book-markdown-20250925_221852-8e7db543.md",
+      "cache_file": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed/tmp77t692u4-book-cache-20250925_221852-8e7db543.json",
+      "figures_directory": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed/tmp77t692u4-book-markdown-20250925_221852-8e7db543/tmp77t692u4-book-figures-20250925_221852-8e7db543",
+      "figures_processed": 1,
+      "document_length": 2503,
+      "analyzer_id": "enhanced-content-understanding-faaf9f09-5ce3-4a43-83b9-073e5774f7e0",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "main_folder": "content/books/tmp77t692u4-book-20250925_221852-8e7db543",
+      "job_id": "8e7db543",
+      "timestamp": "20250925_221852",
+      "content_type": "book",
+      "book_title": "tmp77t692u4",
+      "metadata_file": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/metadata.json",
+      "input_directory": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/input",
+      "processed_directory": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed",
+      "markdown_directory": "content/books/tmp77t692u4-book-20250925_221852-8e7db543/processed/tmp77t692u4-book-markdown-20250925_221852-8e7db543",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-25T22:19:33.244034"
+    }
+  }
+}

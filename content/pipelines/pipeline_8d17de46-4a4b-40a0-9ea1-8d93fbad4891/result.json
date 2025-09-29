@@ -1,0 +1,195 @@
+{
+  "pipeline_id": "8d17de46-4a4b-40a0-9ea1-8d93fbad4891",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:33:09.089576",
+  "end_time": "2025-09-24T18:33:58.671303",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T18:33:09.090866",
+      "end_time": "2025-09-24T18:33:31.260479",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T18:33:31.260493",
+      "end_time": "2025-09-24T18:33:58.671286",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Summary Save",
+      "figures_directory": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e/tmp1th2eb4m-book-figures-20250924_183309-d756e16e",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2575,
+        "estimated_tokens": 518
+      },
+      "figures_processed": 1,
+      "document_length": 2575,
+      "book_title": "Page Object Model for Structured Documents",
+      "main_folder": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e",
+      "book_summary": {
+        "book_title": "Page Object Model for Structured Documents",
+        "overall_summary": "This book tells the story of how to convert free‑form documents into consistently structured, machine‑actionable page objects. It begins by motivating the need for a page object model: documents are rich, varied, and semantically dense, and organizing them into predictable, well‑defined objects (headers, paragraphs, tables, figures, etc.) makes them easier to interpret, index, and process. The opening chapters introduce the core ideas of document decomposition, the role of semantic elements, and why consistent metadata matters for both human readers and downstream systems.\n\nAfter establishing the foundations, the book walks through each page object type in detail. Early chapters define the responsibilities and expected metadata for headers and paragraphs; subsequent chapters cover tables and other tabular representations; and the featured Chapter 2.2 drills into the Figure page object. Each object chapter pairs human‑visible presentation (captions, labels, visual encodings) with the machine‑readable attributes required to make that presentation robustly interpretable—Title, ChartType, TopicKeywords, DetailedDescription, AxisTitles, MarkdownDataTable, and footnotes are example attributes shown in practice.\n\nChapter 2.2 uses a concrete bar chart example (monthly values January–June: 200, 300, 400, 450, 350, 250) to demonstrate how caption, plotted values, and embedded metadata cooperate. The narrative shows how axis labels ('Months' and 'Values') frame interpretation, highlights April as the peak and January as the trough, and points out how MarkdownDataTable and explicit axis titles make chart data accessible and extractable. That example is representative of the book’s pattern: real examples, explicit metadata schemas, and attention to both human and machine consumers.\n\nThe latter sections focus on implementation and operational concerns: metadata consistency across documents, accessibility (clear captions and axis labels, machine‑readable descriptions), and practical techniques for extracting structured data from mixed content. The book closes with guidance for applying these ideas in real systems—indexing, search, analytics, accessibility tooling, and downstream ML—illustrating how a systematic page object approach improves reliability, discoverability, and interoperability across document workflows.\n\nTaken together, the book presents a pragmatic, example‑rich roadmap for designers and engineers who need to tame complex documents. It shows not only what to capture for each page object, but why those captures matter and how they chain together to make documents more useful to people and systems alike.",
+        "key_themes": [
+          "Page object modeling as a canonical structure for documents",
+          "Bridging human‑visible presentation and machine‑readable metadata",
+          "Consistency and interoperability of metadata across documents",
+          "Accessibility and clear semantic labeling for visual elements",
+          "Practical extraction of structured data from mixed content"
+        ],
+        "learning_objectives": [
+          "Understand the page object model and why decomposing documents into semantic objects improves processing and comprehension",
+          "Specify the required human and machine‑readable attributes for common page objects (headers, paragraphs, tables, figures)",
+          "Apply best practices to author and extract metadata that supports accessibility, indexing, and downstream analytics",
+          "Interpret visual elements (e.g., charts) both visually and via embedded data (MarkdownDataTable, AxisTitles, ChartType)",
+          "Design document workflows that maintain metadata consistency and support interoperability with downstream systems"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Chapter 2.2 focuses on the 'Figure' page object and builds on earlier chapters that introduced the page object model, document structure, and the purpose of semantic elements on a page. Where previous chapters established how pages are decomposed into objects (headers, paragraphs, tables, figures) and why consistent metadata matters, this chapter drills into the figure element: its caption, embedded visual data (a bar chart), and the supplemental machine-readable metadata that describes chart type, axis titles, tabular data and footnotes. The chapter juxtaposes the human-visible figure (caption and plotted values) with the embedded descriptive attributes—Title, ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable and AxisTitles—demonstrating how both forms work together to make the visual content interpretable by readers and downstream systems.\n\nThis chapter highlights practical interpretation of the figure: it enumerates monthly values from January to June (200, 300, 400, 450, 350, 250), notes April as the peak and January as the trough, and shows how the axis labels ('Months' and 'Values') frame the reader's understanding. It emphasizes key implementation concerns carried over from earlier material—consistency of metadata, accessibility (clear captions and axis labels), and extracting structured data from mixed content—so the reader sees a clear progression from defining page objects to applying those principles to a concrete visual object and its data.",
+            "key_concepts": [
+              "Page object model",
+              "Figure element (caption and content)",
+              "Embedded metadata for figures",
+              "Bar chart interpretation",
+              "Axis titles and labeling",
+              "Structured data extraction (MarkdownDataTable)",
+              "Accessibility and annotations"
+            ],
+            "main_topics": [
+              "Figure structure and semantics",
+              "Chart data (monthly values Jan–Jun)",
+              "Metadata fields describing figures",
+              "Relationship between visual display and tabular data"
+            ],
+            "token_count": 607,
+            "created_at": "2025-09-24T18:33:43.945219"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T18:33:58.670555"
+      },
+      "overall_summary": "This book tells the story of how to convert free‑form documents into consistently structured, machine‑actionable page objects. It begins by motivating the need for a page object model: documents are rich, varied, and semantically dense, and organizing them into predictable, well‑defined objects (headers, paragraphs, tables, figures, etc.) makes them easier to interpret, index, and process. The opening chapters introduce the core ideas of document decomposition, the role of semantic elements, and why consistent metadata matters for both human readers and downstream systems.\n\nAfter establishing the foundations, the book walks through each page object type in detail. Early chapters define the responsibilities and expected metadata for headers and paragraphs; subsequent chapters cover tables and other tabular representations; and the featured Chapter 2.2 drills into the Figure page object. Each object chapter pairs human‑visible presentation (captions, labels, visual encodings) with the machine‑readable attributes required to make that presentation robustly interpretable—Title, ChartType, TopicKeywords, DetailedDescription, AxisTitles, MarkdownDataTable, and footnotes are example attributes shown in practice.\n\nChapter 2.2 uses a concrete bar chart example (monthly values January–June: 200, 300, 400, 450, 350, 250) to demonstrate how caption, plotted values, and embedded metadata cooperate. The narrative shows how axis labels ('Months' and 'Values') frame interpretation, highlights April as the peak and January as the trough, and points out how MarkdownDataTable and explicit axis titles make chart data accessible and extractable. That example is representative of the book’s pattern: real examples, explicit metadata schemas, and attention to both human and machine consumers.\n\nThe latter sections focus on implementation and operational concerns: metadata consistency across documents, accessibility (clear captions and axis labels, machine‑readable descriptions), and practical techniques for extracting structured data from mixed content. The book closes with guidance for applying these ideas in real systems—indexing, search, analytics, accessibility tooling, and downstream ML—illustrating how a systematic page object approach improves reliability, discoverability, and interoperability across document workflows.\n\nTaken together, the book presents a pragmatic, example‑rich roadmap for designers and engineers who need to tame complex documents. It shows not only what to capture for each page object, but why those captures matter and how they chain together to make documents more useful to people and systems alike.",
+      "key_themes": [
+        "Page object modeling as a canonical structure for documents",
+        "Bridging human‑visible presentation and machine‑readable metadata",
+        "Consistency and interoperability of metadata across documents",
+        "Accessibility and clear semantic labeling for visual elements",
+        "Practical extraction of structured data from mixed content"
+      ],
+      "learning_objectives": [
+        "Understand the page object model and why decomposing documents into semantic objects improves processing and comprehension",
+        "Specify the required human and machine‑readable attributes for common page objects (headers, paragraphs, tables, figures)",
+        "Apply best practices to author and extract metadata that supports accessibility, indexing, and downstream analytics",
+        "Interpret visual elements (e.g., charts) both visually and via embedded data (MarkdownDataTable, AxisTitles, ChartType)",
+        "Design document workflows that maintain metadata consistency and support interoperability with downstream systems"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Chapter 2.2 focuses on the 'Figure' page object and builds on earlier chapters that introduced the page object model, document structure, and the purpose of semantic elements on a page. Where previous chapters established how pages are decomposed into objects (headers, paragraphs, tables, figures) and why consistent metadata matters, this chapter drills into the figure element: its caption, embedded visual data (a bar chart), and the supplemental machine-readable metadata that describes chart type, axis titles, tabular data and footnotes. The chapter juxtaposes the human-visible figure (caption and plotted values) with the embedded descriptive attributes—Title, ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable and AxisTitles—demonstrating how both forms work together to make the visual content interpretable by readers and downstream systems.\n\nThis chapter highlights practical interpretation of the figure: it enumerates monthly values from January to June (200, 300, 400, 450, 350, 250), notes April as the peak and January as the trough, and shows how the axis labels ('Months' and 'Values') frame the reader's understanding. It emphasizes key implementation concerns carried over from earlier material—consistency of metadata, accessibility (clear captions and axis labels), and extracting structured data from mixed content—so the reader sees a clear progression from defining page objects to applying those principles to a concrete visual object and its data.",
+          "key_concepts": [
+            "Page object model",
+            "Figure element (caption and content)",
+            "Embedded metadata for figures",
+            "Bar chart interpretation",
+            "Axis titles and labeling",
+            "Structured data extraction (MarkdownDataTable)",
+            "Accessibility and annotations"
+          ],
+          "main_topics": [
+            "Figure structure and semantics",
+            "Chart data (monthly values Jan–Jun)",
+            "Metadata fields describing figures",
+            "Relationship between visual display and tabular data"
+          ],
+          "token_count": 607,
+          "created_at": "2025-09-24T18:33:43.945219"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp1th2eb4m.pdf",
+      "pdf_file": "/tmp/tmp1th2eb4m.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_8d17de46-4a4b-40a0-9ea1-8d93fbad4891/task_document_processing/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e.md",
+      "cache_file": "content/pipelines/pipeline_8d17de46-4a4b-40a0-9ea1-8d93fbad4891/task_document_processing/tmp1th2eb4m-book-cache-20250924_183309-d756e16e.json",
+      "metadata": "content/pipelines/pipeline_8d17de46-4a4b-40a0-9ea1-8d93fbad4891/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp1th2eb4m.pdf",
+      "enhanced_markdown": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e.md",
+      "cache_file": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed/tmp1th2eb4m-book-cache-20250924_183309-d756e16e.json",
+      "figures_directory": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e/tmp1th2eb4m-book-figures-20250924_183309-d756e16e",
+      "figures_processed": 1,
+      "document_length": 2575,
+      "analyzer_id": "enhanced-content-understanding-1a06b9d2-896d-400b-957e-472fe59c5035",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2575,
+        "estimated_tokens": 518
+      },
+      "main_folder": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e",
+      "job_id": "d756e16e",
+      "timestamp": "20250924_183309",
+      "content_type": "book",
+      "book_title": "tmp1th2eb4m",
+      "metadata_file": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/metadata.json",
+      "input_directory": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/input",
+      "processed_directory": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed",
+      "markdown_directory": "content/books/tmp1th2eb4m-book-20250924_183309-d756e16e/processed/tmp1th2eb4m-book-markdown-20250924_183309-d756e16e",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T18:33:58.670555"
+    }
+  }
+}

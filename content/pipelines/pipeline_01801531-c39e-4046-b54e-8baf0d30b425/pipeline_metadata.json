@@ -1,0 +1,48 @@
+{
+  "pipeline_id": "01801531-c39e-4046-b54e-8baf0d30b425",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ]
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T22:28:16.482143",
+  "end_time": "2025-09-24T22:34:45.970075",
+  "duration_seconds": 389.487932,
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "status": "completed",
+      "start_time": "2025-09-24T22:28:16.482570",
+      "end_time": "2025-09-24T22:30:43.035116",
+      "duration_seconds": 146.552546,
+      "error_message": null
+    },
+    "summarization": {
+      "status": "completed",
+      "start_time": "2025-09-24T22:30:43.035132",
+      "end_time": "2025-09-24T22:34:45.970061",
+      "duration_seconds": 242.934929,
+      "error_message": null
+    }
+  }
+}

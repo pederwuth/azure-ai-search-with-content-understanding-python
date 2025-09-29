@@ -1,0 +1,198 @@
+{
+  "pipeline_id": "f705ae5b-dab2-4666-8feb-3edd545e8a41",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T22:23:18.454968",
+  "end_time": "2025-09-25T22:24:07.025233",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T22:23:18.455487",
+      "end_time": "2025-09-25T22:23:34.243624",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T22:23:34.243644",
+      "end_time": "2025-09-25T22:24:07.025218",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "meaningful_custom_filename",
+      "figures_directory": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69/tmpexo4gkyo-book-figures-20250925_222318-5ba5ae69",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Modeling Page Objects: Figures, Metadata, and Accessible Document Design",
+      "main_folder": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69",
+      "book_summary": {
+        "book_title": "Modeling Page Objects: Figures, Metadata, and Accessible Document Design",
+        "overall_summary": "This book presents a systematic approach to modeling the components of a page — called page objects — and shows how treating elements like figures, tables, and captions as discrete, describable objects improves design, accessibility, reuse, and automated processing. Beginning with foundational definitions of page objects and the rationale for modeling them explicitly, it develops a vocabulary and a set of practical conventions that designers, analysts, and content engineers can apply across documents and digital products. Throughout, the book emphasizes that clear visual presentation and rigorous metadata go hand in hand: good visuals tell a story to human readers while rich metadata makes that story discoverable and machine-actionable.\n\nA central thread is the figure as a canonical page object. The book uses a stepped example — a bar chart showing monthly values from January to June — to illustrate how a visual can be described at multiple levels: the visual representation (caption, axis labels, color mapping), structural backing (a markdown data table), and descriptive metadata (chart type, topic keywords, summary, and footnotes). The example demonstrates both analytical interpretation (peak in April, low in January, other notable months) and practical encoding choices that support clarity, consistency, and reuse. By pairing the bars with explicit metadata, readers see how to make figures accessible and useful beyond their initial presentation.\n\nBeyond single-object examples, the book explores how these object descriptions scale to whole documents and workflows. It discusses metadata schemas, documentation conventions, and annotation practices that enable content teams to maintain libraries of reusable, well-documented page objects. It also covers implications for automation: well-modeled objects support programmatic extraction, transformation, and repurposing of content — for instance, generating alternative formats, driving dashboards, or feeding search and analytics systems.\n\nThe final sections synthesize design and engineering perspectives into actionable guidelines and checklists. They address trade-offs — e.g., how much metadata to include vs. the cost of creation — and offer templates, sample annotations, and recommended fields for figure metadata. The book concludes by arguing that explicit page-object modeling is a practical way to improve communication, compliance (accessibility, auditability), and efficiency in content production, particularly in business and finance contexts where numeric accuracy and interpretability are paramount.",
+        "key_themes": [
+          "Page-object modeling for documents",
+          "Figures as first-class, describable objects",
+          "Metadata and machine-readability",
+          "Accessibility and inclusive documentation",
+          "Data-driven visual encoding and interpretation",
+          "Reuse, automation, and content engineering"
+        ],
+        "learning_objectives": [
+          "Understand the concept of page objects and why explicit modeling matters",
+          "Describe figures both visually and with structured metadata",
+          "Design charts and figures with accessible labels, captions, and backing data",
+          "Create metadata that supports reuse, automated processing, and discoverability",
+          "Apply conventions and templates to document and maintain reusable page objects"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter continues the book's examination of page objects by focusing on figures as a concrete page object type. Building on earlier discussions of page structure and object modeling, it presents a bar chart example that visualizes monthly values from January to June and demonstrates how a figure is described both visually (caption, axis labels) and as metadata (chart type, topic keywords, detailed description, and a markdown data table). The chapter uses the chart to show practical encoding choices — color mapping across months, axis titles, and tabular backing data — illustrating how a figure both conveys numeric trends and functions as a discrete, describable object on a page.  \n\nThe chapter also highlights interpretation: the dataset peaks in April (450) and is lowest in January (200), with March and May showing relatively high values (400 and 350). By pairing the visual bars with explicit metadata (axis titles, footnotes, and a summary), the chapter demonstrates how designers and analysts should document figures to support reuse, accessibility, and automated processing. This moves the reader from abstract page-object concepts toward practical creation, annotation, and interpretation of a figure in a business and finance context.",
+            "key_concepts": [
+              "Page objects",
+              "Figure as a page object",
+              "Bar chart visualization",
+              "Metadata for figures (titles, summaries, data tables)",
+              "Axis labeling and interpretation",
+              "Color encoding and categorical grouping",
+              "Data-driven summary (peak/trough identification)"
+            ],
+            "main_topics": [
+              "Data visualization and interpretation",
+              "Figure annotation and metadata",
+              "Practical application in business/finance data"
+            ],
+            "token_count": 521,
+            "created_at": "2025-09-25T22:23:47.268048"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T22:24:00.852727"
+      },
+      "overall_summary": "This book presents a systematic approach to modeling the components of a page — called page objects — and shows how treating elements like figures, tables, and captions as discrete, describable objects improves design, accessibility, reuse, and automated processing. Beginning with foundational definitions of page objects and the rationale for modeling them explicitly, it develops a vocabulary and a set of practical conventions that designers, analysts, and content engineers can apply across documents and digital products. Throughout, the book emphasizes that clear visual presentation and rigorous metadata go hand in hand: good visuals tell a story to human readers while rich metadata makes that story discoverable and machine-actionable.\n\nA central thread is the figure as a canonical page object. The book uses a stepped example — a bar chart showing monthly values from January to June — to illustrate how a visual can be described at multiple levels: the visual representation (caption, axis labels, color mapping), structural backing (a markdown data table), and descriptive metadata (chart type, topic keywords, summary, and footnotes). The example demonstrates both analytical interpretation (peak in April, low in January, other notable months) and practical encoding choices that support clarity, consistency, and reuse. By pairing the bars with explicit metadata, readers see how to make figures accessible and useful beyond their initial presentation.\n\nBeyond single-object examples, the book explores how these object descriptions scale to whole documents and workflows. It discusses metadata schemas, documentation conventions, and annotation practices that enable content teams to maintain libraries of reusable, well-documented page objects. It also covers implications for automation: well-modeled objects support programmatic extraction, transformation, and repurposing of content — for instance, generating alternative formats, driving dashboards, or feeding search and analytics systems.\n\nThe final sections synthesize design and engineering perspectives into actionable guidelines and checklists. They address trade-offs — e.g., how much metadata to include vs. the cost of creation — and offer templates, sample annotations, and recommended fields for figure metadata. The book concludes by arguing that explicit page-object modeling is a practical way to improve communication, compliance (accessibility, auditability), and efficiency in content production, particularly in business and finance contexts where numeric accuracy and interpretability are paramount.",
+      "key_themes": [
+        "Page-object modeling for documents",
+        "Figures as first-class, describable objects",
+        "Metadata and machine-readability",
+        "Accessibility and inclusive documentation",
+        "Data-driven visual encoding and interpretation",
+        "Reuse, automation, and content engineering"
+      ],
+      "learning_objectives": [
+        "Understand the concept of page objects and why explicit modeling matters",
+        "Describe figures both visually and with structured metadata",
+        "Design charts and figures with accessible labels, captions, and backing data",
+        "Create metadata that supports reuse, automated processing, and discoverability",
+        "Apply conventions and templates to document and maintain reusable page objects"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter continues the book's examination of page objects by focusing on figures as a concrete page object type. Building on earlier discussions of page structure and object modeling, it presents a bar chart example that visualizes monthly values from January to June and demonstrates how a figure is described both visually (caption, axis labels) and as metadata (chart type, topic keywords, detailed description, and a markdown data table). The chapter uses the chart to show practical encoding choices — color mapping across months, axis titles, and tabular backing data — illustrating how a figure both conveys numeric trends and functions as a discrete, describable object on a page.  \n\nThe chapter also highlights interpretation: the dataset peaks in April (450) and is lowest in January (200), with March and May showing relatively high values (400 and 350). By pairing the visual bars with explicit metadata (axis titles, footnotes, and a summary), the chapter demonstrates how designers and analysts should document figures to support reuse, accessibility, and automated processing. This moves the reader from abstract page-object concepts toward practical creation, annotation, and interpretation of a figure in a business and finance context.",
+          "key_concepts": [
+            "Page objects",
+            "Figure as a page object",
+            "Bar chart visualization",
+            "Metadata for figures (titles, summaries, data tables)",
+            "Axis labeling and interpretation",
+            "Color encoding and categorical grouping",
+            "Data-driven summary (peak/trough identification)"
+          ],
+          "main_topics": [
+            "Data visualization and interpretation",
+            "Figure annotation and metadata",
+            "Practical application in business/finance data"
+          ],
+          "token_count": 521,
+          "created_at": "2025-09-25T22:23:47.268048"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpexo4gkyo.pdf",
+      "pdf_file": "/tmp/tmpexo4gkyo.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_f705ae5b-dab2-4666-8feb-3edd545e8a41/task_document_processing/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69.md",
+      "cache_file": "content/pipelines/pipeline_f705ae5b-dab2-4666-8feb-3edd545e8a41/task_document_processing/tmpexo4gkyo-book-cache-20250925_222318-5ba5ae69.json",
+      "metadata": "content/pipelines/pipeline_f705ae5b-dab2-4666-8feb-3edd545e8a41/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_f705ae5b-dab2-4666-8feb-3edd545e8a41/task_summarization/tmpexo4gkyo-summary-20250925_222318-5ba5ae69.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpexo4gkyo.pdf",
+      "enhanced_markdown": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69.md",
+      "cache_file": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed/tmpexo4gkyo-book-cache-20250925_222318-5ba5ae69.json",
+      "figures_directory": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69/tmpexo4gkyo-book-figures-20250925_222318-5ba5ae69",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-e2c352a3-fb01-4ae2-98d1-5701e354af9e",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69",
+      "job_id": "5ba5ae69",
+      "timestamp": "20250925_222318",
+      "content_type": "book",
+      "book_title": "tmpexo4gkyo",
+      "metadata_file": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/metadata.json",
+      "input_directory": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/input",
+      "processed_directory": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed",
+      "markdown_directory": "content/books/tmpexo4gkyo-book-20250925_222318-5ba5ae69/processed/tmpexo4gkyo-book-markdown-20250925_222318-5ba5ae69",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-25T22:24:00.852727"
+    }
+  }
+}

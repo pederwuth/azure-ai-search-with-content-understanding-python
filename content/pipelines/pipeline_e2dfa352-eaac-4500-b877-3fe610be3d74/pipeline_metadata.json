@@ -1,0 +1,47 @@
+{
+  "pipeline_id": "e2dfa352-eaac-4500-b877-3fe610be3d74",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ]
+  },
+  "status": "failed",
+  "start_time": "2025-09-23T20:14:22.773429",
+  "end_time": "2025-09-23T20:14:38.311561",
+  "duration_seconds": 15.538132,
+  "error_message": "Task 'summarization' failed: 'TaskInputs' object has no attribute 'add_data'",
+  "task_executions": {
+    "document_processing": {
+      "status": "completed",
+      "start_time": "2025-09-23T20:14:22.774103",
+      "end_time": "2025-09-23T20:14:38.311410",
+      "duration_seconds": 15.537307,
+      "error_message": null
+    },
+    "summarization": {
+      "status": "failed",
+      "start_time": "2025-09-23T20:14:38.311428",
+      "end_time": "2025-09-23T20:14:38.311556",
+      "duration_seconds": 0.000128,
+      "error_message": "'TaskInputs' object has no attribute 'add_data'"
+    }
+  }
+}

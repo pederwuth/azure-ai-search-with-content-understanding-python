@@ -1,0 +1,24 @@
+{
+  "job_id": "31768916",
+  "book_title": "string",
+  "content_type": "book",
+  "created_at": "2025-09-24T20:55:33.341493Z",
+  "status": "completed",
+  "input_file": "tmp0bm19b8t.pdf",
+  "processing_pipeline": "enhanced_document_processor",
+  "folder_structure": "v1",
+  "naming_convention": "{book_title}-{content_type}-{subtype}-{timestamp}-{job_id}",
+  "output_files": {
+    "enhanced_markdown": "processed/string-book-markdown-20250924_205520-31768916/string-book-markdown-20250924_205520-31768916.md",
+    "cache_file": "processed/string-book-cache-20250924_205520-31768916.json",
+    "figures_directory": "processed/string-book-markdown-20250924_205520-31768916/string-book-figures-20250924_205520-31768916/",
+    "input_pdf": "input/tmp0bm19b8t.pdf"
+  },
+  "statistics": {
+    "total_pages": 1,
+    "figures_extracted": 1,
+    "processing_time_seconds": 0,
+    "markdown_characters": 2689,
+    "estimated_tokens": 542
+  }
+}

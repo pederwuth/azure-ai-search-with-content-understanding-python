@@ -1,0 +1,202 @@
+{
+  "pipeline_id": "04d7dc48-ca24-4b14-bc0e-5588ca95f64a",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T20:41:07.098159",
+  "end_time": "2025-09-24T20:41:48.261550",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T20:41:07.098453",
+      "end_time": "2025-09-24T20:41:21.137438",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T20:41:21.137454",
+      "end_time": "2025-09-24T20:41:48.261538",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Book Name",
+      "figures_directory": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350/tmp9ecz8o_z-book-figures-20250924_204107-dc287350",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects: Structuring Figures for Accessibility and Reuse",
+      "main_folder": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350",
+      "book_summary": {
+        "book_title": "Page Objects: Structuring Figures for Accessibility and Reuse",
+        "overall_summary": "This book builds a practical, implementable model for thinking about pages and the objects that live on them. It begins by defining an abstract document/page model and the concept of page objects—self-contained components that combine presentation, content, and metadata. From that foundation the narrative moves from high-level theory to concrete examples, showing how page objects can be designed, encoded, and reused across publishing and data workflows.\n\nA central strand of the book is the Figure object. The text uses a single, fully worked example (a bar chart of monthly values from January to June) to show how visual elements and structured metadata should be bundled. That example demonstrates not just how to draw a bar chart, but how to attach a descriptive metadata block (title, chart type, keywords, detailed description), a machine-readable data table (Markdown), axis titles and labels, color-coding per category, captions, and annotations. The chapter makes explicit how these pieces improve interpretation, accessibility and downstream processing.\n\nThroughout the book, concepts build from simple to sophisticated: starting with the basics of page objects and why they matter; moving to concrete object definitions (Figure, Table, Text blocks); and then covering practical encoding practices such as embedding Markdown data tables, adding semantic axis labels, including machine-readable descriptions, and using consistent color and annotation schemes. The book demonstrates how to support both human readers and automated systems by designing objects that are both visually clear and programmatically discoverable.\n\nThe final sections synthesize these lessons into practical workflows and recommendations for authors, designers, and engineers. Readers learn how to create reusable components, improve accessibility and searchability, and integrate page objects into automated pipelines or content management systems. The result is a set of practices that make figures more interpretable, easier to repurpose, and more valuable in reproducible research and large-scale publishing environments.",
+        "key_themes": [
+          "Page objects as first-class, reusable components",
+          "Figures as combined visual + structured metadata artifacts",
+          "Accessibility through machine-readable descriptions and labels",
+          "Discoverability and reuse via embedded metadata and tables",
+          "Practical encoding patterns (Markdown tables, axis labels, captions)",
+          "From abstract models to concrete, implementable examples"
+        ],
+        "learning_objectives": [
+          "Understand the document/page model and the rationale for page objects",
+          "Design Figure objects that bundle visualization, data, and metadata",
+          "Encode data tables and labels in machine-readable formats (e.g., Markdown) for downstream processing",
+          "Apply accessibility practices: descriptive captions, axis titles, and structured descriptions",
+          "Create reusable and discoverable page components for publishing and automation",
+          "Integrate figure objects into workflows that support reproducibility and programmatic reuse"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter continues the book's shift from abstract page structure to concrete page objects by focusing on the Figure object (Section 2.2). It presents a full example: a bar chart that enumerates monthly values from January to June, provides a descriptive metadata block (title, chart type, topic keywords, detailed description), a Markdown data table, axis titles, color coding per month, and a figure caption. The visual data show a clear monthly trend with a low in January (200), a peak in April (450), and intermediate values for February (300), March (400), May (350) and June (250). The chapter demonstrates how a figure object bundles both visual elements and structured metadata to support interpretation and reuse.\n\nBuilding on earlier chapters that introduced the document/page model and the notion of page objects as reusable components, this section makes the Figure object concrete: it illustrates how data, presentation, and annotations live together (figcaption, axis titles, footnotes/annotations) and how a figure can carry machine-readable details (Markdown table, axis labels, detailed description) to improve accessibility, discoverability and downstream processing. The example underscores practices for encoding both human-facing and programmatic information alongside the visual itself.",
+            "key_concepts": [
+              "Page Objects",
+              "Figure object",
+              "Bar chart representation",
+              "Structured metadata (title, chart type, keywords)",
+              "Markdown data table",
+              "Axis titles and labels",
+              "Color-coding for category/series",
+              "Captioning and annotations"
+            ],
+            "main_topics": [
+              "Representing visual data as page objects",
+              "Embedding metadata for accessibility and reuse",
+              "Interpreting monthly trends in a bar chart"
+            ],
+            "token_count": 556,
+            "created_at": "2025-09-24T20:41:31.336973"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T20:41:48.259875"
+      },
+      "overall_summary": "This book builds a practical, implementable model for thinking about pages and the objects that live on them. It begins by defining an abstract document/page model and the concept of page objects—self-contained components that combine presentation, content, and metadata. From that foundation the narrative moves from high-level theory to concrete examples, showing how page objects can be designed, encoded, and reused across publishing and data workflows.\n\nA central strand of the book is the Figure object. The text uses a single, fully worked example (a bar chart of monthly values from January to June) to show how visual elements and structured metadata should be bundled. That example demonstrates not just how to draw a bar chart, but how to attach a descriptive metadata block (title, chart type, keywords, detailed description), a machine-readable data table (Markdown), axis titles and labels, color-coding per category, captions, and annotations. The chapter makes explicit how these pieces improve interpretation, accessibility and downstream processing.\n\nThroughout the book, concepts build from simple to sophisticated: starting with the basics of page objects and why they matter; moving to concrete object definitions (Figure, Table, Text blocks); and then covering practical encoding practices such as embedding Markdown data tables, adding semantic axis labels, including machine-readable descriptions, and using consistent color and annotation schemes. The book demonstrates how to support both human readers and automated systems by designing objects that are both visually clear and programmatically discoverable.\n\nThe final sections synthesize these lessons into practical workflows and recommendations for authors, designers, and engineers. Readers learn how to create reusable components, improve accessibility and searchability, and integrate page objects into automated pipelines or content management systems. The result is a set of practices that make figures more interpretable, easier to repurpose, and more valuable in reproducible research and large-scale publishing environments.",
+      "key_themes": [
+        "Page objects as first-class, reusable components",
+        "Figures as combined visual + structured metadata artifacts",
+        "Accessibility through machine-readable descriptions and labels",
+        "Discoverability and reuse via embedded metadata and tables",
+        "Practical encoding patterns (Markdown tables, axis labels, captions)",
+        "From abstract models to concrete, implementable examples"
+      ],
+      "learning_objectives": [
+        "Understand the document/page model and the rationale for page objects",
+        "Design Figure objects that bundle visualization, data, and metadata",
+        "Encode data tables and labels in machine-readable formats (e.g., Markdown) for downstream processing",
+        "Apply accessibility practices: descriptive captions, axis titles, and structured descriptions",
+        "Create reusable and discoverable page components for publishing and automation",
+        "Integrate figure objects into workflows that support reproducibility and programmatic reuse"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter continues the book's shift from abstract page structure to concrete page objects by focusing on the Figure object (Section 2.2). It presents a full example: a bar chart that enumerates monthly values from January to June, provides a descriptive metadata block (title, chart type, topic keywords, detailed description), a Markdown data table, axis titles, color coding per month, and a figure caption. The visual data show a clear monthly trend with a low in January (200), a peak in April (450), and intermediate values for February (300), March (400), May (350) and June (250). The chapter demonstrates how a figure object bundles both visual elements and structured metadata to support interpretation and reuse.\n\nBuilding on earlier chapters that introduced the document/page model and the notion of page objects as reusable components, this section makes the Figure object concrete: it illustrates how data, presentation, and annotations live together (figcaption, axis titles, footnotes/annotations) and how a figure can carry machine-readable details (Markdown table, axis labels, detailed description) to improve accessibility, discoverability and downstream processing. The example underscores practices for encoding both human-facing and programmatic information alongside the visual itself.",
+          "key_concepts": [
+            "Page Objects",
+            "Figure object",
+            "Bar chart representation",
+            "Structured metadata (title, chart type, keywords)",
+            "Markdown data table",
+            "Axis titles and labels",
+            "Color-coding for category/series",
+            "Captioning and annotations"
+          ],
+          "main_topics": [
+            "Representing visual data as page objects",
+            "Embedding metadata for accessibility and reuse",
+            "Interpreting monthly trends in a bar chart"
+          ],
+          "token_count": 556,
+          "created_at": "2025-09-24T20:41:31.336973"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp9ecz8o_z.pdf",
+      "pdf_file": "/tmp/tmp9ecz8o_z.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_04d7dc48-ca24-4b14-bc0e-5588ca95f64a/task_document_processing/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350.md",
+      "cache_file": "content/pipelines/pipeline_04d7dc48-ca24-4b14-bc0e-5588ca95f64a/task_document_processing/tmp9ecz8o_z-book-cache-20250924_204107-dc287350.json",
+      "metadata": "content/pipelines/pipeline_04d7dc48-ca24-4b14-bc0e-5588ca95f64a/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_04d7dc48-ca24-4b14-bc0e-5588ca95f64a/task_summarization/tmp9ecz8o_z-summary-20250924_204107-dc287350.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp9ecz8o_z.pdf",
+      "enhanced_markdown": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350.md",
+      "cache_file": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed/tmp9ecz8o_z-book-cache-20250924_204107-dc287350.json",
+      "figures_directory": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350/tmp9ecz8o_z-book-figures-20250924_204107-dc287350",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-c0a12161-e19f-4cb8-816c-17313e90f2f9",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350",
+      "job_id": "dc287350",
+      "timestamp": "20250924_204107",
+      "content_type": "book",
+      "book_title": "tmp9ecz8o_z",
+      "metadata_file": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/metadata.json",
+      "input_directory": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/input",
+      "processed_directory": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed",
+      "markdown_directory": "content/books/tmp9ecz8o_z-book-20250924_204107-dc287350/processed/tmp9ecz8o_z-book-markdown-20250924_204107-dc287350",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T20:41:48.259875"
+    }
+  }
+}

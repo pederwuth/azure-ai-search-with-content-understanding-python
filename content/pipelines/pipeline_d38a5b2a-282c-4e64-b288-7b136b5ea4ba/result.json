@@ -1,0 +1,193 @@
+{
+  "pipeline_id": "d38a5b2a-282c-4e64-b288-7b136b5ea4ba",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:48:22.485791",
+  "end_time": "2025-09-24T18:49:03.819609",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T18:48:22.486132",
+      "end_time": "2025-09-24T18:48:36.821372",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T18:48:36.821384",
+      "end_time": "2025-09-24T18:49:03.819599",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Final Debug Test",
+      "figures_directory": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f/tmplo17b2kx-book-figures-20250924_184822-a0d8738f",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Designing Machine-Readable Page Objects: Figures, Metadata, and Multimodal Documents",
+      "main_folder": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f",
+      "book_summary": {
+        "book_title": "Designing Machine-Readable Page Objects: Figures, Metadata, and Multimodal Documents",
+        "overall_summary": "This book presents a systematic approach to modeling documents as collections of page objects that carry both visual form and machine-readable metadata. Beginning with a conceptual foundation in document structure and the roles different page objects play, it narrows focus to practical patterns and schemas you can use to make documents—and especially figures—explicitly interpretable by software. The narrative emphasizes how the same information is often represented in multiple modalities (visual graphics, captions, embedded tables, and metadata fields) and shows how formalizing those representations enhances clarity, reproducibility, and automated processing.\n\nA central case study—an annotated bar chart of monthly values—runs through the core ideas. The example figure includes a human caption, axis titles, a Markdown data table, an embedded textual description of colors, and explicit machine-readable fields. By documenting the same data in these multiple forms (bars, caption, table, metadata) the book demonstrates how a Figure page object can serve both human readers and downstream tools: it makes peaks and lows easy to see visually (April peak at 450, January low at 200), while also enabling exact data extraction and semantic understanding via fields like MarkdownDataTable and AxisTitles.\n\nThroughout, the book connects theory to practice. It shows how page object design choices—what metadata to include, how to encode axis labels or legend mappings, and how to represent annotations—affect discoverability, accessibility, and programmatic use. Chapters build from core definitions to concrete examples, schema recommendations, and implementation strategies, culminating in guidance for authors, publishers, and developers who want to create interoperable, machine-actionable documents.\n\nBy the end readers will understand not only why to make figures machine-readable, but how to do it in real documents. The book supplies patterns, a clear learning path from concepts to concrete artifacts, and practical techniques for embedding structured data (e.g., MarkdownDataTable, AxisTitles, color encodings) so that figures communicate reliably to both humans and machines.",
+        "key_themes": [
+          "Page-object modeling for documents",
+          "Multimodal redundancy and data replication",
+          "Machine-readable metadata for figures",
+          "Interpretability, reproducibility, and accessibility",
+          "Practical schemas and implementation patterns"
+        ],
+        "learning_objectives": [
+          "Understand the page-object abstraction and the roles different objects (Figure, Table, Text Block) play in a document",
+          "Recognize the value of encoding the same data across multiple modalities (visual, textual, tabular, metadata)",
+          "Learn concrete metadata fields and structures to make figures machine-readable (e.g., AxisTitles, MarkdownDataTable, captions, annotations)",
+          "Apply best practices for color encoding, legends, and annotations so visual encodings are unambiguous and machine-interpretable",
+          "Design documents and workflows that improve accessibility, enable automated extraction, and support reproducible research"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter drills into the page-object concept introduced earlier by focusing on the Figure page object (section 2.2). Building on prior chapters that described document structure and page-object roles, it shows how figures embed both visual and machine-readable metadata. The example figure is a bar chart of monthly values (January–June) with a caption (“Figure 1: Here is a figure with text”), explicit axis titles (Months, Values), a Markdown data table, and an included textual description of colors and values. The concrete data given—January 200, February 300, March 400, April 450, May 350, June 250—illustrates how figure elements combine to convey the same information in multiple forms (visual bars, caption, table, and metadata fields). The chart highlights a peak in April (450) and a low in January (200), and also documents color mappings (Jan & Apr: orange; Feb & May: green; Mar & Jun: blue).",
+            "key_concepts": [
+              "Page objects (Figure)",
+              "Figure metadata (caption, axis titles, annotations)",
+              "Data replication across modalities (chart, table, text)",
+              "Chart interpretation (peaks, lows, trends)",
+              "Color encoding / legend information",
+              "Machine-readable figure fields (MarkdownDataTable, AxisTitles)"
+            ],
+            "main_topics": [
+              "Data visualization as a page object",
+              "Extracting structured data from figures",
+              "Metadata and accessibility for figures",
+              "Relating visual and tabular representations"
+            ],
+            "token_count": 509,
+            "created_at": "2025-09-24T18:48:49.339215"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T18:49:03.819011"
+      },
+      "overall_summary": "This book presents a systematic approach to modeling documents as collections of page objects that carry both visual form and machine-readable metadata. Beginning with a conceptual foundation in document structure and the roles different page objects play, it narrows focus to practical patterns and schemas you can use to make documents—and especially figures—explicitly interpretable by software. The narrative emphasizes how the same information is often represented in multiple modalities (visual graphics, captions, embedded tables, and metadata fields) and shows how formalizing those representations enhances clarity, reproducibility, and automated processing.\n\nA central case study—an annotated bar chart of monthly values—runs through the core ideas. The example figure includes a human caption, axis titles, a Markdown data table, an embedded textual description of colors, and explicit machine-readable fields. By documenting the same data in these multiple forms (bars, caption, table, metadata) the book demonstrates how a Figure page object can serve both human readers and downstream tools: it makes peaks and lows easy to see visually (April peak at 450, January low at 200), while also enabling exact data extraction and semantic understanding via fields like MarkdownDataTable and AxisTitles.\n\nThroughout, the book connects theory to practice. It shows how page object design choices—what metadata to include, how to encode axis labels or legend mappings, and how to represent annotations—affect discoverability, accessibility, and programmatic use. Chapters build from core definitions to concrete examples, schema recommendations, and implementation strategies, culminating in guidance for authors, publishers, and developers who want to create interoperable, machine-actionable documents.\n\nBy the end readers will understand not only why to make figures machine-readable, but how to do it in real documents. The book supplies patterns, a clear learning path from concepts to concrete artifacts, and practical techniques for embedding structured data (e.g., MarkdownDataTable, AxisTitles, color encodings) so that figures communicate reliably to both humans and machines.",
+      "key_themes": [
+        "Page-object modeling for documents",
+        "Multimodal redundancy and data replication",
+        "Machine-readable metadata for figures",
+        "Interpretability, reproducibility, and accessibility",
+        "Practical schemas and implementation patterns"
+      ],
+      "learning_objectives": [
+        "Understand the page-object abstraction and the roles different objects (Figure, Table, Text Block) play in a document",
+        "Recognize the value of encoding the same data across multiple modalities (visual, textual, tabular, metadata)",
+        "Learn concrete metadata fields and structures to make figures machine-readable (e.g., AxisTitles, MarkdownDataTable, captions, annotations)",
+        "Apply best practices for color encoding, legends, and annotations so visual encodings are unambiguous and machine-interpretable",
+        "Design documents and workflows that improve accessibility, enable automated extraction, and support reproducible research"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter drills into the page-object concept introduced earlier by focusing on the Figure page object (section 2.2). Building on prior chapters that described document structure and page-object roles, it shows how figures embed both visual and machine-readable metadata. The example figure is a bar chart of monthly values (January–June) with a caption (“Figure 1: Here is a figure with text”), explicit axis titles (Months, Values), a Markdown data table, and an included textual description of colors and values. The concrete data given—January 200, February 300, March 400, April 450, May 350, June 250—illustrates how figure elements combine to convey the same information in multiple forms (visual bars, caption, table, and metadata fields). The chart highlights a peak in April (450) and a low in January (200), and also documents color mappings (Jan & Apr: orange; Feb & May: green; Mar & Jun: blue).",
+          "key_concepts": [
+            "Page objects (Figure)",
+            "Figure metadata (caption, axis titles, annotations)",
+            "Data replication across modalities (chart, table, text)",
+            "Chart interpretation (peaks, lows, trends)",
+            "Color encoding / legend information",
+            "Machine-readable figure fields (MarkdownDataTable, AxisTitles)"
+          ],
+          "main_topics": [
+            "Data visualization as a page object",
+            "Extracting structured data from figures",
+            "Metadata and accessibility for figures",
+            "Relating visual and tabular representations"
+          ],
+          "token_count": 509,
+          "created_at": "2025-09-24T18:48:49.339215"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmplo17b2kx.pdf",
+      "pdf_file": "/tmp/tmplo17b2kx.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_d38a5b2a-282c-4e64-b288-7b136b5ea4ba/task_document_processing/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f.md",
+      "cache_file": "content/pipelines/pipeline_d38a5b2a-282c-4e64-b288-7b136b5ea4ba/task_document_processing/tmplo17b2kx-book-cache-20250924_184822-a0d8738f.json",
+      "metadata": "content/pipelines/pipeline_d38a5b2a-282c-4e64-b288-7b136b5ea4ba/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmplo17b2kx.pdf",
+      "enhanced_markdown": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f.md",
+      "cache_file": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed/tmplo17b2kx-book-cache-20250924_184822-a0d8738f.json",
+      "figures_directory": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f/tmplo17b2kx-book-figures-20250924_184822-a0d8738f",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-8c3a6047-b339-4778-a86b-af3af0540965",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f",
+      "job_id": "a0d8738f",
+      "timestamp": "20250924_184822",
+      "content_type": "book",
+      "book_title": "tmplo17b2kx",
+      "metadata_file": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/metadata.json",
+      "input_directory": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/input",
+      "processed_directory": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed",
+      "markdown_directory": "content/books/tmplo17b2kx-book-20250924_184822-a0d8738f/processed/tmplo17b2kx-book-markdown-20250924_184822-a0d8738f",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T18:49:03.819011"
+    }
+  }
+}

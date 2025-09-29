@@ -1,0 +1,194 @@
+{
+  "pipeline_id": "12272c5a-3f52-4379-9a94-441bfafb3f7c",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:39:08.375263",
+  "end_time": "2025-09-23T20:39:45.174062",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:39:08.375768",
+      "end_time": "2025-09-23T20:39:24.211790",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-23T20:39:24.211804",
+      "end_time": "2025-09-23T20:39:45.174051",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1/tmpnzbkm4o2-book-figures-20250923_203908-103945d1",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects and Structured Document Metadata: A Practical Guide",
+      "main_folder": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1",
+      "book_summary": {
+        "book_title": "Page Objects and Structured Document Metadata: A Practical Guide",
+        "overall_summary": "This book explains a disciplined approach to representing documents as structured page objects, showing how richly annotated metadata transforms visual content into machine-actionable information. It begins by establishing the page-object model as a way to decompose a page into identifiable, typed objects (text blocks, figures, tables, etc.) and then argues for the importance of standardized, explicit metadata for each object to enable reliable parsing, search, accessibility, and downstream analytics. Throughout, the book balances theoretical foundations with concrete examples and pragmatic patterns for implementing the model.\n\nA central running example — a bar chart figure — is used to illustrate the principles in microcosm. The figure is annotated with complete metadata: a caption, chart type, topic keywords, a descriptive narrative, axis titles ('Months' and 'Values'), a markdown-styled data table that mirrors the visual, element-level numeric data (January–June values 200, 300, 400, 450, 350, 250), color encodings (January & April orange, February & May green, March & June blue), and footnotes. This example demonstrates how visual encoding maps to explicit data, how peaks and troughs (April = 450 peak, January = 200 low) are surfaced in metadata, and how tabular fallback supports accessibility and programmatic consumption.\n\nAs readers progress, the book shows how to extract structured data from visuals, how to design metadata schemas for different page object types, and how to maintain fidelity between visual presentation and semantic representation. It covers practical techniques for mapping color, position, and labels to canonical data fields; for building robust captions and descriptions; and for ensuring that machine-readable fallbacks (tables, JSON data) are always available. Interspersed are discussions on tooling, integration with document pipelines, and testing strategies to validate that metadata correctly represents source visuals.\n\nThe final sections synthesize these lessons into real-world workflows: producing accessible documents, automating data extraction at scale, enabling richer search and analytics over document corpora, and feeding reliable training data into machine learning systems. By the end, readers will understand both the conceptual model and concrete practices needed to make visual content unambiguous, discoverable, and reusable in automated systems.",
+        "key_themes": [
+          "Page-object model as a canonical representation of document structure",
+          "The critical role of structured metadata for accessibility and automation",
+          "Mapping visual encodings (color, position, labels) to explicit data",
+          "Designing fallbacks (tables, captions) to preserve meaning for machines and people",
+          "Practical workflows for extraction, validation, and integration",
+          "Balancing human-readable descriptions with machine-actionable formats"
+        ],
+        "learning_objectives": [
+          "Understand the page-object model and why it standardizes document representation",
+          "Annotate figures and other page objects with complete, useful metadata",
+          "Extract numeric data and semantics from visual encodings such as charts",
+          "Design accessible fallbacks (captions, tables) that mirror visual content",
+          "Integrate structured page-object metadata into document processing pipelines",
+          "Validate and test metadata to ensure fidelity between visuals and structured data"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier chapters that introduced the page-object model and the importance of structured metadata for documents, this chapter drills into a specific page object type: the Figure. It presents a bar chart figure with full metadata — a caption, chart type, topic keywords, a detailed description, a markdown data table, axis titles, and footnotes — and then demonstrates how the visual content maps to explicit numeric data. The chart shows monthly values for January through June (200, 300, 400, 450, 350, 250), highlights a peak in April (450) and a low in January (200), and uses color coding (January & April in orange, February & May in green, March & June in blue). The figure also includes axis labels ('Months' and 'Values') and a straightforward tabular representation that mirrors the visual bars.",
+            "key_concepts": [
+              "Figure as a page object",
+              "Structured figure metadata (title, description, chart type, keywords)",
+              "Data extraction from visuals (numeric values, axis titles)",
+              "Visual encoding (color mapping to categories)",
+              "Captioning and tabular fallback for accessibility"
+            ],
+            "main_topics": [
+              "Bar chart data for January–June",
+              "Metadata fields for figures (MarkdownDataTable, AxisTitles, Summary)",
+              "Interpretation of trends (peak, trough, fluctuations)"
+            ],
+            "token_count": 482,
+            "created_at": "2025-09-23T20:39:33.099561"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-23T20:39:45.173487"
+      },
+      "overall_summary": "This book explains a disciplined approach to representing documents as structured page objects, showing how richly annotated metadata transforms visual content into machine-actionable information. It begins by establishing the page-object model as a way to decompose a page into identifiable, typed objects (text blocks, figures, tables, etc.) and then argues for the importance of standardized, explicit metadata for each object to enable reliable parsing, search, accessibility, and downstream analytics. Throughout, the book balances theoretical foundations with concrete examples and pragmatic patterns for implementing the model.\n\nA central running example — a bar chart figure — is used to illustrate the principles in microcosm. The figure is annotated with complete metadata: a caption, chart type, topic keywords, a descriptive narrative, axis titles ('Months' and 'Values'), a markdown-styled data table that mirrors the visual, element-level numeric data (January–June values 200, 300, 400, 450, 350, 250), color encodings (January & April orange, February & May green, March & June blue), and footnotes. This example demonstrates how visual encoding maps to explicit data, how peaks and troughs (April = 450 peak, January = 200 low) are surfaced in metadata, and how tabular fallback supports accessibility and programmatic consumption.\n\nAs readers progress, the book shows how to extract structured data from visuals, how to design metadata schemas for different page object types, and how to maintain fidelity between visual presentation and semantic representation. It covers practical techniques for mapping color, position, and labels to canonical data fields; for building robust captions and descriptions; and for ensuring that machine-readable fallbacks (tables, JSON data) are always available. Interspersed are discussions on tooling, integration with document pipelines, and testing strategies to validate that metadata correctly represents source visuals.\n\nThe final sections synthesize these lessons into real-world workflows: producing accessible documents, automating data extraction at scale, enabling richer search and analytics over document corpora, and feeding reliable training data into machine learning systems. By the end, readers will understand both the conceptual model and concrete practices needed to make visual content unambiguous, discoverable, and reusable in automated systems.",
+      "key_themes": [
+        "Page-object model as a canonical representation of document structure",
+        "The critical role of structured metadata for accessibility and automation",
+        "Mapping visual encodings (color, position, labels) to explicit data",
+        "Designing fallbacks (tables, captions) to preserve meaning for machines and people",
+        "Practical workflows for extraction, validation, and integration",
+        "Balancing human-readable descriptions with machine-actionable formats"
+      ],
+      "learning_objectives": [
+        "Understand the page-object model and why it standardizes document representation",
+        "Annotate figures and other page objects with complete, useful metadata",
+        "Extract numeric data and semantics from visual encodings such as charts",
+        "Design accessible fallbacks (captions, tables) that mirror visual content",
+        "Integrate structured page-object metadata into document processing pipelines",
+        "Validate and test metadata to ensure fidelity between visuals and structured data"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier chapters that introduced the page-object model and the importance of structured metadata for documents, this chapter drills into a specific page object type: the Figure. It presents a bar chart figure with full metadata — a caption, chart type, topic keywords, a detailed description, a markdown data table, axis titles, and footnotes — and then demonstrates how the visual content maps to explicit numeric data. The chart shows monthly values for January through June (200, 300, 400, 450, 350, 250), highlights a peak in April (450) and a low in January (200), and uses color coding (January & April in orange, February & May in green, March & June in blue). The figure also includes axis labels ('Months' and 'Values') and a straightforward tabular representation that mirrors the visual bars.",
+          "key_concepts": [
+            "Figure as a page object",
+            "Structured figure metadata (title, description, chart type, keywords)",
+            "Data extraction from visuals (numeric values, axis titles)",
+            "Visual encoding (color mapping to categories)",
+            "Captioning and tabular fallback for accessibility"
+          ],
+          "main_topics": [
+            "Bar chart data for January–June",
+            "Metadata fields for figures (MarkdownDataTable, AxisTitles, Summary)",
+            "Interpretation of trends (peak, trough, fluctuations)"
+          ],
+          "token_count": 482,
+          "created_at": "2025-09-23T20:39:33.099561"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpnzbkm4o2.pdf",
+      "pdf_file": "/tmp/tmpnzbkm4o2.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_12272c5a-3f52-4379-9a94-441bfafb3f7c/task_document_processing/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1.md",
+      "cache_file": "content/pipelines/pipeline_12272c5a-3f52-4379-9a94-441bfafb3f7c/task_document_processing/tmpnzbkm4o2-book-cache-20250923_203908-103945d1.json",
+      "metadata": "content/pipelines/pipeline_12272c5a-3f52-4379-9a94-441bfafb3f7c/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpnzbkm4o2.pdf",
+      "enhanced_markdown": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1.md",
+      "cache_file": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed/tmpnzbkm4o2-book-cache-20250923_203908-103945d1.json",
+      "figures_directory": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1/tmpnzbkm4o2-book-figures-20250923_203908-103945d1",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-0f484b4a-e5d4-4828-afe3-f4b6315cf8e3",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1",
+      "job_id": "103945d1",
+      "timestamp": "20250923_203908",
+      "content_type": "book",
+      "book_title": "tmpnzbkm4o2",
+      "metadata_file": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/metadata.json",
+      "input_directory": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/input",
+      "processed_directory": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed",
+      "markdown_directory": "content/books/tmpnzbkm4o2-book-20250923_203908-103945d1/processed/tmpnzbkm4o2-book-markdown-20250923_203908-103945d1",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-23T20:39:45.173487"
+    }
+  }
+}

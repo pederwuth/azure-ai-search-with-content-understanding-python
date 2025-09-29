@@ -1,0 +1,194 @@
+{
+  "pipeline_id": "9c861e2e-083d-4de3-a5b1-5e4a12ce99f5",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T22:20:01.651962",
+  "end_time": "2025-09-25T22:20:41.824070",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T22:20:01.652607",
+      "end_time": "2025-09-25T22:20:15.036519",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T22:20:15.036549",
+      "end_time": "2025-09-25T22:20:41.824054",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "meaningful_custom_filename",
+      "figures_directory": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda/tmpvggdxvyb-book-figures-20250925_222001-6f92cfda",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Modeling UI Components with Page Objects: From Structure to Data-Driven Visuals",
+      "main_folder": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda",
+      "book_summary": {
+        "book_title": "Modeling UI Components with Page Objects: From Structure to Data-Driven Visuals",
+        "overall_summary": "This book tells a focused, practical story about how to model user interfaces and their constituent components using the page object pattern, with special attention to components that combine structured metadata and visual representations. It opens by establishing why page objects are useful: they encapsulate structure, behavior, and metadata so that UI tests, renderers, and tooling can reason about pages and components consistently. From that foundation the book narrows to concrete, repeatable techniques for specializing generic page objects into domain-specific components that carry not only DOM queries but semantic meaning and data payloads.\n\nA running example—the Figure page object—anchors the book’s explanations. The Figure is shown to be more than a container for a bar chart: it packages the visual encoding (a bar chart of monthly values for January–June), the underlying data (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), chart metadata (title, axis labels, figcaption), and alternate representations (a Markdown data table). This concrete example illustrates how data-to-visual mapping choices (e.g., color encoding for categorical months, use of axis titles) and simple analytic observations (a clear peak in April and a low in January) should be part of the component model rather than scattered across tests, docs, and UI code.\n\nThroughout the narrative the book progressively layers concerns: it moves from establishing a page-object mental model, to specializing components like Figure, to techniques for encoding chart semantics and data, and finally to the tooling and workflows that make these models useful in practice—automated tests, documentation generation, and accessible presentations of charts and tables. Emphasis is placed on designing components that are testable, discoverable, and self-documenting so teams can maintain and evolve UI systems with confidence.\n\nBy the end readers will have a principled approach to representing UI components that combine visuals and data. They will be able to design component models that surface both structure and meaning, choose encoding strategies that communicate trends (for example, highlighting a peak or trough in a time series), and integrate metadata (titles, captions, data tables) to improve usability, accessibility, and test coverage. The book is practical and example-driven, with patterns you can adopt directly into front-end architectures, design systems, and test suites.",
+        "key_themes": [
+          "Page object specialization and encapsulation",
+          "Data-to-visual mapping and chart semantics",
+          "Metadata and discoverability (titles, labels, captions, data tables)",
+          "Color and encoding choices to communicate categories and trends",
+          "Design for testability, accessibility, and maintainability"
+        ],
+        "learning_objectives": [
+          "Understand the page object pattern and how to specialize it for UI components",
+          "Model visual components (like charts) that carry both rendering logic and underlying data",
+          "Encode and document chart metadata—axis titles, captions, and data tables—for clarity and accessibility",
+          "Make deliberate visual-encoding choices (colors, labels) to highlight trends and categories",
+          "Integrate component models into testing, documentation, and design-system workflows"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter narrows the focus of the book's earlier discussion of page objects and UI/component modeling by examining the Figure page object in detail. Building on the introductory material about how page objects encapsulate structure and metadata, it shows how a Figure contains not only visual content (a bar chart of monthly values from January to June) but also accompanying metadata: a title, axis labels, a Markdown data table, and a figcaption. The embedded data identifies values for each month (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250) and highlights a clear peak in April and a low in January, with color-coding used to distinguish months.",
+            "key_concepts": [
+              "Page object specialization (Figure)",
+              "Data-to-visual mapping (bar chart)",
+              "Chart metadata (axis titles, captions, data tables)",
+              "Color encoding for categories",
+              "Peak/trough identification in time series"
+            ],
+            "main_topics": [
+              "Figure object structure",
+              "Monthly value bar chart (Jan–Jun)",
+              "Metadata and annotations (AxisTitles, Footnotes, MarkdownDataTable)",
+              "Visual encoding and interpretation"
+            ],
+            "token_count": 445,
+            "created_at": "2025-09-25T22:20:26.437917"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T22:20:41.821484"
+      },
+      "overall_summary": "This book tells a focused, practical story about how to model user interfaces and their constituent components using the page object pattern, with special attention to components that combine structured metadata and visual representations. It opens by establishing why page objects are useful: they encapsulate structure, behavior, and metadata so that UI tests, renderers, and tooling can reason about pages and components consistently. From that foundation the book narrows to concrete, repeatable techniques for specializing generic page objects into domain-specific components that carry not only DOM queries but semantic meaning and data payloads.\n\nA running example—the Figure page object—anchors the book’s explanations. The Figure is shown to be more than a container for a bar chart: it packages the visual encoding (a bar chart of monthly values for January–June), the underlying data (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), chart metadata (title, axis labels, figcaption), and alternate representations (a Markdown data table). This concrete example illustrates how data-to-visual mapping choices (e.g., color encoding for categorical months, use of axis titles) and simple analytic observations (a clear peak in April and a low in January) should be part of the component model rather than scattered across tests, docs, and UI code.\n\nThroughout the narrative the book progressively layers concerns: it moves from establishing a page-object mental model, to specializing components like Figure, to techniques for encoding chart semantics and data, and finally to the tooling and workflows that make these models useful in practice—automated tests, documentation generation, and accessible presentations of charts and tables. Emphasis is placed on designing components that are testable, discoverable, and self-documenting so teams can maintain and evolve UI systems with confidence.\n\nBy the end readers will have a principled approach to representing UI components that combine visuals and data. They will be able to design component models that surface both structure and meaning, choose encoding strategies that communicate trends (for example, highlighting a peak or trough in a time series), and integrate metadata (titles, captions, data tables) to improve usability, accessibility, and test coverage. The book is practical and example-driven, with patterns you can adopt directly into front-end architectures, design systems, and test suites.",
+      "key_themes": [
+        "Page object specialization and encapsulation",
+        "Data-to-visual mapping and chart semantics",
+        "Metadata and discoverability (titles, labels, captions, data tables)",
+        "Color and encoding choices to communicate categories and trends",
+        "Design for testability, accessibility, and maintainability"
+      ],
+      "learning_objectives": [
+        "Understand the page object pattern and how to specialize it for UI components",
+        "Model visual components (like charts) that carry both rendering logic and underlying data",
+        "Encode and document chart metadata—axis titles, captions, and data tables—for clarity and accessibility",
+        "Make deliberate visual-encoding choices (colors, labels) to highlight trends and categories",
+        "Integrate component models into testing, documentation, and design-system workflows"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter narrows the focus of the book's earlier discussion of page objects and UI/component modeling by examining the Figure page object in detail. Building on the introductory material about how page objects encapsulate structure and metadata, it shows how a Figure contains not only visual content (a bar chart of monthly values from January to June) but also accompanying metadata: a title, axis labels, a Markdown data table, and a figcaption. The embedded data identifies values for each month (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250) and highlights a clear peak in April and a low in January, with color-coding used to distinguish months.",
+          "key_concepts": [
+            "Page object specialization (Figure)",
+            "Data-to-visual mapping (bar chart)",
+            "Chart metadata (axis titles, captions, data tables)",
+            "Color encoding for categories",
+            "Peak/trough identification in time series"
+          ],
+          "main_topics": [
+            "Figure object structure",
+            "Monthly value bar chart (Jan–Jun)",
+            "Metadata and annotations (AxisTitles, Footnotes, MarkdownDataTable)",
+            "Visual encoding and interpretation"
+          ],
+          "token_count": 445,
+          "created_at": "2025-09-25T22:20:26.437917"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpvggdxvyb.pdf",
+      "pdf_file": "/tmp/tmpvggdxvyb.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_9c861e2e-083d-4de3-a5b1-5e4a12ce99f5/task_document_processing/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda.md",
+      "cache_file": "content/pipelines/pipeline_9c861e2e-083d-4de3-a5b1-5e4a12ce99f5/task_document_processing/tmpvggdxvyb-book-cache-20250925_222001-6f92cfda.json",
+      "metadata": "content/pipelines/pipeline_9c861e2e-083d-4de3-a5b1-5e4a12ce99f5/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_9c861e2e-083d-4de3-a5b1-5e4a12ce99f5/task_summarization/tmpvggdxvyb-summary-20250925_222001-6f92cfda.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpvggdxvyb.pdf",
+      "enhanced_markdown": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda.md",
+      "cache_file": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed/tmpvggdxvyb-book-cache-20250925_222001-6f92cfda.json",
+      "figures_directory": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda/tmpvggdxvyb-book-figures-20250925_222001-6f92cfda",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-84139d48-7f66-4971-b102-375eef9ac0e9",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda",
+      "job_id": "6f92cfda",
+      "timestamp": "20250925_222001",
+      "content_type": "book",
+      "book_title": "tmpvggdxvyb",
+      "metadata_file": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/metadata.json",
+      "input_directory": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/input",
+      "processed_directory": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed",
+      "markdown_directory": "content/books/tmpvggdxvyb-book-20250925_222001-6f92cfda/processed/tmpvggdxvyb-book-markdown-20250925_222001-6f92cfda",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-25T22:20:41.821484"
+    }
+  }
+}

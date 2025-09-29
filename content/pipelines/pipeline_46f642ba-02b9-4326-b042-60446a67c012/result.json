@@ -1,0 +1,93 @@
+{
+  "pipeline_id": "46f642ba-02b9-4326-b042-60446a67c012",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:21:45.811500",
+  "end_time": "2025-09-23T20:22:17.513154",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:21:45.811785",
+      "end_time": "2025-09-23T20:21:59.313877",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-23T20:21:59.313892",
+      "end_time": "2025-09-23T20:22:17.513138",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Book Pipeline SUCCESS",
+      "figures_directory": "content/books/tmpv51xowm0-book-20250923_202145-d33bb25d/processed/tmpv51xowm0-book-markdown-20250923_202145-d33bb25d/tmpv51xowm0-book-figures-20250923_202145-d33bb25d",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2674,
+        "estimated_tokens": 543
+      },
+      "figures_processed": 1,
+      "document_length": 2674,
+      "book_title": "Structured Page Objects for Rich Documents",
+      "main_folder": "content/books/tmpv51xowm0-book-20250923_202145-d33bb25d",
+      "book_summary": {
+        "book_title": "Structured Page Objects for Rich Documents",
+        "overall_summary": "This book presents a practical and systematic approach to representing the content of complex documents using a page-object model and rich, structured metadata. Beginning with a conceptual framing of page objects as reusable, semantically meaningful building blocks, the book argues for treating figures, tables, paragraphs, and other visible elements as first-class objects that carry machine-readable descriptions alongside human-facing renderings. It emphasizes repeatable metadata fields and conventions that make document content unambiguous, discoverable, and interoperable across tools and workflows.\n\nUsing concrete examples, the book shows how visual elements map to explicit metadata: chart types, axis titles, data encodings, captions, and embedded machine-readable data tables. One extended example — a bar-chart figure that summarizes monthly values from January to June — illustrates how a Figure page object can bundle a caption, ChartType, AxisTitles, DetailedDescription, MarkdownDataTable, and color-encoding information. That example demonstrates redundancy done well: the same facts are expressed visually, verbally, and in tabular metadata so both humans and machines can interpret the content correctly.\n\nBeyond representation, the book explores the practical consequences of structured page objects. It covers rendering and layout, accessibility (making sure axis labels and summaries are available to screen readers), searchability and indexing, programmatic transformation and reuse, and automated validation. The aim is to show how a consistent metadata surface can unlock workflows such as automated figure generation, data extraction, content migration, and semantic search across repositories.\n\nThroughout, the narrative balances theory and hands-on patterns: it starts with foundations, moves into canonical object types and fields, provides implementation patterns and examples, and concludes with guidance for adoption and tooling. Readers finish with not only an understanding of why page objects and structured metadata matter, but also a practical toolkit for designing, implementing, and using them in real documentation and publishing environments.",
+        "key_themes": [
+          "Page-object modeling of document elements",
+          "Structured, machine-readable metadata",
+          "Mapping visual features to explicit metadata fields",
+          "Accessibility and semantic labeling",
+          "Interoperability and reusability across systems",
+          "Redundancy for human and machine consumption"
+        ],
+        "learning_objectives": [
+          "Understand the page-object concept and why treating document elements as objects matters",
+          "Identify and design essential metadata fields for common page objects (e.g., Figure, Table)",
+          "Map visual encodings (axis titles, color, captions) to explicit, machine-readable metadata",
+          "Embed and use machine-readable data (MarkdownDataTable) alongside human-facing renderings",
+          "Apply patterns that improve accessibility, searchability, and programmatic reuse of content",
+          "Plan and implement workflows and tooling that leverage structured page objects"
+        ],
+        "chapter_summaries": [
+          

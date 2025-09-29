@@ -20,21 +20,21 @@ param environmentName string
 param location string
 
 @description('Name of the GPT model to deploy')
-param gptModelName string = 'gpt-4o'
+param gptModelName string = 'gpt-5-mini'
 @description('Version of the GPT model to deploy')
-param gptModelVersion string = '2024-08-06'
+param gptModelVersion string = '2024-12-01-preview'
 @description('Name of the model deployment (can be different from the model name)')
-param gptDeploymentName string = 'gpt-4o'
+param gptDeploymentName string = 'gpt-5-mini'
 @description('Capacity of the GPT deployment')
 // You can increase this, but capacity is limited per model/region, so you will get errors if you go over
 // https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
 param gptDeploymentCapacity int = 30
 @description('Name of the embedding model to deploy')
-param embeddingModelName string = 'text-embedding-ada-002'
+param embeddingModelName string = 'text-embedding-3-small'
 @description('Version of the embedding model to deploy')
-param embeddingModelVersion string = '2'
+param embeddingModelVersion string = '2024-02-01'
 @description('Name of the model deployment (can be different from the model name)')
-param embeddingDeploymentName string = 'text-embedding-ada-002'
+param embeddingDeploymentName string = 'text-embedding-3-small'
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
 @description('Non-empty if the deployment is running on GitHub Actions')
@@ -45,15 +45,15 @@ var principalType = empty(runningOnGitHub) ? 'User' : 'ServicePrincipal'
 var uniqueId = toLower(uniqueString(subscription().id, environmentName, location))
 var resourcePrefix = '${environmentName}${uniqueId}'
 var tags = {
-    'azd-env-name': environmentName
-    owner: 'azure-ai-sample'
+  'azd-env-name': environmentName
+  owner: 'azure-ai-sample'
 }
 
 // Organize resources in a resource group
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-    name: '${resourcePrefix}-rg'
-    location: location
-    tags: tags
+  name: '${resourcePrefix}-rg'
+  location: location
+  tags: tags
 }
 
 var aiServiceName = '${resourcePrefix}-aiservice'
@@ -73,12 +73,12 @@ module aiService 'br/public:avm/res/cognitive-services/account:0.8.1' = {
       bypass: 'AzureServices'
     }
     roleAssignments: [
-        {
-          principalId: principalId
-          roleDefinitionIdOrName: 'Cognitive Services User'
-          principalType: principalType
-        }
-      ]
+      {
+        principalId: principalId
+        roleDefinitionIdOrName: 'Cognitive Services User'
+        principalType: principalType
+      }
+    ]
   }
 }
 

@@ -1,0 +1,192 @@
+{
+  "pipeline_id": "aebcfebd-876e-42aa-be47-c9c523127795",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-25T21:11:41.916699",
+  "end_time": "2025-09-25T21:12:29.556693",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-25T21:11:41.930823",
+      "end_time": "2025-09-25T21:12:01.819117",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-25T21:12:01.819141",
+      "end_time": "2025-09-25T21:12:29.556674",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933/tmp8d_o9ur5-book-figures-20250925_211141-ca0bd933",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2508,
+        "estimated_tokens": 504
+      },
+      "figures_processed": 1,
+      "document_length": 2508,
+      "book_title": "Document Page Object Modeling and Figure Extraction",
+      "main_folder": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933",
+      "book_summary": {
+        "book_title": "Document Page Object Modeling and Figure Extraction",
+        "overall_summary": "This book tells the story of how modern document understanding systems move from low-level page layout to high-value structured content by modeling page objects, with a detailed deep-dive on Figures. It begins by establishing core concepts of page layout and object modeling — how pages are decomposed into text blocks, images, tables, and figures — and why an object-centric approach enables consistent extraction, indexing, and downstream analysis. Early chapters introduce the vocabulary and representations needed to reason about visual and semantic information together.\n\nBuilding on that foundation, the book drills into the concrete example of the Figure as a page object type. Using a bar chart of monthly values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), it explains both the visible visual elements and the embedded metadata (caption: \"Figure 1: Here is a figure with text\", axis labels: \"Months\" and \"Values\", and an explicit data table and summary). The example is used to teach how to parse bars, align them with axis ticks, reconcile numeric labels with a metadata table, and extract key insights such as the highest (April = 450) and lowest (January = 200) points.\n\nSubsequent sections translate the example into practical processing guidance: how to detect and classify figures on a page, how to extract and normalize axis labels and numeric data, methods for aligning visual marks to tabular metadata, and strategies for resolving inconsistencies when visual and textual cues disagree. The book also addresses implementation concerns such as OCR limits, graphical noise, semantic labeling, and the importance of capturing both visible content and embedded descriptive metadata for robust downstream use.\n\nFinally, the book situates these techniques within real-world workflows: building pipelines that convert visual documents into structured datasets, improving accessibility through explicit captions and labels, supporting search and analytics with extracted numeric series, and evaluating extraction quality. Throughout, practical examples, heuristics, and best-practice patterns are emphasized so readers can move from theory to applied systems that reliably interpret figures and other page objects.",
+        "key_themes": [
+          "Page object-centric modeling of documents",
+          "Bridging visual elements and embedded metadata",
+          "Robust extraction of structured data from figures",
+          "Alignment and reconciliation between chart visuals and descriptive tables",
+          "Practical system design for document understanding"
+        ],
+        "learning_objectives": [
+          "Understand page layout primitives and how to model page objects like figures",
+          "Identify and extract visual and textual components of figures (captions, axis labels, annotations)",
+          "Parse chart visuals (e.g., bar charts) and align them to embedded data tables",
+          "Detect key data insights from visuals (e.g., maxima/minima) and validate them against metadata",
+          "Design and evaluate pipelines that convert visual page objects into reliable structured outputs"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on the foundational material about page layout and object modeling from earlier chapters, this chapter drills into a concrete page object type: the Figure. It explains how a figure is represented in a document both visually and as embedded metadata (caption, data table, axis titles, and annotations). The chapter uses a bar chart example covering monthly values from January through June to show how visual elements convey quantitative information and how those elements should be interpreted and captured when extracting structured content from a page.\n\nThe chapter also demonstrates practical details readers should expect when processing figures: explicit captions (Figure 1: Here is a figure with text), labeled axes (Months and Values), a descriptive metadata block that includes a data table and summary, and the numeric data itself (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250). It emphasizes that metadata and the visible chart often reinforce each other (e.g., the metadata table matches the bars) and highlights the importance of recognizing highest and lowest points (April = 450, January = 200) when extracting insights from visual page objects.",
+            "key_concepts": [
+              "Page object: Figure",
+              "Caption and figure metadata",
+              "Bar chart data extraction",
+              "Axis labeling (x/y titles)",
+              "Data-table embedding and alignment"
+            ],
+            "main_topics": [
+              "Representation of figures in documents",
+              "Mapping visual elements to structured data",
+              "Interpreting chart metadata and annotations"
+            ],
+            "token_count": 507,
+            "created_at": "2025-09-25T21:12:13.870497"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-25T21:12:29.554586"
+      },
+      "overall_summary": "This book tells the story of how modern document understanding systems move from low-level page layout to high-value structured content by modeling page objects, with a detailed deep-dive on Figures. It begins by establishing core concepts of page layout and object modeling — how pages are decomposed into text blocks, images, tables, and figures — and why an object-centric approach enables consistent extraction, indexing, and downstream analysis. Early chapters introduce the vocabulary and representations needed to reason about visual and semantic information together.\n\nBuilding on that foundation, the book drills into the concrete example of the Figure as a page object type. Using a bar chart of monthly values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), it explains both the visible visual elements and the embedded metadata (caption: \"Figure 1: Here is a figure with text\", axis labels: \"Months\" and \"Values\", and an explicit data table and summary). The example is used to teach how to parse bars, align them with axis ticks, reconcile numeric labels with a metadata table, and extract key insights such as the highest (April = 450) and lowest (January = 200) points.\n\nSubsequent sections translate the example into practical processing guidance: how to detect and classify figures on a page, how to extract and normalize axis labels and numeric data, methods for aligning visual marks to tabular metadata, and strategies for resolving inconsistencies when visual and textual cues disagree. The book also addresses implementation concerns such as OCR limits, graphical noise, semantic labeling, and the importance of capturing both visible content and embedded descriptive metadata for robust downstream use.\n\nFinally, the book situates these techniques within real-world workflows: building pipelines that convert visual documents into structured datasets, improving accessibility through explicit captions and labels, supporting search and analytics with extracted numeric series, and evaluating extraction quality. Throughout, practical examples, heuristics, and best-practice patterns are emphasized so readers can move from theory to applied systems that reliably interpret figures and other page objects.",
+      "key_themes": [
+        "Page object-centric modeling of documents",
+        "Bridging visual elements and embedded metadata",
+        "Robust extraction of structured data from figures",
+        "Alignment and reconciliation between chart visuals and descriptive tables",
+        "Practical system design for document understanding"
+      ],
+      "learning_objectives": [
+        "Understand page layout primitives and how to model page objects like figures",
+        "Identify and extract visual and textual components of figures (captions, axis labels, annotations)",
+        "Parse chart visuals (e.g., bar charts) and align them to embedded data tables",
+        "Detect key data insights from visuals (e.g., maxima/minima) and validate them against metadata",
+        "Design and evaluate pipelines that convert visual page objects into reliable structured outputs"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on the foundational material about page layout and object modeling from earlier chapters, this chapter drills into a concrete page object type: the Figure. It explains how a figure is represented in a document both visually and as embedded metadata (caption, data table, axis titles, and annotations). The chapter uses a bar chart example covering monthly values from January through June to show how visual elements convey quantitative information and how those elements should be interpreted and captured when extracting structured content from a page.\n\nThe chapter also demonstrates practical details readers should expect when processing figures: explicit captions (Figure 1: Here is a figure with text), labeled axes (Months and Values), a descriptive metadata block that includes a data table and summary, and the numeric data itself (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250). It emphasizes that metadata and the visible chart often reinforce each other (e.g., the metadata table matches the bars) and highlights the importance of recognizing highest and lowest points (April = 450, January = 200) when extracting insights from visual page objects.",
+          "key_concepts": [
+            "Page object: Figure",
+            "Caption and figure metadata",
+            "Bar chart data extraction",
+            "Axis labeling (x/y titles)",
+            "Data-table embedding and alignment"
+          ],
+          "main_topics": [
+            "Representation of figures in documents",
+            "Mapping visual elements to structured data",
+            "Interpreting chart metadata and annotations"
+          ],
+          "token_count": 507,
+          "created_at": "2025-09-25T21:12:13.870497"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp8d_o9ur5.pdf",
+      "pdf_file": "/tmp/tmp8d_o9ur5.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_aebcfebd-876e-42aa-be47-c9c523127795/task_document_processing/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933.md",
+      "cache_file": "content/pipelines/pipeline_aebcfebd-876e-42aa-be47-c9c523127795/task_document_processing/tmp8d_o9ur5-book-cache-20250925_211141-ca0bd933.json",
+      "metadata": "content/pipelines/pipeline_aebcfebd-876e-42aa-be47-c9c523127795/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_aebcfebd-876e-42aa-be47-c9c523127795/task_summarization/tmp8d_o9ur5-summary-20250925_211141-ca0bd933.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp8d_o9ur5.pdf",
+      "enhanced_markdown": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933.md",
+      "cache_file": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed/tmp8d_o9ur5-book-cache-20250925_211141-ca0bd933.json",
+      "figures_directory": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933/tmp8d_o9ur5-book-figures-20250925_211141-ca0bd933",
+      "figures_processed": 1,
+      "document_length": 2508,
+      "analyzer_id": "enhanced-content-understanding-a1656191-436a-4722-96b1-de680a0ac333",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2508,
+        "estimated_tokens": 504
+      },
+      "main_folder": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933",
+      "job_id": "ca0bd933",
+      "timestamp": "20250925_211141",
+      "content_type": "book",
+      "book_title": "tmp8d_o9ur5",
+      "metadata_file": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/metadata.json",
+      "input_directory": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/input",
+      "processed_directory": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed",
+      "markdown_directory": "content/books/tmp8d_o9ur5-book-20250925_211141-ca0bd933/processed/tmp8d_o9ur5-book-markdown-20250925_211141-ca0bd933",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-25T21:12:29.554586"
+    }
+  }
+}

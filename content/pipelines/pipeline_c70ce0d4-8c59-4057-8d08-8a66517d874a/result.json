@@ -1,0 +1,198 @@
+{
+  "pipeline_id": "c70ce0d4-8c59-4057-8d08-8a66517d874a",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T20:48:10.172524",
+  "end_time": "2025-09-24T20:48:47.557920",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T20:48:10.174775",
+      "end_time": "2025-09-24T20:48:24.495533",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T20:48:24.495552",
+      "end_time": "2025-09-24T20:48:47.557902",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Final Test Book",
+      "figures_directory": "content/books/final_test_book-book-20250924_204810-2882b578/processed/final_test_book-book-markdown-20250924_204810-2882b578/final_test_book-book-figures-20250924_204810-2882b578",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Page Objects Framework for Document Representation",
+      "main_folder": "content/books/final_test_book-book-20250924_204810-2882b578",
+      "book_summary": {
+        "book_title": "Page Objects Framework for Document Representation",
+        "overall_summary": "This book presents a practical, working framework for representing the contents of document pages as structured, semantically rich objects. It opens by motivating the need to bridge visual rendering and machine-readable semantics—so a chart or table is not only displayable but also searchable, describable for accessibility, and reproducible as data. The Page Objects approach decomposes a page into named object types (text blocks, tables, figures and so on) and defines the responsibilities and metadata each object carries.\n\nA central thread through the book is the figure page object, used as a running example to show how UI-facing markup and underlying metadata coexist. The figure example demonstrates a human-readable caption and a parallel set of metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). Readers learn how these fields map to visual properties—chart type determines geometry, the data table supplies numeric series, axis titles provide semantic labels, and annotations or footnotes add contextual nuance.\n\nBeyond the mechanics of any single object, the book explains how such structured representations enable multiple downstream benefits: improved accessibility (through detailed descriptions and summaries), reliable search and indexing (through topic keywords and semantic labels), reproducible analytics (via embedded data tables), and programmatic rendering or transformation across platforms. Practical examples show interpreting chart data (e.g., peaks and troughs in monthly values), how color or labeling communicates categories, and how to include annotations that preserve editorial context.\n\nThe latter sections shift from examples to implementation guidance and best practices—schema design choices, how to balance human-friendly captions with machine-oriented descriptions, workflows for extracting and authoring metadata, and recommendations for integrating Page Objects into publishing pipelines, document ingestion systems, and accessibility workflows. The book closes by presenting case studies and forward-looking advice for extending the framework to new object types and evolving downstream needs.",
+        "key_themes": [
+          "Structured representation of visual and textual content",
+          "Semantic enrichment for search and accessibility",
+          "Mapping metadata to visual encoding",
+          "Reproducibility and machine-readable data",
+          "Interoperability between rendering and analysis",
+          "Practical implementation and best practices"
+        ],
+        "learning_objectives": [
+          "Understand the Page Objects concept and why documents benefit from structured object models",
+          "Design and populate figure metadata fields (Title, ChartType, AxisTitles, MarkdownDataTable, etc.)",
+          "Write complementary human-facing captions and machine-oriented detailed descriptions for accessibility and search",
+          "Map visual encodings (chart types, colors, annotations) to semantic metadata",
+          "Extract, validate, and reuse embedded data for reproducible plotting and analysis",
+          "Integrate Page Objects into document pipelines for rendering, indexing, and downstream processing"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter drills into the Figure page object, expanding on the Page Objects framework introduced earlier (which categorized document elements such as text blocks, tables, and figures). It presents a concrete example of a bar chart figure, showing both the human-readable figure markup (caption and values) and the underlying metadata fields that describe the visual (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). The chapter demonstrates how a figure is represented for both rendering and semantic understanding: a caption for display, a detailed description for accessibility and search, and a structured data table for reproducible plotting or data extraction.\n\nBuilding on the foundation of object types and their roles in composing a page, the chapter highlights how figure metadata maps directly to visual properties—chart type determines geometry (bar), the data table provides the numeric series (monthly values Jan–Jun), axis titles label the dimensions (Months, Values), and color assignments communicate categorical distinctions. The included example illustrates interpretation of the data (a peak in April at 450 and a low in January at 200) and shows how annotations and footnotes can provide context. Overall, the chapter moves the reader from abstract definitions of page objects to practical, structured representations that support rendering, accessibility, analysis, and downstream processing.",
+            "key_concepts": [
+              "Figure as a Page Object",
+              "Chart metadata fields (Title, ChartType, TopicKeywords)",
+              "DetailedDescription and Summary for accessibility",
+              "MarkdownDataTable as machine-readable data",
+              "AxisTitles for semantic labeling",
+              "Visual encoding (colors, caption, annotations)"
+            ],
+            "main_topics": [
+              "Bar chart representation (January–June values)",
+              "Mapping metadata to visual elements",
+              "Data-rich figure structure for rendering and analysis"
+            ],
+            "token_count": 571,
+            "created_at": "2025-09-24T20:48:33.758457"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T20:48:47.555742"
+      },
+      "overall_summary": "This book presents a practical, working framework for representing the contents of document pages as structured, semantically rich objects. It opens by motivating the need to bridge visual rendering and machine-readable semantics—so a chart or table is not only displayable but also searchable, describable for accessibility, and reproducible as data. The Page Objects approach decomposes a page into named object types (text blocks, tables, figures and so on) and defines the responsibilities and metadata each object carries.\n\nA central thread through the book is the figure page object, used as a running example to show how UI-facing markup and underlying metadata coexist. The figure example demonstrates a human-readable caption and a parallel set of metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). Readers learn how these fields map to visual properties—chart type determines geometry, the data table supplies numeric series, axis titles provide semantic labels, and annotations or footnotes add contextual nuance.\n\nBeyond the mechanics of any single object, the book explains how such structured representations enable multiple downstream benefits: improved accessibility (through detailed descriptions and summaries), reliable search and indexing (through topic keywords and semantic labels), reproducible analytics (via embedded data tables), and programmatic rendering or transformation across platforms. Practical examples show interpreting chart data (e.g., peaks and troughs in monthly values), how color or labeling communicates categories, and how to include annotations that preserve editorial context.\n\nThe latter sections shift from examples to implementation guidance and best practices—schema design choices, how to balance human-friendly captions with machine-oriented descriptions, workflows for extracting and authoring metadata, and recommendations for integrating Page Objects into publishing pipelines, document ingestion systems, and accessibility workflows. The book closes by presenting case studies and forward-looking advice for extending the framework to new object types and evolving downstream needs.",
+      "key_themes": [
+        "Structured representation of visual and textual content",
+        "Semantic enrichment for search and accessibility",
+        "Mapping metadata to visual encoding",
+        "Reproducibility and machine-readable data",
+        "Interoperability between rendering and analysis",
+        "Practical implementation and best practices"
+      ],
+      "learning_objectives": [
+        "Understand the Page Objects concept and why documents benefit from structured object models",
+        "Design and populate figure metadata fields (Title, ChartType, AxisTitles, MarkdownDataTable, etc.)",
+        "Write complementary human-facing captions and machine-oriented detailed descriptions for accessibility and search",
+        "Map visual encodings (chart types, colors, annotations) to semantic metadata",
+        "Extract, validate, and reuse embedded data for reproducible plotting and analysis",
+        "Integrate Page Objects into document pipelines for rendering, indexing, and downstream processing"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter drills into the Figure page object, expanding on the Page Objects framework introduced earlier (which categorized document elements such as text blocks, tables, and figures). It presents a concrete example of a bar chart figure, showing both the human-readable figure markup (caption and values) and the underlying metadata fields that describe the visual (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). The chapter demonstrates how a figure is represented for both rendering and semantic understanding: a caption for display, a detailed description for accessibility and search, and a structured data table for reproducible plotting or data extraction.\n\nBuilding on the foundation of object types and their roles in composing a page, the chapter highlights how figure metadata maps directly to visual properties—chart type determines geometry (bar), the data table provides the numeric series (monthly values Jan–Jun), axis titles label the dimensions (Months, Values), and color assignments communicate categorical distinctions. The included example illustrates interpretation of the data (a peak in April at 450 and a low in January at 200) and shows how annotations and footnotes can provide context. Overall, the chapter moves the reader from abstract definitions of page objects to practical, structured representations that support rendering, accessibility, analysis, and downstream processing.",
+          "key_concepts": [
+            "Figure as a Page Object",
+            "Chart metadata fields (Title, ChartType, TopicKeywords)",
+            "DetailedDescription and Summary for accessibility",
+            "MarkdownDataTable as machine-readable data",
+            "AxisTitles for semantic labeling",
+            "Visual encoding (colors, caption, annotations)"
+          ],
+          "main_topics": [
+            "Bar chart representation (January–June values)",
+            "Mapping metadata to visual elements",
+            "Data-rich figure structure for rendering and analysis"
+          ],
+          "token_count": 571,
+          "created_at": "2025-09-24T20:48:33.758457"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmporpj0eid.pdf",
+      "pdf_file": "/tmp/tmporpj0eid.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_c70ce0d4-8c59-4057-8d08-8a66517d874a/task_document_processing/final_test_book-book-markdown-20250924_204810-2882b578.md",
+      "cache_file": "content/pipelines/pipeline_c70ce0d4-8c59-4057-8d08-8a66517d874a/task_document_processing/final_test_book-book-cache-20250924_204810-2882b578.json",
+      "metadata": "content/pipelines/pipeline_c70ce0d4-8c59-4057-8d08-8a66517d874a/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_c70ce0d4-8c59-4057-8d08-8a66517d874a/task_summarization/final_test_book-summary-20250924_204810-2882b578.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmporpj0eid.pdf",
+      "enhanced_markdown": "content/books/final_test_book-book-20250924_204810-2882b578/processed/final_test_book-book-markdown-20250924_204810-2882b578/final_test_book-book-markdown-20250924_204810-2882b578.md",
+      "cache_file": "content/books/final_test_book-book-20250924_204810-2882b578/processed/final_test_book-book-cache-20250924_204810-2882b578.json",
+      "figures_directory": "content/books/final_test_book-book-20250924_204810-2882b578/processed/final_test_book-book-markdown-20250924_204810-2882b578/final_test_book-book-figures-20250924_204810-2882b578",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-fb80d693-c826-464e-ba7e-1e7a22f5943e",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/final_test_book-book-20250924_204810-2882b578",
+      "job_id": "2882b578",
+      "timestamp": "20250924_204810",
+      "content_type": "book",
+      "book_title": "final_test_book",
+      "metadata_file": "content/books/final_test_book-book-20250924_204810-2882b578/metadata.json",
+      "input_directory": "content/books/final_test_book-book-20250924_204810-2882b578/input",
+      "processed_directory": "content/books/final_test_book-book-20250924_204810-2882b578/processed",
+      "markdown_directory": "content/books/final_test_book-book-20250924_204810-2882b578/processed/final_test_book-book-markdown-20250924_204810-2882b578",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 6,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T20:48:47.555742"
+    }
+  }
+}

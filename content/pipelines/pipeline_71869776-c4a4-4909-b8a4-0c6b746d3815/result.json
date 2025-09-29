@@ -1,0 +1,198 @@
+{
+  "pipeline_id": "71869776-c4a4-4909-b8a4-0c6b746d3815",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T16:51:10.670290",
+  "end_time": "2025-09-24T16:51:59.703545",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T16:51:10.671494",
+      "end_time": "2025-09-24T16:51:32.908054",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T16:51:32.908071",
+      "end_time": "2025-09-24T16:51:59.703528",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "figures_directory": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed/tmpq1texck1-book-markdown-20250924_165110-0955e6a7/tmpq1texck1-book-figures-20250924_165110-0955e6a7",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2586,
+        "estimated_tokens": 521
+      },
+      "figures_processed": 1,
+      "document_length": 2586,
+      "book_title": "Structuring Visual Content: From Page Objects to Machine-Actionable Figures",
+      "main_folder": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7",
+      "book_summary": {
+        "book_title": "Structuring Visual Content: From Page Objects to Machine-Actionable Figures",
+        "overall_summary": "This book tells a practical and systematic story about turning visual artifacts in documents—figures, charts, tables—into well-modeled, machine-actionable objects. It begins with foundational ideas about document structure and object modeling, introducing a page-object approach that treats visual elements as first-class data-bearing entities rather than opaque images. From that foundation the book moves into concrete exemplars, showing exactly how a Figure object can encapsulate not only a rendered bar chart but the structured metadata that makes that chart reproducible, searchable, and analyzable.\n\nEarly chapters ground readers in the anatomy of a Figure object: captions, axis titles, data tables, descriptive metadata and annotations. Using a worked example (a bar chart of monthly values from January to June), the book demonstrates how fields like ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, and FootnotesAndAnnotations map to the visual presentation. The example makes explicit how the underlying numeric table reveals patterns—values rising to a peak in April (450) then falling to June (250), and a trough in January (200)—illustrating how metadata supports objective interpretation of visuals.\n\nAs the book progresses it shows how these representations enable downstream capabilities: automated extraction of figure data, improved accessibility through explicit text and structured tables, reproducible analytics pipelines, and richer search and archival functionality. Chapters integrate technical guidance with examples and best practices so readers can consistently produce figures that are both human-readable and machine-actionable.\n\nThroughout, the narrative emphasizes interoperability between semantic metadata and visual content. The work culminates in practical workflows and tools for embedding structured metadata into documents, extracting it for analytics, and using it to support accessibility, auditing, and reuse. The reader finishes not only understanding the concepts but with clear patterns to apply them across publishing, data visualization, and document engineering contexts.",
+        "key_themes": [
+          "Page-object modeling of document elements",
+          "Bridging visual assets and structured metadata",
+          "Reproducibility and data-to-visual mapping",
+          "Accessibility through explicit, machine-readable descriptions",
+          "Automation and analytics enabled by structured figures"
+        ],
+        "learning_objectives": [
+          "Understand the page-object paradigm for structuring documents and why it matters",
+          "Model a Figure object with appropriate fields (caption, axis titles, data table, annotations)",
+          "Translate visual charts into explicit, reproducible metadata (e.g., MarkdownDataTable)",
+          "Interpret trends and content from metadata (e.g., identifying peaks and troughs from underlying data)",
+          "Apply these models to improve accessibility, searchability, and automated extraction",
+          "Design workflows and tooling that use structured figure metadata for analytics and archiving"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier foundational material about document structure and object modeling, Chapter 1 shifts from abstract page-object concepts to a concrete example: a Figure object that encapsulates a bar chart and its metadata. The chapter presents both the visual presentation (caption and plotted values for months January through June) and the structured metadata that describes the chart (ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, and FootnotesAndAnnotations). It emphasizes how the figure's caption, axis titles, and accompanying data table work together to make the visual content interpretable and machine-actionable.\n\nThe chapter also demonstrates practical interpretation of the bar chart: values rise from January to a peak in April (450) and then decline through June (250), with January being the lowest value (200). By exposing the underlying numeric table and explicit axis labels, the chapter shows how a visual asset can be represented in a reproducible, analyzable form. This concrete example advances the reader’s ability to map between semantic metadata and graphical content, preparing them for later chapters that will use these representations for automated extraction, accessibility enhancement, and analytics.",
+            "key_concepts": [
+              "Page Object",
+              "Figure element",
+              "ChartType (bar)",
+              "Structured metadata (DetailedDescription, MarkdownDataTable)",
+              "Axis titles and captions",
+              "Data-to-visual mapping",
+              "Trend identification (peak and trough)"
+            ],
+            "main_topics": [
+              "Representation of figures as page objects",
+              "Embedding chart metadata",
+              "Bar chart interpretation (monthly values)",
+              "Accessibility and annotation via captions and axis titles",
+              "Preparing visual data for automated processing"
+            ],
+            "token_count": 521,
+            "created_at": "2025-09-24T16:51:45.409633"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T16:51:59.702933"
+      },
+      "overall_summary": "This book tells a practical and systematic story about turning visual artifacts in documents—figures, charts, tables—into well-modeled, machine-actionable objects. It begins with foundational ideas about document structure and object modeling, introducing a page-object approach that treats visual elements as first-class data-bearing entities rather than opaque images. From that foundation the book moves into concrete exemplars, showing exactly how a Figure object can encapsulate not only a rendered bar chart but the structured metadata that makes that chart reproducible, searchable, and analyzable.\n\nEarly chapters ground readers in the anatomy of a Figure object: captions, axis titles, data tables, descriptive metadata and annotations. Using a worked example (a bar chart of monthly values from January to June), the book demonstrates how fields like ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, and FootnotesAndAnnotations map to the visual presentation. The example makes explicit how the underlying numeric table reveals patterns—values rising to a peak in April (450) then falling to June (250), and a trough in January (200)—illustrating how metadata supports objective interpretation of visuals.\n\nAs the book progresses it shows how these representations enable downstream capabilities: automated extraction of figure data, improved accessibility through explicit text and structured tables, reproducible analytics pipelines, and richer search and archival functionality. Chapters integrate technical guidance with examples and best practices so readers can consistently produce figures that are both human-readable and machine-actionable.\n\nThroughout, the narrative emphasizes interoperability between semantic metadata and visual content. The work culminates in practical workflows and tools for embedding structured metadata into documents, extracting it for analytics, and using it to support accessibility, auditing, and reuse. The reader finishes not only understanding the concepts but with clear patterns to apply them across publishing, data visualization, and document engineering contexts.",
+      "key_themes": [
+        "Page-object modeling of document elements",
+        "Bridging visual assets and structured metadata",
+        "Reproducibility and data-to-visual mapping",
+        "Accessibility through explicit, machine-readable descriptions",
+        "Automation and analytics enabled by structured figures"
+      ],
+      "learning_objectives": [
+        "Understand the page-object paradigm for structuring documents and why it matters",
+        "Model a Figure object with appropriate fields (caption, axis titles, data table, annotations)",
+        "Translate visual charts into explicit, reproducible metadata (e.g., MarkdownDataTable)",
+        "Interpret trends and content from metadata (e.g., identifying peaks and troughs from underlying data)",
+        "Apply these models to improve accessibility, searchability, and automated extraction",
+        "Design workflows and tooling that use structured figure metadata for analytics and archiving"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier foundational material about document structure and object modeling, Chapter 1 shifts from abstract page-object concepts to a concrete example: a Figure object that encapsulates a bar chart and its metadata. The chapter presents both the visual presentation (caption and plotted values for months January through June) and the structured metadata that describes the chart (ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, and FootnotesAndAnnotations). It emphasizes how the figure's caption, axis titles, and accompanying data table work together to make the visual content interpretable and machine-actionable.\n\nThe chapter also demonstrates practical interpretation of the bar chart: values rise from January to a peak in April (450) and then decline through June (250), with January being the lowest value (200). By exposing the underlying numeric table and explicit axis labels, the chapter shows how a visual asset can be represented in a reproducible, analyzable form. This concrete example advances the reader’s ability to map between semantic metadata and graphical content, preparing them for later chapters that will use these representations for automated extraction, accessibility enhancement, and analytics.",
+          "key_concepts": [
+            "Page Object",
+            "Figure element",
+            "ChartType (bar)",
+            "Structured metadata (DetailedDescription, MarkdownDataTable)",
+            "Axis titles and captions",
+            "Data-to-visual mapping",
+            "Trend identification (peak and trough)"
+          ],
+          "main_topics": [
+            "Representation of figures as page objects",
+            "Embedding chart metadata",
+            "Bar chart interpretation (monthly values)",
+            "Accessibility and annotation via captions and axis titles",
+            "Preparing visual data for automated processing"
+          ],
+          "token_count": 521,
+          "created_at": "2025-09-24T16:51:45.409633"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpq1texck1.pdf",
+      "pdf_file": "/tmp/tmpq1texck1.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_71869776-c4a4-4909-b8a4-0c6b746d3815/task_document_processing/tmpq1texck1-book-markdown-20250924_165110-0955e6a7.md",
+      "cache_file": "content/pipelines/pipeline_71869776-c4a4-4909-b8a4-0c6b746d3815/task_document_processing/tmpq1texck1-book-cache-20250924_165110-0955e6a7.json",
+      "metadata": "content/pipelines/pipeline_71869776-c4a4-4909-b8a4-0c6b746d3815/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpq1texck1.pdf",
+      "enhanced_markdown": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed/tmpq1texck1-book-markdown-20250924_165110-0955e6a7/tmpq1texck1-book-markdown-20250924_165110-0955e6a7.md",
+      "cache_file": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed/tmpq1texck1-book-cache-20250924_165110-0955e6a7.json",
+      "figures_directory": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed/tmpq1texck1-book-markdown-20250924_165110-0955e6a7/tmpq1texck1-book-figures-20250924_165110-0955e6a7",
+      "figures_processed": 1,
+      "document_length": 2586,
+      "analyzer_id": "enhanced-content-understanding-94984496-37c5-4b56-b2b4-6ec960f8adfa",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2586,
+        "estimated_tokens": 521
+      },
+      "main_folder": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7",
+      "job_id": "0955e6a7",
+      "timestamp": "20250924_165110",
+      "content_type": "book",
+      "book_title": "tmpq1texck1",
+      "metadata_file": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/metadata.json",
+      "input_directory": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/input",
+      "processed_directory": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed",
+      "markdown_directory": "content/books/tmpq1texck1-book-20250924_165110-0955e6a7/processed/tmpq1texck1-book-markdown-20250924_165110-0955e6a7",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T16:51:59.702933"
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "pipeline_id": "6b029374-6dc8-443f-956a-d1f51409dd2f",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T19:20:07.930714",
+  "end_time": "2025-09-24T19:20:49.916353",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T19:20:07.933323",
+      "end_time": "2025-09-24T19:20:25.088175",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T19:20:25.088190",
+      "end_time": "2025-09-24T19:20:49.916337",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Naming Convention",
+      "figures_directory": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04/tmp0mjclhxf-book-figures-20250924_192007-aea15f04",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2628,
+        "estimated_tokens": 531
+      },
+      "figures_processed": 1,
+      "document_length": 2628,
+      "book_title": "Page Objects and Semantic Document Representation",
+      "main_folder": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04",
+      "book_summary": {
+        "book_title": "Page Objects and Semantic Document Representation",
+        "overall_summary": "This book reframes how we think about documents by treating each page as a first-class \"page object\" that combines visual elements, textual descriptions and structured metadata. It argues that pages — and especially figures within pages — are best understood not just as pixels or text runs but as composite objects whose parts (captions, axis labels, data tables, annotations) should be represented explicitly and linked. The result is a richer, more machine-actionable representation that preserves human interpretability while unlocking programmatic access.\n\nEarly chapters introduce the conceptual foundations: what a page object is, why page-level abstraction matters, and how visual, textual and structured components interact. A concrete running example — a bar-chart figure showing monthly values from January to June — is used to show how visual cues (coloured bars, axis ticks), written elements (caption, axis titles) and embedded structured data (a MarkdownDataTable, keywords, a DetailedDescription) can be combined to convey the same information redundantly and reliably. That example demonstrates how to represent trends (April peak, January low) and context (business/finance keywords) so both humans and tools can interpret them.\n\nThe middle of the book moves from theory and example to practice: metadata schemas for page objects, annotation strategies, techniques for linking visual elements to structured data, and best practices for embedding redundancy and semantic cues. It covers practical tooling and workflows for authoring, annotating and extracting page-object content, including guidelines for accessibility, provenance, and machine-readability. Evaluation approaches and metrics are presented to measure how well representations support retrieval, extraction and downstream analytics.\n\nIn closing, the book surveys real-world applications and case studies where page-object thinking improves outcomes — automated report generation, document search, visualization extraction for dashboards, and archival interoperability. It provides a forward-looking view on standards, tooling and research directions that can make documents more discoverable, interoperable and useful for both people and systems.",
+        "key_themes": [
+          "Page-object abstraction: modeling pages as composite multimodal objects",
+          "Multimodal integration: linking visual, textual and structured data",
+          "Semantic enrichment: embedding metadata to support interpretation",
+          "Redundancy and cross-referencing for robust extraction",
+          "Practical workflows and tooling for annotation and processing"
+        ],
+        "learning_objectives": [
+          "Explain the page-object concept and why page-level abstraction improves document understanding",
+          "Identify and model the constituent parts of a page object (visual elements, captions, metadata, structured data)",
+          "Design metadata and annotation strategies that link visuals to structured representations",
+          "Apply redundancy and cross-referencing to make content robust for human and machine consumption",
+          "Implement practical pipelines and select tooling for authoring, extracting and evaluating page objects",
+          "Assess use cases and measure impact when applying page-object representations in real systems"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter builds on the book's initial discussion of document structure and page-level abstraction by introducing a concrete example of a page object: a figure containing a bar chart. It presents the figure's visible elements (caption, axis labels, colored bars) alongside embedded metadata (title, chart type, topic keywords, a DetailedDescription, a MarkdownDataTable and axis titles). The example makes explicit how a single page object can combine visual content, textual descriptions and structured data to support interpretation and downstream processing.\n\nThe chapter walks through the bar chart example—monthly values from January to June with April highest (450) and January lowest (200)—and highlights how annotations, axis titles and a data table provide redundant cues that improve comprehension and enable programmatic extraction. By moving from conceptual page-object ideas to this concrete figure, the chapter demonstrates practical ways to represent and link graphic content, metadata and summary text so that both humans and tools can reliably interpret trends (peak in April, decline by June) and contextual metadata (business/finance topic keywords).",
+            "key_concepts": [
+              "Page object (figure) as a composite of visual, textual and metadata elements",
+              "Data visualization (bar chart) interpretation",
+              "Embedded metadata (titles, captions, axis labels, data tables, keywords)",
+              "Redundancy and cross-referencing between visual elements and structured data",
+              "Semantic enrichment for machine and human consumption"
+            ],
+            "main_topics": [
+              "Page Objects",
+              "Figure (bar chart) representation",
+              "Monthly data trends (Jan–Jun)",
+              "Metadata and annotations (captions, axis titles, Markdown table)"
+            ],
+            "token_count": 555,
+            "created_at": "2025-09-24T19:20:37.679528"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T19:20:49.914449"
+      },
+      "overall_summary": "This book reframes how we think about documents by treating each page as a first-class \"page object\" that combines visual elements, textual descriptions and structured metadata. It argues that pages — and especially figures within pages — are best understood not just as pixels or text runs but as composite objects whose parts (captions, axis labels, data tables, annotations) should be represented explicitly and linked. The result is a richer, more machine-actionable representation that preserves human interpretability while unlocking programmatic access.\n\nEarly chapters introduce the conceptual foundations: what a page object is, why page-level abstraction matters, and how visual, textual and structured components interact. A concrete running example — a bar-chart figure showing monthly values from January to June — is used to show how visual cues (coloured bars, axis ticks), written elements (caption, axis titles) and embedded structured data (a MarkdownDataTable, keywords, a DetailedDescription) can be combined to convey the same information redundantly and reliably. That example demonstrates how to represent trends (April peak, January low) and context (business/finance keywords) so both humans and tools can interpret them.\n\nThe middle of the book moves from theory and example to practice: metadata schemas for page objects, annotation strategies, techniques for linking visual elements to structured data, and best practices for embedding redundancy and semantic cues. It covers practical tooling and workflows for authoring, annotating and extracting page-object content, including guidelines for accessibility, provenance, and machine-readability. Evaluation approaches and metrics are presented to measure how well representations support retrieval, extraction and downstream analytics.\n\nIn closing, the book surveys real-world applications and case studies where page-object thinking improves outcomes — automated report generation, document search, visualization extraction for dashboards, and archival interoperability. It provides a forward-looking view on standards, tooling and research directions that can make documents more discoverable, interoperable and useful for both people and systems.",
+      "key_themes": [
+        "Page-object abstraction: modeling pages as composite multimodal objects",
+        "Multimodal integration: linking visual, textual and structured data",
+        "Semantic enrichment: embedding metadata to support interpretation",
+        "Redundancy and cross-referencing for robust extraction",
+        "Practical workflows and tooling for annotation and processing"
+      ],
+      "learning_objectives": [
+        "Explain the page-object concept and why page-level abstraction improves document understanding",
+        "Identify and model the constituent parts of a page object (visual elements, captions, metadata, structured data)",
+        "Design metadata and annotation strategies that link visuals to structured representations",
+        "Apply redundancy and cross-referencing to make content robust for human and machine consumption",
+        "Implement practical pipelines and select tooling for authoring, extracting and evaluating page objects",
+        "Assess use cases and measure impact when applying page-object representations in real systems"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter builds on the book's initial discussion of document structure and page-level abstraction by introducing a concrete example of a page object: a figure containing a bar chart. It presents the figure's visible elements (caption, axis labels, colored bars) alongside embedded metadata (title, chart type, topic keywords, a DetailedDescription, a MarkdownDataTable and axis titles). The example makes explicit how a single page object can combine visual content, textual descriptions and structured data to support interpretation and downstream processing.\n\nThe chapter walks through the bar chart example—monthly values from January to June with April highest (450) and January lowest (200)—and highlights how annotations, axis titles and a data table provide redundant cues that improve comprehension and enable programmatic extraction. By moving from conceptual page-object ideas to this concrete figure, the chapter demonstrates practical ways to represent and link graphic content, metadata and summary text so that both humans and tools can reliably interpret trends (peak in April, decline by June) and contextual metadata (business/finance topic keywords).",
+          "key_concepts": [
+            "Page object (figure) as a composite of visual, textual and metadata elements",
+            "Data visualization (bar chart) interpretation",
+            "Embedded metadata (titles, captions, axis labels, data tables, keywords)",
+            "Redundancy and cross-referencing between visual elements and structured data",
+            "Semantic enrichment for machine and human consumption"
+          ],
+          "main_topics": [
+            "Page Objects",
+            "Figure (bar chart) representation",
+            "Monthly data trends (Jan–Jun)",
+            "Metadata and annotations (captions, axis titles, Markdown table)"
+          ],
+          "token_count": 555,
+          "created_at": "2025-09-24T19:20:37.679528"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp0mjclhxf.pdf",
+      "pdf_file": "/tmp/tmp0mjclhxf.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_6b029374-6dc8-443f-956a-d1f51409dd2f/task_document_processing/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04.md",
+      "cache_file": "content/pipelines/pipeline_6b029374-6dc8-443f-956a-d1f51409dd2f/task_document_processing/tmp0mjclhxf-book-cache-20250924_192007-aea15f04.json",
+      "metadata": "content/pipelines/pipeline_6b029374-6dc8-443f-956a-d1f51409dd2f/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_6b029374-6dc8-443f-956a-d1f51409dd2f/task_summarization/tmp0mjclhxf-summary-20250924_192007-aea15f04.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp0mjclhxf.pdf",
+      "enhanced_markdown": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04.md",
+      "cache_file": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed/tmp0mjclhxf-book-cache-20250924_192007-aea15f04.json",
+      "figures_directory": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04/tmp0mjclhxf-book-figures-20250924_192007-aea15f04",
+      "figures_processed": 1,
+      "document_length": 2628,
+      "analyzer_id": "enhanced-content-understanding-41cd9ff8-4368-4789-8652-6d99da41b88a",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2628,
+        "estimated_tokens": 531
+      },
+      "main_folder": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04",
+      "job_id": "aea15f04",
+      "timestamp": "20250924_192007",
+      "content_type": "book",
+      "book_title": "tmp0mjclhxf",
+      "metadata_file": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/metadata.json",
+      "input_directory": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/input",
+      "processed_directory": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed",
+      "markdown_directory": "content/books/tmp0mjclhxf-book-20250924_192007-aea15f04/processed/tmp0mjclhxf-book-markdown-20250924_192007-aea15f04",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T19:20:49.914449"
+    }
+  }
+}

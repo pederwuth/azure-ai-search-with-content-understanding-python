@@ -1,0 +1,193 @@
+{
+  "pipeline_id": "5e809ccc-280c-454c-b439-2883e6d9182f",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-26T20:20:09.151601",
+  "end_time": "2025-09-26T20:20:55.102071",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-26T20:20:09.153004",
+      "end_time": "2025-09-26T20:20:28.300717",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-26T20:20:28.300730",
+      "end_time": "2025-09-26T20:20:55.102052",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "figures_directory": "content/books/sample_layout-book-20250926_202009-2d801022/processed/sample_layout-book-markdown-20250926_202009-2d801022/sample_layout-book-figures-20250926_202009-2d801022",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "figures_processed": 1,
+      "document_length": 2503,
+      "book_title": "Designing Page Objects: Visuals, Metadata, and Machine-Readable Content",
+      "main_folder": "content/books/sample_layout-book-20250926_202009-2d801022",
+      "book_summary": {
+        "book_title": "Designing Page Objects: Visuals, Metadata, and Machine-Readable Content",
+        "overall_summary": "In its final sections the book synthesizes governance, tooling, and workflow considerations for teams seeking to adopt the page-object approach. It covers testing and validation strategies, tips for documenting conventions, and ways to integrate these practices into authoring and publishing pipelines. Readers finish with a practical playbook for producing consistently structured, high-utility documents and visuals that support decision-making and data-driven automation.",
+        "key_themes": [
+          "Page objects as first-class units of content",
+          "Designing visuals for both humans and machines",
+          "Explicit metadata and semantic labeling",
+          "Reproducibility and programmatic extraction",
+          "Clarity and accessibility in data presentation"
+        ],
+        "learning_objectives": [
+          "Understand the page-object model and why it matters for content systems",
+          "Design figures and visuals with explicit axis titles, captions, and backing data",
+          "Encode metadata so page elements are machine-readable and easily extracted",
+          "Apply consistent conventions that aid interpretation, QA, and automation",
+          "Integrate page-object practices into authoring, publishing, and analytics workflows"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on the foundational material in earlier chapters about page structure and visual communication, this chapter focuses concretely on a page object: a figure that presents a bar chart of monthly values from January to June. The figure is described both visually and in metadata: it carries axis titles (Months and Values), a Markdown data table, and descriptive text that identifies April as the peak (450) and January as the trough (200). The chapter demonstrates how a figure can encapsulate raw numbers, axis labeling, and human-readable summary within the page-object model so that the same content can be consumed by readers and programmatic systems alike.\n\nThe chapter advances the reader’s practical understanding by showing how a single visual element consolidates data, annotation, and metadata. It highlights the month-to-month trend — a rise from January through April followed by a decline into June — and points out the importance of explicit axis titles and tabular backing for clear interpretation. Taken together, this material moves the reader from abstract concepts of page objects and visualization principles (from earlier chapters) to an applied example that supports business and finance analysis and automated content extraction.",
+            "key_concepts": [
+              "Page objects",
+              "Figure as a page object",
+              "Bar chart visualization",
+              "Axis titles",
+              "Data table (MarkdownDataTable)",
+              "Peak and trough identification"
+            ],
+            "main_topics": [
+              "Data visualization for business and finance",
+              "Monthly trend analysis (Jan–Jun)",
+              "Integration of visual, textual, and metadata representations"
+            ],
+            "token_count": 500,
+            "created_at": "2025-09-26T20:20:41.392373"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-26T20:20:55.100125"
+      },
+      "overall_summary": "In its final sections the book synthesizes governance, tooling, and workflow considerations for teams seeking to adopt the page-object approach. It covers testing and validation strategies, tips for documenting conventions, and ways to integrate these practices into authoring and publishing pipelines. Readers finish with a practical playbook for producing consistently structured, high-utility documents and visuals that support decision-making and data-driven automation.",
+      "key_themes": [
+        "Page objects as first-class units of content",
+        "Designing visuals for both humans and machines",
+        "Explicit metadata and semantic labeling",
+        "Reproducibility and programmatic extraction",
+        "Clarity and accessibility in data presentation"
+      ],
+      "learning_objectives": [
+        "Understand the page-object model and why it matters for content systems",
+        "Design figures and visuals with explicit axis titles, captions, and backing data",
+        "Encode metadata so page elements are machine-readable and easily extracted",
+        "Apply consistent conventions that aid interpretation, QA, and automation",
+        "Integrate page-object practices into authoring, publishing, and analytics workflows"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on the foundational material in earlier chapters about page structure and visual communication, this chapter focuses concretely on a page object: a figure that presents a bar chart of monthly values from January to June. The figure is described both visually and in metadata: it carries axis titles (Months and Values), a Markdown data table, and descriptive text that identifies April as the peak (450) and January as the trough (200). The chapter demonstrates how a figure can encapsulate raw numbers, axis labeling, and human-readable summary within the page-object model so that the same content can be consumed by readers and programmatic systems alike.\n\nThe chapter advances the reader’s practical understanding by showing how a single visual element consolidates data, annotation, and metadata. It highlights the month-to-month trend — a rise from January through April followed by a decline into June — and points out the importance of explicit axis titles and tabular backing for clear interpretation. Taken together, this material moves the reader from abstract concepts of page objects and visualization principles (from earlier chapters) to an applied example that supports business and finance analysis and automated content extraction.",
+          "key_concepts": [
+            "Page objects",
+            "Figure as a page object",
+            "Bar chart visualization",
+            "Axis titles",
+            "Data table (MarkdownDataTable)",
+            "Peak and trough identification"
+          ],
+          "main_topics": [
+            "Data visualization for business and finance",
+            "Monthly trend analysis (Jan–Jun)",
+            "Integration of visual, textual, and metadata representations"
+          ],
+          "token_count": 500,
+          "created_at": "2025-09-26T20:20:41.392373"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpxgf9kvyv.pdf",
+      "pdf_file": "/tmp/tmpxgf9kvyv.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_5e809ccc-280c-454c-b439-2883e6d9182f/task_document_processing/sample_layout-book-markdown-20250926_202009-2d801022.md",
+      "cache_file": "content/pipelines/pipeline_5e809ccc-280c-454c-b439-2883e6d9182f/task_document_processing/sample_layout-book-cache-20250926_202009-2d801022.json",
+      "metadata": "content/pipelines/pipeline_5e809ccc-280c-454c-b439-2883e6d9182f/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_5e809ccc-280c-454c-b439-2883e6d9182f/task_summarization/sample_layout-summary-20250926_202009-2d801022.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpxgf9kvyv.pdf",
+      "enhanced_markdown": "content/books/sample_layout-book-20250926_202009-2d801022/processed/sample_layout-book-markdown-20250926_202009-2d801022/sample_layout-book-markdown-20250926_202009-2d801022.md",
+      "cache_file": "content/books/sample_layout-book-20250926_202009-2d801022/processed/sample_layout-book-cache-20250926_202009-2d801022.json",
+      "figures_directory": "content/books/sample_layout-book-20250926_202009-2d801022/processed/sample_layout-book-markdown-20250926_202009-2d801022/sample_layout-book-figures-20250926_202009-2d801022",
+      "figures_processed": 1,
+      "document_length": 2503,
+      "analyzer_id": "enhanced-content-understanding-28bf5fe3-3b3c-4bf0-bd45-2b11f3aaf3b1",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "main_folder": "content/books/sample_layout-book-20250926_202009-2d801022",
+      "job_id": "2d801022",
+      "timestamp": "20250926_202009",
+      "content_type": "book",
+      "book_title": "sample_layout",
+      "metadata_file": "content/books/sample_layout-book-20250926_202009-2d801022/metadata.json",
+      "input_directory": "content/books/sample_layout-book-20250926_202009-2d801022/input",
+      "processed_directory": "content/books/sample_layout-book-20250926_202009-2d801022/processed",
+      "markdown_directory": "content/books/sample_layout-book-20250926_202009-2d801022/processed/sample_layout-book-markdown-20250926_202009-2d801022",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-26T20:20:55.100125"
+    }
+  }
+}

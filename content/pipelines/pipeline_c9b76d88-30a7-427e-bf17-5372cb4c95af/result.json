@@ -1,0 +1,331 @@
+{
+  "pipeline_id": "c9b76d88-30a7-427e-bf17-5372cb4c95af",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-27T19:35:56.993911",
+  "end_time": "2025-09-27T19:37:04.942434",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-27T19:35:56.996073",
+      "end_time": "2025-09-27T19:36:17.136394",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-27T19:36:17.136416",
+      "end_time": "2025-09-27T19:37:04.942413",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "figures_directory": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed/sample_layout-book-markdown-20250927_193557-aaa0023c/sample_layout-book-figures-20250927_193557-aaa0023c",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "figures_processed": 1,
+      "document_length": 2503,
+      "book_title": "Foundations of Document Structure and AI Document Intelligence",
+      "main_folder": "content/books/sample_layout-book-20250927_193557-aaa0023c",
+      "book_summary": {
+        "book_title": "Foundations of Document Structure and AI Document Intelligence",
+        "overall_summary": "This book begins by setting a clear foundation: it establishes scope, objectives, terminology, assumptions, and notation so readers know what to expect and what prerequisites matter. The opening chapter frames the problems the work will address, explains why the subject is important, and lays out an organizational roadmap that orients subsequent discussion. That initial grounding ensures that later technical and applied material is readable against a consistent conceptual backdrop.\n\nFrom the abstract orientation the book moves to a concrete definitional example: Latin. By introducing a specific linguistic subject early, the text demonstrates how core definitions, geographic and historical provenance, and precise naming provide the raw material for later comparative and technical work. The Latin example models how a single, well-specified datum can anchor theoretical threads and practical demonstrations that follow.\n\nNext the book turns to the mechanics of page-level presentation: tables and figures as the principal objects for communicating structured content. This section combines visible markup, semantic elements (captions, headers, figcaptions), and invisible metadata comments that document chart types, axes, and summaries. The emphasis is on creating accessible, reproducible, and semantically clear page objects so that content consumers and downstream tools can reliably interpret and reuse the data.\n\nFinally, the book ties structure and markup into modern capability: AI Document Intelligence. It explains how prebuilt and custom ML models extract text, key-value pairs, tables, and document structure; how these models can be deployed in cloud or on-premises settings; and how a Studio or SDK enables integration and customization. Throughout, the narrative highlights business value—faster workflows, knowledge mining, and industry-specific automation—while underscoring practical paths for learning through demos and implementation guidance.",
+        "key_themes": [
+          "Foundational clarity: scope, definitions, and notation",
+          "Anchoring abstract ideas with concrete examples",
+          "Semantic and accessible page-level structuring (tables and figures)",
+          "Bridging human-readable content with machine-readable metadata",
+          "Applied AI for document intelligence and automation",
+          "Customization and deployment trade-offs (cloud vs on‑premises)"
+        ],
+        "learning_objectives": [
+          "Understand the book's scope, assumptions, and notation to read subsequent material consistently",
+          "Use concrete definitional anchors to ground theoretical discussion (illustrated by the Latin example)",
+          "Design semantically clear and accessible page objects (tables, figures, captions, metadata)",
+          "Interpret and author metadata so documents are both human- and machine-friendly",
+          "Understand AI document intelligence capabilities: text, key‑value, table, and structure extraction",
+          "Choose and implement model options (prebuilt vs custom) and deployment modes (studio/SDK, cloud, on‑premises)",
+          "Translate document extraction into business value through automation, knowledge mining, and domain customization"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This opening chapter, titled \"This is title,\" functions as the book's foundational orientation. It outlines the book's scope, objectives, and central themes, introduces essential terminology and assumptions, and presents the organizational roadmap that will guide the reader through subsequent material. The chapter emphasizes why the subject matters, frames the primary questions the work will address, and establishes the methodological stance and notation conventions that later chapters will use. In doing so it prepares readers by setting expectations for depth, prerequisites, and how examples and exercises will be applied.\n\nBecause no earlier chapters were provided in the context, this chapter serves as the baseline against which future chapters will build. It establishes the core concepts and language that later material will reference and expand: from high-level motivation to concrete definitions and structural choices. As the book progresses, readers should see a clear progression from these introductory definitions and aims toward more detailed theory, applied examples, and complex relationships — all explicitly tied back to the framework and assumptions introduced here.",
+            "key_concepts": [
+              "Foundational definitions and terminology",
+              "Scope, objectives, and assumptions",
+              "Structure, roadmap, and notation conventions"
+            ],
+            "main_topics": [
+              "Introduction and motivation",
+              "Core definitions and conceptual framework",
+              "Book organization and methodological approach"
+            ],
+            "token_count": 429,
+            "created_at": "2025-09-27T19:36:28.508725"
+          },
+          {
+            "chapter_number": 2,
+            "chapter_title": "1. Text",
+            "summary": "Building on the orientation and roadmap established in Chapter 1, Chapter 2 moves from abstract framing to a concrete definitional starting point: Latin. It states plainly that Latin is an ancient Italic language that originated in the region of Latium in ancient Rome. This concise definition anchors the book's early terminology by providing a clear linguistic and geographic reference point for subsequent discussion.\n\nBy introducing Latin at this stage, the chapter begins the book's progression from scope and assumptions toward substantive content. The definition serves as both an example of the key terms introduced earlier and a foundation for later chapters that will examine linguistic development, historical spread, and cultural influence. In short, Chapter 2 supplies the first specific subject around which the book's analytical and comparative threads can begin to weave together.",
+            "key_concepts": [
+              "Latin",
+              "Italic language",
+              "Latium",
+              "ancient Rome",
+              "linguistic origin"
+            ],
+            "main_topics": [
+              "geographic origin (Latium)",
+              "linguistic classification (Italic language)",
+              "historical/cultural context (ancient Rome)"
+            ],
+            "token_count": 372,
+            "created_at": "2025-09-27T19:36:35.881651"
+          },
+          {
+            "chapter_number": 3,
+            "chapter_title": "2. Page Objects",
+            "summary": "Chapter 3 (2. Page Objects) moves the book from orientation and definition into the practical mechanics of how content is presented on a page. Building on Chapter 1's roadmap and Chapter 2's concrete example (Latin as a definitional anchor), this chapter introduces two fundamental page-level objects: tables and figures. It provides small, concrete examples — an HTML table with a caption and a simple figure representing monthly values — and shows both the visible rendering (caption, rows, labels) and the invisible metadata (an HTML comment describing the chart type, data table, axis titles, and summary). The examples are deliberately simple and partly placeholder-like (empty cells in the table, a dummy caption), emphasizing structure and conventions rather than exhaustive content.\n\nThe chapter highlights why these objects matter: tables and figures are the primary ways the book will display structured data, examples, and visual summaries (including any linguistic data about Latin introduced earlier). It draws attention to semantic elements (caption, th/td, figcaption) and metadata (annotated chart details) that support clarity, reproducibility, and accessibility. By presenting both markup and human-readable descriptions, the chapter prepares the reader for later chapters that will rely on well-formed page objects to convey definitions, examples, and data analyses effectively.",
+            "key_concepts": [
+              "Page objects",
+              "Table structure (caption, header, cells)",
+              "Figure structure (figure, figcaption)",
+              "Semantic markup",
+              "Metadata and annotations",
+              "Data visualization (bar chart example)",
+              "Accessibility and clarity"
+            ],
+            "main_topics": [
+              "HTML table example with caption and empty/filled cells",
+              "Figure/visual example of monthly values (bar chart)",
+              "Use of inline metadata/comments to describe charts",
+              "Role of captions and axis titles for comprehension"
+            ],
+            "token_count": 575,
+            "created_at": "2025-09-27T19:36:45.731927"
+          },
+          {
+            "chapter_number": 4,
+            "chapter_title": "3. Others",
+            "summary": "Chapter 4 introduces AI Document Intelligence as a practical service that applies advanced machine learning to automatically and accurately extract text, key-value pairs, tables, and document structures. Framed in the book's roadmap, the chapter shifts from definitions and page-level theory to an applied capability: turning static documents into usable data so teams can act on information rather than spend time compiling it. The text emphasizes the tool's reliability (clear, precise, coherent) and positions prebuilt models and the option to create custom models—deployed on premises or in the cloud via a studio or SDK—as the delivery mechanisms.\n\nThe chapter also links capability to business value by describing how automated text extraction accelerates processes such as document processing, knowledge mining, and industry-specific model customization. It highlights practical learning through hands-on demos (a webinar), underscoring both technical integration points (SDK/studio) and operational outcomes (faster workflows, better data usability). The presence of page metadata comments (footer and page number) further signals the chapter's attention to document structure and real-world document artifacts.",
+            "key_concepts": [
+              "AI Document Intelligence",
+              "text extraction",
+              "key-value pair extraction",
+              "table extraction",
+              "structure extraction",
+              "prebuilt models",
+              "custom models",
+              "on-premises vs cloud deployment",
+              "Studio and SDK",
+              "automation of business processes",
+              "knowledge mining",
+              "industry-specific model customization"
+            ],
+            "main_topics": [
+              "Capabilities of AI Document Intelligence",
+              "Quality attributes (clear, precise, coherent)",
+              "Model options and deployment",
+              "Practical use cases and demos",
+              "Turning documents into actionable data"
+            ],
+            "token_count": 561,
+            "created_at": "2025-09-27T19:36:55.662708"
+          }
+        ],
+        "total_chapters": 4,
+        "created_at": "2025-09-27T19:37:04.938021"
+      },
+      "overall_summary": "This book begins by setting a clear foundation: it establishes scope, objectives, terminology, assumptions, and notation so readers know what to expect and what prerequisites matter. The opening chapter frames the problems the work will address, explains why the subject is important, and lays out an organizational roadmap that orients subsequent discussion. That initial grounding ensures that later technical and applied material is readable against a consistent conceptual backdrop.\n\nFrom the abstract orientation the book moves to a concrete definitional example: Latin. By introducing a specific linguistic subject early, the text demonstrates how core definitions, geographic and historical provenance, and precise naming provide the raw material for later comparative and technical work. The Latin example models how a single, well-specified datum can anchor theoretical threads and practical demonstrations that follow.\n\nNext the book turns to the mechanics of page-level presentation: tables and figures as the principal objects for communicating structured content. This section combines visible markup, semantic elements (captions, headers, figcaptions), and invisible metadata comments that document chart types, axes, and summaries. The emphasis is on creating accessible, reproducible, and semantically clear page objects so that content consumers and downstream tools can reliably interpret and reuse the data.\n\nFinally, the book ties structure and markup into modern capability: AI Document Intelligence. It explains how prebuilt and custom ML models extract text, key-value pairs, tables, and document structure; how these models can be deployed in cloud or on-premises settings; and how a Studio or SDK enables integration and customization. Throughout, the narrative highlights business value—faster workflows, knowledge mining, and industry-specific automation—while underscoring practical paths for learning through demos and implementation guidance.",
+      "key_themes": [
+        "Foundational clarity: scope, definitions, and notation",
+        "Anchoring abstract ideas with concrete examples",
+        "Semantic and accessible page-level structuring (tables and figures)",
+        "Bridging human-readable content with machine-readable metadata",
+        "Applied AI for document intelligence and automation",
+        "Customization and deployment trade-offs (cloud vs on‑premises)"
+      ],
+      "learning_objectives": [
+        "Understand the book's scope, assumptions, and notation to read subsequent material consistently",
+        "Use concrete definitional anchors to ground theoretical discussion (illustrated by the Latin example)",
+        "Design semantically clear and accessible page objects (tables, figures, captions, metadata)",
+        "Interpret and author metadata so documents are both human- and machine-friendly",
+        "Understand AI document intelligence capabilities: text, key‑value, table, and structure extraction",
+        "Choose and implement model options (prebuilt vs custom) and deployment modes (studio/SDK, cloud, on‑premises)",
+        "Translate document extraction into business value through automation, knowledge mining, and domain customization"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This opening chapter, titled \"This is title,\" functions as the book's foundational orientation. It outlines the book's scope, objectives, and central themes, introduces essential terminology and assumptions, and presents the organizational roadmap that will guide the reader through subsequent material. The chapter emphasizes why the subject matters, frames the primary questions the work will address, and establishes the methodological stance and notation conventions that later chapters will use. In doing so it prepares readers by setting expectations for depth, prerequisites, and how examples and exercises will be applied.\n\nBecause no earlier chapters were provided in the context, this chapter serves as the baseline against which future chapters will build. It establishes the core concepts and language that later material will reference and expand: from high-level motivation to concrete definitions and structural choices. As the book progresses, readers should see a clear progression from these introductory definitions and aims toward more detailed theory, applied examples, and complex relationships — all explicitly tied back to the framework and assumptions introduced here.",
+          "key_concepts": [
+            "Foundational definitions and terminology",
+            "Scope, objectives, and assumptions",
+            "Structure, roadmap, and notation conventions"
+          ],
+          "main_topics": [
+            "Introduction and motivation",
+            "Core definitions and conceptual framework",
+            "Book organization and methodological approach"
+          ],
+          "token_count": 429,
+          "created_at": "2025-09-27T19:36:28.508725"
+        },
+        {
+          "chapter_number": 2,
+          "chapter_title": "1. Text",
+          "summary": "Building on the orientation and roadmap established in Chapter 1, Chapter 2 moves from abstract framing to a concrete definitional starting point: Latin. It states plainly that Latin is an ancient Italic language that originated in the region of Latium in ancient Rome. This concise definition anchors the book's early terminology by providing a clear linguistic and geographic reference point for subsequent discussion.\n\nBy introducing Latin at this stage, the chapter begins the book's progression from scope and assumptions toward substantive content. The definition serves as both an example of the key terms introduced earlier and a foundation for later chapters that will examine linguistic development, historical spread, and cultural influence. In short, Chapter 2 supplies the first specific subject around which the book's analytical and comparative threads can begin to weave together.",
+          "key_concepts": [
+            "Latin",
+            "Italic language",
+            "Latium",
+            "ancient Rome",
+            "linguistic origin"
+          ],
+          "main_topics": [
+            "geographic origin (Latium)",
+            "linguistic classification (Italic language)",
+            "historical/cultural context (ancient Rome)"
+          ],
+          "token_count": 372,
+          "created_at": "2025-09-27T19:36:35.881651"
+        },
+        {
+          "chapter_number": 3,
+          "chapter_title": "2. Page Objects",
+          "summary": "Chapter 3 (2. Page Objects) moves the book from orientation and definition into the practical mechanics of how content is presented on a page. Building on Chapter 1's roadmap and Chapter 2's concrete example (Latin as a definitional anchor), this chapter introduces two fundamental page-level objects: tables and figures. It provides small, concrete examples — an HTML table with a caption and a simple figure representing monthly values — and shows both the visible rendering (caption, rows, labels) and the invisible metadata (an HTML comment describing the chart type, data table, axis titles, and summary). The examples are deliberately simple and partly placeholder-like (empty cells in the table, a dummy caption), emphasizing structure and conventions rather than exhaustive content.\n\nThe chapter highlights why these objects matter: tables and figures are the primary ways the book will display structured data, examples, and visual summaries (including any linguistic data about Latin introduced earlier). It draws attention to semantic elements (caption, th/td, figcaption) and metadata (annotated chart details) that support clarity, reproducibility, and accessibility. By presenting both markup and human-readable descriptions, the chapter prepares the reader for later chapters that will rely on well-formed page objects to convey definitions, examples, and data analyses effectively.",
+          "key_concepts": [
+            "Page objects",
+            "Table structure (caption, header, cells)",
+            "Figure structure (figure, figcaption)",
+            "Semantic markup",
+            "Metadata and annotations",
+            "Data visualization (bar chart example)",
+            "Accessibility and clarity"
+          ],
+          "main_topics": [
+            "HTML table example with caption and empty/filled cells",
+            "Figure/visual example of monthly values (bar chart)",
+            "Use of inline metadata/comments to describe charts",
+            "Role of captions and axis titles for comprehension"
+          ],
+          "token_count": 575,
+          "created_at": "2025-09-27T19:36:45.731927"
+        },
+        {
+          "chapter_number": 4,
+          "chapter_title": "3. Others",
+          "summary": "Chapter 4 introduces AI Document Intelligence as a practical service that applies advanced machine learning to automatically and accurately extract text, key-value pairs, tables, and document structures. Framed in the book's roadmap, the chapter shifts from definitions and page-level theory to an applied capability: turning static documents into usable data so teams can act on information rather than spend time compiling it. The text emphasizes the tool's reliability (clear, precise, coherent) and positions prebuilt models and the option to create custom models—deployed on premises or in the cloud via a studio or SDK—as the delivery mechanisms.\n\nThe chapter also links capability to business value by describing how automated text extraction accelerates processes such as document processing, knowledge mining, and industry-specific model customization. It highlights practical learning through hands-on demos (a webinar), underscoring both technical integration points (SDK/studio) and operational outcomes (faster workflows, better data usability). The presence of page metadata comments (footer and page number) further signals the chapter's attention to document structure and real-world document artifacts.",
+          "key_concepts": [
+            "AI Document Intelligence",
+            "text extraction",
+            "key-value pair extraction",
+            "table extraction",
+            "structure extraction",
+            "prebuilt models",
+            "custom models",
+            "on-premises vs cloud deployment",
+            "Studio and SDK",
+            "automation of business processes",
+            "knowledge mining",
+            "industry-specific model customization"
+          ],
+          "main_topics": [
+            "Capabilities of AI Document Intelligence",
+            "Quality attributes (clear, precise, coherent)",
+            "Model options and deployment",
+            "Practical use cases and demos",
+            "Turning documents into actionable data"
+          ],
+          "token_count": 561,
+          "created_at": "2025-09-27T19:36:55.662708"
+        }
+      ],
+      "total_chapters": 4
+    },
+    "files": {
+      "pdf": "/tmp/tmp8d0fajfy.pdf",
+      "pdf_file": "/tmp/tmp8d0fajfy.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_c9b76d88-30a7-427e-bf17-5372cb4c95af/task_document_processing/sample_layout-book-markdown-20250927_193557-aaa0023c.md",
+      "cache_file": "content/pipelines/pipeline_c9b76d88-30a7-427e-bf17-5372cb4c95af/task_document_processing/sample_layout-book-cache-20250927_193557-aaa0023c.json",
+      "metadata": "content/pipelines/pipeline_c9b76d88-30a7-427e-bf17-5372cb4c95af/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_c9b76d88-30a7-427e-bf17-5372cb4c95af/task_summarization/sample_layout-summary-20250927_193557-aaa0023c.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp8d0fajfy.pdf",
+      "enhanced_markdown": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed/sample_layout-book-markdown-20250927_193557-aaa0023c/sample_layout-book-markdown-20250927_193557-aaa0023c.md",
+      "cache_file": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed/sample_layout-book-cache-20250927_193557-aaa0023c.json",
+      "figures_directory": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed/sample_layout-book-markdown-20250927_193557-aaa0023c/sample_layout-book-figures-20250927_193557-aaa0023c",
+      "figures_processed": 1,
+      "document_length": 2503,
+      "analyzer_id": "enhanced-content-understanding-f8da5704-797c-4465-b4a3-ee1d0d92c3aa",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "main_folder": "content/books/sample_layout-book-20250927_193557-aaa0023c",
+      "job_id": "aaa0023c",
+      "timestamp": "20250927_193557",
+      "content_type": "book",
+      "book_title": "sample_layout",
+      "metadata_file": "content/books/sample_layout-book-20250927_193557-aaa0023c/metadata.json",
+      "input_directory": "content/books/sample_layout-book-20250927_193557-aaa0023c/input",
+      "processed_directory": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed",
+      "markdown_directory": "content/books/sample_layout-book-20250927_193557-aaa0023c/processed/sample_layout-book-markdown-20250927_193557-aaa0023c",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 4,
+      "key_themes_count": 6,
+      "learning_objectives_count": 7,
+      "created_at": "2025-09-27T19:37:04.938021"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "pipeline_id": "6b7e7e5b-cd40-4c14-85df-2fe89e69ab33",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:40:26.663591",
+  "end_time": "2025-09-23T20:41:01.725015",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:40:26.664064",
+      "end_time": "2025-09-23T20:40:39.762902",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-23T20:40:39.762918",
+      "end_time": "2025-09-23T20:41:01.725000",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "string",
+      "figures_directory": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed/tmpgi5j990y-book-markdown-20250923_204026-1444d46d/tmpgi5j990y-book-figures-20250923_204026-1444d46d",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "figures_processed": 1,
+      "document_length": 2503,
+      "book_title": "Page Objects and Structured Visual Data",
+      "main_folder": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d",
+      "book_summary": {
+        "book_title": "Page Objects and Structured Visual Data",
+        "overall_summary": "This book presents a practical framework for making documents simultaneously human-readable and machine-actionable by treating document elements as explicit \"page objects.\" It argues that figures, tables, captions and other page elements should carry both the visual content humans expect and structured metadata that software can reliably interpret. The opening sections motivate the approach with problems in extraction, reproducibility, and automated reporting that arise when visual content lacks standardized, machine-readable descriptions.\n\nAfter establishing the need for a new document model, the book builds the foundation of the page-object approach. It defines a minimal, extensible structure for page objects, explains how visual data (charts, tables, images) should be represented, and covers best practices for labels, axis titles, captions and data serialization. The book also introduces principles of visual data representation so that metadata aligns with how humans read and interpret charts.\n\nA concrete, central example — a Figure page object encapsulating a bar chart — ties the ideas together. The example includes a human caption (\"Figure 1: Here is a figure with text\"), structured metadata (chart type, topic keywords, detailed description), a Markdown data table, and axis titles. Using monthly values (Jan–Jun: 200, 300, 400, 450, 350, 250), the example demonstrates how the figure encodes a rising trend through April and a decline into June, and shows how axis titles and a tabular data payload make interpretation and automatic extraction straightforward.\n\nThe final sections translate the conceptual model into practical workflows: extracting page objects from documents, annotating and validating metadata, integrating page objects into analytics pipelines, and using them for automated reporting and downstream tasks such as trend detection, annotation and compliance checks. Throughout, the book emphasizes reproducible, interoperable document design that bridges the needs of human readers and automated systems.",
+        "key_themes": [
+          "Page-object model for document structure",
+          "Dual human and machine readability",
+          "Structured metadata for visual elements",
+          "Reliable extraction and interoperability",
+          "Practical workflows for analytics and automation"
+        ],
+        "learning_objectives": [
+          "Understand the page-object approach to organizing document content",
+          "Design figure and table objects that include both visual presentation and machine-readable metadata",
+          "Encode chart semantics (types, axes, data tables, keywords) to support automated extraction",
+          "Apply page objects to real workflows: trend analysis, reporting, annotation and pipeline integration",
+          "Improve reproducibility, accessibility and interoperability of documents"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on earlier chapters that introduced the page-object approach to document structure and the basics of visual data representation, this chapter focuses on a concrete Page Object: a figure that encapsulates a bar chart. It presents both the human-readable caption (“Figure 1: Here is a figure with text”) and structured metadata (chart type, topic keywords, a detailed description, a Markdown data table, and axis titles). The chapter demonstrates how a figure in a document can simultaneously provide visual content and machine-readable information, enabling reliable extraction and interpretation of the underlying data.\n\nThe chapter then interprets the bar chart content in a business and finance context: monthly values from January to June (200, 300, 400, 450, 350, 250), showing a steady increase through April (the peak at 450) followed by a decline into June. It emphasizes the importance of axis titles and table-form data for clarity, and shows how this structured Figure object supports downstream tasks such as trend analysis, annotation, and automated reporting. This concrete example advances the reader’s practical understanding of mapping visual elements to structured metadata and extracting meaningful patterns from page objects.",
+            "key_concepts": [
+              "Page Objects",
+              "Figure (Page Object)",
+              "Bar Chart interpretation",
+              "Structured metadata (ChartType, TopicKeywords, DetailedDescription)",
+              "Markdown data table",
+              "Axis titles and labeling",
+              "Trend identification (peak and trough)"
+            ],
+            "main_topics": [
+              "Figure as a page object",
+              "Monthly value trends (Jan–Jun)",
+              "Data-to-visual mapping",
+              "Metadata-driven extraction",
+              "Business/finance data visualization"
+            ],
+            "token_count": 527,
+            "created_at": "2025-09-23T20:40:49.592326"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-23T20:41:01.723757"
+      },
+      "overall_summary": "This book presents a practical framework for making documents simultaneously human-readable and machine-actionable by treating document elements as explicit \"page objects.\" It argues that figures, tables, captions and other page elements should carry both the visual content humans expect and structured metadata that software can reliably interpret. The opening sections motivate the approach with problems in extraction, reproducibility, and automated reporting that arise when visual content lacks standardized, machine-readable descriptions.\n\nAfter establishing the need for a new document model, the book builds the foundation of the page-object approach. It defines a minimal, extensible structure for page objects, explains how visual data (charts, tables, images) should be represented, and covers best practices for labels, axis titles, captions and data serialization. The book also introduces principles of visual data representation so that metadata aligns with how humans read and interpret charts.\n\nA concrete, central example — a Figure page object encapsulating a bar chart — ties the ideas together. The example includes a human caption (\"Figure 1: Here is a figure with text\"), structured metadata (chart type, topic keywords, detailed description), a Markdown data table, and axis titles. Using monthly values (Jan–Jun: 200, 300, 400, 450, 350, 250), the example demonstrates how the figure encodes a rising trend through April and a decline into June, and shows how axis titles and a tabular data payload make interpretation and automatic extraction straightforward.\n\nThe final sections translate the conceptual model into practical workflows: extracting page objects from documents, annotating and validating metadata, integrating page objects into analytics pipelines, and using them for automated reporting and downstream tasks such as trend detection, annotation and compliance checks. Throughout, the book emphasizes reproducible, interoperable document design that bridges the needs of human readers and automated systems.",
+      "key_themes": [
+        "Page-object model for document structure",
+        "Dual human and machine readability",
+        "Structured metadata for visual elements",
+        "Reliable extraction and interoperability",
+        "Practical workflows for analytics and automation"
+      ],
+      "learning_objectives": [
+        "Understand the page-object approach to organizing document content",
+        "Design figure and table objects that include both visual presentation and machine-readable metadata",
+        "Encode chart semantics (types, axes, data tables, keywords) to support automated extraction",
+        "Apply page objects to real workflows: trend analysis, reporting, annotation and pipeline integration",
+        "Improve reproducibility, accessibility and interoperability of documents"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on earlier chapters that introduced the page-object approach to document structure and the basics of visual data representation, this chapter focuses on a concrete Page Object: a figure that encapsulates a bar chart. It presents both the human-readable caption (“Figure 1: Here is a figure with text”) and structured metadata (chart type, topic keywords, a detailed description, a Markdown data table, and axis titles). The chapter demonstrates how a figure in a document can simultaneously provide visual content and machine-readable information, enabling reliable extraction and interpretation of the underlying data.\n\nThe chapter then interprets the bar chart content in a business and finance context: monthly values from January to June (200, 300, 400, 450, 350, 250), showing a steady increase through April (the peak at 450) followed by a decline into June. It emphasizes the importance of axis titles and table-form data for clarity, and shows how this structured Figure object supports downstream tasks such as trend analysis, annotation, and automated reporting. This concrete example advances the reader’s practical understanding of mapping visual elements to structured metadata and extracting meaningful patterns from page objects.",
+          "key_concepts": [
+            "Page Objects",
+            "Figure (Page Object)",
+            "Bar Chart interpretation",
+            "Structured metadata (ChartType, TopicKeywords, DetailedDescription)",
+            "Markdown data table",
+            "Axis titles and labeling",
+            "Trend identification (peak and trough)"
+          ],
+          "main_topics": [
+            "Figure as a page object",
+            "Monthly value trends (Jan–Jun)",
+            "Data-to-visual mapping",
+            "Metadata-driven extraction",
+            "Business/finance data visualization"
+          ],
+          "token_count": 527,
+          "created_at": "2025-09-23T20:40:49.592326"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmpgi5j990y.pdf",
+      "pdf_file": "/tmp/tmpgi5j990y.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_6b7e7e5b-cd40-4c14-85df-2fe89e69ab33/task_document_processing/tmpgi5j990y-book-markdown-20250923_204026-1444d46d.md",
+      "cache_file": "content/pipelines/pipeline_6b7e7e5b-cd40-4c14-85df-2fe89e69ab33/task_document_processing/tmpgi5j990y-book-cache-20250923_204026-1444d46d.json",
+      "metadata": "content/pipelines/pipeline_6b7e7e5b-cd40-4c14-85df-2fe89e69ab33/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmpgi5j990y.pdf",
+      "enhanced_markdown": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed/tmpgi5j990y-book-markdown-20250923_204026-1444d46d/tmpgi5j990y-book-markdown-20250923_204026-1444d46d.md",
+      "cache_file": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed/tmpgi5j990y-book-cache-20250923_204026-1444d46d.json",
+      "figures_directory": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed/tmpgi5j990y-book-markdown-20250923_204026-1444d46d/tmpgi5j990y-book-figures-20250923_204026-1444d46d",
+      "figures_processed": 1,
+      "document_length": 2503,
+      "analyzer_id": "enhanced-content-understanding-135022d9-f6aa-440d-af55-f1bfe4a27dc4",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2503,
+        "estimated_tokens": 500
+      },
+      "main_folder": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d",
+      "job_id": "1444d46d",
+      "timestamp": "20250923_204026",
+      "content_type": "book",
+      "book_title": "tmpgi5j990y",
+      "metadata_file": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/metadata.json",
+      "input_directory": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/input",
+      "processed_directory": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed",
+      "markdown_directory": "content/books/tmpgi5j990y-book-20250923_204026-1444d46d/processed/tmpgi5j990y-book-markdown-20250923_204026-1444d46d",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-23T20:41:01.723757"
+    }
+  }
+}

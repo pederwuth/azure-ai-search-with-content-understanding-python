@@ -1,0 +1,90 @@
+{
+  "pipeline_id": "b5152c31-34e0-4143-b5d1-3be40b30ef4c",
+  "config": {
+    "name": "Document Processing Only",
+    "description": "Process PDF document with enhanced content understanding (no summarization)",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      }
+    ],
+    "settings": {
+      "output_format": "enhanced_markdown",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 15
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:24:33.524260",
+  "end_time": "2025-09-23T20:24:47.196403",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:24:33.524526",
+      "end_time": "2025-09-23T20:24:47.196388",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Document Only Test",
+      "figures_directory": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4/tmp4ffgkwew-book-figures-20250923_202433-6980daf4",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "tmp4ffgkwew",
+      "main_folder": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4"
+    },
+    "files": {
+      "pdf": "/tmp/tmp4ffgkwew.pdf",
+      "pdf_file": "/tmp/tmp4ffgkwew.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_b5152c31-34e0-4143-b5d1-3be40b30ef4c/task_document_processing/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4.md",
+      "cache_file": "content/pipelines/pipeline_b5152c31-34e0-4143-b5d1-3be40b30ef4c/task_document_processing/tmp4ffgkwew-book-cache-20250923_202433-6980daf4.json",
+      "metadata": "content/pipelines/pipeline_b5152c31-34e0-4143-b5d1-3be40b30ef4c/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp4ffgkwew.pdf",
+      "enhanced_markdown": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4.md",
+      "cache_file": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed/tmp4ffgkwew-book-cache-20250923_202433-6980daf4.json",
+      "figures_directory": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4/tmp4ffgkwew-book-figures-20250923_202433-6980daf4",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-b6d0a7dc-9d1f-4bd0-a682-d45dc382e08f",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4",
+      "job_id": "6980daf4",
+      "timestamp": "20250923_202433",
+      "content_type": "book",
+      "book_title": "tmp4ffgkwew",
+      "metadata_file": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/metadata.json",
+      "input_directory": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/input",
+      "processed_directory": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed",
+      "markdown_directory": "content/books/tmp4ffgkwew-book-20250923_202433-6980daf4/processed/tmp4ffgkwew-book-markdown-20250923_202433-6980daf4",
+      "folder_structure": "content_books_v1"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "pipeline_id": "bf21b838-295e-4255-8b39-9015b3b9bc47",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title",
+          "main_folder": "$main_folder"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T22:01:57.502974",
+  "end_time": "2025-09-24T22:02:31.775933",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T22:01:57.503466",
+      "end_time": "2025-09-24T22:02:12.598949",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T22:02:12.598969",
+      "end_time": "2025-09-24T22:02:31.775921",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Book",
+      "figures_directory": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56/tmp1tjknz10-book-figures-20250924_220157-d49e3b56",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2570,
+        "estimated_tokens": 518
+      },
+      "figures_processed": 1,
+      "document_length": 2570,
+      "book_title": "Page Objects and Figure Annotation for Document Understanding",
+      "main_folder": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56",
+      "book_summary": {
+        "book_title": "Page Objects and Figure Annotation for Document Understanding",
+        "overall_summary": "This book presents a practical and principled approach to decomposing complex documents into structured, machine-actionable components called page objects. It begins by establishing foundational ideas about documents as hierarchical collections of elements — pages, blocks, inline text, figures, and tables — and introduces a consistent metadata model that can be attached to those elements to make documents both human- and machine-interpretable. The narrative emphasizes how well-designed structure and annotations improve searchability, accessibility, and automated data extraction across diverse document collections.\n\nA large portion of the book is devoted to the Figure page-object and shows, step by step, how visual artifacts should be modeled and annotated. Using a concrete bar-chart example that encodes monthly values for January through June, the text demonstrates how a figure pairs rendered visual content with rich metadata fields (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, Footnotes) and a caption. The example walks readers through extracting the underlying numeric series, identifying peaks and troughs, interpreting axis labels, and preserving embedded tabular data so the visual becomes a first-class, queryable data source.\n\nBeyond the example, the book explains broader principles for mapping visual features to structured representations: what to capture (data values, units, labels, provenance), how to represent redundancies (repeated axis ticks or embedded numbers), and how to prioritize clarity and accessibility (clear axis titles, machine-readable data tables, comprehensive captions). It balances abstract model design with concrete recommendations for annotation practice, extraction heuristics, and ways to validate that the structured outputs faithfully represent the visual input.\n\nUltimately, readers are guided from theory to practice: starting with conceptualizing page objects, moving to concrete figure annotation patterns, and ending with workflows for integrating annotated pages into larger pipelines (search, indexing, ML training, accessibility enhancement, archival). The book equips practitioners to turn static images and printed visuals into reusable, semantically-rich artifacts that support automated analysis, assistive technologies, and reliable long-term preservation.",
+        "key_themes": [
+          "Document decomposition into page objects",
+          "Rich metadata and semantic annotation",
+          "Data-to-visual mapping and extraction",
+          "Accessibility and machine readability",
+          "Practical annotation best practices"
+        ],
+        "learning_objectives": [
+          "Understand the page-object model and how documents can be decomposed into structured elements",
+          "Know how to annotate figures with comprehensive, standardized metadata (ChartType, AxisTitles, MarkdownDataTable, etc.)",
+          "Be able to extract and validate numeric and textual data embedded in visualizations (identify peaks, troughs, axis labels)",
+          "Apply annotation practices that improve accessibility, searchability, and downstream ML/analytics",
+          "Design end-to-end workflows that integrate annotated page objects into indexing, retrieval, and archival systems"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "This chapter drills into the “Page Objects” layer introduced earlier in the book by focusing specifically on the Figure object. Building on the document and page-object concepts covered in previous chapters (which established how pages are decomposed into structured elements and how metadata is attached to those elements), the chapter shows a practical example: a bar chart figure representing monthly values from January to June. The figure is accompanied by rich metadata (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles and Footnotes) and a rendered caption, demonstrating how a figure combines visual content, textual description, and machine-readable data to convey meaning.\n\nThe chapter uses the bar chart example to highlight how visual data maps to structured representations. It extracts the numeric series (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), identifies the peak (April) and trough (January), and notes axis labels (Months, Values) and the included markdown table. This concrete example shows progression from abstract page-object theory to actionable practice: how figures should be annotated for clarity, how embedded data tables and axis titles support parsing and accessibility, and how redundant textual elements in figures (axis ticks, repeated numbers) can appear and should be interpreted during extraction.",
+            "key_concepts": [
+              "Page Objects",
+              "Figure element",
+              "Bar chart representation",
+              "Figure metadata (ChartType, TopicKeywords, DetailedDescription, Summary)",
+              "Markdown data table",
+              "Axis titles (xAxisTitle, yAxisTitle)",
+              "Figure caption and annotations",
+              "Data-to-visual mapping"
+            ],
+            "main_topics": [
+              "Structured representation of figures",
+              "Data visualization interpretation",
+              "Metadata and accessibility for page objects"
+            ],
+            "token_count": 602,
+            "created_at": "2025-09-24T22:02:21.982306"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T22:02:31.774215"
+      },
+      "overall_summary": "This book presents a practical and principled approach to decomposing complex documents into structured, machine-actionable components called page objects. It begins by establishing foundational ideas about documents as hierarchical collections of elements — pages, blocks, inline text, figures, and tables — and introduces a consistent metadata model that can be attached to those elements to make documents both human- and machine-interpretable. The narrative emphasizes how well-designed structure and annotations improve searchability, accessibility, and automated data extraction across diverse document collections.\n\nA large portion of the book is devoted to the Figure page-object and shows, step by step, how visual artifacts should be modeled and annotated. Using a concrete bar-chart example that encodes monthly values for January through June, the text demonstrates how a figure pairs rendered visual content with rich metadata fields (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, Footnotes) and a caption. The example walks readers through extracting the underlying numeric series, identifying peaks and troughs, interpreting axis labels, and preserving embedded tabular data so the visual becomes a first-class, queryable data source.\n\nBeyond the example, the book explains broader principles for mapping visual features to structured representations: what to capture (data values, units, labels, provenance), how to represent redundancies (repeated axis ticks or embedded numbers), and how to prioritize clarity and accessibility (clear axis titles, machine-readable data tables, comprehensive captions). It balances abstract model design with concrete recommendations for annotation practice, extraction heuristics, and ways to validate that the structured outputs faithfully represent the visual input.\n\nUltimately, readers are guided from theory to practice: starting with conceptualizing page objects, moving to concrete figure annotation patterns, and ending with workflows for integrating annotated pages into larger pipelines (search, indexing, ML training, accessibility enhancement, archival). The book equips practitioners to turn static images and printed visuals into reusable, semantically-rich artifacts that support automated analysis, assistive technologies, and reliable long-term preservation.",
+      "key_themes": [
+        "Document decomposition into page objects",
+        "Rich metadata and semantic annotation",
+        "Data-to-visual mapping and extraction",
+        "Accessibility and machine readability",
+        "Practical annotation best practices"
+      ],
+      "learning_objectives": [
+        "Understand the page-object model and how documents can be decomposed into structured elements",
+        "Know how to annotate figures with comprehensive, standardized metadata (ChartType, AxisTitles, MarkdownDataTable, etc.)",
+        "Be able to extract and validate numeric and textual data embedded in visualizations (identify peaks, troughs, axis labels)",
+        "Apply annotation practices that improve accessibility, searchability, and downstream ML/analytics",
+        "Design end-to-end workflows that integrate annotated page objects into indexing, retrieval, and archival systems"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "This chapter drills into the “Page Objects” layer introduced earlier in the book by focusing specifically on the Figure object. Building on the document and page-object concepts covered in previous chapters (which established how pages are decomposed into structured elements and how metadata is attached to those elements), the chapter shows a practical example: a bar chart figure representing monthly values from January to June. The figure is accompanied by rich metadata (ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles and Footnotes) and a rendered caption, demonstrating how a figure combines visual content, textual description, and machine-readable data to convey meaning.\n\nThe chapter uses the bar chart example to highlight how visual data maps to structured representations. It extracts the numeric series (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), identifies the peak (April) and trough (January), and notes axis labels (Months, Values) and the included markdown table. This concrete example shows progression from abstract page-object theory to actionable practice: how figures should be annotated for clarity, how embedded data tables and axis titles support parsing and accessibility, and how redundant textual elements in figures (axis ticks, repeated numbers) can appear and should be interpreted during extraction.",
+          "key_concepts": [
+            "Page Objects",
+            "Figure element",
+            "Bar chart representation",
+            "Figure metadata (ChartType, TopicKeywords, DetailedDescription, Summary)",
+            "Markdown data table",
+            "Axis titles (xAxisTitle, yAxisTitle)",
+            "Figure caption and annotations",
+            "Data-to-visual mapping"
+          ],
+          "main_topics": [
+            "Structured representation of figures",
+            "Data visualization interpretation",
+            "Metadata and accessibility for page objects"
+          ],
+          "token_count": 602,
+          "created_at": "2025-09-24T22:02:21.982306"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmp1tjknz10.pdf",
+      "pdf_file": "/tmp/tmp1tjknz10.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_bf21b838-295e-4255-8b39-9015b3b9bc47/task_document_processing/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56.md",
+      "cache_file": "content/pipelines/pipeline_bf21b838-295e-4255-8b39-9015b3b9bc47/task_document_processing/tmp1tjknz10-book-cache-20250924_220157-d49e3b56.json",
+      "metadata": "content/pipelines/pipeline_bf21b838-295e-4255-8b39-9015b3b9bc47/task_document_processing/metadata.json",
+      "book_summary_file": "content/pipelines/pipeline_bf21b838-295e-4255-8b39-9015b3b9bc47/task_summarization/tmp1tjknz10-summary-20250924_220157-d49e3b56.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmp1tjknz10.pdf",
+      "enhanced_markdown": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56.md",
+      "cache_file": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed/tmp1tjknz10-book-cache-20250924_220157-d49e3b56.json",
+      "figures_directory": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56/tmp1tjknz10-book-figures-20250924_220157-d49e3b56",
+      "figures_processed": 1,
+      "document_length": 2570,
+      "analyzer_id": "enhanced-content-understanding-1edc7650-8460-497d-8e98-75325e1deca2",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2570,
+        "estimated_tokens": 518
+      },
+      "main_folder": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56",
+      "job_id": "d49e3b56",
+      "timestamp": "20250924_220157",
+      "content_type": "book",
+      "book_title": "tmp1tjknz10",
+      "metadata_file": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/metadata.json",
+      "input_directory": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/input",
+      "processed_directory": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed",
+      "markdown_directory": "content/books/tmp1tjknz10-book-20250924_220157-d49e3b56/processed/tmp1tjknz10-book-markdown-20250924_220157-d49e3b56",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 5,
+      "learning_objectives_count": 5,
+      "created_at": "2025-09-24T22:02:31.774215"
+    }
+  }
+}

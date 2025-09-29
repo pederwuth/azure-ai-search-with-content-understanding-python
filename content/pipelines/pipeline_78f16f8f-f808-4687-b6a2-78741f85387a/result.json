@@ -1,0 +1,73 @@
+{
+  "pipeline_id": "78f16f8f-f808-4687-b6a2-78741f85387a",
+  "config": {
+    "name": "Complete Book Processing",
+    "description": "Full educational content pipeline: PDF → Enhanced Markdown → Summary → Learning Materials",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "comprehensive",
+      "save_intermediates": true,
+      "generate_learning_materials": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "complete_processing",
+      "estimated_duration_minutes": 45
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-23T20:18:46.928393",
+  "end_time": "2025-09-23T20:19:27.229512",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-23T20:18:46.929253",
+      "end_time": "2025-09-23T20:19:02.757614",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-23T20:19:02.757629",
+      "end_time": "2025-09-23T20:19:27.229497",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Book Pipeline Final",
+      "figures_directory": "content/books/tmp6ib82xvr-book-20250923_201846-62584695/processed/tmp6ib82xvr-book-markdown-20250923_201846-62584695/tmp6ib82xvr-book-figures-20250923_201846-62584695",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2575,
+        "estimated_tokens": 518
+      },
+      "figures_processed": 1,
+      "document_length": 2575,
+      "book_title": "Page Objects: Representing Visual Documents with Structured Metadata",
+      "main_folder": "content/books/tmp6ib82xvr-book-20250923_201846-62584695",
+      "book_summary": 

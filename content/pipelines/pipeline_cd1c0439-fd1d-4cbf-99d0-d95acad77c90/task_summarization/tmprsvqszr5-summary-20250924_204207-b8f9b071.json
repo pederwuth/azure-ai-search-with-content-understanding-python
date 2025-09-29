@@ -1,0 +1,45 @@
+{
+  "book_title": "The Figure Page Object: Structuring Visual Data in Documents",
+  "overall_summary": "By the end readers will not only understand the components of a robust Figure object but will also be able to craft figures that are semantically rich, machine-readable, and human-friendly. The book positions the Figure object as a pattern for improving clarity, reproducibility, and utility of visual content in technical documentation and data-driven reports.",
+  "key_themes": [
+    "Structured representation of visual content",
+    "Interoperability between human-readable captions and machine-readable data",
+    "Clear metadata schemas for figures and charts",
+    "Data-to-visual mapping and visual encoding choices",
+    "Annotations, footnotes, and provenance for context and reproducibility"
+  ],
+  "learning_objectives": [
+    "Understand the concept of a page object and why formalizing figures matters",
+    "Identify and populate essential figure metadata fields (title, type, keywords, description, summary, data table, axis titles, footnotes)",
+    "Translate a visual (e.g., bar chart) into a machine-friendly data table and back into a human caption",
+    "Apply color encoding and categorical grouping intentionally to convey meaning",
+    "Add annotations and footnotes that improve interpretability and maintain provenance"
+  ],
+  "chapter_summaries": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "This is title",
+      "summary": "This chapter drills into the 'Figure' page object introduced earlier in the book, moving from the conceptual idea of page objects and document structure to a concrete example: a bar chart representing monthly business values from January to June. It enumerates the figure's metadata fields (Title, ChartType, TopicKeywords, DetailedDescription, Summary, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations) and shows how those fields map to both a human-readable caption and a machine-friendly data table. The example bar chart has values [200, 300, 400, 450, 350, 250], peaks in April (450) and bottoms in January (200), and uses color coding to group months (orange: Jan/Apr, green: Feb/May, blue: Mar/Jun).",
+      "key_concepts": [
+        "Page Object (Figure)",
+        "Structured figure metadata",
+        "Bar chart interpretation",
+        "Axis titles and labels",
+        "Markdown data tables",
+        "Color encoding and categorical grouping",
+        "Annotations and footnotes",
+        "Data-to-visual mapping"
+      ],
+      "main_topics": [
+        "Figures as page objects",
+        "Embedding structured data with visuals",
+        "Interpreting monthly trend data",
+        "Metadata for accessibility and automation"
+      ],
+      "token_count": 464,
+      "created_at": "2025-09-24T20:42:56.005527"
+    }
+  ],
+  "total_chapters": 1,
+  "created_at": "2025-09-24T20:43:09.322011"
+}

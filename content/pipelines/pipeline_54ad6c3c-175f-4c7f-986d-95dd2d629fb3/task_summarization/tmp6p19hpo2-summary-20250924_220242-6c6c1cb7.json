@@ -1,0 +1,41 @@
+{
+  "book_title": "Page Objects and Structured Content: Modeling Figures, Data, and Accessibility on the Web",
+  "overall_summary": "This book tells the story of treating web pages not as opaque blobs of HTML but as composed, testable, and machine-friendly page objects. It begins by establishing the Page Object pattern as a way to model the logical structure of a page — its components, responsibilities and interfaces — and then progressively applies that pattern to increasingly rich and semantically important components such as forms, tables, and, centrally, figures. The concrete bar-chart example (monthly values January–June with a peak in April at 450 and a trough in January at 200) recurs as an illustrative case: the figure is shown to carry both visual cues and an embedded metadata block that makes its data and intent explicit and extractable.",
+  "key_themes": [
+    "Page Object modeling for web content",
+    "Figures as first-class structured components",
+    "Embedding machine-readable metadata alongside human-visible captions",
+    "Bridging visual presentation and programmatic data extraction",
+    "Accessibility and semantic enrichment as engineering concerns"
+  ],
+  "learning_objectives": [
+    "Understand the Page Object pattern and apply it to web page components",
+    "Model figures and other visual components as structured objects with clear APIs",
+    "Design and author embedded metadata blocks (ChartType, AxisTitles, MarkdownDataTable, etc.)",
+    "Extract and verify data from visualizations reliably for testing and downstream use",
+    "Improve accessibility and discoverability by combining captions, summaries, and machine-friendly metadata"
+  ],
+  "chapter_summaries": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "This is title",
+      "summary": "Chapter 1 (Section 2.2) narrows the book's focus to the Page Object model's treatment of Figures, using a concrete bar-chart example that displays monthly values from January to June. Building on earlier chapters that introduced page objects and the anatomy of page components, this chapter shows how a figure is not just an image but a structured object: it includes a caption, axis titles, a human-readable summary and a machine-oriented metadata block (ChartType, TopicKeywords, DetailedDescription, MarkdownDataTable, AxisTitles, FootnotesAndAnnotations). The data in the example chart peaks in April (450) and is lowest in January (200), with values for each month represented by different colored bars—details that are both visually evident and explicitly encoded in the metadata and table.",
+      "key_concepts": [
+        "Page Object — Figure as a first-class page component",
+        "Structured metadata embedding (ChartType, AxisTitles, MarkdownDataTable)",
+        "Bar chart interpretation (monthly values, peak/trough)",
+        "Captioning and accessibility (figcaption and summaries)",
+        "Data extraction from visuals (tabular representation of chart data)"
+      ],
+      "main_topics": [
+        "Visualization as a page object",
+        "Metadata-driven content encoding",
+        "Trend analysis from chart data"
+      ],
+      "token_count": 470,
+      "created_at": "2025-09-24T22:03:04.117602"
+    }
+  ],
+  "total_chapters": 1,
+  "created_at": "2025-09-24T22:03:13.887588"
+}

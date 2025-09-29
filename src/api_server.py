@@ -5,6 +5,12 @@ This API provides endpoints to test and use the Content Understanding
 implementation created in Phase 2.
 """
 
+import uvicorn
+from pydantic import BaseModel
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, BackgroundTasks, Depends
+import sys
 import os
 import logging
 import tempfile
@@ -12,6 +18,11 @@ import uuid
 from pathlib import Path
 from typing import Optional, Dict, Any
 from datetime import datetime
+
+# Add the parent directory to Python path for imports
+current_dir = Path(__file__).parent
+parent_dir = current_dir.parent
+sys.path.insert(0, str(parent_dir))
 
 # Load environment variables from .env file
 try:
@@ -21,11 +32,7 @@ except ImportError:
     # dotenv not available, will use system environment variables
     pass
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Form
-from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import uvicorn
+# FastAPI imports
 
 # Environment configuration
 CONTENT_OUTPUT_DIRECTORY = os.getenv(
@@ -40,7 +47,7 @@ logger = logging.getLogger(__name__)
 
 # Enhanced processing components (preferred)
 try:
-    from .enhanced_api import router as enhanced_router
+    from src.enhanced_api import router as enhanced_router
     ENHANCED_PROCESSING_AVAILABLE = True
     logger.info("Enhanced processing components imported successfully")
 except ImportError as e:
@@ -49,13 +56,21 @@ except ImportError as e:
 
 # Summarization components
 try:
-    from .summarization.router import router as summarization_router
+    from src.summarization.router import router as summarization_router
     SUMMARIZATION_AVAILABLE = True
-    logger.info("Summarization components imported successfully")
+    logger.info("Book summarization components imported successfully")
 except ImportError as e:
     logger.error(f"Failed to import summarization components: {e}")
     SUMMARIZATION_AVAILABLE = False
 
+# Pipeline components
+try:
+    from src.pipelines.api import router as pipeline_router
+    PIPELINE_AVAILABLE = True
+    logger.info("Pipeline system imported successfully")
+except ImportError as e:
+    logger.error(f"Failed to import pipeline components: {e}")
+    PIPELINE_AVAILABLE = False
 # FastAPI app configuration
 app = FastAPI(
     title="Educational Content Understanding API",
@@ -80,7 +95,12 @@ if ENHANCED_PROCESSING_AVAILABLE:
 # Include summarization router if available
 if SUMMARIZATION_AVAILABLE:
     app.include_router(summarization_router)
-    logger.info("Summarization endpoints added")
+    logger.info("Book summarization endpoints added")
+
+# Include pipeline router if available
+if PIPELINE_AVAILABLE:
+    app.include_router(pipeline_router, prefix="/pipeline", tags=["pipeline"])
+    logger.info("Pipeline orchestration endpoints added")
 
 # Global variables for job tracking
 # Legacy job tracking removed - use enhanced processing endpoints instead
@@ -303,20 +323,52 @@ async def test_pipeline():
 @app.get("/")
 async def root():
     """Root endpoint with API information."""
-    return {
-        "name": "Educational Content Understanding API",
-        "version": "1.0.0",
-        "description": "API for processing educational documents with Azure Content Understanding",
-        "endpoints": {
-            "health": "/health",
-            "config": "/config",
-            "analyzer_templates": "/analyzer-templates",
+    endpoints = {
+        "health": "/health",
+        "config": "/config",
+        "analyzer_templates": "/analyzer-templates",
+        "books": "/books",
+        "test_pipeline": "/test-pipeline"
+    }
+
+    # Add enhanced processing endpoints if available
+    if ENHANCED_PROCESSING_AVAILABLE:
+        endpoints.update({
             "enhanced_processing": "/enhanced/process",
             "enhanced_status": "/enhanced/status/{job_id}",
             "enhanced_download": "/enhanced/download/{job_id}/{file_type}",
-            "test_pipeline": "/test-pipeline"
-        },
-        "enhanced_processing_available": ENHANCED_PROCESSING_AVAILABLE
+            "enhanced_jobs": "/enhanced/jobs"
+        })
+
+    # Add summarization endpoints if available
+    if SUMMARIZATION_AVAILABLE:
+        endpoints.update({
+            "summarization_health": "/summarization/health",
+            "summarize_markdown": "/summarization/summarize",
+            "upload_and_summarize": "/summarization/upload"
+        })
+
+    # Add pipeline endpoints if available
+    if PIPELINE_AVAILABLE:
+        endpoints.update({
+            "pipeline_templates": "/pipeline/templates",
+            "pipeline_execute_template": "/pipeline/templates/{template_name}/execute",
+            "pipeline_execute_custom": "/pipeline/execute",
+            "pipeline_status": "/pipeline/status/{pipeline_id}",
+            "pipeline_list": "/pipeline/list",
+            "pipeline_tasks": "/pipeline/tasks"
+        })
+
+    return {
+        "name": "Educational Content Understanding API",
+        "version": "1.0.0",
+        "description": "API for processing educational documents with Azure Content Understanding and pipeline orchestration",
+        "endpoints": endpoints,
+        "features": {
+            "enhanced_processing_available": ENHANCED_PROCESSING_AVAILABLE,
+            "summarization_available": SUMMARIZATION_AVAILABLE,
+            "pipeline_orchestration_available": PIPELINE_AVAILABLE
+        }
     }
 
 if __name__ == "__main__":

@@ -1,0 +1,197 @@
+{
+  "pipeline_id": "96cd1821-0331-4304-aa26-d6c0ead5ef03",
+  "config": {
+    "name": "Document to Summary",
+    "description": "Process PDF document with content understanding and generate book summary",
+    "tasks": [
+      {
+        "task_id": "document_processing",
+        "inputs": {},
+        "settings": {
+          "analyzer_template": "analyzer_templates/image_chart_diagram_understanding.json",
+          "use_content_books_structure": true,
+          "content_type": "book"
+        }
+      },
+      {
+        "task_id": "summarization",
+        "inputs": {
+          "enhanced_markdown": "$enhanced_markdown",
+          "book_title": "$book_title"
+        },
+        "settings": {}
+      }
+    ],
+    "settings": {
+      "output_format": "structured",
+      "save_intermediates": true
+    },
+    "metadata": {
+      "template_version": "1.0.0",
+      "category": "document_processing",
+      "estimated_duration_minutes": 25
+    }
+  },
+  "status": "completed",
+  "start_time": "2025-09-24T18:36:54.395355",
+  "end_time": "2025-09-24T18:37:31.801422",
+  "error_message": null,
+  "task_executions": {
+    "document_processing": {
+      "task_id": "document_processing",
+      "status": "completed",
+      "start_time": "2025-09-24T18:36:54.397638",
+      "end_time": "2025-09-24T18:37:08.139748",
+      "error_message": null,
+      "execution_metadata": {}
+    },
+    "summarization": {
+      "task_id": "summarization",
+      "status": "completed",
+      "start_time": "2025-09-24T18:37:08.139760",
+      "end_time": "2025-09-24T18:37:31.801411",
+      "error_message": null,
+      "execution_metadata": {}
+    }
+  },
+  "final_outputs": {
+    "data": {
+      "original_filename": "sample_layout.pdf",
+      "custom_filename": "Test Summary Save Fixed",
+      "figures_directory": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed/tmptwww2xqt-book-markdown-20250924_183654-df6e3429/tmptwww2xqt-book-figures-20250924_183654-df6e3429",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "figures_processed": 1,
+      "document_length": 2689,
+      "book_title": "Figures as Page Objects: Encoding Visual and Tabular Data",
+      "main_folder": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429",
+      "book_summary": {
+        "book_title": "Figures as Page Objects: Encoding Visual and Tabular Data",
+        "overall_summary": "This book reframes figures not as static images placed on a page but as first-class page objects that bundle visual encodings with structured, semantic data. Beginning from a foundation of document architecture and the notion of page objects, it zeroes in on Figures to show how a single figure can simultaneously present a visual chart, an embedded tabular dataset, and machine-readable metadata such as captions, axis titles, footnotes, and group encodings. A concrete example — a bar chart of monthly values from January to June with labeled axes, a caption, color coding by month groups, and an embedded Markdown data table — is used throughout to make abstract ideas tangible.\n\nThe book dissects how visual elements (bars, colors, axes) and tabular representations (numeric rows, column headings) map to semantic metadata, enabling both human comprehension (trend reading, peak/trough identification) and programmatic interaction (search, extraction, transformation). It emphasizes that when figures carry explicit metadata, they become interoperable units usable across workflows: publishing, archiving, automated conversion, and accessibility tooling. The example demonstrates best practices for bundling the underlying dataset with its visual representation so that the visual and the data remain linked and verifiable.\n\nBuilding on practical concerns, the middle sections broaden to workflow, tooling, and standards: how to author figures that are both attractive and data-rich, how to choose and encode axis labels and captions, how to represent grouping and color semantics, and how to include embedded data tables (e.g., MarkdownDataTable) for reproducibility. The book treats annotations, footnotes, and captions as part of the figure’s API — the structured interface that downstream systems (screen readers, search indexes, conversion scripts) rely on. Throughout, the trade-offs between expressive visual design and strict machine-readability are discussed with pragmatic guidance.\n\nIn conclusion, the book is both conceptual and practical: it argues for a shift in thinking about document objects and supplies designers, authors, and engineers with patterns for creating figures that are semantically rich, accessible, and reusable. Readers finish with an understanding of why embedding metadata and datasets matters, how to do it effectively, and how such practices improve transparency, reproducibility, and discoverability across publishing and data-communication contexts.",
+        "key_themes": [
+          "Page objects as structured document primitives",
+          "Figures as dual visual and data artifacts",
+          "Semantic metadata and machine-readability",
+          "Design for comprehension (captions, axes, annotations)",
+          "Embedding and linking underlying datasets",
+          "Accessibility and interoperability",
+          "Reproducibility and provenance in visualizations"
+        ],
+        "learning_objectives": [
+          "Understand the concept of page objects and why Figures should be treated as structured objects",
+          "Learn how to bundle visual encodings with semantic metadata (captions, axis labels, footnotes)",
+          "Be able to embed and format underlying datasets (e.g., MarkdownDataTable) alongside visuals",
+          "Apply best practices for color coding, grouping, and trend identification (peaks and troughs)",
+          "Design figures that are both human-readable and machine-actionable for accessibility and reuse",
+          "Integrate figure design into reproducible publishing and automated workflows"
+        ],
+        "chapter_summaries": [
+          {
+            "chapter_number": 1,
+            "chapter_title": "This is title",
+            "summary": "Building on the book's earlier discussion of document structure and page objects, this chapter narrows the focus to Figures as a specific page object type and demonstrates how a figure encodes both visual and tabular data. The chapter presents a concrete example: a bar chart showing monthly values from January to June, with numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), axis titles ('Months' and 'Values'), a caption, color coding by month groups, and an embedded Markdown data table. The descriptive text and the figure together show how a figure bundles semantic metadata (caption, axis labels, footnotes) with visual encodings and the underlying numeric dataset.",
+            "key_concepts": [
+              "Page objects (Figure as a page object)",
+              "Data visualization (bar chart)",
+              "Semantic metadata (caption, axis titles, annotations)",
+              "Tabular representation (MarkdownDataTable)",
+              "Color coding and visual encodings",
+              "Peak and trough identification (trend reading)"
+            ],
+            "main_topics": [
+              "Figure interpretation and extraction",
+              "Monthly trend analysis for business/finance data",
+              "Mapping visual elements to structured data"
+            ],
+            "token_count": 470,
+            "created_at": "2025-09-24T18:37:17.161354"
+          }
+        ],
+        "total_chapters": 1,
+        "created_at": "2025-09-24T18:37:31.800805"
+      },
+      "overall_summary": "This book reframes figures not as static images placed on a page but as first-class page objects that bundle visual encodings with structured, semantic data. Beginning from a foundation of document architecture and the notion of page objects, it zeroes in on Figures to show how a single figure can simultaneously present a visual chart, an embedded tabular dataset, and machine-readable metadata such as captions, axis titles, footnotes, and group encodings. A concrete example — a bar chart of monthly values from January to June with labeled axes, a caption, color coding by month groups, and an embedded Markdown data table — is used throughout to make abstract ideas tangible.\n\nThe book dissects how visual elements (bars, colors, axes) and tabular representations (numeric rows, column headings) map to semantic metadata, enabling both human comprehension (trend reading, peak/trough identification) and programmatic interaction (search, extraction, transformation). It emphasizes that when figures carry explicit metadata, they become interoperable units usable across workflows: publishing, archiving, automated conversion, and accessibility tooling. The example demonstrates best practices for bundling the underlying dataset with its visual representation so that the visual and the data remain linked and verifiable.\n\nBuilding on practical concerns, the middle sections broaden to workflow, tooling, and standards: how to author figures that are both attractive and data-rich, how to choose and encode axis labels and captions, how to represent grouping and color semantics, and how to include embedded data tables (e.g., MarkdownDataTable) for reproducibility. The book treats annotations, footnotes, and captions as part of the figure’s API — the structured interface that downstream systems (screen readers, search indexes, conversion scripts) rely on. Throughout, the trade-offs between expressive visual design and strict machine-readability are discussed with pragmatic guidance.\n\nIn conclusion, the book is both conceptual and practical: it argues for a shift in thinking about document objects and supplies designers, authors, and engineers with patterns for creating figures that are semantically rich, accessible, and reusable. Readers finish with an understanding of why embedding metadata and datasets matters, how to do it effectively, and how such practices improve transparency, reproducibility, and discoverability across publishing and data-communication contexts.",
+      "key_themes": [
+        "Page objects as structured document primitives",
+        "Figures as dual visual and data artifacts",
+        "Semantic metadata and machine-readability",
+        "Design for comprehension (captions, axes, annotations)",
+        "Embedding and linking underlying datasets",
+        "Accessibility and interoperability",
+        "Reproducibility and provenance in visualizations"
+      ],
+      "learning_objectives": [
+        "Understand the concept of page objects and why Figures should be treated as structured objects",
+        "Learn how to bundle visual encodings with semantic metadata (captions, axis labels, footnotes)",
+        "Be able to embed and format underlying datasets (e.g., MarkdownDataTable) alongside visuals",
+        "Apply best practices for color coding, grouping, and trend identification (peaks and troughs)",
+        "Design figures that are both human-readable and machine-actionable for accessibility and reuse",
+        "Integrate figure design into reproducible publishing and automated workflows"
+      ],
+      "chapter_summaries": [
+        {
+          "chapter_number": 1,
+          "chapter_title": "This is title",
+          "summary": "Building on the book's earlier discussion of document structure and page objects, this chapter narrows the focus to Figures as a specific page object type and demonstrates how a figure encodes both visual and tabular data. The chapter presents a concrete example: a bar chart showing monthly values from January to June, with numeric values (Jan: 200, Feb: 300, Mar: 400, Apr: 450, May: 350, Jun: 250), axis titles ('Months' and 'Values'), a caption, color coding by month groups, and an embedded Markdown data table. The descriptive text and the figure together show how a figure bundles semantic metadata (caption, axis labels, footnotes) with visual encodings and the underlying numeric dataset.",
+          "key_concepts": [
+            "Page objects (Figure as a page object)",
+            "Data visualization (bar chart)",
+            "Semantic metadata (caption, axis titles, annotations)",
+            "Tabular representation (MarkdownDataTable)",
+            "Color coding and visual encodings",
+            "Peak and trough identification (trend reading)"
+          ],
+          "main_topics": [
+            "Figure interpretation and extraction",
+            "Monthly trend analysis for business/finance data",
+            "Mapping visual elements to structured data"
+          ],
+          "token_count": 470,
+          "created_at": "2025-09-24T18:37:17.161354"
+        }
+      ],
+      "total_chapters": 1
+    },
+    "files": {
+      "pdf": "/tmp/tmptwww2xqt.pdf",
+      "pdf_file": "/tmp/tmptwww2xqt.pdf",
+      "enhanced_markdown": "content/pipelines/pipeline_96cd1821-0331-4304-aa26-d6c0ead5ef03/task_document_processing/tmptwww2xqt-book-markdown-20250924_183654-df6e3429.md",
+      "cache_file": "content/pipelines/pipeline_96cd1821-0331-4304-aa26-d6c0ead5ef03/task_document_processing/tmptwww2xqt-book-cache-20250924_183654-df6e3429.json",
+      "metadata": "content/pipelines/pipeline_96cd1821-0331-4304-aa26-d6c0ead5ef03/task_document_processing/metadata.json"
+    },
+    "metadata": {
+      "pdf_file": "/tmp/tmptwww2xqt.pdf",
+      "enhanced_markdown": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed/tmptwww2xqt-book-markdown-20250924_183654-df6e3429/tmptwww2xqt-book-markdown-20250924_183654-df6e3429.md",
+      "cache_file": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed/tmptwww2xqt-book-cache-20250924_183654-df6e3429.json",
+      "figures_directory": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed/tmptwww2xqt-book-markdown-20250924_183654-df6e3429/tmptwww2xqt-book-figures-20250924_183654-df6e3429",
+      "figures_processed": 1,
+      "document_length": 2689,
+      "analyzer_id": "enhanced-content-understanding-bd95c073-843f-4569-9153-70aae98baece",
+      "processing_stats": {
+        "total_figures": 1,
+        "figures_with_content": 1,
+        "markdown_characters": 2689,
+        "estimated_tokens": 542
+      },
+      "main_folder": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429",
+      "job_id": "df6e3429",
+      "timestamp": "20250924_183654",
+      "content_type": "book",
+      "book_title": "tmptwww2xqt",
+      "metadata_file": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/metadata.json",
+      "input_directory": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/input",
+      "processed_directory": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed",
+      "markdown_directory": "content/books/tmptwww2xqt-book-20250924_183654-df6e3429/processed/tmptwww2xqt-book-markdown-20250924_183654-df6e3429",
+      "folder_structure": "content_books_v1",
+      "summarization_completed": true,
+      "total_chapters": 1,
+      "key_themes_count": 7,
+      "learning_objectives_count": 6,
+      "created_at": "2025-09-24T18:37:31.800805"
+    }
+  }
+}

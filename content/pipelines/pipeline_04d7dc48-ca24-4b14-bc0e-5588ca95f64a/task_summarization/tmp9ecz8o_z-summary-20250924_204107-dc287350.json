@@ -1,0 +1,46 @@
+{
+  "book_title": "Page Objects: Structuring Figures for Accessibility and Reuse",
+  "overall_summary": "This book builds a practical, implementable model for thinking about pages and the objects that live on them. It begins by defining an abstract document/page model and the concept of page objects—self-contained components that combine presentation, content, and metadata. From that foundation the narrative moves from high-level theory to concrete examples, showing how page objects can be designed, encoded, and reused across publishing and data workflows.\n\nA central strand of the book is the Figure object. The text uses a single, fully worked example (a bar chart of monthly values from January to June) to show how visual elements and structured metadata should be bundled. That example demonstrates not just how to draw a bar chart, but how to attach a descriptive metadata block (title, chart type, keywords, detailed description), a machine-readable data table (Markdown), axis titles and labels, color-coding per category, captions, and annotations. The chapter makes explicit how these pieces improve interpretation, accessibility and downstream processing.\n\nThroughout the book, concepts build from simple to sophisticated: starting with the basics of page objects and why they matter; moving to concrete object definitions (Figure, Table, Text blocks); and then covering practical encoding practices such as embedding Markdown data tables, adding semantic axis labels, including machine-readable descriptions, and using consistent color and annotation schemes. The book demonstrates how to support both human readers and automated systems by designing objects that are both visually clear and programmatically discoverable.\n\nThe final sections synthesize these lessons into practical workflows and recommendations for authors, designers, and engineers. Readers learn how to create reusable components, improve accessibility and searchability, and integrate page objects into automated pipelines or content management systems. The result is a set of practices that make figures more interpretable, easier to repurpose, and more valuable in reproducible research and large-scale publishing environments.",
+  "key_themes": [
+    "Page objects as first-class, reusable components",
+    "Figures as combined visual + structured metadata artifacts",
+    "Accessibility through machine-readable descriptions and labels",
+    "Discoverability and reuse via embedded metadata and tables",
+    "Practical encoding patterns (Markdown tables, axis labels, captions)",
+    "From abstract models to concrete, implementable examples"
+  ],
+  "learning_objectives": [
+    "Understand the document/page model and the rationale for page objects",
+    "Design Figure objects that bundle visualization, data, and metadata",
+    "Encode data tables and labels in machine-readable formats (e.g., Markdown) for downstream processing",
+    "Apply accessibility practices: descriptive captions, axis titles, and structured descriptions",
+    "Create reusable and discoverable page components for publishing and automation",
+    "Integrate figure objects into workflows that support reproducibility and programmatic reuse"
+  ],
+  "chapter_summaries": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "This is title",
+      "summary": "This chapter continues the book's shift from abstract page structure to concrete page objects by focusing on the Figure object (Section 2.2). It presents a full example: a bar chart that enumerates monthly values from January to June, provides a descriptive metadata block (title, chart type, topic keywords, detailed description), a Markdown data table, axis titles, color coding per month, and a figure caption. The visual data show a clear monthly trend with a low in January (200), a peak in April (450), and intermediate values for February (300), March (400), May (350) and June (250). The chapter demonstrates how a figure object bundles both visual elements and structured metadata to support interpretation and reuse.\n\nBuilding on earlier chapters that introduced the document/page model and the notion of page objects as reusable components, this section makes the Figure object concrete: it illustrates how data, presentation, and annotations live together (figcaption, axis titles, footnotes/annotations) and how a figure can carry machine-readable details (Markdown table, axis labels, detailed description) to improve accessibility, discoverability and downstream processing. The example underscores practices for encoding both human-facing and programmatic information alongside the visual itself.",
+      "key_concepts": [
+        "Page Objects",
+        "Figure object",
+        "Bar chart representation",
+        "Structured metadata (title, chart type, keywords)",
+        "Markdown data table",
+        "Axis titles and labels",
+        "Color-coding for category/series",
+        "Captioning and annotations"
+      ],
+      "main_topics": [
+        "Representing visual data as page objects",
+        "Embedding metadata for accessibility and reuse",
+        "Interpreting monthly trends in a bar chart"
+      ],
+      "token_count": 556,
+      "created_at": "2025-09-24T20:41:31.336973"
+    }
+  ],
+  "total_chapters": 1,
+  "created_at": "2025-09-24T20:41:48.259875"
+}
